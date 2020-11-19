@@ -1,0 +1,21 @@
+section.home_banner_area
+    .container
+        .row
+            .col-lg-5
+            .col-lg-7
+                .blog_text_slider.owl-carousel
+                    if app.popularContent.homepage_slider_content.length > 0
+                        each item in app.popularContent.homepage_slider_content
+                            .item
+                                .blog_text
+                                    .cat
+                                        //- a.cat_btn(href='#') Gadgets
+                                        span
+                                            i.fa.fa-calendar(aria-hidden='true')
+                                            |  #{ item.createdAt.toLocaleString(app.lang)}
+
+                                    a(href=item.href)
+                                        h4 #{ item.title }
+                                    p
+                                        | #{ item.description }
+                                    a.blog_btn(href=item.href) Read More

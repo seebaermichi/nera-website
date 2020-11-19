@@ -1,0 +1,12 @@
+properties:
+  - meta_property_name: homepage_slider_content
+    order: desc
+  - meta_property_name: homepage_teaser_content
+    order: desc
+  - meta_property_name: popular_post
+  - meta_property_name: news
+    order: desc
+  - meta_property_name: for_website_owners
+    order: desc
+  - meta_property_name: for_developers
+    order: desc

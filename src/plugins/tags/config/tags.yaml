@@ -1,0 +1,7 @@
+tag_overview_path: '/tags'
+tag_overview_layout: pages/tags-overview.pug
+tag_overview_default_banner: /img/banner/banner.jpg
+tag_overview_content_banner: /img/banner/content-banner.jpg
+tag_overview_pages_banner: /img/banner/pages-banner.jpg
+tag_overview_theme_banner: /img/banner/theme-banner.jpg
+tag_overview_website_banner: /img/banner/website-banner.jpg

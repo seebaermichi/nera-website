@@ -1,0 +1,4 @@
+ul.nav.navbar-nav.menu_nav
+    include ./helper/setup
+        li(class=`nav-item ${activeClass}${activePathClass}`)
+            a.nav-link(href=item.href) #{ item.name }

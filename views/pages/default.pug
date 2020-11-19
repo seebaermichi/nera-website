@@ -1,0 +1,10 @@
+extends ../layouts/app
+
+block page-content
+    include ../partials/default-banner
+
+    section.sample-text-area
+        .container
+            h3.text-heading.title_color #{ meta.title }
+
+            | !{ content }

@@ -1,0 +1,6 @@
+each item, index in app.mainNav.elements
+  - const activeClass = item.href === meta.htmlPathName ? app.mainNav.activeClass : ''
+  - const hasPagePathName = meta.pagePathName !== '.'
+  - const itemPath = item.path.slice(1, item.path.length)
+  - const isParent = itemPath !== '' && meta.pagePathName.indexOf(itemPath) === 0
+  - const activePathClass = activeClass === '' && hasPagePathName && isParent ? app.mainNav.activePathClass : ''

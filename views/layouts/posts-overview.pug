@@ -1,0 +1,14 @@
+extends ../layouts/app
+
+block page-content
+    include ../partials/default-banner
+
+    section.blog_area.p_120
+        .container
+            .row
+                .col-lg-8
+                    .blog_left_sidebar
+                        .row
+                            block posts
+
+                include ../partials/sidebar/sidebar

@@ -1,0 +1,45 @@
+extends ../layouts/app
+
+block page-content
+    include ../partials/default-banner
+
+    section.blog_area.p_120.single-post-area
+        .container
+            .row
+                .col-lg-8
+                    .main_blog_details
+                        img.img-fluid(src=`${ meta.teaser_image }` alt='')
+
+                        a(href='#')
+                            h4 #{ meta.title }
+
+                        .user_details
+                            .float-left
+                                each tag in meta.tagLinks
+                                    a(href=`${tag.href}`) #{ tag.name }
+                            .float-right
+                                .media
+                                    .media-body
+                                        h5 #{ meta.author }
+                                        p #{ meta.createdAt.toLocaleString(app.lang) }
+                                    .d-flex
+                                        img(src='img/blog/user-img.jpg' alt='')
+
+                        | !{ content }
+
+                        .news_d_footer
+                        //-     .news_socail.ml-auto
+                        //-         a(href='#')
+                        //-             i.fa.fa-facebook
+                        //-         a(href='#')
+                        //-             i.fa.fa-twitter
+                        //-         a(href='#')
+                        //-             i.fa.fa-youtube-play
+                        //-         a(href='#')
+                        //-             i.fa.fa-pinterest
+                        //-         a(href='#')
+                        //-             i.fa.fa-rss
+
+                    include ../partials/page-pagination
+
+                include ../partials/sidebar/sidebar

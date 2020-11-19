@@ -1,0 +1,6 @@
+if (app.popularContent.is_popular.length > 0)
+  ul
+    each item in app.popularContent.is_popular
+      li
+        span #{ item.title } -&nbsp;
+        span #{ item.createdAt.toLocaleString(app.lang) }

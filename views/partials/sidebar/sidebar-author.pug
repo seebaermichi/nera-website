@@ -1,0 +1,11 @@
+aside.single_sidebar_widget.author_widget
+    if meta.authorData.image
+        img.author_img.img-fluid(src=`${ meta.authorData.image }` alt='')
+    h4 #{ meta.authorData.title}
+    p #{ meta.authorData.slug }
+    .social_icon
+        for link in meta.authorData.social_media
+            a(href=`${link.href}`, target="_blank")
+                i(class=`fa fa-${link.label}`)
+    p
+        | #{ meta.authorData.description }

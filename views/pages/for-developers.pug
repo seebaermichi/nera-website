@@ -1,0 +1,7 @@
+extends ../layouts/posts-overview.pug
+
+include ../mixins/teaser
+
+block posts
+    if app.popularContent.for_developers
+        +teasers(app.popularContent.for_developers)

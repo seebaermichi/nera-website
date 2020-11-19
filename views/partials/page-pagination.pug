@@ -1,0 +1,21 @@
+.navigation-area
+    .row
+        .col-lg-6.col-md-6.col-12.nav-left.flex-row.d-flex.justify-content-start.align-items-center
+            if meta.pagePagination.previous
+                .arrow
+                    a(href=meta.pagePagination.previous.href)
+                        span.lnr.text-white.lnr-arrow-left
+                .detials
+                    p Prev Post
+                    a(href=meta.pagePagination.previous.href)
+                        h4 #{ meta.pagePagination.previous.name }
+
+        .col-lg-6.col-md-6.col-12.nav-right.flex-row.d-flex.justify-content-end.align-items-center
+            if meta.pagePagination.next
+                .detials
+                    p Next Post
+                    a(href=meta.pagePagination.next.href)
+                        h4 #{ meta.pagePagination.next.name }
+                .arrow
+                    a(href=meta.pagePagination.next.href)
+                        span.lnr.text-white.lnr-arrow-right

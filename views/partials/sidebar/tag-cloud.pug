@@ -1,0 +1,6 @@
+aside.single-sidebar-widget.tag_cloud_widget
+    h4.widget_title Tag Cloud
+    ul.list
+        each tag in app.tagCloud
+            li
+                a(href=`${ tag.href }`) #{ tag.name }

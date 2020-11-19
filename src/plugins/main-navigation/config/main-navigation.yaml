@@ -1,0 +1,13 @@
+active_class: "active"
+active_path_class: "active"
+elements:
+  - href: /index.html
+    name: Home
+  - href: /about-nera.html
+    name: About Nera
+  - href: /news/index.html
+    name: News
+  - href: /for-website-owners/index.html
+    name: For Website Owners
+  - href: /for-developers/index.html
+    name: For Developers

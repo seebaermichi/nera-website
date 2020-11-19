@@ -1,0 +1,10 @@
+section.banner_area(style=`background-image: url(${ meta.banner_image || app.tagsConfig['tag_overview_' + meta.tag + '_banner'] || app.tagsConfig.tag_overview_default_banner || '/img/banner/banner.jpg' });`)
+    .container
+        .row.banner_inner
+            .col-lg-5
+            .col-lg-7
+                .banner_content.text-center
+                    h2 #{ meta.title }
+                    .page_link
+                        a(href='/') Home
+                        a(href='#') #{ meta.title }

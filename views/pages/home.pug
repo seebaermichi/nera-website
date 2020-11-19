@@ -1,0 +1,22 @@
+extends ../layouts/home
+
+include ../mixins/teaser
+
+block content
+    section.blog_area.p_120
+        .container
+            .row
+                .col-lg-8
+                    if app.popularContent.homepage_teaser_content.length > 0
+                        .blog_left_sidebar
+                            .row
+                                each item, index in app.popularContent.homepage_teaser_content
+                                    if index == 0 || index == 3
+                                        article.blog_style1
+                                            +teaser(item)
+                                    else
+                                        .col-md-6
+                                            article.blog_style1.small
+                                                +teaser(item)
+
+                include ../partials/sidebar/homepage-sidebar

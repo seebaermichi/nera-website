@@ -1,0 +1,7 @@
+extends ../layouts/posts-overview.pug
+
+include ../mixins/teaser
+
+block posts
+    if meta.taggedPages
+        +teasers(meta.taggedPages)

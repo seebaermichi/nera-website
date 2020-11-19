@@ -1,0 +1,29 @@
+mixin teaser(item)
+    - var item = item.meta ? item.meta : item
+
+    if item.teaser_image
+        .blog_img
+            img.img-fluid(src=item.teaser_image alt='')
+    .blog_text
+        .blog_text_inner
+            .cat
+                //- a.cat_btn(href='#') Gadgets
+                span
+                    i.fa.fa-calendar(aria-hidden='true')
+                    |  #{ item.createdAt.toLocaleString(app.lang) }
+
+            a(href=item.href)
+                h4 #{ item.title }
+            p
+                | #{ item.description }
+            a.blog_btn(href=item.href) Read More
+
+mixin teasers(items)
+    each item, index in items
+        if index == 0
+            article.blog_style1
+                +teaser(item)
+        else
+            .col-md-6
+                article.blog_style1.small
+                    +teaser(item)

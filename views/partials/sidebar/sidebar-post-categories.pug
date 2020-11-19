@@ -1,0 +1,9 @@
+aside.single_sidebar_widget.post_category_widget
+    h4.widget_title Post Catgories
+    ul.list.cat-list
+        for item in app.tagAmount
+            li
+                a.d-flex.justify-content-between(href=`${ item.href }`)
+                    p #{ item.name }
+                    p #{ item.amount }
+

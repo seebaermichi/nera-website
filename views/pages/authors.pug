@@ -1,0 +1,20 @@
+extends ../layouts/app
+
+block page-content
+    include ../partials/default-banner
+
+    section.blog_area.p_120.single-post-area
+        .container
+            .row
+                .col-lg-8
+                    .main_blog_details
+                        img.img-fluid(src=`${ meta.teaser_image }` alt='')
+
+                        h3.text-heading.title_color #{ meta.title }
+
+                        p #{ meta.description }
+
+                        | !{ content }
+
+                //- include ../partials/sidebar
+

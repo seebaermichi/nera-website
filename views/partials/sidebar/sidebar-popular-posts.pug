@@ -1,0 +1,10 @@
+if app.popularContent.popular_post.length > 0
+    aside.single_sidebar_widget.popular_post_widget
+        h3.widget_title Popular Posts
+        each item in app.popularContent.popular_post
+            .media.post_item
+                img(src=item.teaser_image alt='post')
+                .media-body
+                    a(href=item.href)
+                        h3 #{ item.title }
+                    p #{ item.createdAt.toLocaleString(app.lang) }
