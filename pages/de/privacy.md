@@ -10,16 +10,16 @@ robots: noindex,follow
 
 # Datenschutz
 
-> **Diese Seite ist noch nicht fertig.** Die technischen Aussagen unten
-> beschreiben die Website zutreffend, die Angaben zum Verantwortlichen und der
-> Abschnitt zum Hosting sind jedoch Platzhalter. Ergänze sie, lass das Ergebnis
-> prüfen und entferne `robots: noindex,follow` aus dem Frontmatter, bevor die
-> Seite online geht. Diese deutsche Fassung ist die maßgebliche.
+> **Noch nicht veröffentlicht.** Die technischen Aussagen unten beschreiben die
+> Website zutreffend. Offen sind noch: die Kontakt-E-Mail und der Abschnitt zu
+> den Server-Logfiles, in dem der Hosting-Anbieter benannt werden muss. Beides
+> ergänzen, prüfen lassen und `robots: noindex,follow` aus dem Frontmatter
+> entfernen. Diese deutsche Fassung ist die maßgebliche.
 
 ## Verantwortlicher
 
-- **[VOLLSTÄNDIGER NAME]**
-- [STRASSE UND HAUSNUMMER], [PLZ, ORT], [LAND]
+- **Michael Becker**
+- Wotanstraße 31, 10365 Berlin, Deutschland
 - E-Mail: [E-MAIL-ADRESSE]
 
 ## Was diese Website nicht tut

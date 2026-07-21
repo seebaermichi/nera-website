@@ -10,19 +10,18 @@ robots: noindex,follow
 
 # Legal notice
 
-> **This page is not finished.** The details below are placeholders. Replace every
-> `[…]` with real information and remove `robots: noindex,follow` from the
-> frontmatter before publishing. The German version is the legally authoritative
-> one; this is a courtesy translation.
+> **Not published yet.** The contact email is still missing, and the frontmatter
+> sets `robots: noindex,follow` — remove that once this page is complete. The
+> German version is the legally authoritative one; this is a courtesy translation.
 
 ## Provider
 
 Information pursuant to § 5 DDG (German Digital Services Act).
 
-- **[FULL LEGAL NAME]**
-- [STREET AND NUMBER]
-- [POSTAL CODE, CITY]
-- [COUNTRY]
+- **Michael Becker**
+- Wotanstraße 31
+- 10365 Berlin
+- Germany
 
 ## Contact
 
@@ -30,7 +29,7 @@ Information pursuant to § 5 DDG (German Digital Services Act).
 
 ## Responsible for editorial content
 
-Pursuant to § 18 (2) MStV: **[FULL LEGAL NAME]**, address as above.
+Pursuant to § 18 (2) MStV: **Michael Becker**, address as above.
 
 ## About this site
 

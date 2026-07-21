@@ -10,16 +10,16 @@ robots: noindex,follow
 
 # Privacy
 
-> **This page is not finished.** The technical statements below describe the site
-> accurately, but the controller details and the hosting section are placeholders.
-> Complete them, have the result reviewed, and remove `robots: noindex,follow`
-> from the frontmatter before publishing. The German version is the legally
-> authoritative one.
+> **Not published yet.** The technical statements below describe the site
+> accurately. Still open: the contact email, and the server-log section, which
+> needs the hosting provider named. Complete those, have the result reviewed, and
+> remove `robots: noindex,follow` from the frontmatter. The German version is the
+> legally authoritative one.
 
 ## Controller
 
-- **[FULL LEGAL NAME]**
-- [STREET AND NUMBER], [POSTAL CODE, CITY], [COUNTRY]
+- **Michael Becker**
+- Wotanstraße 31, 10365 Berlin, Germany
 - Email: [EMAIL ADDRESS]
 
 ## What this site does not do

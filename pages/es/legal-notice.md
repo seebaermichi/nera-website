@@ -10,19 +10,18 @@ robots: noindex,follow
 
 # Aviso legal
 
-> **Esta página no está terminada.** Los datos siguientes son marcadores de
-> posición. Sustituye cada `[…]` por información real y elimina
-> `robots: noindex,follow` del frontmatter antes de publicar. La versión alemana
-> es la jurídicamente vinculante; esta es una traducción de cortesía.
+> **Aún no publicada.** Falta el correo de contacto y el frontmatter incluye
+> `robots: noindex,follow` — quítalo cuando la página esté completa. La versión
+> alemana es la jurídicamente vinculante; esta es una traducción de cortesía.
 
 ## Prestador
 
 Información conforme al § 5 DDG (Ley alemana de servicios digitales).
 
-- **[NOMBRE COMPLETO]**
-- [CALLE Y NÚMERO]
-- [CÓDIGO POSTAL, CIUDAD]
-- [PAÍS]
+- **Michael Becker**
+- Wotanstraße 31
+- 10365 Berlin
+- Alemania
 
 ## Contacto
 
@@ -30,7 +29,7 @@ Información conforme al § 5 DDG (Ley alemana de servicios digitales).
 
 ## Responsable del contenido
 
-Conforme al § 18 (2) MStV: **[NOMBRE COMPLETO]**, dirección indicada arriba.
+Conforme al § 18 (2) MStV: **Michael Becker**, dirección indicada arriba.
 
 ## Sobre este sitio
 
