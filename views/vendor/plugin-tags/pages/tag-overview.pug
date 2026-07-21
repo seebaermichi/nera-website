@@ -19,11 +19,14 @@ section.tag-overview
         //- ("tutoriales advanced"). Keeping the order in the translation means
         //- a new language is a config entry, not a branch in here.
         //-
-        //- If the pattern is missing, t() hands back the key itself, which has
-        //- no slot — render the tag alone rather than printing the key.
+        //- No fallback on purpose. t() hands back the key when a translation is
+        //- missing, and that is the point: the key showing up on the page is how
+        //- you find out a language is incomplete. Substituting English here would
+        //- hide exactly the defect this heading exists to avoid — a German page
+        //- quietly rendering English.
         -
             const headingPattern = t('tag_overview_heading')
-            const headingParts = headingPattern.includes('{tag}') ? headingPattern.split('{tag}') : ['', '']
+            const headingParts = headingPattern.split('{tag}')
             const headingBefore = headingParts[0].trim()
             const headingAfter = (headingParts[1] || '').trim()
         h1.tag-overview__heading
@@ -49,12 +52,6 @@ section.tag-overview
 
                     //- Upstream hardcodes this in English. Now that overviews are
                     //- generated per language, that showed on every German and
-                    //- Spanish tag page.
-                    //-
-                    //- t() hands back the key when a translation is missing, so
-                    //- an absent key would print "tag_overview_read_more" on the
-                    //- page. Fall back to English instead, as the heading above
-                    //- already does.
-                    - const readMoreKey = 'tag_overview_read_more'
-                    - const readMoreLabel = t(readMoreKey) === readMoreKey ? 'Read more' : t(readMoreKey)
-                    a.tag-overview__item-link(href=`${ page.meta.href }`) #{ readMoreLabel }
+                    //- Spanish tag page. Translated, and deliberately without an
+                    //- English fallback — see the note on the heading above.
+                    a.tag-overview__item-link(href=`${ page.meta.href }`) #{ t('tag_overview_read_more') }
