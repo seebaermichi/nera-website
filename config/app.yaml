@@ -6,6 +6,7 @@ robots: index,follow
 repo_url: https://github.com/seebaermichi/nera
 plugins_url: https://github.com/seebaermichi/nera/blob/main/PLUGINS.md
 npm_scope: '@nera-static'
+npm_org_url: https://www.npmjs.com/org/nera-static
 
 # UI chrome strings, resolved per page via t(key) using meta.lang (or app.lang).
 translations:
@@ -17,6 +18,8 @@ translations:
         cta_browse_plugins: Browse plugins
         footer_built_with: Built with Nera
         footer_source: Source on GitHub
+        footer_col_site: Site
+        footer_col_project: Project
         search_title: Search
         search_placeholder: Search…
         docs_heading: Documentation
@@ -37,6 +40,8 @@ translations:
         cta_browse_plugins: Plugins ansehen
         footer_built_with: Erstellt mit Nera
         footer_source: Quellcode auf GitHub
+        footer_col_site: Seiten
+        footer_col_project: Projekt
         search_title: Suche
         search_placeholder: Suchen…
         docs_heading: Dokumentation
@@ -57,6 +62,8 @@ translations:
         cta_browse_plugins: Ver plugins
         footer_built_with: Creado con Nera
         footer_source: Código en GitHub
+        footer_col_site: Sitio
+        footer_col_project: Proyecto
         search_title: Buscar
         search_placeholder: Buscar…
         docs_heading: Documentación

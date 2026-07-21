@@ -78,8 +78,7 @@
 
 /* --------------------------------------------------------------------------
    2. Self-hosted fonts (files in assets/fonts/)
-   Source: IBM Plex Sans / IBM Plex Mono, latin subset (woff2).
-   Self-hosted to keep the site GDPR-friendly and fully self-contained.
+   Source: https://github.com/IBM/plex → IBM-Plex-Sans / IBM-Plex-Mono (woff2)
    -------------------------------------------------------------------------- */
 @font-face {
   font-family: 'IBM Plex Sans';
@@ -179,6 +178,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .site-header__logo { color: var(--color-accent); font-size: 1.0625rem; line-height: 1; }
 .site-header__name { letter-spacing: -0.01em; }
 .site-header__cta {
+  margin-left: auto;
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: var(--color-ink);
@@ -221,35 +221,11 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 @media (min-width: 45rem) {
   .nav--main { order: 0; width: auto; margin-left: auto; overflow: visible; }
+  .site-header__cta { margin-left: 0; }
 }
 
 .nav--footer .nav--list, .nav--footer ul { flex-direction: column; gap: var(--space-2); }
 .nav--footer .nav__link { border-bottom: none; }
-
-/* --------------------------------------------------------------------------
-   5b. Language switch (i18n) — compact EN / DE / ES toggle in the header.
-   Sits between the nav and the GitHub CTA on desktop; wraps to its own
-   position with the CTA on mobile. (Not in the original Claude Design CSS —
-   added here because the real header carries a language switch.)
-   -------------------------------------------------------------------------- */
-.lang-switch {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  margin-left: auto;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-}
-.lang-switch__link {
-  color: var(--color-faint);
-  padding: var(--space-1) var(--space-2);
-  letter-spacing: 0.02em;
-}
-.lang-switch__link:hover { color: var(--color-ink); text-decoration: none; }
-.lang-switch__link--active { color: var(--color-accent); }
-@media (min-width: 45rem) {
-  .lang-switch { margin-left: 0; }
-}
 
 /* --------------------------------------------------------------------------
    6. Home: hero, buttons, body
@@ -608,7 +584,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .tutorials__list { list-style: none; margin: 0; padding: var(--space-2) 0 var(--space-8); }
 .tutorials__item { padding-block: var(--space-5); border-bottom: var(--border); }
 .tutorials__item:last-child { border-bottom: none; }
-.tutorials__item-title { font-size: 1.0625rem; font-weight: 600; margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); }
+.tutorials__item-title { font-size: 1.0625rem; font-weight: 600; margin: 0; }
 .tutorials__link { color: var(--color-ink); }
 .tutorials__link:hover { color: var(--color-accent); text-decoration: none; }
 .tutorials__item-desc {
@@ -639,9 +615,6 @@ img, svg, video { max-width: 100%; height: auto; }
 
 /* --------------------------------------------------------------------------
    11. Tags (⚙︎)
-   The tag plugin renders each tag as an anchor that IS the __item
-   (section.tag-links > a.tag-links__item), so the pill styling targets the
-   item itself as well as a nested <a> for markup that wraps them in <li>.
    -------------------------------------------------------------------------- */
 .tag-links, .tag-cloud {
   list-style: none;
@@ -651,16 +624,16 @@ img, svg, video { max-width: 100%; height: auto; }
   flex-wrap: wrap;
   gap: var(--space-2);
 }
-.tag-links__item, .tag-cloud__item,
-.tag-links__item a, .tag-cloud__item a {
-  display: inline-block;
+.tag-links__item a, .tag-cloud__item a, .tag-links__item, .tag-cloud__item {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-muted);
+}
+.tag-links__item a, .tag-cloud__item a {
+  display: inline-block;
   border: var(--border-strong);
   padding: var(--space-1) var(--space-3);
 }
-.tag-links__item:hover, .tag-cloud__item:hover,
 .tag-links__item a:hover, .tag-cloud__item a:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tutorials · Nera</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Preview fallback while assets/fonts/ is empty — remove once fonts are self-hosted -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html">
+        <span class="site-header__logo">▚</span>
+        <span class="site-header__name">nera</span>
+      </a>
+      <nav class="nav nav--main">
+        <ul class="nav--list">
+          <li class="nav__item"><a class="nav__link" href="docs.html">docs</a></li>
+          <li class="nav__item"><a class="nav__link" href="plugins.html">plugins</a></li>
+          <li class="nav__item"><a class="nav__link nav__link--active" href="tutorials.html">tutorials</a></li>
+          <li class="nav__item"><a class="nav__link" href="search.html">search</a></li>
+        </ul>
+      </nav>
+      <a class="site-header__cta" href="https://github.com/">github ↗</a>
+    </div>
+  </header>
+  <main class="site-main">
+    <section class="tutorials">
+      <div class="container">
+        <header class="tutorials__header">
+          <h1 class="tutorials__title">Tutorials</h1>
+          <p class="tutorials__intro">Short, practical walkthroughs. Each one ends with a working site.</p>
+        </header>
+        <ul class="tutorials__list">
+          <li class="tutorials__item">
+            <h2 class="tutorials__item-title"><a class="tutorials__link" href="tutorial-first-plugin.html">Build a blog in 15 minutes</a> <span class="tutorial__date">2026-06-30</span></h2>
+            <p class="tutorials__item-desc">From <code>npm create nera</code> to a deployed blog with layouts and an index page.</p>
+            <ul class="tag-links">
+              <li class="tag-links__item"><a href="#">basics</a></li>
+              <li class="tag-links__item"><a href="#">blog</a></li>
+            </ul>
+          </li>
+          <li class="tutorials__item">
+            <h2 class="tutorials__item-title"><a class="tutorials__link" href="tutorial-first-plugin.html">Write your first plugin</a> <span class="tutorial__date">2026-06-12</span></h2>
+            <p class="tutorials__item-desc">One function, one afternoon: add reading-time estimates to every page.</p>
+            <ul class="tag-links">
+              <li class="tag-links__item"><a href="#">plugins</a></li>
+            </ul>
+          </li>
+          <li class="tutorials__item">
+            <h2 class="tutorials__item-title"><a class="tutorials__link" href="tutorial-first-plugin.html">Deploy to GitHub Pages</a> <span class="tutorial__date">2026-05-28</span></h2>
+            <p class="tutorials__item-desc">A 20-line workflow file that publishes <code>public/</code> on every push.</p>
+            <ul class="tag-links">
+              <li class="tag-links__item"><a href="#">deployment</a></li>
+            </ul>
+          </li>
+          <li class="tutorials__item">
+            <h2 class="tutorials__item-title"><a class="tutorials__link" href="tutorial-first-plugin.html">Add search to your site</a> <span class="tutorial__date">2026-05-10</span></h2>
+            <p class="tutorials__item-desc">Wire up the search plugin and style the results page.</p>
+            <ul class="tag-links">
+              <li class="tag-links__item"><a href="#">plugins</a></li>
+              <li class="tag-links__item"><a href="#">search</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <p class="site-footer__name">nera</p>
+          <p class="site-footer__tagline">A minimal static site generator for Node.js. Markdown in, clean HTML out.</p>
+        </div>
+        <div class="site-footer__nav">
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">site</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="docs.html">Docs</a></li>
+              <li class="nav__item"><a class="nav__link" href="plugins.html">Plugins</a></li>
+              <li class="nav__item"><a class="nav__link" href="tutorials.html">Tutorials</a></li>
+            </ul>
+          </nav>
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">project</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="https://github.com/">GitHub</a></li>
+              <li class="nav__item"><a class="nav__link" href="https://www.npmjs.com/">npm</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Changelog</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="site-footer__meta">
+        <span>MIT licensed</span>
+        <span>built with nera, naturally</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

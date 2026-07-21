@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plugins · Nera</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Preview fallback while assets/fonts/ is empty — remove once fonts are self-hosted -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html">
+        <span class="site-header__logo">▚</span>
+        <span class="site-header__name">nera</span>
+      </a>
+      <nav class="nav nav--main">
+        <ul class="nav--list">
+          <li class="nav__item"><a class="nav__link" href="docs.html">docs</a></li>
+          <li class="nav__item"><a class="nav__link nav__link--active" href="plugins.html">plugins</a></li>
+          <li class="nav__item"><a class="nav__link" href="tutorials.html">tutorials</a></li>
+          <li class="nav__item"><a class="nav__link" href="search.html">search</a></li>
+        </ul>
+      </nav>
+      <a class="site-header__cta" href="https://github.com/">github ↗</a>
+    </div>
+  </header>
+  <main class="site-main">
+    <section class="plugins">
+      <div class="container">
+        <header class="plugins__header">
+          <h1 class="plugins__title">Plugins</h1>
+          <p class="hero__tagline">Small, single-purpose packages. Install one, add it to your config, done. Each is a few files — read the source over coffee.</p>
+        </header>
+        <ul class="plugin-cards">
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">Navigation</h2>
+            <p class="plugin-card__desc">Builds nested nav trees from your pages' frontmatter.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-navigation</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">Tags</h2>
+            <p class="plugin-card__desc">Tag pages, tag clouds and per-tag overview lists.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-tags</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">Search</h2>
+            <p class="plugin-card__desc">Client-side search over a generated JSON index. No server.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-search</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">Pagination</h2>
+            <p class="plugin-card__desc">Splits long lists into pages with prev/next links.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-pagination</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">Canonical links</h2>
+            <p class="plugin-card__desc">Adds correct canonical URLs to every generated page.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-canonical</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">Sitemap</h2>
+            <p class="plugin-card__desc">Generates sitemap.xml from the rendered page list.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-sitemap</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">RSS feed</h2>
+            <p class="plugin-card__desc">An RSS/Atom feed for any folder of dated pages.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-rss</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card">
+            <h2 class="plugin-card__name">Redirects</h2>
+            <p class="plugin-card__desc">Meta-refresh redirect pages from a simple YAML map.</p>
+            <p class="plugin-card__pkg">@nera-static/plugin-redirects</p>
+            <a class="plugin-card__link" href="#">Docs →</a>
+          </li>
+          <li class="plugin-card plugin-card--cta">
+            <h2 class="plugin-card__name">Write your own</h2>
+            <p class="plugin-card__desc">A plugin is one function: data in, data out. Start from the template repo.</p>
+            <a class="plugin-card__link" href="#">Plugin guide →</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <p class="site-footer__name">nera</p>
+          <p class="site-footer__tagline">A minimal static site generator for Node.js. Markdown in, clean HTML out.</p>
+        </div>
+        <div class="site-footer__nav">
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">site</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="docs.html">Docs</a></li>
+              <li class="nav__item"><a class="nav__link" href="plugins.html">Plugins</a></li>
+              <li class="nav__item"><a class="nav__link" href="tutorials.html">Tutorials</a></li>
+            </ul>
+          </nav>
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">project</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="https://github.com/">GitHub</a></li>
+              <li class="nav__item"><a class="nav__link" href="https://www.npmjs.com/">npm</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Changelog</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="site-footer__meta">
+        <span>MIT licensed</span>
+        <span>built with nera, naturally</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

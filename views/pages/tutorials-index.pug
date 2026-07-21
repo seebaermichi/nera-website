@@ -17,7 +17,9 @@ block content
       ul.tutorials__list
         each post in posts
           li.tutorials__item
-            a.tutorials__link(href=post.href)
-              h2.tutorials__item-title #{ post.title }
-              if post.description
-                p.tutorials__item-desc #{ post.description }
+            h2.tutorials__item-title
+              a.tutorials__link(href=post.href) #{ post.title }
+              if post.createdAt
+                time.tutorial__date #{ new Date(post.createdAt).toLocaleDateString(post.lang || app.lang) }
+            if post.description
+              p.tutorials__item-desc #{ post.description }

@@ -7,9 +7,9 @@ include ../vendor/plugin-navigation/partials/link-list-navigation
 - const langs = [{ code: 'en', prefix: '' }, { code: 'de', prefix: '/de' }, { code: 'es', prefix: '/es' }]
 
 header.site-header
-  .site-header__inner
+  .site-header__inner.container
     a.site-header__brand(href=`${ langPrefix }/index.html`)
-      span.site-header__logo N
+      span.site-header__logo ▚
       span.site-header__name #{ app.name }
 
     if mainNav

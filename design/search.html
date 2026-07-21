@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search · Nera</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Preview fallback while assets/fonts/ is empty — remove once fonts are self-hosted -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="search-page">
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html">
+        <span class="site-header__logo">▚</span>
+        <span class="site-header__name">nera</span>
+      </a>
+      <nav class="nav nav--main">
+        <ul class="nav--list">
+          <li class="nav__item"><a class="nav__link" href="docs.html">docs</a></li>
+          <li class="nav__item"><a class="nav__link" href="plugins.html">plugins</a></li>
+          <li class="nav__item"><a class="nav__link" href="tutorials.html">tutorials</a></li>
+          <li class="nav__item"><a class="nav__link nav__link--active" href="search.html">search</a></li>
+        </ul>
+      </nav>
+      <a class="site-header__cta" href="https://github.com/">github ↗</a>
+    </div>
+  </header>
+  <main class="site-main">
+    <section class="search">
+      <div class="container">
+        <h1 class="search__title">Search</h1>
+        <input class="search__input" type="search" placeholder="Search docs, plugins and tutorials…" value="frontmatter">
+        <ul class="search__results">
+          <li>
+            <h3><a href="docs.html">Pages &amp; frontmatter</a></h3>
+            <span class="search__result-url">/docs/pages-and-frontmatter/</span>
+            <p>…a YAML <mark>frontmatter</mark> block that tells Nera how to render it…</p>
+          </li>
+          <li>
+            <h3><a href="#">Configuration</a></h3>
+            <span class="search__result-url">/docs/configuration/</span>
+            <p>…site-wide defaults that individual page <mark>frontmatter</mark> can override…</p>
+          </li>
+          <li>
+            <h3><a href="#">Navigation plugin</a></h3>
+            <span class="search__result-url">/plugins/navigation/</span>
+            <p>…reads nav order from each page's <mark>frontmatter</mark>…</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <p class="site-footer__name">nera</p>
+          <p class="site-footer__tagline">A minimal static site generator for Node.js. Markdown in, clean HTML out.</p>
+        </div>
+        <div class="site-footer__nav">
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">site</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="docs.html">Docs</a></li>
+              <li class="nav__item"><a class="nav__link" href="plugins.html">Plugins</a></li>
+              <li class="nav__item"><a class="nav__link" href="tutorials.html">Tutorials</a></li>
+            </ul>
+          </nav>
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">project</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="https://github.com/">GitHub</a></li>
+              <li class="nav__item"><a class="nav__link" href="https://www.npmjs.com/">npm</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Changelog</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="site-footer__meta">
+        <span>MIT licensed</span>
+        <span>built with nera, naturally</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

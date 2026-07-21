@@ -3,17 +3,29 @@ extends ../layouts/layout
 block content
   //- langPrefix comes from layout.pug (shared scope).
   section.hero
-    .hero__inner
-      p.hero__eyebrow #{ app.npm_scope } · MIT · Node ≥ 18
-      h1.hero__title #{ app.name }
-      p.hero__tagline #{ t('tagline') }
-      .hero__actions
-        a.button.button--primary(href=`${ langPrefix }/docs/index.html`) #{ t('cta_get_started') }
-        a.button.button--ghost(href=`${ langPrefix }/plugins/index.html`) #{ t('cta_browse_plugins') }
-      pre.hero__code
-        code npx @nera-static/installer new my-site
+    .container
+      .hero__inner
+        p.hero__eyebrow #{ app.npm_scope } · MIT · Node ≥ 18
+        h1.hero__title #{ app.name }
+        p.hero__tagline #{ t('tagline') }
+        .hero__actions
+          a.button.button--primary(href=`${ langPrefix }/docs/index.html`) #{ t('cta_get_started') }
+          a.button.button--ghost(href=`${ langPrefix }/plugins/index.html`) #{ t('cta_browse_plugins') }
+        pre.hero__code
+          code npx @nera-static/installer new my-site
 
-  //- Feature grid and any prose authored in the Markdown file render here.
-  section.home-body.container
-    article.prose
-      != content
+  section.home-body
+    .container
+      //- Feature grid, authored as a `features:` list in the page frontmatter.
+      if meta.features && meta.features.length
+        .home-body__grid
+          each feature, i in meta.features
+            .home-body__feature
+              p.home-body__feature-num #{ String(i + 1).padStart(2, '0') }
+              h2.home-body__feature-title #{ feature.title }
+              p.home-body__feature-desc #{ feature.description }
+
+      //- Any prose authored in the Markdown body renders below the grid.
+      if content && content.trim()
+        article.prose
+          != content

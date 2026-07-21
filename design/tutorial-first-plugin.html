@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Write your first plugin · Nera</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Preview fallback while assets/fonts/ is empty — remove once fonts are self-hosted -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__brand" href="index.html">
+        <span class="site-header__logo">▚</span>
+        <span class="site-header__name">nera</span>
+      </a>
+      <nav class="nav nav--main">
+        <ul class="nav--list">
+          <li class="nav__item"><a class="nav__link" href="docs.html">docs</a></li>
+          <li class="nav__item"><a class="nav__link" href="plugins.html">plugins</a></li>
+          <li class="nav__item"><a class="nav__link nav__link--active" href="tutorials.html">tutorials</a></li>
+          <li class="nav__item"><a class="nav__link" href="search.html">search</a></li>
+        </ul>
+      </nav>
+      <a class="site-header__cta" href="https://github.com/">github ↗</a>
+    </div>
+  </header>
+  <main class="site-main">
+    <article class="tutorial">
+      <div class="container">
+        <header class="tutorial__header">
+          <p class="tutorial__date">2026-06-12</p>
+          <h1 class="tutorial__title">Write your first plugin</h1>
+          <ul class="tag-links">
+            <li class="tag-links__item"><a href="#">plugins</a></li>
+          </ul>
+        </header>
+        <div class="tutorial__body prose">
+          <p>A Nera plugin is a module with one exported function. It receives the full page data before rendering and returns whatever it wants to add. Let's add reading-time estimates to every page.</p>
+          <h2>The whole plugin</h2>
+          <figure class="code-block">
+            <figcaption class="code-block__header">
+              <span>plugins/reading-time.js</span>
+              <button class="code-block__copy" type="button">copy</button>
+            </figcaption>
+            <pre><code>export function getMetaData({ pagesData }) {
+  return pagesData.map((page) => ({
+    ...page,
+    readingTime: estimate(page.content),
+  }));
+}</code></pre>
+          </figure>
+          <p>That's it. Register the file in <code>config.yaml</code> and use <code>meta.readingTime</code> in any template.</p>
+          <nav class="page-pagination">
+            <a class="page-pagination__link page-pagination__link--previous" href="tutorials.html">Build a blog in 15 minutes</a>
+            <a class="page-pagination__link page-pagination__link--next" href="tutorials.html">Deploy to GitHub Pages</a>
+          </nav>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <p class="site-footer__name">nera</p>
+          <p class="site-footer__tagline">A minimal static site generator for Node.js. Markdown in, clean HTML out.</p>
+        </div>
+        <div class="site-footer__nav">
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">site</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="docs.html">Docs</a></li>
+              <li class="nav__item"><a class="nav__link" href="plugins.html">Plugins</a></li>
+              <li class="nav__item"><a class="nav__link" href="tutorials.html">Tutorials</a></li>
+            </ul>
+          </nav>
+          <nav class="nav nav--footer">
+            <p class="site-footer__nav-heading">project</p>
+            <ul class="nav--list">
+              <li class="nav__item"><a class="nav__link" href="https://github.com/">GitHub</a></li>
+              <li class="nav__item"><a class="nav__link" href="https://www.npmjs.com/">npm</a></li>
+              <li class="nav__item"><a class="nav__link" href="#">Changelog</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="site-footer__meta">
+        <span>MIT licensed</span>
+        <span>built with nera, naturally</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.querySelectorAll('.code-block__copy').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const code = btn.closest('.code-block').querySelector('pre').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          btn.textContent = 'copied';
+          setTimeout(() => { btn.textContent = 'copy'; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
