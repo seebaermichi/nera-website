@@ -1,13 +1,15 @@
 each item, index in elements || app.nav.elements
   - const isActive = item.href === meta.fullPath
   - const activeClass = isActive ? 'nav__link--active' : ''
-  //- The site root, per language: '/' for en, '/de' and '/es' for the others
-  //- (langPrefix comes from layout.pug). A page sitting directly in the root
-  //- has no parent section, so nothing may be marked as its ancestor.
-  //- Checking only against '/' — as the upstream template does — treats /de
-  //- and /es as ordinary sections, and since every nav href in a language
-  //- starts with that prefix, the test below then matched all of them.
-  - const rootDir = langPrefix || '/'
-  - const isNotHome = meta.dirname !== rootDir
-  - const isParent = isNotHome && item.href.indexOf(meta.dirname) === 0
+  //- The directory that counts as the site root. Defaults to '/', but a site
+  //- that prefixes its pages — a language prefix such as /de, a subdirectory
+  //- deployment — passes its own through the mixin's `rootPath` argument.
+  //- Without it, a page sitting directly in that prefix looks nested, and
+  //- since every nav href shares the prefix, the test below matches the whole
+  //- menu instead of one entry.
+  - const navRoot = (typeof rootPath !== 'undefined' && rootPath) || '/'
+  - const isNotHome = meta.dirname !== navRoot
+  //- Anchored at a path separator: without the trailing slash a page in /docs
+  //- would also claim /docs-archive/index.html as part of its section.
+  - const isParent = isNotHome && item.href.indexOf(meta.dirname + '/') === 0
   - const activePathClass = !isActive && isParent ? 'nav__link--active-path' : ''

@@ -17,7 +17,9 @@ header.site-header
       span.site-header__name #{ app.name }
 
     if mainNav
-      +linkListNav(mainNav.elements, 'nav--main')
+      //- langPrefix is this language's site root ('' → '/' for en), so a page
+      //- sitting directly in /de or /es is not treated as a nested section.
+      +linkListNav(mainNav.elements, 'nav--main', langPrefix || '/')
 
     nav.lang-switch(aria-label=t('language_label'))
       each l in langs

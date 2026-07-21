@@ -18,7 +18,7 @@ footer.site-footer
         if footerNav
           nav.nav--footer(aria-label=t('footer_col_site'))
             p.site-footer__nav-heading #{ t('footer_col_site') }
-            +linkListNav(footerNav.elements)
+            +linkListNav(footerNav.elements, '', langPrefix || '/')
         nav.nav--footer(aria-label=t('footer_col_project'))
           p.site-footer__nav-heading #{ t('footer_col_project') }
           ul.nav.nav--list
