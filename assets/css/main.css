@@ -677,8 +677,32 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 
 .tag-overview { padding-bottom: var(--space-8); }
-.tag-overview__header { padding-block: var(--space-7) var(--space-2); }
-.tag-overview__title { font-size: var(--text-xl); font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+/* More room below than the other page headers get: the title is a bordered
+   chip, so it needs clearance to read as its own object rather than colliding
+   with the first result. */
+.tag-overview__header { padding-block: var(--space-7) var(--space-4); }
+/* The tag page's title is the tag itself, so it wears the chip's clothes —
+   scaled up, and in the accent the chips take when picked. Rhyming with the
+   row the visitor just clicked is what makes the page recognisable at a
+   glance; as a plain bold heading it read like any other page. */
+.tag-overview__title {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: var(--leading-tight);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: var(--space-2) var(--space-4);
+  margin: 0;
+  /* A long slug must not force the page to scroll sideways. */
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 45rem) {
+  .tag-overview__title { font-size: var(--text-xl); }
+}
 .tag-overview__image { display: none; }
 .tag-overview__content { list-style: none; margin: 0; padding: 0; }
 .tag-overview__item { padding-block: var(--space-5); border-bottom: var(--border); }
