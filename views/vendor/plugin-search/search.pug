@@ -5,6 +5,7 @@
     type="search",
     placeholder=t('search_placeholder'),
     data-search-input,
+    data-search-index=(meta && meta.searchIndexPath) || (app && app.searchIndexPath),
     data-results="[data-search__results]"
   )
 

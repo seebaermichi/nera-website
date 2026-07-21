@@ -7,3 +7,7 @@ fields:
     - href
 strip_html: true
 output_filename: search-index.json
+# One index per language: the search box on a /de/ page must not return English
+# and Spanish hits. English keeps search-index.json; de and es get
+# search-index.de.json and search-index.es.json.
+group_by_lang: true

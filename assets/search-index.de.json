@@ -1,0 +1,247 @@
+[
+  {
+    "title": "Über Nera",
+    "description": "Was Nera ist, seine Philosophie und wie man mitmacht.",
+    "content": "Über Nera Nera ist ein quelloffener Static-Site-Generator mit einer bewusst kleinen Angriffsfläche. Die gesamte Pipeline — laden, rendern, Plugins anwenden, schreiben — passt in eine Handvoll Dateien, die du in einer Sitzung lesen kannst. Philosophie Transparent statt magisch. Keine versteckten Konventionen; eine Seite wird gerendert, weil ihr Frontmatter es so sagt. Kompositionsfähig statt monolithisch. Funktionen leben in kleinen @nera-static/plugin-*-Paketen, für die du dich entscheidest. Dir gehörend. Templates werden in dein Projekt veröffentlicht, damit du sie direkt gestalten und bearbeiten kannst. Mitmachen Nera und seine Plugins werden offen auf GitHub entwickelt. Issues, Ideen und Pull Requests sind willkommen — siehe den Plugin-Katalog auf der Seite Plugins. Diese Seite Diese Website ist selbst mit Nera gebaut und nutzt plugin-navigation, plugin-tags, plugin-search, plugin-page-pagination und plugin-canonical-links — plus ein kleines lokales Plugin für die Tutorials-Liste.",
+    "href": "/de/about.html",
+    "lang": "de"
+  },
+  {
+    "title": "CLI-Referenz",
+    "description": "Die Befehle des nera-Installers und die npm-Skripte des Generators.",
+    "content": "CLI-Referenz Installer (@nera-static/installer) npx @nera-static/installer new &lt;project-name&gt; # scaffold a new site npx @nera-static/installer update # update the generator core in place Generator-Skripte Führe diese aus dem Inneren einer Seite aus: Befehl Was er macht npm run render pages/ → public/ bauen npm run dev Rendern + Live-Reload-Vorschau auf :3000 npm run serve public/ ausliefern, ohne neu zu bauen Plugin-Publish-Befehle Jedes Template-ausliefernde Plugin stellt ein Bin bereit, um sein Pug nach views/vendor/ zu kopieren, z. B.: npx nera-navigation npx nera-tags npx nera-search --force # overwrite existing published templates",
+    "href": "/de/docs/cli.html",
+    "lang": "de"
+  },
+  {
+    "title": "Grundkonzepte",
+    "description": "Die Render-Pipeline, die Objekte app und meta, Layouts und Übersetzungen.",
+    "content": "Grundkonzepte Die vierstufige Pipeline Jeder Build durchläuft dieselbe feste Pipeline: App-Daten laden → Seiten rendern → Plugins anwenden → Ausgabe schreiben. Wenn du diese vier Stufen verstehst, erklärt das fast alles am Verhalten von Nera. app vs. meta Zwei Datenobjekte erreichen deine Templates: app — globale Werte aus config/app.yaml, auf jeder Seite verfügbar. meta — seitenspezifische Werte: dein Frontmatter, plus abgeleitete Schlüssel wie meta.href, meta.dirname, meta.filename und meta.createdAt. Plugins ergänzen beide — zum Beispiel setzt plugin-navigation app.nav, und plugin-tags setzt meta.tagLinks. Layouts Layouts sind Pug-Dateien unter views/. Das layout-Frontmatter einer Seite wählt eines aus: --- layout: pages/docs.pug title: My page --- Übersetzungen config/app.yaml enthält eine translations-Map. In einem Layout löst t('key') app.translations[meta.lang || app.lang][key] auf und fällt auf den Schlüssel selbst zurück — so werden fehlende Übersetzungen sichtbar, nicht stillschweigend verschluckt.",
+    "href": "/de/docs/core-concepts.html",
+    "lang": "de"
+  },
+  {
+    "title": "Deployment",
+    "description": "Die Seite bauen und den public/-Ordner hosten.",
+    "content": "Deployment Nera erzeugt einen einfachen public/-Ordner — deploye ihn überall dort, wo statische Dateien ausgeliefert werden. Bauen npm run render Hosten Netlify / Vercel — Build-Befehl npm run render, Publish-Verzeichnis public. GitHub Pages — in CI rendern, dann public/ in den gh-pages-Branch veröffentlichen. Beliebiger statischer Host / CDN — den Inhalt von public/ hochladen. Bevor du startest Setze app_origin in config/canonical-links.yaml auf deine echte Domain, damit die kanonischen URLs korrekt sind. Füge eine .neraignore im Projektstamm hinzu, um reine Quell-Assets aus dem Build herauszuhalten. public/ wird bei jedem Rendern gelöscht und neu gebaut — bearbeite es niemals von Hand und committe es niemals als Quelle.",
+    "href": "/de/docs/deployment.html",
+    "lang": "de"
+  },
+  {
+    "title": "Erste Schritte",
+    "description": "Erstelle eine neue Nera-Website mit dem Installer und rendere sie.",
+    "content": "Erste Schritte Voraussetzungen Node.js ≥ 20 npm (in Node enthalten) Website erstellen Die CLI @nera-static/installer klont den Generator und macht daraus dein eigenes Projekt: npx @nera-static/installer new my-site cd my-site npm run dev npm run dev rendert die Website und startet eine Vorschau mit Live-Reload unter http://localhost:3000. Für die Produktion bauen npm run render Das löscht und erzeugt public/ neu. Lade diesen Ordner auf einen beliebigen statischen Host. Später aktualisieren npx @nera-static/installer update nera update aktualisiert den Generator-Kern an Ort und Stelle, während deine pages/, config/ und views/ unangetastet bleiben.",
+    "href": "/de/docs/getting-started.html",
+    "lang": "de"
+  },
+  {
+    "title": "Einführung",
+    "description": "Was Nera ist, wie es funktioniert und wie es weitergeht.",
+    "content": "Dokumentation Nera ist ein leichtgewichtiger Static-Site-Generator, der auf einer einfachen Idee beruht: Markdown rein, HTML raus — mit Plugins für alles andere. Diese Anleitung führt dich von einem leeren Ordner zu einer veröffentlichten Website. Der Aufbau eines Nera-Projekts my-site/ ├── config/ # app.yaml + je eine &lt;plugin&gt;.yaml pro Plugin ├── pages/ # deine Markdown-Inhalte ├── views/ # Pug-Layouts (und vendor/-Templates aus Plugins) ├── assets/ # CSS, JS, Bilder — unverändert nach public/ kopiert └── public/ # generierte Ausgabe (niemals von Hand bearbeiten) Wie aus einer Seite HTML wird Laden von config/app.yaml in das app-Objekt und Auflisten von pages/. Rendern jeder Markdown-Datei, wobei das Frontmatter in meta extrahiert wird. Plugins anwenden, die app und meta anreichern. Schreiben nach public/, wobei jede Seite durch ihr layout läuft. Eine Seite wird nur gerendert, wenn ihr Frontmatter ein layout festlegt. Seiten ohne layout werden stillschweigend übersprungen — das ist die häufigste Ursache für „Warum fehlt meine Seite?“. Weiter geht es mit Erste Schritte, um deine erste Website zu erstellen.",
+    "href": "/de/docs/index.html",
+    "lang": "de"
+  },
+  {
+    "title": "Plugins",
+    "description": "Plugins installieren, der Hook-Vertrag, die Auflösung der Konfiguration und Templates.",
+    "content": "Plugins Installation npm install @nera-static/plugin-navigation Jede Abhängigkeit, deren Name mit @nera-static/ beginnt, wird automatisch entdeckt und angewendet — kein Registrierungsschritt. Der Hook-Vertrag Ein Plugin ist ein ESM-Modul, das einen oder beide Hooks exportiert: export function getAppData({ app, pagesData }) { return { ...app, myKey: 'value' } // must return a plain object } export function getMetaData({ app, pagesData }) { return pagesData // must return an array } getAppData läuft zuerst; getMetaData sieht das app, das es zurückgegeben hat. Halte Hooks synchron — ein asynchroner Hook kann app auf älteren Generator-Versionen auslöschen. Die Konfiguration liegt in deinem Projekt Jedes Plugin liest config/&lt;name&gt;.yaml aus deiner Site, nicht aus dem Paket. Das im Paket mitgelieferte YAML ist Dokumentation; kopiere es in dein config/ und bearbeite es. Fehlende Schlüssel fallen auf sinnvolle Standardwerte zurück. Reihenfolge config/plugin-order.yaml steuert die Ausführungsreihenfolge: Namen unter start: laufen zuerst, dann alles Übrige alphabetisch, dann Namen unter end:. Die Suche läuft zuletzt, damit sie die endgültigen Seitendaten indexiert. Templates Plugins, die Views mitliefern, stellen einen Publish-Befehl bereit: npx nera-navigation # copies templates into views/vendor/plugin-navigation/ include sie dann aus deinen Layouts. Das Veröffentlichen wird übersprungen, wenn der Ordner bereits existiert — lösche ihn (oder übergib --force), um Template-Updates einzuspielen.",
+    "href": "/de/docs/plugins.html",
+    "lang": "de"
+  },
+  {
+    "title": "Inhalte schreiben",
+    "description": "Markdown-Dateien, Frontmatter und die abgeleiteten meta-Werte.",
+    "content": "Inhalte schreiben Eine Inhaltsdatei Jede Seite ist eine Markdown-Datei unter pages/ mit einem YAML-Frontmatter-Block: --- layout: pages/default.pug title: About description: What this page is about. --- # About Your content goes here. Wer den Titel schreibt title ist Daten, keine Ausgabe. Ob er auf der Seite landet, entscheidet das Layout — prüfe das also, bevor du ihn im Text wiederholst: Rendert das Layout meta.title selbst, lass die Überschrift im Markdown weg — ein zusätzliches # Über setzt den Titel zweimal auf die Seite. Tut es das nicht, ist die eigene #-Überschrift im Text der einzige Titel der Seite, wie im Beispiel oben. Auf dieser Website rendern pages/default.pug und pages/docs.pug keinen Titel, deshalb beginnen diese Seiten mit einer Überschrift. Die Layouts für Tutorials, Tutorial-Übersicht, Plugins und Tag-Übersicht rendern ihn, deshalb steigt deren Markdown direkt in den Fließtext ein. Frontmatter ist Daten Alles im Frontmatter landet auf meta. Nutze es für Titel, Beschreibungen, Tags, Reihenfolge — alles, was ein Layout oder Plugin lesen soll. YAML-Typen bleiben erhalten: Zahlen bleiben Zahlen, Booleans bleiben Booleans. Prüfe auf meta.x != null, nicht auf if (meta.x), damit eine legitime 0 oder false erhalten bleibt. Abgeleitete meta-Werte Nera fügt diese automatisch hinzu: Schlüssel Bedeutung meta.href URL-Pfad der generierten HTML-Datei meta.dirname Verzeichnis, in dem die Seite liegt meta.filename Quelldateiname meta.createdAt Erstellungszeitpunkt der Datei Ordner werden zu URLs pages/docs/getting-started.md → /docs/getting-started.html. Verschachtelte Ordner verschachteln URLs — keine Routing-Konfiguration erforderlich.",
+    "href": "/de/docs/writing-content.html",
+    "lang": "de"
+  },
+  {
+    "title": "Start",
+    "description": "Nera ist ein leichtgewichtiger, Plugin-basierter Static-Site-Generator. Schreibe Markdown, gestalte mit Pug und erweitere mit kleinen, fokussierten Plugins.",
+    "content": "Warum Nera Nera macht aus einem Ordner voller Markdown-Dateien eine schnelle statische Website. Kein Framework-Lock-in, keine schwere Toolchain — eine vierstufige Pipeline, die du an einem Nachmittag verstehst, und ein Plugin-System, bei dem jede Funktion ein kleines, fokussiertes Paket ist, das du bei Bedarf hinzufügst.",
+    "href": "/de/index.html",
+    "lang": "de"
+  },
+  {
+    "title": "Impressum",
+    "description": "Anbieterkennzeichnung für diese Website.",
+    "content": "Impressum Anbieter Angaben gemäß § 5 DDG. Michael Becker Wotanstraße 31 10365 Berlin Deutschland Kontakt E-Mail: info@michael-becker-berlin.de Redaktionell verantwortlich Gemäß § 18 Abs. 2 MStV: Michael Becker, Anschrift wie oben. Zu dieser Website Diese Website dokumentiert Nera, einen quelloffenen Static-Site-Generator unter der MIT-Lizenz. Sie ist rein informativ; es wird nichts verkauft. Der Quellcode der Website und aller beschriebenen Plugins liegt auf GitHub.",
+    "href": "/de/legal-notice.html",
+    "lang": "de"
+  },
+  {
+    "title": "Plugins",
+    "description": "Der offizielle @nera-static-Plugin-Katalog — Navigation, Tags, Suche, Pagination und mehr.",
+    "content": "Jede Funktion in Nera über \"Markdown zu HTML\" hinaus ist ein kleines, unabhängiges Paket. Installiere nur, was eine Website benötigt. Unten findest du den offiziellen @nera-static-Katalog — die kanonische Quelle ist PLUGINS.md.",
+    "href": "/de/plugins/index.html",
+    "lang": "de"
+  },
+  {
+    "title": "Datenschutz",
+    "description": "Was diese Website mit Besucherdaten macht — und was nicht.",
+    "content": "Datenschutz Noch nicht veröffentlicht. Die technischen Aussagen unten beschreiben die Website zutreffend. Offen ist noch der Abschnitt zu den Server-Logfiles, in dem der Hosting-Anbieter benannt werden muss — das hängt davon ab, wo die Website betrieben wird. Ergänzen, prüfen lassen und dann robots: noindex,follow aus dem Frontmatter entfernen. Diese deutsche Fassung ist die maßgebliche. Verantwortlicher Michael Becker Wotanstraße 31, 10365 Berlin, Deutschland E-Mail: info@michael-becker-berlin.de Was diese Website nicht tut Dies ist eine statische Website. Es gibt keine Benutzerkonten, keine Kommentare und keine Formulare. Insbesondere werden nicht: Cookies gesetzt, gleich welcher Art Analyse-, Tracking- oder Werbedienste eingesetzt Daten in localStorage oder sessionStorage geschrieben Inhalte von Dritten geladen — kein CDN, keine externen Schriftarten, keine eingebetteten Videos oder Karten Schriftarten werden von dieser Domain ausgeliefert und nicht von einem Font-CDN. Beim Aufruf einer Seite wird deine IP-Adresse daher nicht an Dritte übermittelt. Suche Die Suche läuft vollständig in deinem Browser. Sie lädt eine statische Datei mit Seitentiteln und -texten von dieser Domain und filtert lokal. Deine Suchbegriffe werden nirgendwohin übertragen. Server-Logfiles Damit eine Seite ausgeliefert werden kann, verbindet sich dein Browser mit dem Hosting-Anbieter. Dieser protokolliert dabei technische Daten — in der Regel IP-Adresse, Zeitpunkt der Anfrage, die angeforderte Datei sowie Referrer und User-Agent, die dein Browser sendet. Das ist für die Auslieferung und die Sicherheit der Website erforderlich und erfolgt auf Grundlage eines berechtigten Interesses, Art. 6 Abs. 1 lit. f DSGVO. [ZU ERGÄNZEN] Hosting-Anbieter benennen, Speicherdauer der Logs angeben und klären, ob ein Auftragsverarbeitungsvertrag (Art. 28 DSGVO) vorliegt. Das hängt davon ab, wo die Website betrieben wird. Deine Rechte Nach der DSGVO hast du das Recht auf Auskunft über deine personenbezogenen Daten (Art. 15), auf Berichtigung (Art. 16), auf Löschung (Art. 17), auf Einschränkung der Verarbeitung (Art. 18), auf Datenübertragbarkeit (Art. 20) sowie das Recht, einer auf berechtigtem Interesse beruhenden Verarbeitung zu widersprechen (Art. 21). Wende dich dafür an die oben genannte Adresse. Außerdem steht dir ein Beschwerderecht bei einer Aufsichtsbehörde zu. Externe Links Von hier wird auf Seiten verlinkt, die wir nicht betreiben, etwa GitHub und npm. Wer einem solchen Link folgt, sendet seine Anfrage an die dortige Seite; diese Erklärung gilt dort nicht.",
+    "href": "/de/privacy.html",
+    "lang": "de"
+  },
+  {
+    "title": "Suche",
+    "description": "Durchsuche die Nera-Dokumentation und -Tutorials.",
+    "content": "Durchsuche die Dokumentation und Tutorials. Die Ergebnisse werden vollständig clientseitig aus einem zur Build-Zeit erzeugten Index bereitgestellt.",
+    "href": "/de/search.html",
+    "lang": "de"
+  },
+  {
+    "title": "Clientseitige Suche hinzufügen",
+    "description": "Verdrahte plugin-search, um einen Index und ein funktionierendes Suchfeld zu generieren.",
+    "content": "@nera-static/plugin-search baut zur Render-Zeit einen JSON-Index und liefert ein kleines Client-Skript — kein Server erforderlich. 1. Installieren npm install @nera-static/plugin-search 2. Das Template veröffentlichen npx nera-search Dies kopiert das Suchfeld nach views/vendor/plugin-search/ und den Client nach assets/js/search.js. 3. Konfigurieren config/search.yaml steuert, welche Felder indexiert werden: fields: - title - description - content - href strip_html: true output_filename: search-index.json 4. Eine Suchseite hinzufügen Erstelle eine Seite, die das veröffentlichte Such-Partial einbindet, und stelle dann sicher, dass die Suche zuletzt in config/plugin-order.yaml läuft, damit sie die finalen Seitendaten indexiert: plugin-order: - end: - plugin-search Rendere, und du hast eine funktionierende Suche. Die Suchseite dieser Website ist genau auf diese Weise gebaut.",
+    "href": "/de/tutorials/add-search.html",
+    "lang": "de"
+  },
+  {
+    "title": "Einen Blog mit Nera bauen",
+    "description": "Eine Website erstellen, Beiträge hinzufügen und sie mit einem lokalen Plugin nach Datum auflisten.",
+    "content": "In diesem Tutorial erstellst du eine Nera-Website, fügst ein paar Beiträge hinzu und listest sie auf einer Übersichtsseite nach Datum (neueste zuerst) auf. 1. Website erstellen npx @nera-static/installer new my-blog cd my-blog 2. Beiträge hinzufügen Erstelle pages/posts/hello-world.md: --- layout: pages/default.pug title: Hallo Welt description: Mein erster Beitrag. --- # Hallo Welt Willkommen in meinem neuen Nera-Blog. 3. Beiträge auflisten Ein kleines lokales Plugin unter src/plugins/ kann jeden Beitrag in app.posts sammeln, sortiert nach meta.createdAt. Dein Übersichts-Layout iteriert dann über diese Liste. (Genau das macht diese Website für ihre Tutorials — siehe src/plugins/tutorials-list.) 4. Vorschau npm run dev Das ist ein funktionierender Blog. Von hier aus kannst du Tags oder Pagination ergänzen, um ihn auszubauen.",
+    "href": "/de/tutorials/build-a-blog.html",
+    "lang": "de"
+  },
+  {
+    "title": "Canonical-Links für SEO hinzufügen",
+    "description": "Verwende plugin-canonical-links, um korrekte canonical- und alternate-language-Link-Tags auszugeben.",
+    "content": "Suchmaschinen wollen eine einzige canonical URL pro Seite. @nera-static/plugin-canonical-links gibt auf jeder Seite das richtige &lt;link rel=\"canonical\"&gt;-Tag aus — und alternate-language- Tags, wenn du eine mehrsprachige Website betreibst. 1. Template installieren und veröffentlichen npm install @nera-static/plugin-canonical-links npx nera-canonical-links 2. Deinen Origin konfigurieren config/canonical-links.yaml: app_origin: https://your-domain.com page_identifier: slug available_languages: - en app_origin ist der einzige Wert, den du setzen musst — es ist der absolute Origin, aus dem canonical URLs aufgebaut werden. Setze ihn auf deine echte Domain, bevor du live gehst. 3. Seiten einen Slug geben Mit page_identifier: slug trägt jede Seite ihren slug aus dem Frontmatter zur canonical URL bei: --- title: Getting started slug: getting-started --- 4. Die Tags ausgeben Das Plugin setzt meta.canonicalLink. Binde das veröffentlichte Partial im &lt;head&gt; deines Layouts ein: head include ../vendor/plugin-canonical-links/index Rendere und prüfe den Quelltext einer beliebigen Seite — du siehst: &lt;link href=\"https://your-domain.com/docs/getting-started.html\" rel=\"canonical\" /&gt; Jede Seite auf dieser Website trägt eines, genau auf diese Weise gebaut.",
+    "href": "/de/tutorials/canonical-links-seo.html",
+    "lang": "de"
+  },
+  {
+    "title": "Eine Navigation mit aktiven Zuständen bauen",
+    "description": "Nutze plugin-navigation, um ein Kopf- und Fußzeilenmenü zu rendern, bei dem die aktuelle Seite hervorgehoben wird.",
+    "content": "@nera-static/plugin-navigation verwandelt eine YAML-Liste in ein Navigationsmenü und markiert den Link für die aktuelle Seite — ganz ohne JavaScript. 1. Das Template installieren und veröffentlichen npm install @nera-static/plugin-navigation npx nera-navigation Der zweite Befehl kopiert die Nav-Templates nach views/vendor/plugin-navigation/, wo du sie frei bearbeiten kannst. 2. Das Menü definieren Erstelle config/navigation.yaml. Ein einzelnes flaches Menü sieht so aus: active_class: nav__link--active active_path_class: nav__link--active-path nav_class: nav elements: - href: /index.html name: Home - href: /docs/index.html name: Docs Brauchst du mehr als ein Menü? Verschachtele sie unter Namen — jedes wird zu app.nav.&lt;name&gt;.elements: elements: main: - href: /index.html name: Home - href: /docs/index.html name: Docs footer: - href: /about.html name: About Das Plugin stellt alles unter app.nav bereit. 3. In einem Layout rendern Binde das veröffentlichte Partial ein und rufe sein Mixin auf: include ../vendor/plugin-navigation/partials/link-list-navigation header.site-header if app.nav &amp;&amp; app.nav.main +linkListNav(app.nav.main.elements, 'nav--main') Das Plugin fügt dem Link, der zur aktuellen Seite passt, nav__link--active hinzu und nav__link--active-path jedem übergeordneten Link, sodass das Stylen des aktuellen Bereichs reines CSS ist. Bevorzugst du eine andere Form? Das Plugin liefert auch die Partials simple-navigation und pipe-separated-navigation — dieselben Daten, anderes Markup. Diese Seite nutzt genau dieses Setup für ihre Kopf- und Fußzeile — siehe config/navigation.yaml im Quellcode.",
+    "href": "/de/tutorials/custom-navigation.html",
+    "lang": "de"
+  },
+  {
+    "title": "Externe Links in einem neuen Tab öffnen",
+    "description": "Verwende plugin-link-attributes, um target und rel automatisch zu ausgehenden Links hinzuzufügen.",
+    "content": "@nera-static/plugin-link-attributes verarbeitet dein gerendertes HTML nach und fügt ausgehenden Links Attribute hinzu — sodass jeder externe Link sicher in einem neuen Tab öffnet, ohne dass du das Markdown anfassen musst. 1. Installieren npm install @nera-static/plugin-link-attributes Kein Template zum Veröffentlichen — dieses Plugin transformiert nur Inhalt. 2. Konfigurieren config/link-attributes.yaml listet die hinzuzufügenden Attribute auf: attributes: - target=\"_blank\" - rel=\"noopener noreferrer\" Das Plugin zielt nur auf Links, deren href mit http oder www beginnt, sodass deine internen Links (/docs/...) unberührt bleiben. Das rel=\"noopener noreferrer\" ist es wert, beibehalten zu werden — es schließt die tab-nabbing-Lücke, die ein bloßes target=\"_blank\" öffnet. 3. Der eine Haken: Layout-Links Das Plugin schreibt Links innerhalb deines Markdown-Inhalts um, nicht Links, die du direkt in Pug-Layouts schreibst (ein \"GitHub\"-Button im Header, ein Footer-Link). Füge dieselben Attribute bei diesen von Hand hinzu: a.site-header__cta(href=app.repo_url, target=\"_blank\", rel=\"noopener noreferrer\") GitHub Rendere, und jeder ausgehende Link — im Inhalt und in deinem Layout — öffnet in einem neuen Tab. Diese Website macht genau das; probiere einen beliebigen GitHub-Link aus. Node-Hinweis: Dieses Plugin verwendet cheerio unter der Haube, daher benötigt es Node ≥ 20.18.1 zum Bauen. Es betrifft deine Besucher nicht — die Ausgabe ist einfaches HTML.",
+    "href": "/de/tutorials/external-links-new-tab.html",
+    "lang": "de"
+  },
+  {
+    "title": "Wie diese Website gebaut ist",
+    "description": "Eine Fallstudie über die Nera-Seite selbst — die Plugins, die Reihenfolge und das lokale Plugin dahinter.",
+    "content": "Diese ganze Seite ist mit Nera gebaut. Nichts hier ist ein Sonderfall — es ist derselbe Generator und dieselben öffentlichen Plugins, die du installieren würdest. Hier ist das vollständige Rezept. Wie jede Seite aufgesetzt Es begann mit dem Installer, der den Generator klont und ihn zu deinem eigenen Projekt macht: npx @nera-static/installer new nera-website Sieben Plugins, jedes mit einer Aufgabe Plugin Aufgabe Konfiguration plugin-navigation Kopf- + Fußzeilenmenüs mit Aktiv-Zuständen config/navigation.yaml plugin-tags Tutorial-Tags + /tutorials/tags/*-Seiten je Sprache config/tags.yaml plugin-search Clientseitiger Suchindex + Box config/search.yaml plugin-page-pagination Zurück/Weiter in Docs und Tutorials config/page-pagination.yaml plugin-canonical-links Canonical-&lt;link&gt;-Tags für SEO config/canonical-links.yaml plugin-link-attributes Externe Links öffnen in einem neuen Tab config/link-attributes.yaml tutorials-list (lokal) Baut app.tutorials für den Index — Jedes hat in diesem Bereich sein eigenes Tutorial, falls du die Details möchtest. Reihenfolge zählt — die Suche läuft zuletzt Die Suche baut ihren Index aus dem Endzustand jeder Seite, also muss sie nach allem anderen laufen. config/plugin-order.yaml legt das fest: plugin-order: - end: - plugin-search Alles andere läuft dazwischen alphabetisch. Dies ist die eine Stelle, an der die Plugin-Reihenfolge auf dieser Seite tragend ist. Templates, die uns gehören Plugins, die Views mitliefern, wurden mit Befehlen wie npx nera-navigation nach views/vendor/ veröffentlicht. Diese Kopien gehören uns zum Bearbeiten und Gestalten — nichts Wichtiges ist in node_modules versteckt. Inhalt ist einfach Markdown Jede Seite, die du liest, ist eine Markdown-Datei unter pages/ mit einem layout in ihrem Frontmatter. Die Docs sind pages/docs/*.md; dieses Tutorial ist pages/tutorials/how-this-site-is-built.md. Ordner werden zu URLs; es existiert keine Routing-Konfiguration. Bauen npm run render # pages/ -&gt; public/ Das ist der gesamte Stack: Markdown rein, statisches HTML raus, Plugins für den Rest. Wenn du die anderen Tutorials in diesem Bereich gelesen hast, hast du jetzt jedes Teil davon einzeln gesehen — dies ist einfach alles zusammen.",
+    "href": "/de/tutorials/how-this-site-is-built.html",
+    "lang": "de"
+  },
+  {
+    "title": "Tutorials",
+    "description": "Schritt-für-Schritt-Anleitungen für echte Websites mit Nera und seinen Plugins.",
+    "content": "Praxisnahe Anleitungen, um echte Dinge mit Nera zu bauen — vom ersten Blog bis zur Einbindung einzelner Plugins. Stöbere unten nach Themen oder lies die neuesten Beiträge.",
+    "href": "/de/tutorials/index.html",
+    "lang": "de"
+  },
+  {
+    "title": "Vor-/Zurück-Links zwischen Seiten hinzufügen",
+    "description": "Verwende plugin-page-pagination, um Geschwisterseiten in Lesereihenfolge zu verknüpfen.",
+    "content": "@nera-static/plugin-page-pagination verknüpft jede Seite mit ihrer vorherigen und nächsten Geschwisterseite — Seiten im selben Verzeichnis — in einer von dir kontrollierten Reihenfolge. Perfekt für Docs und mehrteilige Tutorials. 1. Template installieren und veröffentlichen npm install @nera-static/plugin-page-pagination npx nera-page-pagination 2. Die Seiten ordnen Standardmäßig liest das Plugin eine pagination_order-Zahl aus jeder Seite: --- title: Getting started pagination_order: 2 --- Seiten werden zuerst nach pagination_order geordnet, dann nach Erstellungsdatum, dann nach Pfad — sodass eine Seite ohne explizite Reihenfolge trotzdem an einer stabilen Position landet. Die Ordnung kann bei 0 beginnen, wenn du das möchtest: Das Plugin behandelt 0 als echten Wert, nicht als \"fehlend\". Ändere den Schlüsselnamen in config/page-pagination.yaml mit order_property, falls du das bevorzugst. 3. Die Links rendern Das Plugin fügt meta.pagePagination mit .previous und .next hinzu. Binde das veröffentlichte Template ein, abgesichert, sodass es ausgeblendet wird, wenn es kein Ziel gibt: if meta.pagePagination &amp;&amp; (meta.pagePagination.previous || meta.pagePagination.next) include ../vendor/plugin-page-pagination/page-pagination Warum \"nur Geschwister\" wichtig ist Die Pagination ist pro Verzeichnis begrenzt, sodass pages/docs/*.md untereinander paginieren und pages/tutorials/*.md untereinander — sie vermischen sich nie. Lege eine Sequenz in einen eigenen Ordner und es funktioniert einfach. Die Docs dieser Website nutzen genau das.",
+    "href": "/de/tutorials/prev-next-pagination.html",
+    "lang": "de"
+  },
+  {
+    "title": "Tagge deine Inhalte und erhalte Themenseiten gratis",
+    "description": "Füge Seiten mit plugin-tags Tags hinzu und erhalte automatisch generierte Tag-Übersichtsseiten und eine Tag-Cloud.",
+    "content": "@nera-static/plugin-tags liest ein tags:-Feld aus deinem Frontmatter und baut dann automatisch eine durchsuchbare Übersichtsseite für jeden Tag. 1. Templates installieren und veröffentlichen npm install @nera-static/plugin-tags npx nera-tags 2. Einige Seiten taggen Füge dem Frontmatter einer beliebigen Seite einen kommaseparierten tags-Wert hinzu: --- layout: pages/tutorial.pug title: Add client-side search tags: plugins, search --- Tags werden in Slugs umgewandelt und in Kleinbuchstaben zusammengeführt, sodass Web Dev, web dev und WEB DEV alle auf eine Seite unter /tags/web-dev.html verweisen. 3. Konfigurieren (optional) config/tags.yaml — jeder Schlüssel ist optional: meta_property_name: tags tag_overview_path: '/tags' tag_separator: ',' tag_overview_layout: pages/tag-overview.pug Das tag_overview_layout verweist auf ein Layout, das das veröffentlichte Übersichts-Template rendert. Erstelle views/pages/tag-overview.pug: extends ../layouts/layout block content .container include ../vendor/plugin-tags/pages/tag-overview 4. Tags auf einer Seite anzeigen Das Plugin gibt jeder Seite eine meta.tagLinks-Liste. Binde das veröffentlichte Partial in dein Artikel-Layout ein: if meta.tagLinks include ../vendor/plugin-tags/partials/tag-links Und für eine seitenweite Cloud steuert app.tagCloud das tag-cloud-Partial: if app.tagCloud include ../vendor/plugin-tags/partials/tag-cloud 5. Tags je Sprache (optional) Standardmäßig liegen alle Tags in einem einzigen Namensraum — eine mehrsprachige Website wirft damit alle Sprachen auf eine Übersichtsseite. Mit group_by_lang bekommt jede Sprache ihre eigene: group_by_lang: true Tags werden dann nach meta.lang gesammelt, und der Sprachcode wird dem gesamten tag_overview_path vorangestellt. Mit tag_overview_path: '/tutorials/tags' entsteht: /tutorials/tags/&lt;slug&gt;.html # Standardsprache /de/tutorials/tags/&lt;slug&gt;.html # nur deutsche Seiten /es/tutorials/tags/&lt;slug&gt;.html # nur spanische Seiten Die Standardsprache bleibt ohne Präfix — genau richtig, wenn sie aus dem Root ausgeliefert wird. Liegt jede Sprache in einem eigenen Verzeichnis, sorgt prefix_default_lang: true auch dort für ein Segment. Seiten ohne meta.lang fallen in die Standardsprache statt in einen eigenen Topf; eine einsprachige Website ändert sich also nicht. Chips und Cloud ziehen von selbst mit: meta.tagLinks verlinkt innerhalb der Sprache der Seite, und jede Seite erhält ein passend eingegrenztes meta.tagCloud. Ein Detail dabei — app.tagCloud existiert weiterhin, enthält bei aktiver Gruppierung aber die Cloud der Standardsprache. Als Guard taugt es, zum Rendern nicht: eine deutsche Seite würde englische Tags zeigen. Das mitgelieferte tag-cloud-Partial bevorzugt bereits meta.tagCloud und fällt auf app.tagCloud zurück — nutze also das Partial, statt selbst zu iterieren. app.tagCloudByLang enthält alle Sprachen, nach Code aufgeschlüsselt. Auch generierte Übersichtsseiten tragen ihr eigenes meta.lang, sodass t() im Übersichts-Layout in der Sprache dieser Seite auflöst. Rendere, und jeder Tag hat nun seine eigene Seite — keine manuelle Index-Pflege. Das Tutorial, das du gerade liest, ist auf diese Weise getaggt; die Chips oben verlinken auf die generierten Tag-Seiten. Diese Website läuft mit group_by_lang: true, die Chips führen also zu den Tag-Seiten der Sprache, in der du gerade liest.",
+    "href": "/de/tutorials/tag-your-content.html",
+    "lang": "de"
+  },
+  {
+    "title": "Schreibe dein eigenes lokales Plugin",
+    "description": "Baue ein projektlokales Plugin, das mit dem getAppData-Hook Daten zu app hinzufügt.",
+    "content": "Du musst nicht auf npm veröffentlichen, um Nera zu erweitern. Jedes Modul unter src/plugins/&lt;name&gt;/index.js wird automatisch erkannt und angewendet. Bauen wir ein echtes: ein Plugin, das jedes Tutorial in einer Liste für eine Indexseite sammelt — genau das Plugin, das diese Seite antreibt. Der Vertrag Ein Plugin exportiert einen oder beide von zwei Hooks: export function getAppData({ app, pagesData }) { // must return a plain object — becomes the new `app` } export function getMetaData({ app, pagesData }) { // must return an array — becomes the new `pagesData` } getAppData läuft zuerst; getMetaData sieht die app, die es zurückgegeben hat. Halte sie synchron — ein asynchroner Hook kann app auf älteren Generator-Versionen stillschweigend auslöschen. Baue es Erstelle src/plugins/tutorials-list/index.js: export function getAppData({ app, pagesData }) { if (!app || typeof app !== 'object') return app if (!Array.isArray(pagesData)) return app const tutorials = pagesData .filter(({ meta }) =&gt; { const href = meta?.href || '' return href.startsWith('/tutorials/') &amp;&amp; href !== '/tutorials/index.html' }) .map(({ meta }) =&gt; ({ href: meta.href, title: meta.title || meta.href, description: meta.description || '', createdAt: meta.createdAt, })) .sort((a, b) =&gt; { const da = new Date(a.createdAt).getTime() const db = new Date(b.createdAt).getTime() if (!Number.isNaN(da) &amp;&amp; !Number.isNaN(db) &amp;&amp; da !== db) return db - da return String(a.href).localeCompare(String(b.href)) }) return { ...app, tutorials } } Das ist das ganze Plugin. Es liest jede Seite, behält die unter /tutorials/ und gibt eine neue app mit einem sortierten tutorials-Array zurück. Verwende es in einem Layout app.tutorials ist jetzt in jeder View verfügbar: if app.tutorials &amp;&amp; app.tutorials.length ul.tutorials__list each post in app.tutorials li.tutorials__item a.tutorials__link(href=post.href) h2 #{ post.title } p #{ post.description } Warum ein neues Objekt zurückgeben Nera reicht den Rückgabewert jedes Hooks in den nächsten weiter. { ...app, tutorials } zurückzugeben (statt app zu mutieren) hält diesen Datenfluss vorhersehbar — aus demselben Grund tun es die eingebauten Plugins. Von hier aus baut dasselbe Muster Listen verwandter Beiträge, Autorenseiten, „kürzlich aktualisiert“-Widgets — alles, was aus deinem Inhalt abgeleitet ist.",
+    "href": "/de/tutorials/write-a-local-plugin.html",
+    "lang": "de"
+  },
+  {
+    "title": "advanced",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/advanced.html",
+    "lang": "de"
+  },
+  {
+    "title": "blog",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/blog.html",
+    "lang": "de"
+  },
+  {
+    "title": "case-study",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/case-study.html",
+    "lang": "de"
+  },
+  {
+    "title": "getting-started",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/getting-started.html",
+    "lang": "de"
+  },
+  {
+    "title": "links",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/links.html",
+    "lang": "de"
+  },
+  {
+    "title": "local-plugins",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/local-plugins.html",
+    "lang": "de"
+  },
+  {
+    "title": "navigation",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/navigation.html",
+    "lang": "de"
+  },
+  {
+    "title": "pagination",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/pagination.html",
+    "lang": "de"
+  },
+  {
+    "title": "plugins",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/plugins.html",
+    "lang": "de"
+  },
+  {
+    "title": "search",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/search.html",
+    "lang": "de"
+  },
+  {
+    "title": "seo",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/seo.html",
+    "lang": "de"
+  },
+  {
+    "title": "tags",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/tags.html",
+    "lang": "de"
+  }
+]
