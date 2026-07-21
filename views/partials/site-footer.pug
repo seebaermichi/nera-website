@@ -7,7 +7,11 @@ footer.site-footer
   .container
     .site-footer__inner
       .site-footer__brand
-        span.site-footer__name #{ app.name }
+        span.site-footer__name
+          svg.site-footer__logo(viewBox="0 0 32 32", width="18", height="18", aria-hidden="true", focusable="false")
+            rect(x="7", y="4", width="8", height="12", fill="currentColor")
+            rect(x="15", y="16", width="10", height="12", fill="currentColor")
+          | #{ app.name }
         p.site-footer__tagline #{ t('tagline') }
 
       .site-footer__nav

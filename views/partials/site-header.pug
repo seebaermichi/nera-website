@@ -9,7 +9,11 @@ include ../vendor/plugin-navigation/partials/link-list-navigation
 header.site-header
   .site-header__inner.container
     a.site-header__brand(href=`${ langPrefix }/index.html`)
-      span.site-header__logo ▚
+      //- Inline so the mark inherits the accent via currentColor and swaps
+      //- with the theme automatically — no second request, no flash.
+      svg.site-header__logo(viewBox="0 0 32 32", width="20", height="20", aria-hidden="true", focusable="false")
+        rect(x="7", y="4", width="8", height="12", fill="currentColor")
+        rect(x="15", y="16", width="10", height="12", fill="currentColor")
       span.site-header__name #{ app.name }
 
     if mainNav

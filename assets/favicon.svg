@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <style>
+        /* An SVG favicon carries its own styles — the page stylesheet never
+           applies — so the light/dark swap has to be declared in here. */
+        .mark { fill: #b45309; }
+        @media (prefers-color-scheme: dark) {
+            .mark { fill: #e0913d; }
+        }
+    </style>
+    <rect class="mark" x="7" y="4" width="8" height="12"></rect>
+    <rect class="mark" x="15" y="16" width="10" height="12"></rect>
+</svg>

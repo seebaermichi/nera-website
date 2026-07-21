@@ -176,7 +176,9 @@ img, svg, video { max-width: 100%; height: auto; }
   font-size: 1.0625rem;
 }
 .site-header__brand:hover { text-decoration: none; }
-.site-header__logo { color: var(--color-accent); font-size: 1.0625rem; line-height: 1; }
+/* Inline SVG mark — `color` drives it through fill="currentColor", so the
+   accent swaps with the theme for free. */
+.site-header__logo { color: var(--color-accent); display: block; flex-shrink: 0; }
 .site-header__name { letter-spacing: -0.01em; }
 .site-header__cta {
   font-family: var(--font-mono);
@@ -782,7 +784,7 @@ img, svg, video { max-width: 100%; height: auto; }
   font-size: 0.9375rem;
   color: var(--color-ink);
 }
-.site-footer__name::before { content: '▚'; color: var(--color-accent); }
+.site-footer__logo { color: var(--color-accent); display: block; flex-shrink: 0; }
 .site-footer__tagline {
   font-size: var(--text-sm);
   color: var(--color-muted);
