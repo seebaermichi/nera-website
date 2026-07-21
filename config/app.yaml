@@ -26,6 +26,7 @@ translations:
         search_title: Search
         search_placeholder: Search…
         tag_overview_heading: '{tag} tutorials'
+        tag_overview_read_more: Read more
         docs_heading: Documentation
         docs_nav_intro: Introduction
         docs_nav_getting_started: Getting started
@@ -52,6 +53,7 @@ translations:
         search_title: Suche
         search_placeholder: Suchen…
         tag_overview_heading: '{tag} Tutorials'
+        tag_overview_read_more: Weiterlesen
         docs_heading: Dokumentation
         docs_nav_intro: Einführung
         docs_nav_getting_started: Erste Schritte
@@ -78,6 +80,7 @@ translations:
         search_title: Buscar
         search_placeholder: Buscar…
         tag_overview_heading: 'tutoriales {tag}'
+        tag_overview_read_more: Leer más
         docs_heading: Documentación
         docs_nav_intro: Introducción
         docs_nav_getting_started: Primeros pasos

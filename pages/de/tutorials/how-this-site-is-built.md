@@ -26,7 +26,7 @@ npx @nera-static/installer new nera-website
 | Plugin | Aufgabe | Konfiguration |
 | --- | --- | --- |
 | `plugin-navigation` | Kopf- + Fußzeilenmenüs mit Aktiv-Zuständen | `config/navigation.yaml` |
-| `plugin-tags` | Tutorial-Tags + automatisch generierte `/tutorials/tags/*`-Seiten | `config/tags.yaml` |
+| `plugin-tags` | Tutorial-Tags + `/tutorials/tags/*`-Seiten je Sprache | `config/tags.yaml` |
 | `plugin-search` | Clientseitiger Suchindex + Box | `config/search.yaml` |
 | `plugin-page-pagination` | Zurück/Weiter in Docs und Tutorials | `config/page-pagination.yaml` |
 | `plugin-canonical-links` | Canonical-`<link>`-Tags für SEO | `config/canonical-links.yaml` |

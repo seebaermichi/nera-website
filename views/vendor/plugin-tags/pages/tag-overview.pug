@@ -47,4 +47,7 @@ section.tag-overview
 
                     p.tag-overview__item-description #{ page.meta.description }
 
-                    a.tag-overview__item-link(href=`${ page.meta.href }`) Read more
+                    //- Upstream hardcodes this in English. Now that overviews are
+                    //- generated per language, that showed on every German and
+                    //- Spanish tag page.
+                    a.tag-overview__item-link(href=`${ page.meta.href }`) #{ t('tag_overview_read_more') }

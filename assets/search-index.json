@@ -116,7 +116,7 @@
   {
     "title": "Wie diese Website gebaut ist",
     "description": "Eine Fallstudie über die Nera-Seite selbst — die Plugins, die Reihenfolge und das lokale Plugin dahinter.",
-    "content": "Diese ganze Seite ist mit Nera gebaut. Nichts hier ist ein Sonderfall — es ist derselbe Generator und dieselben öffentlichen Plugins, die du installieren würdest. Hier ist das vollständige Rezept. Wie jede Seite aufgesetzt Es begann mit dem Installer, der den Generator klont und ihn zu deinem eigenen Projekt macht: npx @nera-static/installer new nera-website Sieben Plugins, jedes mit einer Aufgabe Plugin Aufgabe Konfiguration plugin-navigation Kopf- + Fußzeilenmenüs mit Aktiv-Zuständen config/navigation.yaml plugin-tags Tutorial-Tags + automatisch generierte /tutorials/tags/*-Seiten config/tags.yaml plugin-search Clientseitiger Suchindex + Box config/search.yaml plugin-page-pagination Zurück/Weiter in Docs und Tutorials config/page-pagination.yaml plugin-canonical-links Canonical-&lt;link&gt;-Tags für SEO config/canonical-links.yaml plugin-link-attributes Externe Links öffnen in einem neuen Tab config/link-attributes.yaml tutorials-list (lokal) Baut app.tutorials für den Index — Jedes hat in diesem Bereich sein eigenes Tutorial, falls du die Details möchtest. Reihenfolge zählt — die Suche läuft zuletzt Die Suche baut ihren Index aus dem Endzustand jeder Seite, also muss sie nach allem anderen laufen. config/plugin-order.yaml legt das fest: plugin-order: - end: - plugin-search Alles andere läuft dazwischen alphabetisch. Dies ist die eine Stelle, an der die Plugin-Reihenfolge auf dieser Seite tragend ist. Templates, die uns gehören Plugins, die Views mitliefern, wurden mit Befehlen wie npx nera-navigation nach views/vendor/ veröffentlicht. Diese Kopien gehören uns zum Bearbeiten und Gestalten — nichts Wichtiges ist in node_modules versteckt. Inhalt ist einfach Markdown Jede Seite, die du liest, ist eine Markdown-Datei unter pages/ mit einem layout in ihrem Frontmatter. Die Docs sind pages/docs/*.md; dieses Tutorial ist pages/tutorials/how-this-site-is-built.md. Ordner werden zu URLs; es existiert keine Routing-Konfiguration. Bauen npm run render # pages/ -&gt; public/ Das ist der gesamte Stack: Markdown rein, statisches HTML raus, Plugins für den Rest. Wenn du die anderen Tutorials in diesem Bereich gelesen hast, hast du jetzt jedes Teil davon einzeln gesehen — dies ist einfach alles zusammen.",
+    "content": "Diese ganze Seite ist mit Nera gebaut. Nichts hier ist ein Sonderfall — es ist derselbe Generator und dieselben öffentlichen Plugins, die du installieren würdest. Hier ist das vollständige Rezept. Wie jede Seite aufgesetzt Es begann mit dem Installer, der den Generator klont und ihn zu deinem eigenen Projekt macht: npx @nera-static/installer new nera-website Sieben Plugins, jedes mit einer Aufgabe Plugin Aufgabe Konfiguration plugin-navigation Kopf- + Fußzeilenmenüs mit Aktiv-Zuständen config/navigation.yaml plugin-tags Tutorial-Tags + /tutorials/tags/*-Seiten je Sprache config/tags.yaml plugin-search Clientseitiger Suchindex + Box config/search.yaml plugin-page-pagination Zurück/Weiter in Docs und Tutorials config/page-pagination.yaml plugin-canonical-links Canonical-&lt;link&gt;-Tags für SEO config/canonical-links.yaml plugin-link-attributes Externe Links öffnen in einem neuen Tab config/link-attributes.yaml tutorials-list (lokal) Baut app.tutorials für den Index — Jedes hat in diesem Bereich sein eigenes Tutorial, falls du die Details möchtest. Reihenfolge zählt — die Suche läuft zuletzt Die Suche baut ihren Index aus dem Endzustand jeder Seite, also muss sie nach allem anderen laufen. config/plugin-order.yaml legt das fest: plugin-order: - end: - plugin-search Alles andere läuft dazwischen alphabetisch. Dies ist die eine Stelle, an der die Plugin-Reihenfolge auf dieser Seite tragend ist. Templates, die uns gehören Plugins, die Views mitliefern, wurden mit Befehlen wie npx nera-navigation nach views/vendor/ veröffentlicht. Diese Kopien gehören uns zum Bearbeiten und Gestalten — nichts Wichtiges ist in node_modules versteckt. Inhalt ist einfach Markdown Jede Seite, die du liest, ist eine Markdown-Datei unter pages/ mit einem layout in ihrem Frontmatter. Die Docs sind pages/docs/*.md; dieses Tutorial ist pages/tutorials/how-this-site-is-built.md. Ordner werden zu URLs; es existiert keine Routing-Konfiguration. Bauen npm run render # pages/ -&gt; public/ Das ist der gesamte Stack: Markdown rein, statisches HTML raus, Plugins für den Rest. Wenn du die anderen Tutorials in diesem Bereich gelesen hast, hast du jetzt jedes Teil davon einzeln gesehen — dies ist einfach alles zusammen.",
     "href": "/de/tutorials/how-this-site-is-built.html"
   },
   {
@@ -296,7 +296,7 @@
   {
     "title": "Cómo está construido este sitio web",
     "description": "Un caso de estudio del propio sitio Nera — los plugins, el orden y el plugin local que hay detrás.",
-    "content": "Todo este sitio está construido con Nera. Nada aquí es un caso especial — es el mismo generador y los mismos plugins públicos que instalarías. Aquí está la receta completa. Andamiado como cualquier sitio Comenzó con el instalador, que clona el generador y lo convierte en tu propio proyecto: npx @nera-static/installer new nera-website Siete plugins, cada uno haciendo una cosa Plugin Trabajo Configuración plugin-navigation Menús de cabecera + pie con estados activos config/navigation.yaml plugin-tags Etiquetas de tutoriales + páginas /tutorials/tags/* autogeneradas config/tags.yaml plugin-search Índice de búsqueda del lado del cliente + caja config/search.yaml plugin-page-pagination Anterior/siguiente en docs y tutoriales config/page-pagination.yaml plugin-canonical-links Etiquetas &lt;link&gt; canónicas para SEO config/canonical-links.yaml plugin-link-attributes Los enlaces externos se abren en una pestaña nueva config/link-attributes.yaml tutorials-list (local) Construye app.tutorials para el índice — Cada uno tiene su propio tutorial en esta sección, si quieres los detalles. El orden importa — la búsqueda se ejecuta al final La búsqueda construye su índice a partir del estado final de cada página, así que tiene que ejecutarse después de todo lo demás. config/plugin-order.yaml así lo indica: plugin-order: - end: - plugin-search Todo lo demás se ejecuta alfabéticamente en medio. Este es el único lugar donde el orden de los plugins es determinante en este sitio. Plantillas que nos pertenecen Los plugins que incluyen vistas se publicaron en views/vendor/ con comandos como npx nera-navigation. Esas copias son nuestras para editar y dar estilo — nada importante está oculto dentro de node_modules. El contenido es solo Markdown Cada página que estás leyendo es un archivo Markdown bajo pages/ con un layout en su frontmatter. Los docs son pages/docs/*.md; este tutorial es pages/tutorials/how-this-site-is-built.md. Las carpetas se convierten en URLs; no existe ninguna configuración de enrutamiento. Compilar npm run render # pages/ -&gt; public/ Ese es todo el stack: Markdown entra, HTML estático sale, plugins para el resto. Si has leído los otros tutoriales de esta sección, ahora has visto cada pieza de él por separado — esto es simplemente todas juntas.",
+    "content": "Todo este sitio está construido con Nera. Nada aquí es un caso especial — es el mismo generador y los mismos plugins públicos que instalarías. Aquí está la receta completa. Andamiado como cualquier sitio Comenzó con el instalador, que clona el generador y lo convierte en tu propio proyecto: npx @nera-static/installer new nera-website Siete plugins, cada uno haciendo una cosa Plugin Trabajo Configuración plugin-navigation Menús de cabecera + pie con estados activos config/navigation.yaml plugin-tags Etiquetas de tutoriales + páginas /tutorials/tags/* por idioma config/tags.yaml plugin-search Índice de búsqueda del lado del cliente + caja config/search.yaml plugin-page-pagination Anterior/siguiente en docs y tutoriales config/page-pagination.yaml plugin-canonical-links Etiquetas &lt;link&gt; canónicas para SEO config/canonical-links.yaml plugin-link-attributes Los enlaces externos se abren en una pestaña nueva config/link-attributes.yaml tutorials-list (local) Construye app.tutorials para el índice — Cada uno tiene su propio tutorial en esta sección, si quieres los detalles. El orden importa — la búsqueda se ejecuta al final La búsqueda construye su índice a partir del estado final de cada página, así que tiene que ejecutarse después de todo lo demás. config/plugin-order.yaml así lo indica: plugin-order: - end: - plugin-search Todo lo demás se ejecuta alfabéticamente en medio. Este es el único lugar donde el orden de los plugins es determinante en este sitio. Plantillas que nos pertenecen Los plugins que incluyen vistas se publicaron en views/vendor/ con comandos como npx nera-navigation. Esas copias son nuestras para editar y dar estilo — nada importante está oculto dentro de node_modules. El contenido es solo Markdown Cada página que estás leyendo es un archivo Markdown bajo pages/ con un layout en su frontmatter. Los docs son pages/docs/*.md; este tutorial es pages/tutorials/how-this-site-is-built.md. Las carpetas se convierten en URLs; no existe ninguna configuración de enrutamiento. Compilar npm run render # pages/ -&gt; public/ Ese es todo el stack: Markdown entra, HTML estático sale, plugins para el resto. Si has leído los otros tutoriales de esta sección, ahora has visto cada pieza de él por separado — esto es simplemente todas juntas.",
     "href": "/es/tutorials/how-this-site-is-built.html"
   },
   {
@@ -386,7 +386,7 @@
   {
     "title": "How this website is built",
     "description": "A case study of the Nera site itself — the plugins, the ordering, and the local plugin behind it.",
-    "content": "This whole site is built with Nera. Nothing here is special-cased — it's the same generator and the same public plugins you'd install. Here's the full recipe. Scaffolded like any site It started with the installer, which clones the generator and makes it your own project: npx @nera-static/installer new nera-website Seven plugins, each doing one thing Plugin Job Config plugin-navigation Header + footer menus with active states config/navigation.yaml plugin-tags Tutorial tags + auto-generated /tutorials/tags/* pages config/tags.yaml plugin-search Client-side search index + box config/search.yaml plugin-page-pagination Prev/next in docs and tutorials config/page-pagination.yaml plugin-canonical-links Canonical &lt;link&gt; tags for SEO config/canonical-links.yaml plugin-link-attributes External links open in a new tab config/link-attributes.yaml tutorials-list (local) Builds app.tutorials for the index — Each has its own tutorial in this section, if you want the details. Order matters — search runs last Search builds its index from the final state of every page, so it has to run after everything else. config/plugin-order.yaml says so: plugin-order: - end: - plugin-search Everything else runs alphabetically in between. This is the one place plugin ordering is load-bearing on this site. Templates we own Plugins that ship views were published into views/vendor/ with commands like npx nera-navigation. Those copies are ours to edit and style — nothing important is hidden inside node_modules. Content is just Markdown Every page you're reading is a Markdown file under pages/ with a layout in its frontmatter. The docs are pages/docs/*.md; this tutorial is pages/tutorials/how-this-site-is-built.md. Folders become URLs; no routing config exists. Build npm run render # pages/ -&gt; public/ That's the entire stack: Markdown in, static HTML out, plugins for the rest. If you've read the other tutorials in this section, you've now seen every piece of it in isolation — this is just all of them together.",
+    "content": "This whole site is built with Nera. Nothing here is special-cased — it's the same generator and the same public plugins you'd install. Here's the full recipe. Scaffolded like any site It started with the installer, which clones the generator and makes it your own project: npx @nera-static/installer new nera-website Seven plugins, each doing one thing Plugin Job Config plugin-navigation Header + footer menus with active states config/navigation.yaml plugin-tags Tutorial tags + per-language /tutorials/tags/* pages config/tags.yaml plugin-search Client-side search index + box config/search.yaml plugin-page-pagination Prev/next in docs and tutorials config/page-pagination.yaml plugin-canonical-links Canonical &lt;link&gt; tags for SEO config/canonical-links.yaml plugin-link-attributes External links open in a new tab config/link-attributes.yaml tutorials-list (local) Builds app.tutorials for the index — Each has its own tutorial in this section, if you want the details. Order matters — search runs last Search builds its index from the final state of every page, so it has to run after everything else. config/plugin-order.yaml says so: plugin-order: - end: - plugin-search Everything else runs alphabetically in between. This is the one place plugin ordering is load-bearing on this site. Templates we own Plugins that ship views were published into views/vendor/ with commands like npx nera-navigation. Those copies are ours to edit and style — nothing important is hidden inside node_modules. Content is just Markdown Every page you're reading is a Markdown file under pages/ with a layout in its frontmatter. The docs are pages/docs/*.md; this tutorial is pages/tutorials/how-this-site-is-built.md. Folders become URLs; no routing config exists. Build npm run render # pages/ -&gt; public/ That's the entire stack: Markdown in, static HTML out, plugins for the rest. If you've read the other tutorials in this section, you've now seen every piece of it in isolation — this is just all of them together.",
     "href": "/tutorials/how-this-site-is-built.html"
   },
   {
@@ -412,6 +412,78 @@
     "description": "Build a project-local plugin that adds data to app, using the getAppData hook.",
     "content": "You don't need to publish to npm to extend Nera. Any module at src/plugins/&lt;name&gt;/index.js is discovered and applied automatically. Let's build a real one: a plugin that collects every tutorial into a list for an index page — the exact plugin that powers this site. The contract A plugin exports either or both of two hooks: export function getAppData({ app, pagesData }) { // must return a plain object — becomes the new `app` } export function getMetaData({ app, pagesData }) { // must return an array — becomes the new `pagesData` } getAppData runs first; getMetaData sees the app it returned. Keep them synchronous — an async hook can silently wipe app on older generator versions. Build it Create src/plugins/tutorials-list/index.js: export function getAppData({ app, pagesData }) { if (!app || typeof app !== 'object') return app if (!Array.isArray(pagesData)) return app const tutorials = pagesData .filter(({ meta }) =&gt; { const href = meta?.href || '' return href.startsWith('/tutorials/') &amp;&amp; href !== '/tutorials/index.html' }) .map(({ meta }) =&gt; ({ href: meta.href, title: meta.title || meta.href, description: meta.description || '', createdAt: meta.createdAt, })) .sort((a, b) =&gt; { const da = new Date(a.createdAt).getTime() const db = new Date(b.createdAt).getTime() if (!Number.isNaN(da) &amp;&amp; !Number.isNaN(db) &amp;&amp; da !== db) return db - da return String(a.href).localeCompare(String(b.href)) }) return { ...app, tutorials } } That's the whole plugin. It reads every page, keeps the ones under /tutorials/, and returns a new app with a sorted tutorials array. Use it in a layout app.tutorials is now available in every view: if app.tutorials &amp;&amp; app.tutorials.length ul.tutorials__list each post in app.tutorials li.tutorials__item a.tutorials__link(href=post.href) h2 #{ post.title } p #{ post.description } Why return a new object Nera threads each hook's return value into the next. Returning { ...app, tutorials } (rather than mutating app) keeps that data flow predictable — the same reason the built-in plugins do it. From here, the same pattern builds related-posts lists, author pages, \"recently updated\" widgets — anything derived from your content.",
     "href": "/tutorials/write-a-local-plugin.html"
+  },
+  {
+    "title": "advanced",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/advanced.html"
+  },
+  {
+    "title": "blog",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/blog.html"
+  },
+  {
+    "title": "case-study",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/case-study.html"
+  },
+  {
+    "title": "getting-started",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/getting-started.html"
+  },
+  {
+    "title": "links",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/links.html"
+  },
+  {
+    "title": "local-plugins",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/local-plugins.html"
+  },
+  {
+    "title": "navigation",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/navigation.html"
+  },
+  {
+    "title": "pagination",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/pagination.html"
+  },
+  {
+    "title": "plugins",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/plugins.html"
+  },
+  {
+    "title": "search",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/search.html"
+  },
+  {
+    "title": "seo",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/seo.html"
+  },
+  {
+    "title": "tags",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/de/tutorials/tags/tags.html"
   },
   {
     "title": "advanced",
@@ -484,5 +556,77 @@
     "description": "Nera tutorials and guides grouped by topic.",
     "content": "",
     "href": "/tutorials/tags/tags.html"
+  },
+  {
+    "title": "advanced",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/advanced.html"
+  },
+  {
+    "title": "blog",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/blog.html"
+  },
+  {
+    "title": "case-study",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/case-study.html"
+  },
+  {
+    "title": "getting-started",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/getting-started.html"
+  },
+  {
+    "title": "links",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/links.html"
+  },
+  {
+    "title": "local-plugins",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/local-plugins.html"
+  },
+  {
+    "title": "navigation",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/navigation.html"
+  },
+  {
+    "title": "pagination",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/pagination.html"
+  },
+  {
+    "title": "plugins",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/plugins.html"
+  },
+  {
+    "title": "search",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/search.html"
+  },
+  {
+    "title": "seo",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/seo.html"
+  },
+  {
+    "title": "tags",
+    "description": "Nera tutorials and guides grouped by topic.",
+    "content": "",
+    "href": "/es/tutorials/tags/tags.html"
   }
 ]
