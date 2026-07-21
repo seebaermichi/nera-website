@@ -72,6 +72,44 @@ if app.tagCloud
   include ../vendor/plugin-tags/partials/tag-cloud
 ```
 
+## 5. Per-language tags (optional)
+
+By default every tag lives in one namespace, so a multilingual site merges all
+languages into one overview page. Set `group_by_lang` to give each language its
+own:
+
+```yaml
+group_by_lang: true
+```
+
+Tags are then collected per `meta.lang`, and the language code prefixes the whole
+`tag_overview_path`. With `tag_overview_path: '/tutorials/tags'` you get:
+
+```
+/tutorials/tags/<slug>.html       # default language
+/de/tutorials/tags/<slug>.html    # German pages only
+/es/tutorials/tags/<slug>.html    # Spanish pages only
+```
+
+The default language stays unprefixed, which is what you want when it is served
+from the root. If every language sits in its own directory, add
+`prefix_default_lang: true` so it gets a segment too. Pages without a `meta.lang`
+fall into the default language rather than a bucket of their own, so a
+single-language site is unaffected by any of this.
+
+Chips and clouds follow along on their own: `meta.tagLinks` links within the
+page's own language, and each page gets a `meta.tagCloud` scoped to it. Watch one
+detail — `app.tagCloud` still exists, but with grouping on it holds the *default*
+language's cloud. Guarding on it is fine; reading it directly to render a cloud
+is not, because a German page would show English tags. The shipped `tag-cloud`
+partial already prefers `meta.tagCloud` and falls back to `app.tagCloud`, so use
+the partial rather than looping yourself. `app.tagCloudByLang` has every
+language, keyed by code, if you need them all at once.
+
+Generated overview pages also carry their own `meta.lang`, so `t()` inside the
+overview layout resolves in that page's language.
+
 Render, and every tag now has its own page — no manual index maintenance. The
 tutorial you're reading is tagged this way; the chips above link to the generated
-tag pages.
+tag pages. This site runs with `group_by_lang: true`, so those chips lead to the
+tag pages for whichever language you are reading.
