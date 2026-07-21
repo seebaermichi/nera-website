@@ -1,6 +1,6 @@
 # Tutorial tagging. Tag overview pages are generated automatically at /tags/<slug>.html.
 meta_property_name: tags
-tag_overview_path: '/tags'
+tag_overview_path: '/tutorials/tags'
 tag_separator: ','
 tag_overview_layout: pages/tag-overview.pug
 
