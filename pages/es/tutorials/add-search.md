@@ -51,5 +51,49 @@ plugin-order:
           - plugin-search
 ```
 
+## 5. Búsqueda por idioma (opcional)
+
+Por defecto todas las páginas caen en un único índice, así que el buscador de una
+página en alemán también devuelve resultados en inglés y en español. Con
+`group_by_lang` cada idioma recibe su propio índice:
+
+```yaml
+group_by_lang: true
+```
+
+Las páginas se agrupan por `meta.lang`, y el código de idioma se coloca antes de
+la extensión de `output_filename`. El idioma por defecto conserva el nombre de
+archivo tal cual:
+
+```
+/search-index.json       # idioma por defecto
+/search-index.de.json    # solo páginas en alemán
+/search-index.es.json    # solo páginas en español
+```
+
+Las páginas sin `meta.lang` caen en el idioma por defecto — `lang` en
+`config/app.yaml` — así que un sitio monolingüe no cambia en nada.
+
+Cada página lleva entonces `meta.searchIndexPath`, el índice de su propio idioma.
+La plantilla `search.pug` publicada se lo pasa al cliente como
+`data-search-index` y `search.js` pide esa URL, de modo que tu propio marcado no
+necesita cambios. Un detalle: `app.searchIndexPath` sigue existiendo, pero con la
+agrupación activa apunta al índice del idioma *por defecto*, así que construir el
+atributo a partir de él haría que una página en alemán buscara en inglés.
+`app.searchIndexPaths` contiene todos los idiomas indexados por código, y cada
+entrada del índice lleva su `lang`.
+
+Como la búsqueda se ejecuta en último lugar (paso 4), las páginas que generan
+otros plugins también caen en el idioma correcto — entre ellas las páginas de
+etiquetas de `plugin-tags`.
+
+Al actualizar un sitio existente hay una trampa: `npx nera-search` omite los
+archivos ya publicados, y `--force` los sobrescribe junto con tus ediciones. Si
+tus copias están personalizadas, combina los dos cambios a mano — el atributo
+`data-search-index` en la plantilla y `input.dataset.searchIndex` en `search.js`.
+Hasta entonces, el cliente antiguo sigue pidiendo `/search-index.json` y cada
+página busca en el idioma por defecto.
+
 Renderiza, y tendrás una búsqueda funcional. La [página de búsqueda](/es/search.html) de este sitio está
-construida exactamente de esta manera.
+construida exactamente de esta manera, con `group_by_lang: true` — el buscador
+solo devuelve páginas en el idioma que estás leyendo.
