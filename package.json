@@ -60,5 +60,8 @@
   },
   "nera": {
     "version": "4.4.0"
+  },
+  "overrides": {
+    "shell-quote": "^1.9.0"
   }
 }
