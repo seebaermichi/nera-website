@@ -10,7 +10,13 @@
 
 section.tag-overview
     header.tag-overview__header
-        h1.tag-overview__title #{ meta.title }
+        //- One heading, so the accessible name is the whole phrase
+        //- ("advanced tutorials") rather than a bare tag. The tag keeps
+        //- .tag-overview__title and its chip styling; the noun after it says
+        //- what is being listed.
+        h1.tag-overview__heading
+            span.tag-overview__title #{ meta.title }
+            span.tag-overview__kind #{ t('tag_overview_kind') }
 
         if tagImage
             img.tag-overview__image(src=`${ tagImage }` alt='')

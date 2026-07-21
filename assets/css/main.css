@@ -681,10 +681,29 @@ img, svg, video { max-width: 100%; height: auto; }
    chip, so it needs clearance to read as its own object rather than colliding
    with the first result. */
 .tag-overview__header { padding-block: var(--space-7) var(--space-4); }
-/* The tag page's title is the tag itself, so it wears the chip's clothes —
-   scaled up, and in the accent the chips take when picked. Rhyming with the
-   row the visitor just clicked is what makes the page recognisable at a
-   glance; as a plain bold heading it read like any other page. */
+/* Heading is "<tag chip> tutorials", read as one phrase. Baseline alignment
+   keeps the chip's text sitting on the same line as the noun rather than the
+   chip's border box floating against it. */
+.tag-overview__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+  color: var(--color-ink);
+}
+@media (min-width: 45rem) {
+  .tag-overview__heading { font-size: var(--text-xl); }
+}
+
+/* The tag itself wears the chip's clothes — scaled up, and in the accent the
+   chips take when picked. Rhyming with the row the visitor just clicked is
+   what makes the page recognisable at a glance; as a plain bold heading it
+   read like any other page. */
 .tag-overview__title {
   display: inline-block;
   font-family: var(--font-mono);
