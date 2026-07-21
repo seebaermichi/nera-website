@@ -481,6 +481,13 @@ img, svg, video { max-width: 100%; height: auto; }
 .prose blockquote p { margin: 0 0 var(--space-2); }
 .prose blockquote p:last-child { margin-bottom: 0; }
 
+/* Generic content page (views/pages/default.pug) — matches the vertical
+   rhythm of .docs-content, so a plain page sits like every other one. */
+.page { padding-block: var(--space-6) var(--space-7); }
+@media (min-width: 45rem) {
+  .page { padding-block: var(--space-7) var(--space-8); }
+}
+
 /* --------------------------------------------------------------------------
    8. Docs layout
    -------------------------------------------------------------------------- */

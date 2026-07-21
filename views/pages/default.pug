@@ -1,5 +1,11 @@
 extends ../layouts/layout
 
 block content
-  article.prose.container
-    != content
+  //- .container and .prose must stay on separate elements. Together on one,
+  //- .prose's max-width (45rem) beats .container's (72rem) — it is declared
+  //- later — while .container's `margin-inline: auto` still applies, so the
+  //- column ends up centred in the viewport instead of left-aligned like
+  //- every other page.
+  section.page.container
+    article.prose
+      != content
