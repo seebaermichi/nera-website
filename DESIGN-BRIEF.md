@@ -84,6 +84,8 @@ templates and appear on generated markup — please style them as named):
   (`__inner/__brand/__name/__tagline/__meta`)
 - ⚙︎ **Nav:** `.nav`, `.nav--main`, `.nav--footer`, `.nav--list`, `.nav__item`,
   `.nav__link`, `.nav__link--active`, `.nav__link--active-path`
+- **Language switch (i18n):** `.lang-switch`, `.lang-switch__link`,
+  `.lang-switch__link--active` — the compact EN/DE/ES toggle in the header.
 - **Home:** `.hero` (`__inner/__eyebrow/__title/__tagline/__actions/__code`),
   `.button`, `.button--primary`, `.button--ghost`, `.home-body`
 - **Docs:** `.docs-layout`, `.docs-content`, `.docs-sidebar`
