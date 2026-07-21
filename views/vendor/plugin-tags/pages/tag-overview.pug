@@ -50,4 +50,11 @@ section.tag-overview
                     //- Upstream hardcodes this in English. Now that overviews are
                     //- generated per language, that showed on every German and
                     //- Spanish tag page.
-                    a.tag-overview__item-link(href=`${ page.meta.href }`) #{ t('tag_overview_read_more') }
+                    //-
+                    //- t() hands back the key when a translation is missing, so
+                    //- an absent key would print "tag_overview_read_more" on the
+                    //- page. Fall back to English instead, as the heading above
+                    //- already does.
+                    - const readMoreKey = 'tag_overview_read_more'
+                    - const readMoreLabel = t(readMoreKey) === readMoreKey ? 'Read more' : t(readMoreKey)
+                    a.tag-overview__item-link(href=`${ page.meta.href }`) #{ readMoreLabel }
