@@ -8,9 +8,6 @@ keywords: tutorial blog nera, blog estático, blog markdown
 tags: getting-started, blog, plugins
 pagination_order: 1
 ---
-
-# Crear un blog con Nera
-
 En este tutorial crearás un sitio Nera, añadirás un par de entradas y las listarás de
 más reciente a más antigua en una página índice.
 

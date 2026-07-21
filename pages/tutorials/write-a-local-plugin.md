@@ -8,9 +8,6 @@ keywords: nera plugin, local plugin, getAppData, getMetaData, plugin contract
 tags: plugins, local-plugins, advanced
 pagination_order: 8
 ---
-
-# Write your own local plugin
-
 You don't need to publish to npm to extend Nera. Any module at
 `src/plugins/<name>/index.js` is discovered and applied automatically. Let's build
 a real one: a plugin that collects every tutorial into a list for an index page —

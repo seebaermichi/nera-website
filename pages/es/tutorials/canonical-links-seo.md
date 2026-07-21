@@ -8,9 +8,6 @@ keywords: nera seo, plugin-canonical-links, url canónica, hreflang, enlaces alt
 tags: plugins, seo
 pagination_order: 7
 ---
-
-# Añadir enlaces canónicos para SEO
-
 Los motores de búsqueda quieren una única URL canónica por página. `@nera-static/plugin-canonical-links`
 emite la etiqueta `<link rel="canonical">` correcta en cada página — y etiquetas de idioma
 alternativo si gestionas un sitio multilingüe.

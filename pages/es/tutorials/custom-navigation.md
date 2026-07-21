@@ -8,9 +8,6 @@ keywords: nera navegación, plugin-navigation, menú activo, navegación de siti
 tags: plugins, navigation
 pagination_order: 2
 ---
-
-# Construye una navegación con estados activos
-
 `@nera-static/plugin-navigation` convierte una lista YAML en un menú de navegación y marca
 el enlace de la página actual — sin necesidad de JavaScript.
 

@@ -8,9 +8,6 @@ keywords: nera blog tutorial, static blog, markdown blog
 tags: getting-started, blog, plugins
 pagination_order: 1
 ---
-
-# Build a blog with Nera
-
 In this tutorial you'll scaffold a Nera site, add a couple of posts, and list them
 newest-first on an index page.
 

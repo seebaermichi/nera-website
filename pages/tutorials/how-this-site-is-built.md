@@ -8,9 +8,6 @@ keywords: nera case study, static site example, nera website, dogfooding
 tags: case-study, plugins, advanced
 pagination_order: 9
 ---
-
-# How this website is built
-
 This whole site is built with Nera. Nothing here is special-cased — it's the same
 generator and the same public plugins you'd install. Here's the full recipe.
 

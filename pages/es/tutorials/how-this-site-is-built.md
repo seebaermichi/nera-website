@@ -8,9 +8,6 @@ keywords: nera caso de estudio, ejemplo de sitio estático, nera website, dogfoo
 tags: case-study, plugins, advanced
 pagination_order: 9
 ---
-
-# Cómo está construido este sitio web
-
 Todo este sitio está construido con Nera. Nada aquí es un caso especial — es el
 mismo generador y los mismos plugins públicos que instalarías. Aquí está la receta
 completa.

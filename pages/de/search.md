@@ -8,7 +8,5 @@ keywords: nera suche
 robots: noindex,follow
 ---
 
-# Suche
-
 Durchsuche die Dokumentation und Tutorials. Die Ergebnisse werden vollständig
 clientseitig aus einem zur Build-Zeit erzeugten Index bereitgestellt.

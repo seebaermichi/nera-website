@@ -8,9 +8,6 @@ keywords: nera externe Links, plugin-link-attributes, target blank, noopener
 tags: plugins, links
 pagination_order: 6
 ---
-
-# Externe Links in einem neuen Tab öffnen
-
 `@nera-static/plugin-link-attributes` verarbeitet dein gerendertes HTML nach und fügt
 ausgehenden Links Attribute hinzu — sodass jeder externe Link sicher in einem neuen Tab öffnet,
 ohne dass du das Markdown anfassen musst.

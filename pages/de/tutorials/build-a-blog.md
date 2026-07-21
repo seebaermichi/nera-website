@@ -8,9 +8,6 @@ keywords: nera blog tutorial, statischer blog, markdown blog
 tags: getting-started, blog, plugins
 pagination_order: 1
 ---
-
-# Einen Blog mit Nera bauen
-
 In diesem Tutorial erstellst du eine Nera-Website, fügst ein paar Beiträge hinzu und
 listest sie auf einer Übersichtsseite nach Datum (neueste zuerst) auf.
 

@@ -8,9 +8,6 @@ keywords: nera etiquetas, plugin-tags, páginas de etiquetas, páginas temática
 tags: plugins, tags
 pagination_order: 3
 ---
-
-# Etiqueta tu contenido y obtén páginas temáticas gratis
-
 `@nera-static/plugin-tags` lee un campo `tags:` de tu frontmatter y luego construye
 automáticamente una página de resumen navegable para cada etiqueta.
 

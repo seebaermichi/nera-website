@@ -8,9 +8,6 @@ keywords: nera paginación, plugin-page-pagination, enlaces anterior siguiente, 
 tags: plugins, pagination
 pagination_order: 5
 ---
-
-# Añadir enlaces anterior/siguiente entre páginas
-
 `@nera-static/plugin-page-pagination` enlaza cada página con su anterior y siguiente
 **hermana** — páginas en el mismo directorio — en un orden que tú controlas. Perfecto para
 docs y tutoriales de varias partes.

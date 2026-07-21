@@ -8,9 +8,6 @@ keywords: nera tags, plugin-tags, tag pages, topic pages, static site tags
 tags: plugins, tags
 pagination_order: 3
 ---
-
-# Tag your content and get topic pages for free
-
 `@nera-static/plugin-tags` reads a `tags:` field from your frontmatter, then builds
 a browsable overview page for every tag automatically.
 

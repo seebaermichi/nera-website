@@ -8,7 +8,5 @@ keywords: nera search
 robots: noindex,follow
 ---
 
-# Search
-
 Search across the documentation and tutorials. Results are powered entirely
 client-side by an index generated at build time.

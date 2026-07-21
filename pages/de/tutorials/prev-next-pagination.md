@@ -8,9 +8,6 @@ keywords: nera Pagination, plugin-page-pagination, Vor Zurück Links, Docs-Navig
 tags: plugins, pagination
 pagination_order: 5
 ---
-
-# Vor-/Zurück-Links zwischen Seiten hinzufügen
-
 `@nera-static/plugin-page-pagination` verknüpft jede Seite mit ihrer vorherigen und nächsten
 **Geschwisterseite** — Seiten im selben Verzeichnis — in einer von dir kontrollierten Reihenfolge. Perfekt für
 Docs und mehrteilige Tutorials.

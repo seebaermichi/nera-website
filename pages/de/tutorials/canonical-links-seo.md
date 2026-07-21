@@ -8,9 +8,6 @@ keywords: nera SEO, plugin-canonical-links, canonical URL, hreflang, alternate L
 tags: plugins, seo
 pagination_order: 7
 ---
-
-# Canonical-Links für SEO hinzufügen
-
 Suchmaschinen wollen eine einzige canonical URL pro Seite. `@nera-static/plugin-canonical-links`
 gibt auf jeder Seite das richtige `<link rel="canonical">`-Tag aus — und alternate-language-
 Tags, wenn du eine mehrsprachige Website betreibst.

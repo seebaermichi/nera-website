@@ -8,9 +8,6 @@ keywords: nera enlaces externos, plugin-link-attributes, target blank, noopener
 tags: plugins, links
 pagination_order: 6
 ---
-
-# Abrir enlaces externos en una pestaña nueva
-
 `@nera-static/plugin-link-attributes` posprocesa tu HTML renderizado y añade
 atributos a los enlaces salientes — de modo que cada enlace externo se abre en una pestaña nueva, de forma segura,
 sin que tengas que tocar el Markdown.

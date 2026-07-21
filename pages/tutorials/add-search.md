@@ -8,9 +8,6 @@ keywords: nera search, static site search, client-side search
 tags: plugins, search
 pagination_order: 4
 ---
-
-# Add client-side search
-
 `@nera-static/plugin-search` builds a JSON index at render time and ships a small
 client script — no server required.
 

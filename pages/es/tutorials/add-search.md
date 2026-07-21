@@ -8,9 +8,6 @@ keywords: nera búsqueda, búsqueda de sitio estático, búsqueda del lado del c
 tags: plugins, search
 pagination_order: 4
 ---
-
-# Añade búsqueda del lado del cliente
-
 `@nera-static/plugin-search` construye un índice JSON en el momento del renderizado y entrega un pequeño
 script de cliente — sin servidor necesario.
 

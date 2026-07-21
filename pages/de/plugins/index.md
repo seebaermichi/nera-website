@@ -60,8 +60,6 @@ plugins:
       url: https://github.com/seebaermichi/nera-plugin-tags
 ---
 
-# Plugins
-
 Jede Funktion in Nera über "Markdown zu HTML" hinaus ist ein kleines, unabhängiges Paket.
 Installiere nur, was eine Website benötigt. Unten findest du den offiziellen `@nera-static`-Katalog — die
 kanonische Quelle ist [PLUGINS.md](https://github.com/seebaermichi/nera/blob/main/PLUGINS.md).
