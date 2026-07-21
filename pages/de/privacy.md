@@ -11,16 +11,16 @@ robots: noindex,follow
 # Datenschutz
 
 > **Noch nicht veröffentlicht.** Die technischen Aussagen unten beschreiben die
-> Website zutreffend. Offen sind noch: die Kontakt-E-Mail und der Abschnitt zu
-> den Server-Logfiles, in dem der Hosting-Anbieter benannt werden muss. Beides
-> ergänzen, prüfen lassen und `robots: noindex,follow` aus dem Frontmatter
-> entfernen. Diese deutsche Fassung ist die maßgebliche.
+> Website zutreffend. Offen ist noch der Abschnitt zu den Server-Logfiles, in dem
+> der Hosting-Anbieter benannt werden muss — das hängt davon ab, wo die Website
+> betrieben wird. Ergänzen, prüfen lassen und dann `robots: noindex,follow` aus
+> dem Frontmatter entfernen. Diese deutsche Fassung ist die maßgebliche.
 
 ## Verantwortlicher
 
 - **Michael Becker**
 - Wotanstraße 31, 10365 Berlin, Deutschland
-- E-Mail: [E-MAIL-ADRESSE]
+- E-Mail: info@michael-becker-berlin.de
 
 ## Was diese Website nicht tut
 

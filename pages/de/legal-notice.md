@@ -5,14 +5,10 @@ slug: legal-notice
 lang: de
 description: Anbieterkennzeichnung für diese Website.
 keywords: impressum, anbieterkennzeichnung, verantwortlich
-robots: noindex,follow
+robots: index,follow
 ---
 
 # Impressum
-
-> **Noch nicht veröffentlicht.** Die Kontakt-E-Mail fehlt noch, und im
-> Frontmatter steht `robots: noindex,follow` — das entfernen, sobald die Seite
-> vollständig ist. Diese deutsche Fassung ist die maßgebliche.
 
 ## Anbieter
 
@@ -25,7 +21,7 @@ Angaben gemäß § 5 DDG.
 
 ## Kontakt
 
-- E-Mail: [E-MAIL-ADRESSE]
+- E-Mail: info@michael-becker-berlin.de
 
 ## Redaktionell verantwortlich
 

@@ -5,14 +5,13 @@ slug: legal-notice
 lang: es
 description: Identificación del prestador de este sitio web.
 keywords: aviso legal, impressum, responsable
-robots: noindex,follow
+robots: index,follow
 ---
 
 # Aviso legal
 
-> **Aún no publicada.** Falta el correo de contacto y el frontmatter incluye
-> `robots: noindex,follow` — quítalo cuando la página esté completa. La versión
-> alemana es la jurídicamente vinculante; esta es una traducción de cortesía.
+> La versión alemana de esta página es la jurídicamente vinculante; esta es una
+> traducción de cortesía.
 
 ## Prestador
 
@@ -25,7 +24,7 @@ Información conforme al § 5 DDG (Ley alemana de servicios digitales).
 
 ## Contacto
 
-- Correo electrónico: [DIRECCIÓN DE CORREO]
+- Correo electrónico: info@michael-becker-berlin.de
 
 ## Responsable del contenido
 

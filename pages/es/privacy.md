@@ -11,16 +11,16 @@ robots: noindex,follow
 # Privacidad
 
 > **Aún no publicada.** Las afirmaciones técnicas de abajo describen el sitio con
-> exactitud. Queda pendiente: el correo de contacto y la sección de registros del
-> servidor, que debe nombrar al proveedor de alojamiento. Complétalos, haz revisar
-> el resultado y elimina `robots: noindex,follow` del frontmatter. La versión
-> alemana es la jurídicamente vinculante.
+> exactitud. Queda una laguna: la sección de registros del servidor debe nombrar
+> al proveedor de alojamiento, lo que depende de dónde se despliegue el sitio.
+> Complétala, haz revisar el resultado y luego elimina `robots: noindex,follow`
+> del frontmatter. La versión alemana es la jurídicamente vinculante.
 
 ## Responsable
 
 - **Michael Becker**
 - Wotanstraße 31, 10365 Berlin, Alemania
-- Correo electrónico: [DIRECCIÓN DE CORREO]
+- Correo electrónico: info@michael-becker-berlin.de
 
 ## Lo que este sitio no hace
 

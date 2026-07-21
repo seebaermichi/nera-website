@@ -11,16 +11,16 @@ robots: noindex,follow
 # Privacy
 
 > **Not published yet.** The technical statements below describe the site
-> accurately. Still open: the contact email, and the server-log section, which
-> needs the hosting provider named. Complete those, have the result reviewed, and
-> remove `robots: noindex,follow` from the frontmatter. The German version is the
-> legally authoritative one.
+> accurately. One gap remains: the server-log section needs the hosting provider
+> named, which depends on where the site is deployed. Fill that in, have the
+> result reviewed, then remove `robots: noindex,follow` from the frontmatter. The
+> German version is the legally authoritative one.
 
 ## Controller
 
 - **Michael Becker**
 - Wotanstraße 31, 10365 Berlin, Germany
-- Email: [EMAIL ADDRESS]
+- Email: info@michael-becker-berlin.de
 
 ## What this site does not do
 

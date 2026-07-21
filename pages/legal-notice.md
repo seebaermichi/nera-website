@@ -5,14 +5,13 @@ slug: legal-notice
 lang: en
 description: Provider identification for this website.
 keywords: legal notice, imprint, impressum
-robots: noindex,follow
+robots: index,follow
 ---
 
 # Legal notice
 
-> **Not published yet.** The contact email is still missing, and the frontmatter
-> sets `robots: noindex,follow` — remove that once this page is complete. The
-> German version is the legally authoritative one; this is a courtesy translation.
+> The German version of this page is the legally authoritative one; this is a
+> courtesy translation.
 
 ## Provider
 
@@ -25,7 +24,7 @@ Information pursuant to § 5 DDG (German Digital Services Act).
 
 ## Contact
 
-- Email: [EMAIL ADDRESS]
+- Email: info@michael-becker-berlin.de
 
 ## Responsible for editorial content
 
