@@ -18,6 +18,9 @@ translations:
         cta_browse_plugins: Browse plugins
         footer_built_with: Built with Nera
         footer_source: Source on GitHub
+        footer_legal_label: Legal
+        footer_legal_notice: Legal notice
+        footer_privacy: Privacy
         footer_col_site: Site
         footer_col_project: Project
         search_title: Search
@@ -41,6 +44,9 @@ translations:
         cta_browse_plugins: Plugins ansehen
         footer_built_with: Erstellt mit Nera
         footer_source: Quellcode auf GitHub
+        footer_legal_label: Rechtliches
+        footer_legal_notice: Impressum
+        footer_privacy: Datenschutz
         footer_col_site: Seiten
         footer_col_project: Projekt
         search_title: Suche
@@ -64,6 +70,9 @@ translations:
         cta_browse_plugins: Ver plugins
         footer_built_with: Creado con Nera
         footer_source: Código en GitHub
+        footer_legal_label: Legal
+        footer_legal_notice: Aviso legal
+        footer_privacy: Privacidad
         footer_col_site: Sitio
         footer_col_project: Proyecto
         search_title: Buscar

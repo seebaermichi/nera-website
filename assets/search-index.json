@@ -60,10 +60,22 @@
     "href": "/de/index.html"
   },
   {
+    "title": "Impressum",
+    "description": "Anbieterkennzeichnung für diese Website.",
+    "content": "Impressum Diese Seite ist noch nicht fertig. Die Angaben unten sind Platzhalter. Ersetze jedes […] durch echte Angaben und entferne robots: noindex,follow aus dem Frontmatter, bevor die Seite online geht. Diese deutsche Fassung ist die maßgebliche. Anbieter Angaben gemäß § 5 DDG. [VOLLSTÄNDIGER NAME] [STRASSE UND HAUSNUMMER] [PLZ, ORT] [LAND] Kontakt E-Mail: [E-MAIL-ADRESSE] Redaktionell verantwortlich Gemäß § 18 Abs. 2 MStV: [VOLLSTÄNDIGER NAME], Anschrift wie oben. Zu dieser Website Diese Website dokumentiert Nera, einen quelloffenen Static-Site-Generator unter der MIT-Lizenz. Sie ist rein informativ; es wird nichts verkauft. Der Quellcode der Website und aller beschriebenen Plugins liegt auf GitHub.",
+    "href": "/de/legal-notice.html"
+  },
+  {
     "title": "Plugins",
     "description": "Der offizielle @nera-static-Plugin-Katalog — Navigation, Tags, Suche, Pagination und mehr.",
     "content": "Jede Funktion in Nera über \"Markdown zu HTML\" hinaus ist ein kleines, unabhängiges Paket. Installiere nur, was eine Website benötigt. Unten findest du den offiziellen @nera-static-Katalog — die kanonische Quelle ist PLUGINS.md.",
     "href": "/de/plugins/index.html"
+  },
+  {
+    "title": "Datenschutz",
+    "description": "Was diese Website mit Besucherdaten macht — und was nicht.",
+    "content": "Datenschutz Diese Seite ist noch nicht fertig. Die technischen Aussagen unten beschreiben die Website zutreffend, die Angaben zum Verantwortlichen und der Abschnitt zum Hosting sind jedoch Platzhalter. Ergänze sie, lass das Ergebnis prüfen und entferne robots: noindex,follow aus dem Frontmatter, bevor die Seite online geht. Diese deutsche Fassung ist die maßgebliche. Verantwortlicher [VOLLSTÄNDIGER NAME] [STRASSE UND HAUSNUMMER], [PLZ, ORT], [LAND] E-Mail: [E-MAIL-ADRESSE] Was diese Website nicht tut Dies ist eine statische Website. Es gibt keine Benutzerkonten, keine Kommentare und keine Formulare. Insbesondere werden nicht: Cookies gesetzt, gleich welcher Art Analyse-, Tracking- oder Werbedienste eingesetzt Daten in localStorage oder sessionStorage geschrieben Inhalte von Dritten geladen — kein CDN, keine externen Schriftarten, keine eingebetteten Videos oder Karten Schriftarten werden von dieser Domain ausgeliefert und nicht von einem Font-CDN. Beim Aufruf einer Seite wird deine IP-Adresse daher nicht an Dritte übermittelt. Suche Die Suche läuft vollständig in deinem Browser. Sie lädt eine statische Datei mit Seitentiteln und -texten von dieser Domain und filtert lokal. Deine Suchbegriffe werden nirgendwohin übertragen. Server-Logfiles Damit eine Seite ausgeliefert werden kann, verbindet sich dein Browser mit dem Hosting-Anbieter. Dieser protokolliert dabei technische Daten — in der Regel IP-Adresse, Zeitpunkt der Anfrage, die angeforderte Datei sowie Referrer und User-Agent, die dein Browser sendet. Das ist für die Auslieferung und die Sicherheit der Website erforderlich und erfolgt auf Grundlage eines berechtigten Interesses, Art. 6 Abs. 1 lit. f DSGVO. [ZU ERGÄNZEN] Hosting-Anbieter benennen, Speicherdauer der Logs angeben und klären, ob ein Auftragsverarbeitungsvertrag (Art. 28 DSGVO) vorliegt. Das hängt davon ab, wo die Website betrieben wird. Deine Rechte Nach der DSGVO hast du das Recht auf Auskunft über deine personenbezogenen Daten (Art. 15), auf Berichtigung (Art. 16), auf Löschung (Art. 17), auf Einschränkung der Verarbeitung (Art. 18), auf Datenübertragbarkeit (Art. 20) sowie das Recht, einer auf berechtigtem Interesse beruhenden Verarbeitung zu widersprechen (Art. 21). Wende dich dafür an die oben genannte Adresse. Außerdem steht dir ein Beschwerderecht bei einer Aufsichtsbehörde zu. Externe Links Von hier wird auf Seiten verlinkt, die wir nicht betreiben, etwa GitHub und npm. Wer einem solchen Link folgt, sendet seine Anfrage an die dortige Seite; diese Erklärung gilt dort nicht.",
+    "href": "/de/privacy.html"
   },
   {
     "title": "Suche",
@@ -228,10 +240,22 @@
     "href": "/es/index.html"
   },
   {
+    "title": "Aviso legal",
+    "description": "Identificación del prestador de este sitio web.",
+    "content": "Aviso legal Esta página no está terminada. Los datos siguientes son marcadores de posición. Sustituye cada […] por información real y elimina robots: noindex,follow del frontmatter antes de publicar. La versión alemana es la jurídicamente vinculante; esta es una traducción de cortesía. Prestador Información conforme al § 5 DDG (Ley alemana de servicios digitales). [NOMBRE COMPLETO] [CALLE Y NÚMERO] [CÓDIGO POSTAL, CIUDAD] [PAÍS] Contacto Correo electrónico: [DIRECCIÓN DE CORREO] Responsable del contenido Conforme al § 18 (2) MStV: [NOMBRE COMPLETO], dirección indicada arriba. Sobre este sitio Este sitio documenta Nera, un generador de sitios estáticos de código abierto publicado bajo licencia MIT. Es informativo y no vende nada. El código fuente del sitio y de cada plugin que describe está en GitHub.",
+    "href": "/es/legal-notice.html"
+  },
+  {
     "title": "Plugins",
     "description": "El catálogo oficial de plugins de @nera-static — navegación, etiquetas, búsqueda, paginación y más.",
     "content": "Cada funcionalidad de Nera más allá de \"Markdown a HTML\" es un paquete pequeño e independiente. Instala solo lo que un sitio necesita. A continuación está el catálogo oficial de @nera-static — la fuente canónica es PLUGINS.md.",
     "href": "/es/plugins/index.html"
+  },
+  {
+    "title": "Privacidad",
+    "description": "Qué hace y qué no hace este sitio con los datos de los visitantes.",
+    "content": "Privacidad Esta página no está terminada. Las afirmaciones técnicas de abajo describen el sitio con exactitud, pero los datos del responsable y la sección de alojamiento son marcadores de posición. Complétalos, haz revisar el resultado y elimina robots: noindex,follow del frontmatter antes de publicar. La versión alemana es la jurídicamente vinculante. Responsable [NOMBRE COMPLETO] [CALLE Y NÚMERO], [CÓDIGO POSTAL, CIUDAD], [PAÍS] Correo electrónico: [DIRECCIÓN DE CORREO] Lo que este sitio no hace Este es un sitio estático. No hay cuentas de usuario, ni comentarios, ni formularios. En concreto, no: instala cookies de ningún tipo utiliza analítica, píxeles de seguimiento ni publicidad escribe en localStorage ni en sessionStorage carga nada de terceros: sin CDN, sin fuentes externas, sin vídeos ni mapas incrustados Las fuentes se sirven desde este dominio y no desde un CDN de tipografías, así que abrir una página no revela tu dirección IP a terceros. Búsqueda La búsqueda funciona por completo en tu navegador. Descarga de este dominio un único archivo estático con títulos y textos de las páginas y lo filtra localmente. Tus términos de búsqueda no se transmiten a ningún sitio. Archivos de registro del servidor Para entregar una página, tu navegador se conecta al proveedor de alojamiento, y este registra datos técnicos: normalmente dirección IP, momento de la petición, el archivo solicitado y el referente y el agente de usuario que envía tu navegador. Es necesario para servir el sitio y mantenerlo seguro, y se trata sobre la base de un interés legítimo, art. 6.1.f del RGPD. [POR COMPLETAR] Indicar el proveedor de alojamiento, el plazo de conservación de sus registros y si existe un contrato de encargo de tratamiento (art. 28 del RGPD). Depende de dónde se despliegue el sitio. Tus derechos Conforme al RGPD tienes derecho a acceder a tus datos personales (art. 15), a rectificarlos (art. 16) o suprimirlos (art. 17), a limitar su tratamiento (art. 18), a recibirlos en un formato portátil (art. 20) y a oponerte al tratamiento basado en el interés legítimo (art. 21). Para ejercerlos, escribe a la dirección indicada arriba. También puedes presentar una reclamación ante una autoridad de control. Enlaces externos Aquí se enlaza a sitios que no gestionamos, como GitHub y npm. Al seguir uno de esos enlaces, el sitio de destino recibe tu petición; esta política no se aplica allí.",
+    "href": "/es/privacy.html"
   },
   {
     "title": "Búsqueda",
@@ -306,10 +330,22 @@
     "href": "/index.html"
   },
   {
+    "title": "Legal notice",
+    "description": "Provider identification for this website.",
+    "content": "Legal notice This page is not finished. The details below are placeholders. Replace every […] with real information and remove robots: noindex,follow from the frontmatter before publishing. The German version is the legally authoritative one; this is a courtesy translation. Provider Information pursuant to § 5 DDG (German Digital Services Act). [FULL LEGAL NAME] [STREET AND NUMBER] [POSTAL CODE, CITY] [COUNTRY] Contact Email: [EMAIL ADDRESS] Responsible for editorial content Pursuant to § 18 (2) MStV: [FULL LEGAL NAME], address as above. About this site This site documents Nera, an open-source static site generator published under the MIT licence. It is informational and does not sell anything. Source code for the site and for every plugin it describes is on GitHub.",
+    "href": "/legal-notice.html"
+  },
+  {
     "title": "Plugins",
     "description": "The official @nera-static plugin catalog — navigation, tags, search, pagination and more.",
     "content": "Every feature in Nera beyond \"Markdown to HTML\" is a small, independent package. Install only what a site needs. Below is the official @nera-static catalog — the canonical source is PLUGINS.md.",
     "href": "/plugins/index.html"
+  },
+  {
+    "title": "Privacy",
+    "description": "What this website does and does not do with visitor data.",
+    "content": "Privacy This page is not finished. The technical statements below describe the site accurately, but the controller details and the hosting section are placeholders. Complete them, have the result reviewed, and remove robots: noindex,follow from the frontmatter before publishing. The German version is the legally authoritative one. Controller [FULL LEGAL NAME] [STREET AND NUMBER], [POSTAL CODE, CITY], [COUNTRY] Email: [EMAIL ADDRESS] What this site does not do This is a static website. It has no user accounts, no comment section and no forms. Specifically, it does not: set cookies of any kind use analytics, tracking pixels or advertising write to localStorage or sessionStorage load anything from a third party — no CDN, no external fonts, no embedded video or maps Fonts are served from this domain rather than a font CDN, so rendering a page does not disclose your IP address to a third party. Search The search page works entirely in your browser. It downloads one static file of page titles and text from this domain and filters it locally. Your search terms are never transmitted anywhere. Server log files Serving a web page requires your browser to connect to the hosting provider, and that provider records technical data — typically IP address, time of request, the file requested, and the referring page and user agent your browser sends. This is necessary to deliver the site and to keep it secure, and is processed on the basis of a legitimate interest, Art. 6 (1) (f) GDPR. [TO COMPLETE] Name the hosting provider, the retention period for their logs, and whether a data processing agreement (Art. 28 GDPR) is in place. This depends on where the site is deployed. Your rights Under the GDPR you have the right to request access to your personal data (Art. 15), to have it corrected (Art. 16) or erased (Art. 17), to restrict its processing (Art. 18), to receive it in a portable form (Art. 20), and to object to processing based on legitimate interest (Art. 21). To exercise any of these, contact the address above. You may also complain to a supervisory authority in your country of residence. External links Pages here link to sites we do not run, such as GitHub and npm. Following such a link means the site you land on receives your request; this policy does not apply there.",
+    "href": "/privacy.html"
   },
   {
     "title": "Search",

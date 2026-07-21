@@ -27,8 +27,13 @@ footer.site-footer
             li.nav__item
               a.nav__link(href=app.npm_org_url, target="_blank", rel="noopener noreferrer") npm
 
-    p.site-footer__meta
-      span MIT
+    .site-footer__meta
+      //- Legal links belong on every page, not just one: an Impressum has to be
+      //- reachable directly from wherever a visitor happens to be.
+      nav.site-footer__legal(aria-label=t('footer_legal_label'))
+        a(href=`${ langPrefix }/legal-notice.html`) #{ t('footer_legal_notice') }
+        a(href=`${ langPrefix }/privacy.html`) #{ t('footer_privacy') }
+        span MIT
       span
         | #{ t('footer_built_with') } ·
         |
