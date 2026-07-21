@@ -11,7 +11,7 @@ pagination_order: 2
 
 ## Voraussetzungen
 
-- **Node.js ≥ 18**
+- **Node.js ≥ 20**
 - npm (in Node enthalten)
 
 ## Website erstellen

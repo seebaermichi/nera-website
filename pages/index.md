@@ -13,7 +13,7 @@ features:
     - title: Templates you own
       description: Publish a plugin's Pug templates into views/vendor/ and style them from your own CSS. Nothing is hidden inside node_modules.
     - title: Zero build step
-      description: No bundler to configure. npm run render builds the site and npm run dev gives a live-reloading preview. Node ≥ 18 is the whole story.
+      description: No bundler to configure. npm run render builds the site and npm run dev gives a live-reloading preview. Node ≥ 20 is the whole story.
 ---
 
 ## Why Nera
