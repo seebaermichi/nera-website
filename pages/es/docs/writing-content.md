@@ -25,6 +25,21 @@ description: What this page is about.
 Your content goes here.
 ```
 
+## Quién escribe el título
+
+`title` son datos, no salida. Que llegue a la página depende del layout, así que
+compruébalo antes de repetirlo en el cuerpo:
+
+- Si el layout renderiza `meta.title`, **omite el encabezado en el Markdown**:
+  escribir además `# Acerca de` pone el título dos veces en la página.
+- Si no lo hace, el encabezado `#` del cuerpo es el único título de la página,
+  como en el ejemplo anterior.
+
+En este sitio `pages/default.pug` y `pages/docs.pug` no renderizan título, por eso
+esas páginas empiezan con un encabezado. Los layouts de tutorial, índice de
+tutoriales, plugins y vista de etiquetas sí lo renderizan, así que su Markdown
+entra directamente en el texto.
+
 ## El frontmatter son datos
 
 Todo lo que hay en el frontmatter llega a `meta`. Úsalo para títulos, descripciones, etiquetas,

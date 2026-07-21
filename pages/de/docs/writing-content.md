@@ -25,6 +25,21 @@ description: What this page is about.
 Your content goes here.
 ```
 
+## Wer den Titel schreibt
+
+`title` ist Daten, keine Ausgabe. Ob er auf der Seite landet, entscheidet das
+Layout — prüfe das also, bevor du ihn im Text wiederholst:
+
+- Rendert das Layout `meta.title` selbst, **lass die Überschrift im Markdown
+  weg** — ein zusätzliches `# Über` setzt den Titel zweimal auf die Seite.
+- Tut es das nicht, ist die eigene `#`-Überschrift im Text der einzige Titel der
+  Seite, wie im Beispiel oben.
+
+Auf dieser Website rendern `pages/default.pug` und `pages/docs.pug` keinen Titel,
+deshalb beginnen diese Seiten mit einer Überschrift. Die Layouts für Tutorials,
+Tutorial-Übersicht, Plugins und Tag-Übersicht rendern ihn, deshalb steigt deren
+Markdown direkt in den Fließtext ein.
+
 ## Frontmatter ist Daten
 
 Alles im Frontmatter landet auf `meta`. Nutze es für Titel, Beschreibungen, Tags,

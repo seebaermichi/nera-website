@@ -25,6 +25,20 @@ description: What this page is about.
 Your content goes here.
 ```
 
+## Who writes the title
+
+`title` is data, not output. Whether it reaches the page is up to the layout, so
+check before repeating it in the body:
+
+- If the layout renders `meta.title` itself, **leave the heading out of the
+  Markdown** — writing `# About` as well puts the title on the page twice.
+- If it doesn't, the body's own `#` heading is the page's only title, as in the
+  example above.
+
+On this site `pages/default.pug` and `pages/docs.pug` render no title, so those
+pages open with a heading. The tutorial, tutorials-index, plugins and tag-overview
+layouts do render it, so their Markdown starts straight into the prose.
+
 ## Frontmatter is data
 
 Everything in frontmatter lands on `meta`. Use it for titles, descriptions, tags,
