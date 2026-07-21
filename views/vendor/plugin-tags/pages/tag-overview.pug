@@ -11,12 +11,27 @@
 section.tag-overview
     header.tag-overview__header
         //- One heading, so the accessible name is the whole phrase
-        //- ("advanced tutorials") rather than a bare tag. The tag keeps
-        //- .tag-overview__title and its chip styling; the noun after it says
-        //- what is being listed.
+        //- ("advanced tutorials") rather than a bare tag.
+        //-
+        //- The wording comes from a pattern with a {tag} slot rather than a
+        //- bare noun, because word order is not the same in every language:
+        //- English and German put the tag first, Spanish puts the noun first
+        //- ("tutoriales advanced"). Keeping the order in the translation means
+        //- a new language is a config entry, not a branch in here.
+        //-
+        //- If the pattern is missing, t() hands back the key itself, which has
+        //- no slot — render the tag alone rather than printing the key.
+        -
+            const headingPattern = t('tag_overview_heading')
+            const headingParts = headingPattern.includes('{tag}') ? headingPattern.split('{tag}') : ['', '']
+            const headingBefore = headingParts[0].trim()
+            const headingAfter = (headingParts[1] || '').trim()
         h1.tag-overview__heading
+            if headingBefore
+                span.tag-overview__kind #{ headingBefore }
             span.tag-overview__title #{ meta.title }
-            span.tag-overview__kind #{ t('tag_overview_kind') }
+            if headingAfter
+                span.tag-overview__kind #{ headingAfter }
 
         if tagImage
             img.tag-overview__image(src=`${ tagImage }` alt='')

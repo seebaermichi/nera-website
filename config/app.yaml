@@ -22,7 +22,7 @@ translations:
         footer_col_project: Project
         search_title: Search
         search_placeholder: Search…
-        tag_overview_kind: tutorials
+        tag_overview_heading: '{tag} tutorials'
         docs_heading: Documentation
         docs_nav_intro: Introduction
         docs_nav_getting_started: Getting started
@@ -45,7 +45,7 @@ translations:
         footer_col_project: Projekt
         search_title: Suche
         search_placeholder: Suchen…
-        tag_overview_kind: Tutorials
+        tag_overview_heading: '{tag} Tutorials'
         docs_heading: Dokumentation
         docs_nav_intro: Einführung
         docs_nav_getting_started: Erste Schritte
@@ -68,7 +68,7 @@ translations:
         footer_col_project: Proyecto
         search_title: Buscar
         search_placeholder: Buscar…
-        tag_overview_kind: tutoriales
+        tag_overview_heading: 'tutoriales {tag}'
         docs_heading: Documentación
         docs_nav_intro: Introducción
         docs_nav_getting_started: Primeros pasos
