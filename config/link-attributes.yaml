@@ -1,0 +1,5 @@
+# Adds attributes to external links (href starting with http/www) in page content.
+# Opens outbound links in a new tab, with rel hardening against tab-nabbing.
+attributes:
+    - target="_blank"
+    - rel="noopener noreferrer"

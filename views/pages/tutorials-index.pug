@@ -1,0 +1,23 @@
+extends ../layouts/layout
+
+block content
+  section.tutorials.container
+    header.tutorials__header
+      h1.tutorials__title #{ meta.title }
+      p.tutorials__intro !{ content }
+
+    //- Browse-by-topic tag cloud (plugin-tags, app.tagCloud)
+    if app.tagCloud
+      include ../vendor/plugin-tags/partials/tag-cloud
+
+    //- Tutorials in the current language, newest first. `app.tutorials` is
+    //- built in src/plugins/tutorials-list (curLang comes from layout.pug).
+    - const posts = (app.tutorials || []).filter(post => post.lang === curLang)
+    if posts.length
+      ul.tutorials__list
+        each post in posts
+          li.tutorials__item
+            a.tutorials__link(href=post.href)
+              h2.tutorials__item-title #{ post.title }
+              if post.description
+                p.tutorials__item-desc #{ post.description }

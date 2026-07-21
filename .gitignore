@@ -1,0 +1,8 @@
+node_modules
+public
+ISSUES.md
+.vscode/
+.env
+.vite
+# npm credentials — never commit
+.npmrc

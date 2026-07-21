@@ -1,0 +1,17 @@
+extends ../layouts/layout
+
+block content
+  article.tutorial.container
+    header.tutorial__header
+      h1.tutorial__title #{ meta.title }
+      if meta.createdAt
+        time.tutorial__date #{ new Date(meta.createdAt).toLocaleDateString(meta.lang || app.lang) }
+      //- Tag links for this article (plugin-tags)
+      if meta.tagLinks
+        include ../vendor/plugin-tags/partials/tag-links
+
+    .tutorial__body.prose
+      != content
+
+    if meta.pagePagination && (meta.pagePagination.previous || meta.pagePagination.next)
+      include ../vendor/plugin-page-pagination/page-pagination

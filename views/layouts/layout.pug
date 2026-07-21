@@ -1,0 +1,25 @@
+//- Language context, declared once and shared by every partial and block
+//- (Pug inlines includes/blocks into one scope, so these must not be re-declared).
+- const curLang = meta.lang || app.lang
+- const langPrefix = curLang === 'en' ? '' : '/' + curLang
+<!DOCTYPE html>
+html(lang=curLang)
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{ meta.title } | #{ app.name }
+    meta(name="description", content=`${ meta.description || t('app_description') }`)
+    meta(name="keywords", content=`${ meta.keywords || t('app_keywords') }`)
+    meta(name="generator" content=`nera - ${ process.env.npm_package_version }`)
+    meta(name="robots" content=`${ meta.robots || app.robots }`)
+    // Canonical + alternate language links (plugin-canonical-links)
+    include ../vendor/plugin-canonical-links/index
+    link(rel="stylesheet", href="/css/main.css")
+
+  body
+    include ../partials/site-header
+
+    main.site-main
+      block content
+
+    include ../partials/site-footer

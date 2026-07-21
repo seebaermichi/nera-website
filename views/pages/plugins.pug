@@ -1,0 +1,21 @@
+extends ../layouts/layout
+
+block content
+  section.plugins.container
+    header.plugins__header
+      h1.plugins__title #{ meta.title }
+    article.prose
+      != content
+
+    //- The catalog is authored as YAML-ish frontmatter `plugins:` on the page,
+    //- so content and design stay separate. Falls back gracefully if absent.
+    if meta.plugins && meta.plugins.length
+      ul.plugin-cards
+        each plugin in meta.plugins
+          li.plugin-card
+            h2.plugin-card__name #{ plugin.name }
+            p.plugin-card__desc #{ plugin.description }
+            if plugin.package
+              code.plugin-card__pkg #{ plugin.package }
+            if plugin.url
+              a.plugin-card__link(href=plugin.url, target="_blank", rel="noopener noreferrer") Docs →

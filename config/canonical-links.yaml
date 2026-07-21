@@ -1,0 +1,8 @@
+# Canonical + alternate <link> tags. Set app_origin to the deployed origin before launch.
+# Pages in different languages that share a `slug` are cross-linked via hreflang.
+app_origin: https://nera.js.org
+page_identifier: slug
+available_languages:
+    - en
+    - de
+    - es

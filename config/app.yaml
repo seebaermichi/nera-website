@@ -1,0 +1,70 @@
+lang: en
+name: Nera
+robots: index,follow
+
+# Site-wide values available as `app.*` in every view.
+repo_url: https://github.com/seebaermichi/nera
+plugins_url: https://github.com/seebaermichi/nera/blob/main/PLUGINS.md
+npm_scope: '@nera-static'
+
+# UI chrome strings, resolved per page via t(key) using meta.lang (or app.lang).
+translations:
+    en:
+        app_description: Nera is a lightweight, plugin-based static site generator. Write Markdown, template with Pug, extend with small single-purpose plugins.
+        app_keywords: nera, static site generator, ssg, markdown, pug, node, jamstack, documentation
+        tagline: The lightweight, plugin-based static site generator
+        cta_get_started: Get started
+        cta_browse_plugins: Browse plugins
+        footer_built_with: Built with Nera
+        footer_source: Source on GitHub
+        search_title: Search
+        search_placeholder: Search…
+        docs_heading: Documentation
+        docs_nav_intro: Introduction
+        docs_nav_getting_started: Getting started
+        docs_nav_core_concepts: Core concepts
+        docs_nav_writing_content: Writing content
+        docs_nav_plugins: Plugins
+        docs_nav_deployment: Deployment
+        docs_nav_cli: CLI reference
+        language_label: Language
+
+    de:
+        app_description: Nera ist ein leichtgewichtiger, Plugin-basierter Static-Site-Generator. Schreibe Markdown, gestalte mit Pug und erweitere mit kleinen, fokussierten Plugins.
+        app_keywords: nera, static site generator, ssg, markdown, pug, node, jamstack, dokumentation
+        tagline: Der leichtgewichtige, Plugin-basierte Static-Site-Generator
+        cta_get_started: Loslegen
+        cta_browse_plugins: Plugins ansehen
+        footer_built_with: Erstellt mit Nera
+        footer_source: Quellcode auf GitHub
+        search_title: Suche
+        search_placeholder: Suchen…
+        docs_heading: Dokumentation
+        docs_nav_intro: Einführung
+        docs_nav_getting_started: Erste Schritte
+        docs_nav_core_concepts: Grundkonzepte
+        docs_nav_writing_content: Inhalte schreiben
+        docs_nav_plugins: Plugins
+        docs_nav_deployment: Deployment
+        docs_nav_cli: CLI-Referenz
+        language_label: Sprache
+
+    es:
+        app_description: Nera es un generador de sitios estáticos ligero y basado en plugins. Escribe Markdown, maqueta con Pug y amplía con plugins pequeños y específicos.
+        app_keywords: nera, generador de sitios estáticos, ssg, markdown, pug, node, jamstack, documentación
+        tagline: El generador de sitios estáticos ligero y basado en plugins
+        cta_get_started: Empezar
+        cta_browse_plugins: Ver plugins
+        footer_built_with: Creado con Nera
+        footer_source: Código en GitHub
+        search_title: Buscar
+        search_placeholder: Buscar…
+        docs_heading: Documentación
+        docs_nav_intro: Introducción
+        docs_nav_getting_started: Primeros pasos
+        docs_nav_core_concepts: Conceptos básicos
+        docs_nav_writing_content: Escribir contenido
+        docs_nav_plugins: Plugins
+        docs_nav_deployment: Despliegue
+        docs_nav_cli: Referencia de la CLI
+        language_label: Idioma

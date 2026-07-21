@@ -1,0 +1,2 @@
+# Prev/next links between sibling pages in the same directory, ordered by this key.
+order_property: pagination_order

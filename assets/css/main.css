@@ -1,0 +1,303 @@
+/*
+ * PLACEHOLDER STYLES — intentionally minimal.
+ * This exists only so the scaffold is legible. Replace wholesale with the
+ * design system from Claude Design. BEM class names match the Pug templates.
+ */
+
+:root {
+    --max-width: 72rem;
+    --content-width: 44rem;
+    --gap: 1.5rem;
+    --fg: #1a1a1a;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --border: #e5e7eb;
+    --bg-soft: #f9fafb;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--fg);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--gap);
+}
+
+.prose {
+    max-width: var(--content-width);
+}
+
+.prose pre {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 6px;
+}
+
+.prose code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+}
+
+/* Header / footer */
+.site-header,
+.site-footer {
+    border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner,
+.site-footer__inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding: 1rem var(--gap);
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    flex-wrap: wrap;
+}
+
+.site-header__brand {
+    font-weight: 700;
+    color: var(--fg);
+}
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    border-bottom: none;
+    margin-top: 4rem;
+    color: var(--muted);
+}
+
+/* Navigation (plugin-navigation) */
+.nav {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.nav--main {
+    margin-inline-start: auto;
+}
+
+.nav__link--active {
+    font-weight: 700;
+    color: var(--fg);
+}
+
+.nav__link--active-path {
+    color: var(--fg);
+}
+
+/* Language switch (i18n) */
+.lang-switch {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.lang-switch__link {
+    font-size: 0.8rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    color: var(--muted);
+}
+
+.lang-switch__link--active {
+    color: var(--fg);
+    font-weight: 700;
+    background: var(--bg-soft);
+}
+
+/* Hero */
+.hero {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem var(--gap);
+    text-align: center;
+}
+
+.hero__title {
+    font-size: 3rem;
+    margin: 0.5rem 0;
+}
+
+.hero__eyebrow {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+}
+
+.hero__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+}
+
+.button--primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.button--ghost {
+    color: var(--accent);
+}
+
+.hero__code {
+    display: inline-block;
+    background: #111;
+    color: #eee;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+}
+
+/* Home feature grid */
+.home-body {
+    padding-block: 3rem;
+}
+
+.home-body .prose {
+    max-width: var(--max-width);
+}
+
+.home-body h3 {
+    margin-top: 2rem;
+}
+
+/* Docs layout */
+.docs-layout {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    gap: 3rem;
+    padding-block: 2.5rem;
+    align-items: start;
+}
+
+.docs-sidebar__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.docs-sidebar__link--active {
+    font-weight: 700;
+    color: var(--fg);
+}
+
+.docs-sidebar__heading {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+/* Plugin cards */
+.plugin-cards {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--gap);
+    margin-top: 2rem;
+}
+
+.plugin-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+}
+
+.plugin-card__pkg {
+    display: block;
+    color: var(--muted);
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+}
+
+/* Tutorials + tags */
+.tutorials__list {
+    list-style: none;
+    padding: 0;
+}
+
+.tutorials__item {
+    border-bottom: 1px solid var(--border);
+    padding-block: 1rem;
+}
+
+.tag-links,
+.tag-cloud {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.tag-links__item,
+.tag-cloud__item {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.15rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+/* Pagination */
+.page-pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+/* Search */
+.search__input {
+    width: 100%;
+    max-width: var(--content-width);
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.search__results {
+    list-style: none;
+    padding: 0;
+    max-width: var(--content-width);
+}
+
+.site-main {
+    min-height: 50vh;
+}

@@ -1,0 +1,4 @@
+if app.tagCloud.length > 0
+    section.tag-cloud
+        each tag in app.tagCloud
+            a.tag-cloud__item(href=`${ tag.href }`) #{ tag.name }

@@ -1,0 +1,8 @@
+extends ../layouts/layout
+
+block content
+  .search-page.container
+    article.prose
+      != content
+    //- Search box + client script (plugin-search)
+    include ../vendor/plugin-search/search

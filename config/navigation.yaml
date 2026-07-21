@@ -1,0 +1,72 @@
+# Per-language navigation. The header/footer partials pick the group that
+# matches the current page's language (main / main_de / main_es, etc.).
+active_class: nav__link--active
+active_path_class: nav__link--active-path
+nav_class: nav
+
+elements:
+    main:
+        - href: /index.html
+          name: Home
+        - href: /docs/index.html
+          name: Docs
+        - href: /plugins/index.html
+          name: Plugins
+        - href: /tutorials/index.html
+          name: Tutorials
+        - href: /about.html
+          name: About
+        - href: /search.html
+          name: Search
+
+    main_de:
+        - href: /de/index.html
+          name: Start
+        - href: /de/docs/index.html
+          name: Doku
+        - href: /de/plugins/index.html
+          name: Plugins
+        - href: /de/tutorials/index.html
+          name: Tutorials
+        - href: /de/about.html
+          name: Über
+        - href: /de/search.html
+          name: Suche
+
+    main_es:
+        - href: /es/index.html
+          name: Inicio
+        - href: /es/docs/index.html
+          name: Docs
+        - href: /es/plugins/index.html
+          name: Plugins
+        - href: /es/tutorials/index.html
+          name: Tutoriales
+        - href: /es/about.html
+          name: Acerca de
+        - href: /es/search.html
+          name: Buscar
+
+    footer:
+        - href: /docs/index.html
+          name: Documentation
+        - href: /plugins/index.html
+          name: Plugins
+        - href: /tutorials/index.html
+          name: Tutorials
+
+    footer_de:
+        - href: /de/docs/index.html
+          name: Dokumentation
+        - href: /de/plugins/index.html
+          name: Plugins
+        - href: /de/tutorials/index.html
+          name: Tutorials
+
+    footer_es:
+        - href: /es/docs/index.html
+          name: Documentación
+        - href: /es/plugins/index.html
+          name: Plugins
+        - href: /es/tutorials/index.html
+          name: Tutoriales

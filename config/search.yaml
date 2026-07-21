@@ -1,0 +1,9 @@
+# Client-side search index. Generates search-index.json; the client is assets/js/search.js.
+fields:
+    - title
+    - description
+    - excerpt
+    - content
+    - href
+strip_html: true
+output_filename: search-index.json

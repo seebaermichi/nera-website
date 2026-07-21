@@ -1,0 +1,19 @@
+//- Language-aware docs nav. Labels come from translations; hrefs are prefixed
+//- with the current language (langPrefix comes from layout.pug).
+//- Order mirrors pagination_order in pages/docs/*.md.
+-
+  const docsLinks = [
+    { href: langPrefix + '/docs/index.html', name: t('docs_nav_intro') },
+    { href: langPrefix + '/docs/getting-started.html', name: t('docs_nav_getting_started') },
+    { href: langPrefix + '/docs/core-concepts.html', name: t('docs_nav_core_concepts') },
+    { href: langPrefix + '/docs/writing-content.html', name: t('docs_nav_writing_content') },
+    { href: langPrefix + '/docs/plugins.html', name: t('docs_nav_plugins') },
+    { href: langPrefix + '/docs/deployment.html', name: t('docs_nav_deployment') },
+    { href: langPrefix + '/docs/cli.html', name: t('docs_nav_cli') }
+  ]
+nav.docs-sidebar(aria-label=t('docs_heading'))
+  p.docs-sidebar__heading #{ t('docs_heading') }
+  ul.docs-sidebar__list
+    each link in docsLinks
+      li.docs-sidebar__item
+        a.docs-sidebar__link(href=link.href, class=(link.href === meta.href ? 'docs-sidebar__link--active' : '')) #{ link.name }

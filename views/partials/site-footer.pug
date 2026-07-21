@@ -1,0 +1,17 @@
+include ../vendor/plugin-navigation/partials/link-list-navigation
+
+//- curLang comes from layout.pug (shared scope).
+- const footerNav = app.nav['footer' + (curLang === 'en' ? '' : '_' + curLang)]
+
+footer.site-footer
+  .site-footer__inner
+    .site-footer__brand
+      span.site-footer__name #{ app.name }
+      p.site-footer__tagline #{ t('tagline') }
+
+    if footerNav
+      +linkListNav(footerNav.elements, 'nav--footer')
+
+    p.site-footer__meta
+      | #{ t('footer_built_with') } ·
+      a(href=app.repo_url, target="_blank", rel="noopener noreferrer") #{ t('footer_source') }

@@ -1,0 +1,28 @@
+include ../vendor/plugin-navigation/partials/link-list-navigation
+
+//- curLang / langPrefix come from layout.pug (shared scope).
+- const mainNav = app.nav['main' + (curLang === 'en' ? '' : '_' + curLang)]
+//- Language-neutral path (strip any /de or /es prefix) → build each language's URL.
+- const basePath = meta.href ? meta.href.replace(/^\/(de|es)(?=\/)/, '') : '/index.html'
+- const langs = [{ code: 'en', prefix: '' }, { code: 'de', prefix: '/de' }, { code: 'es', prefix: '/es' }]
+
+header.site-header
+  .site-header__inner
+    a.site-header__brand(href=`${ langPrefix }/index.html`)
+      span.site-header__logo N
+      span.site-header__name #{ app.name }
+
+    if mainNav
+      +linkListNav(mainNav.elements, 'nav--main')
+
+    nav.lang-switch(aria-label=t('language_label'))
+      each l in langs
+        a.lang-switch__link(
+          href=`${ l.prefix }${ basePath }`,
+          hreflang=l.code,
+          lang=l.code,
+          class=(l.code === curLang ? 'lang-switch__link--active' : ''),
+          aria-current=(l.code === curLang ? 'true' : false)
+        ) #{ l.code.toUpperCase() }
+
+    a.site-header__cta(href=app.repo_url, target="_blank", rel="noopener noreferrer") GitHub

@@ -1,0 +1,12 @@
+extends ../layouts/layout
+
+block content
+  .docs-layout.container
+    include ../partials/docs-sidebar
+
+    article.docs-content.prose
+      != content
+
+      //- Prev / next within pages/docs/ (plugin-page-pagination)
+      if meta.pagePagination && (meta.pagePagination.previous || meta.pagePagination.next)
+        include ../vendor/plugin-page-pagination/page-pagination
