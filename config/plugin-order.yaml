@@ -1,4 +1,4 @@
-# Search must run last so its index sees the final meta every other plugin produced.
 plugin-order:
     - end:
+          - plugin-canonical-links
           - plugin-search

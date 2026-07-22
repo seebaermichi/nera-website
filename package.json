@@ -31,7 +31,7 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
-    "@nera-static/plugin-canonical-links": "^2.2.0",
+    "@nera-static/plugin-canonical-links": "^2.2.1",
     "@nera-static/plugin-link-attributes": "^2.1.0",
     "@nera-static/plugin-navigation": "^2.3.0",
     "@nera-static/plugin-page-pagination": "^2.3.0",
