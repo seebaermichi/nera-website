@@ -802,16 +802,21 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 .search__input::placeholder { color: var(--color-faint); }
 .search__results { list-style: none; margin: var(--space-4) 0 0; padding: 0; }
-.search__results > li { padding-block: var(--space-4); border-bottom: var(--border); }
-.search__results > li:last-child { border-bottom: none; }
-.search__results h3 { font-size: var(--text-base); font-weight: 600; margin: 0; }
-.search__results .search__result-url {
+/* Results are built by assets/js/search.js at query time, not by a template.
+   .search__item, .search__link, .search__description and .search__highlight are
+   plugin-search's public class contract (v2.0.0+) — style them, not the element
+   structure around them, which is this site's own. .search__result-url is ours. */
+.search__item { padding-block: var(--space-4); border-bottom: var(--border); }
+.search__item:last-child { border-bottom: none; }
+.search__item h3 { font-size: var(--text-base); font-weight: 600; margin: 0; }
+/* .search__link intentionally has no rule: it takes the global `a` style. */
+.search__result-url {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-faint);
 }
-.search__results p { font-size: var(--text-sm); color: var(--color-muted); margin: var(--space-1) 0 0; }
-.search__results mark { background: none; color: var(--color-ink); font-weight: 600; }
+.search__description { font-size: var(--text-sm); color: var(--color-muted); margin: var(--space-1) 0 0; }
+.search__highlight { background: none; color: var(--color-ink); font-weight: 600; }
 
 /* --------------------------------------------------------------------------
    14. Site footer

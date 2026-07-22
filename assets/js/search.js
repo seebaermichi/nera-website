@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                     const highlighted = snippet.replace(
                                         new RegExp(`(${query})`, 'ig'),
-                                        '<mark>$1</mark>'
+                                        '<mark class="search__highlight">$1</mark>'
                                     )
                                     item.resultText = `...${highlighted}...`
                                     return true
@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const title = item.title || item.href || 'Untitled'
                         const desc = item.excerpt || item.description || item.resultText
                         return `
-                            <li>
-                                <h3><a href="${item.href}">${title}</a></h3>
+                            <li class="search__item">
+                                <h3><a class="search__link" href="${item.href}">${title}</a></h3>
                                 ${item.href ? `<span class="search__result-url">${item.href}</span>` : ''}
-                                ${desc ? `<p>${desc}</p>` : ''}
+                                ${desc ? `<p class="search__description">${desc}</p>` : ''}
                             </li>
                     `
                     }).join('')
