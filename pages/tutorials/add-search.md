@@ -7,6 +7,7 @@ description: Wire up plugin-search to generate an index and a working search box
 keywords: nera search, static site search, client-side search
 tags: plugins, search
 pagination_order: 4
+createdAt: 2026-07-18
 ---
 `@nera-static/plugin-search` builds a JSON index at render time and ships a small
 client script — no server required.

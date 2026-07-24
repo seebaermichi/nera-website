@@ -7,6 +7,7 @@ description: Eine Website erstellen, Beiträge hinzufügen und sie mit einem lok
 keywords: nera blog tutorial, statischer blog, markdown blog
 tags: getting-started, blog, plugins
 pagination_order: 1
+createdAt: 2026-07-21
 ---
 In diesem Tutorial erstellst du eine Nera-Website, fügst ein paar Beiträge hinzu und
 listest sie auf einer Übersichtsseite nach Datum (neueste zuerst) auf.

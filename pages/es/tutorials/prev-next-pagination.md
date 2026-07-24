@@ -7,6 +7,7 @@ description: Usa plugin-page-pagination para enlazar páginas hermanas en orden 
 keywords: nera paginación, plugin-page-pagination, enlaces anterior siguiente, navegación de docs
 tags: plugins, pagination
 pagination_order: 5
+createdAt: 2026-07-17
 ---
 `@nera-static/plugin-page-pagination` enlaza cada página con su anterior y siguiente
 **hermana** — páginas en el mismo directorio — en un orden que tú controlas. Perfecto para

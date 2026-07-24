@@ -7,6 +7,7 @@ description: Configura plugin-search para generar un índice y una caja de búsq
 keywords: nera búsqueda, búsqueda de sitio estático, búsqueda del lado del cliente
 tags: plugins, search
 pagination_order: 4
+createdAt: 2026-07-18
 ---
 `@nera-static/plugin-search` construye un índice JSON en el momento del renderizado y entrega un pequeño
 script de cliente — sin servidor necesario.

@@ -7,6 +7,7 @@ description: Usa plugin-link-attributes para añadir target y rel automáticamen
 keywords: nera enlaces externos, plugin-link-attributes, target blank, noopener
 tags: plugins, links
 pagination_order: 6
+createdAt: 2026-07-16
 ---
 `@nera-static/plugin-link-attributes` posprocesa tu HTML renderizado y añade
 atributos a los enlaces salientes — de modo que cada enlace externo se abre en una pestaña nueva, de forma segura,

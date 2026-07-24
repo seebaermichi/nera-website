@@ -7,6 +7,7 @@ description: Add tags to pages with plugin-tags and get auto-generated tag overv
 keywords: nera tags, plugin-tags, tag pages, topic pages, static site tags
 tags: plugins, tags
 pagination_order: 3
+createdAt: 2026-07-19
 ---
 `@nera-static/plugin-tags` reads a `tags:` field from your frontmatter, then builds
 a browsable overview page for every tag automatically.

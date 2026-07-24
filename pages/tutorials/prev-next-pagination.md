@@ -7,6 +7,7 @@ description: Use plugin-page-pagination to link sibling pages in reading order.
 keywords: nera pagination, plugin-page-pagination, prev next links, docs navigation
 tags: plugins, pagination
 pagination_order: 5
+createdAt: 2026-07-17
 ---
 `@nera-static/plugin-page-pagination` links each page to its previous and next
 **sibling** — pages in the same directory — in an order you control. Perfect for

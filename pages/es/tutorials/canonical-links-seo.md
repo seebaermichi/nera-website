@@ -7,6 +7,7 @@ description: Usa plugin-canonical-links para emitir etiquetas link canónicas y 
 keywords: nera seo, plugin-canonical-links, url canónica, hreflang, enlaces alternativos
 tags: plugins, seo
 pagination_order: 7
+createdAt: 2026-07-15
 ---
 Los motores de búsqueda quieren una única URL canónica por página. `@nera-static/plugin-canonical-links`
 emite la etiqueta `<link rel="canonical">` correcta en cada página — y etiquetas de idioma

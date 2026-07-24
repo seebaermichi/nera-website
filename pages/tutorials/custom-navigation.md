@@ -7,6 +7,7 @@ description: Use plugin-navigation to render a header and footer menu, with the 
 keywords: nera navigation, plugin-navigation, active menu, static site nav
 tags: plugins, navigation
 pagination_order: 2
+createdAt: 2026-07-20
 ---
 `@nera-static/plugin-navigation` turns a YAML list into a navigation menu and marks
 the link for the current page — no JavaScript required.

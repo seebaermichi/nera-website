@@ -7,6 +7,7 @@ description: Verwende plugin-canonical-links, um korrekte canonical- und alterna
 keywords: nera SEO, plugin-canonical-links, canonical URL, hreflang, alternate Links
 tags: plugins, seo
 pagination_order: 7
+createdAt: 2026-07-15
 ---
 Suchmaschinen wollen eine einzige canonical URL pro Seite. `@nera-static/plugin-canonical-links`
 gibt auf jeder Seite das richtige `<link rel="canonical">`-Tag aus — und alternate-language-

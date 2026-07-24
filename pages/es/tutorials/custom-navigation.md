@@ -7,6 +7,7 @@ description: Usa plugin-navigation para renderizar un menú de cabecera y pie de
 keywords: nera navegación, plugin-navigation, menú activo, navegación de sitio estático
 tags: plugins, navigation
 pagination_order: 2
+createdAt: 2026-07-20
 ---
 `@nera-static/plugin-navigation` convierte una lista YAML en un menú de navegación y marca
 el enlace de la página actual — sin necesidad de JavaScript.

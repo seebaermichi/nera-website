@@ -7,6 +7,7 @@ description: Un caso de estudio del propio sitio Nera — los plugins, el orden 
 keywords: nera caso de estudio, ejemplo de sitio estático, nera website, dogfooding
 tags: case-study, plugins, advanced
 pagination_order: 9
+createdAt: 2026-07-13
 ---
 Todo este sitio está construido con Nera. Nada aquí es un caso especial — es el
 mismo generador y los mismos plugins públicos que instalarías. Aquí está la receta

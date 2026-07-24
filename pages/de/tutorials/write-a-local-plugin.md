@@ -7,6 +7,7 @@ description: Baue ein projektlokales Plugin, das mit dem getAppData-Hook Daten z
 keywords: nera Plugin, lokales Plugin, getAppData, getMetaData, Plugin-Vertrag
 tags: plugins, local-plugins, advanced
 pagination_order: 8
+createdAt: 2026-07-14
 ---
 Du musst nicht auf npm veröffentlichen, um Nera zu erweitern. Jedes Modul unter
 `src/plugins/<name>/index.js` wird automatisch erkannt und angewendet. Bauen wir

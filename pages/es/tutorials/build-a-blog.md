@@ -7,6 +7,7 @@ description: Crear un sitio, añadir entradas y listarlas de más reciente a má
 keywords: tutorial blog nera, blog estático, blog markdown
 tags: getting-started, blog, plugins
 pagination_order: 1
+createdAt: 2026-07-21
 ---
 En este tutorial crearás un sitio Nera, añadirás un par de entradas y las listarás de
 más reciente a más antigua en una página índice.

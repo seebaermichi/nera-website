@@ -7,6 +7,7 @@ description: Füge Seiten mit plugin-tags Tags hinzu und erhalte automatisch gen
 keywords: nera Tags, plugin-tags, Tag-Seiten, Themenseiten, Static-Site-Tags
 tags: plugins, tags
 pagination_order: 3
+createdAt: 2026-07-19
 ---
 `@nera-static/plugin-tags` liest ein `tags:`-Feld aus deinem Frontmatter und baut dann
 automatisch eine durchsuchbare Übersichtsseite für jeden Tag.

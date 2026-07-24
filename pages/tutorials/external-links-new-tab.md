@@ -7,6 +7,7 @@ description: Use plugin-link-attributes to add target and rel to outbound links 
 keywords: nera external links, plugin-link-attributes, target blank, noopener
 tags: plugins, links
 pagination_order: 6
+createdAt: 2026-07-16
 ---
 `@nera-static/plugin-link-attributes` post-processes your rendered HTML and adds
 attributes to outbound links — so every external link opens in a new tab, safely,

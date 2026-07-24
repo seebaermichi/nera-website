@@ -7,6 +7,7 @@ description: Verwende plugin-page-pagination, um Geschwisterseiten in Lesereihen
 keywords: nera Pagination, plugin-page-pagination, Vor Zurück Links, Docs-Navigation
 tags: plugins, pagination
 pagination_order: 5
+createdAt: 2026-07-17
 ---
 `@nera-static/plugin-page-pagination` verknüpft jede Seite mit ihrer vorherigen und nächsten
 **Geschwisterseite** — Seiten im selben Verzeichnis — in einer von dir kontrollierten Reihenfolge. Perfekt für

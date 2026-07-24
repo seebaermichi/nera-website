@@ -7,6 +7,7 @@ description: Crea un plugin local del proyecto que añade datos a app usando el 
 keywords: nera plugin, plugin local, getAppData, getMetaData, contrato de plugin
 tags: plugins, local-plugins, advanced
 pagination_order: 8
+createdAt: 2026-07-14
 ---
 No necesitas publicar en npm para extender Nera. Cualquier módulo en
 `src/plugins/<name>/index.js` se detecta y aplica automáticamente. Construyamos

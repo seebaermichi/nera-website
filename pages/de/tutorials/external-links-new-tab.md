@@ -7,6 +7,7 @@ description: Verwende plugin-link-attributes, um target und rel automatisch zu a
 keywords: nera externe Links, plugin-link-attributes, target blank, noopener
 tags: plugins, links
 pagination_order: 6
+createdAt: 2026-07-16
 ---
 `@nera-static/plugin-link-attributes` verarbeitet dein gerendertes HTML nach und fügt
 ausgehenden Links Attribute hinzu — sodass jeder externe Link sicher in einem neuen Tab öffnet,

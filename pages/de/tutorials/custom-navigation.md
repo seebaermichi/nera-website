@@ -7,6 +7,7 @@ description: Nutze plugin-navigation, um ein Kopf- und Fußzeilenmenü zu render
 keywords: nera Navigation, plugin-navigation, aktives Menü, Static-Site-Navigation
 tags: plugins, navigation
 pagination_order: 2
+createdAt: 2026-07-20
 ---
 `@nera-static/plugin-navigation` verwandelt eine YAML-Liste in ein Navigationsmenü und markiert
 den Link für die aktuelle Seite — ganz ohne JavaScript.

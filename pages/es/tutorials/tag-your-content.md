@@ -7,6 +7,7 @@ description: Añade etiquetas a las páginas con plugin-tags y obtén páginas d
 keywords: nera etiquetas, plugin-tags, páginas de etiquetas, páginas temáticas, etiquetas de sitio estático
 tags: plugins, tags
 pagination_order: 3
+createdAt: 2026-07-19
 ---
 `@nera-static/plugin-tags` lee un campo `tags:` de tu frontmatter y luego construye
 automáticamente una página de resumen navegable para cada etiqueta.
