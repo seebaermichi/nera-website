@@ -15,11 +15,11 @@ completa.
 
 ## Andamiado como cualquier sitio
 
-Comenzó con el instalador, que clona el generador y lo convierte en tu propio
-proyecto:
+Comenzó con la CLI de nera, que crea un sitio que depende del motor
+`@nera-static/core`:
 
 ```bash
-npx @nera-static/installer new nera-website
+npx @nera-static/nera new nera-website
 ```
 
 ## Siete plugins, cada uno haciendo una cosa
@@ -67,7 +67,7 @@ existe ninguna configuración de enrutamiento.
 ## Compilar
 
 ```bash
-npm run render   # pages/ -> public/
+npm run build   # pages/ -> public/
 ```
 
 Ese es todo el stack: Markdown entra, HTML estático sale, plugins para el resto. Si

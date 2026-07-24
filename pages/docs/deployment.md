@@ -15,12 +15,12 @@ files.
 ## Build
 
 ```bash
-npm run render
+npm run build
 ```
 
 ## Host it
 
-- **Netlify / Vercel** — build command `npm run render`, publish directory
+- **Netlify / Vercel** — build command `npm run build`, publish directory
   `public`.
 - **GitHub Pages** — render in CI, then publish `public/` to the `gh-pages` branch.
 - **Any static host / CDN** — upload the contents of `public/`.

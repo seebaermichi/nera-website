@@ -15,12 +15,12 @@ sirva archivos estáticos.
 ## Compilar
 
 ```bash
-npm run render
+npm run build
 ```
 
 ## Alojarlo
 
-- **Netlify / Vercel** — comando de compilación `npm run render`, directorio de
+- **Netlify / Vercel** — comando de compilación `npm run build`, directorio de
   publicación `public`.
 - **GitHub Pages** — renderiza en CI, luego publica `public/` en la rama `gh-pages`.
 - **Cualquier host estático / CDN** — sube el contenido de `public/`.

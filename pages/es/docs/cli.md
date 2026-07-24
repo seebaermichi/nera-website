@@ -3,28 +3,39 @@ layout: pages/docs.pug
 title: Referencia de la CLI
 slug: cli
 lang: es
-description: Los comandos del instalador de nera y los scripts npm del generador.
+description: La CLI de nera — crea, compila, previsualiza, actualiza y valida un sitio.
 pagination_order: 7
 ---
 
 # Referencia de la CLI
 
-## Instalador (`@nera-static/installer`)
+## La CLI `nera` (`@nera-static/nera`)
+
+Un solo comando crea, compila, previsualiza, actualiza y valida un sitio. Crea
+uno nuevo con:
 
 ```bash
-npx @nera-static/installer new <project-name>   # scaffold a new site
-npx @nera-static/installer update               # update the generator core in place
+npx @nera-static/nera new <project-name>
 ```
 
-## Scripts del generador
-
-Ejecuta estos desde dentro de un sitio:
+Un sitio creado depende de `@nera-static/nera`, así que ejecuta estos desde
+dentro de él (el andamiaje también los enlaza a un script npm, p. ej.
+`npm run dev`):
 
 | Comando | Qué hace |
 | --- | --- |
-| `npm run render` | Compila `pages/` → `public/` |
-| `npm run dev` | Renderiza + vista previa con recarga en vivo en `:3000` |
-| `npm run serve` | Sirve `public/` sin recompilar |
+| `nera build` | Compila `pages/` → `public/` |
+| `nera dev` | Compila + vista previa con recarga en vivo en `:3000` |
+| `nera serve` | Sirve `public/` sin recompilar |
+| `nera update` | Actualiza los paquetes Nera del sitio (`npm update`) |
+| `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
+
+### Migrar un sitio antiguo (clonado)
+
+Los sitios creados antes de la CLI eran clones de git que incluían el motor bajo
+`src/`. Dentro de un sitio así, ejecuta `nera update --migrate` — añade la
+dependencia `@nera-static/nera`, reescribe los scripts, elimina el motor `src/`
+incluido e instala, dejando intactos tus `pages/`, `config/` y `theme/`.
 
 ## Comandos de publicación de plugins
 

@@ -3,28 +3,39 @@ layout: pages/docs.pug
 title: CLI reference
 slug: cli
 lang: en
-description: The nera installer commands and the generator npm scripts.
+description: The nera CLI — scaffold, build, preview, update and validate a site.
 pagination_order: 7
 ---
 
 # CLI reference
 
-## Installer (`@nera-static/installer`)
+## The `nera` CLI (`@nera-static/nera`)
+
+One command scaffolds, builds, previews, updates and validates a site. Scaffold
+a new one with:
 
 ```bash
-npx @nera-static/installer new <project-name>   # scaffold a new site
-npx @nera-static/installer update               # update the generator core in place
+npx @nera-static/nera new <project-name>
 ```
 
-## Generator scripts
-
-Run these from inside a site:
+A scaffolded site depends on `@nera-static/nera`, so run these from inside it
+(the scaffold wires each to an npm script too, e.g. `npm run dev`):
 
 | Command | What it does |
 | --- | --- |
-| `npm run render` | Build `pages/` → `public/` |
-| `npm run dev` | Render + live-reload preview on `:3000` |
-| `npm run serve` | Serve `public/` without rebuilding |
+| `nera build` | Build `pages/` → `public/` |
+| `nera dev` | Build + live-reload preview on `:3000` |
+| `nera serve` | Serve `public/` without rebuilding |
+| `nera update` | Update the site's Nera packages (`npm update`) |
+| `nera validate` | Check layouts, includes and YAML before publishing |
+
+### Migrating an older (cloned) site
+
+Sites created before the CLI were git clones that vendored the engine under
+`src/`. Inside such a site, run `nera update --migrate` — it adds the
+`@nera-static/nera` dependency, rewrites the scripts, removes the vendored
+`src/` engine, and installs, leaving your `pages/`, `config/` and `theme/`
+untouched.
 
 ## Plugin publish commands
 

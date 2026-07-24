@@ -15,7 +15,7 @@ newest-first on an index page.
 ## 1. Scaffold
 
 ```bash
-npx @nera-static/installer new my-blog
+npx @nera-static/nera new my-blog
 cd my-blog
 ```
 

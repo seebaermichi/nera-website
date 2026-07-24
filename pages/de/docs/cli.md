@@ -3,28 +3,40 @@ layout: pages/docs.pug
 title: CLI-Referenz
 slug: cli
 lang: de
-description: Die Befehle des nera-Installers und die npm-Skripte des Generators.
+description: Die nera-CLI — eine Website erstellen, bauen, in der Vorschau ansehen, aktualisieren und prüfen.
 pagination_order: 7
 ---
 
 # CLI-Referenz
 
-## Installer (`@nera-static/installer`)
+## Die `nera`-CLI (`@nera-static/nera`)
+
+Ein Befehl erstellt, baut, zeigt in der Vorschau, aktualisiert und prüft eine
+Website. Eine neue Website erstellst du mit:
 
 ```bash
-npx @nera-static/installer new <project-name>   # scaffold a new site
-npx @nera-static/installer update               # update the generator core in place
+npx @nera-static/nera new <project-name>
 ```
 
-## Generator-Skripte
-
-Führe diese aus dem Inneren einer Seite aus:
+Eine erstellte Website hängt von `@nera-static/nera` ab, führe diese Befehle also
+aus ihrem Inneren aus (der Scaffold verknüpft jeden zusätzlich mit einem
+npm-Skript, z. B. `npm run dev`):
 
 | Befehl | Was er macht |
 | --- | --- |
-| `npm run render` | `pages/` → `public/` bauen |
-| `npm run dev` | Rendern + Live-Reload-Vorschau auf `:3000` |
-| `npm run serve` | `public/` ausliefern, ohne neu zu bauen |
+| `nera build` | `pages/` → `public/` bauen |
+| `nera dev` | Bauen + Live-Reload-Vorschau auf `:3000` |
+| `nera serve` | `public/` ausliefern, ohne neu zu bauen |
+| `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`) |
+| `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
+
+### Eine ältere (geklonte) Website migrieren
+
+Vor der CLI erstellte Websites waren Git-Klone, die die Engine unter `src/`
+mitführten. Führe in einer solchen Website `nera update --migrate` aus — das fügt
+die Abhängigkeit `@nera-static/nera` hinzu, schreibt die Skripte um, entfernt die
+mitgeführte `src/`-Engine und installiert, während deine `pages/`, `config/` und
+`theme/` unangetastet bleiben.
 
 ## Plugin-Publish-Befehle
 

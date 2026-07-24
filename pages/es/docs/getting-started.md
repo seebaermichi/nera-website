@@ -3,7 +3,7 @@ layout: pages/docs.pug
 title: Primeros pasos
 slug: getting-started
 lang: es
-description: Crea un sitio Nera nuevo con el instalador y renderízalo.
+description: Crea un sitio Nera nuevo con la CLI de nera y compílalo.
 pagination_order: 2
 ---
 
@@ -16,11 +16,11 @@ pagination_order: 2
 
 ## Crear un sitio
 
-La CLI `@nera-static/installer` clona el generador y lo convierte en tu propio
-proyecto:
+`nera new` crea un sitio nuevo que depende del motor `@nera-static/core` — sin
+clon, sin código fuente incluido:
 
 ```bash
-npx @nera-static/installer new my-site
+npx @nera-static/nera new my-site
 cd my-site
 npm run dev
 ```
@@ -31,7 +31,7 @@ npm run dev
 ## Compilar para producción
 
 ```bash
-npm run render
+npm run build
 ```
 
 Esto elimina y regenera `public/`. Despliega esa carpeta en cualquier hosting
@@ -40,8 +40,8 @@ estático.
 ## Actualizar más adelante
 
 ```bash
-npx @nera-static/installer update
+nera update
 ```
 
-`nera update` actualiza el núcleo del generador in situ, dejando intactos tus
-`pages/`, `config/` y `views/`.
+`nera update` actualiza los paquetes Nera del sitio con `npm update`, dejando
+intactos tus `pages/`, `config/` y `theme/`.

@@ -15,7 +15,7 @@ listest sie auf einer Übersichtsseite nach Datum (neueste zuerst) auf.
 ## 1. Website erstellen
 
 ```bash
-npx @nera-static/installer new my-blog
+npx @nera-static/nera new my-blog
 cd my-blog
 ```
 

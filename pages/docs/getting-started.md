@@ -3,7 +3,7 @@ layout: pages/docs.pug
 title: Getting started
 slug: getting-started
 lang: en
-description: Scaffold a new Nera site with the installer and render it.
+description: Scaffold a new Nera site with the nera CLI and build it.
 pagination_order: 2
 ---
 
@@ -16,10 +16,11 @@ pagination_order: 2
 
 ## Scaffold a site
 
-The `@nera-static/installer` CLI clones the generator and makes it your own project:
+`nera new` scaffolds a new site that depends on the `@nera-static/core` engine —
+no clone, no vendored source:
 
 ```bash
-npx @nera-static/installer new my-site
+npx @nera-static/nera new my-site
 cd my-site
 npm run dev
 ```
@@ -30,7 +31,7 @@ npm run dev
 ## Build for production
 
 ```bash
-npm run render
+npm run build
 ```
 
 This deletes and regenerates `public/`. Deploy that folder to any static host.
@@ -38,8 +39,8 @@ This deletes and regenerates `public/`. Deploy that folder to any static host.
 ## Update later
 
 ```bash
-npx @nera-static/installer update
+nera update
 ```
 
-`nera update` refreshes the generator core in place while leaving your `pages/`,
-`config/` and `views/` untouched.
+`nera update` bumps the site's Nera packages with `npm update`, leaving your
+`pages/`, `config/` and `theme/` untouched.

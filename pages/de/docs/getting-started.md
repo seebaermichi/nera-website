@@ -3,7 +3,7 @@ layout: pages/docs.pug
 title: Erste Schritte
 slug: getting-started
 lang: de
-description: Erstelle eine neue Nera-Website mit dem Installer und rendere sie.
+description: Erstelle eine neue Nera-Website mit der nera-CLI und baue sie.
 pagination_order: 2
 ---
 
@@ -16,11 +16,11 @@ pagination_order: 2
 
 ## Website erstellen
 
-Die CLI `@nera-static/installer` klont den Generator und macht daraus dein eigenes
-Projekt:
+`nera new` erstellt eine neue Website, die von der `@nera-static/core`-Engine
+abhängt — kein Klon, kein mitgeführter Quellcode:
 
 ```bash
-npx @nera-static/installer new my-site
+npx @nera-static/nera new my-site
 cd my-site
 npm run dev
 ```
@@ -31,7 +31,7 @@ npm run dev
 ## Für die Produktion bauen
 
 ```bash
-npm run render
+npm run build
 ```
 
 Das löscht und erzeugt `public/` neu. Lade diesen Ordner auf einen beliebigen
@@ -40,8 +40,8 @@ statischen Host.
 ## Später aktualisieren
 
 ```bash
-npx @nera-static/installer update
+nera update
 ```
 
-`nera update` aktualisiert den Generator-Kern an Ort und Stelle, während deine
-`pages/`, `config/` und `views/` unangetastet bleiben.
+`nera update` aktualisiert die Nera-Pakete der Website mit `npm update`, während
+deine `pages/`, `config/` und `theme/` unangetastet bleiben.

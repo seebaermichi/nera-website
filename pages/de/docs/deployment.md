@@ -15,12 +15,12 @@ statische Dateien ausgeliefert werden.
 ## Bauen
 
 ```bash
-npm run render
+npm run build
 ```
 
 ## Hosten
 
-- **Netlify / Vercel** — Build-Befehl `npm run render`, Publish-Verzeichnis
+- **Netlify / Vercel** — Build-Befehl `npm run build`, Publish-Verzeichnis
   `public`.
 - **GitHub Pages** — in CI rendern, dann `public/` in den `gh-pages`-Branch veröffentlichen.
 - **Beliebiger statischer Host / CDN** — den Inhalt von `public/` hochladen.

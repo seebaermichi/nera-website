@@ -15,7 +15,7 @@ más reciente a más antigua en una página índice.
 ## 1. Crear el sitio
 
 ```bash
-npx @nera-static/installer new my-blog
+npx @nera-static/nera new my-blog
 cd my-blog
 ```
 

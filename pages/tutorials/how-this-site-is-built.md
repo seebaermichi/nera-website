@@ -14,11 +14,11 @@ generator and the same public plugins you'd install. Here's the full recipe.
 
 ## Scaffolded like any site
 
-It started with the installer, which clones the generator and makes it your own
-project:
+It started with the nera CLI, which scaffolds a site that depends on the
+`@nera-static/core` engine:
 
 ```bash
-npx @nera-static/installer new nera-website
+npx @nera-static/nera new nera-website
 ```
 
 ## Seven plugins, each doing one thing
@@ -65,7 +65,7 @@ exists.
 ## Build
 
 ```bash
-npm run render   # pages/ -> public/
+npm run build   # pages/ -> public/
 ```
 
 That's the entire stack: Markdown in, static HTML out, plugins for the rest. If

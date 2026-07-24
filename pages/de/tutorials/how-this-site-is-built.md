@@ -15,11 +15,11 @@ Hier ist das vollständige Rezept.
 
 ## Wie jede Seite aufgesetzt
 
-Es begann mit dem Installer, der den Generator klont und ihn zu deinem eigenen
-Projekt macht:
+Es begann mit der nera-CLI, die eine Website erstellt, die von der
+`@nera-static/core`-Engine abhängt:
 
 ```bash
-npx @nera-static/installer new nera-website
+npx @nera-static/nera new nera-website
 ```
 
 ## Sieben Plugins, jedes mit einer Aufgabe
@@ -66,7 +66,7 @@ keine Routing-Konfiguration.
 ## Bauen
 
 ```bash
-npm run render   # pages/ -> public/
+npm run build   # pages/ -> public/
 ```
 
 Das ist der gesamte Stack: Markdown rein, statisches HTML raus, Plugins für den Rest.
