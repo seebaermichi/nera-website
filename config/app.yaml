@@ -2,6 +2,11 @@ lang: en
 name: Nera
 robots: index,follow
 
+# Local (unpublished) plugins live at the site root under `plugins/` in the thin
+# @nera-static/nera model — the vendored `src/plugins/` is gone (ROADMAP-core.md).
+folders:
+    plugins: ./plugins
+
 # Site-wide values available as `app.*` in every view.
 repo_url: https://github.com/seebaermichi/nera
 plugins_url: https://github.com/seebaermichi/nera/blob/main/PLUGINS.md

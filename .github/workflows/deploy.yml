@@ -36,7 +36,7 @@ jobs:
               run: npm ci
 
             - name: Render site
-              run: npm run render
+              run: npm run build
 
             - name: Configure Pages
               uses: actions/configure-pages@v5
