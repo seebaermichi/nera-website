@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest'
+import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest'
 import path from 'path'
 import fs from 'fs/promises'
 import fssync from 'fs'
@@ -40,6 +40,20 @@ afterAll(async () => {
 })
 
 describe('loadAppData', () => {
+    // The generator repo's own root now contains a `theme/` folder (revised
+    // §1b scaffold), so the folder probe would swap views/assets to theme/ for
+    // any test inheriting that cwd. These merge tests assert the legacy
+    // defaults, so run them from a theme-less directory (TMP_DIR has no
+    // `theme/`). The nested probe describe sets its own cwd on top of this.
+    let prevCwd
+    beforeEach(() => {
+        prevCwd = process.cwd()
+        process.chdir(TMP_DIR)
+    })
+    afterEach(() => {
+        process.chdir(prevCwd)
+    })
+
     it('loads app.yaml config and page list', () => {
         const settings = {
             folders: {
@@ -70,6 +84,48 @@ describe('loadAppData', () => {
         expect(Object.keys(data.app)).toEqual(['folders']) // no other keys present
     })
 
+    // A `folders` block in app.yaml used to be honoured by anything reading
+    // `app.folders` — every plugin — while the render pipeline kept using the
+    // defaults, so plugin output and the copied folder could disagree.
+    describe('folders from app.yaml', () => {
+        const CONFIG_WITH_FOLDERS = path.join(TMP_DIR, 'config-folders')
+
+        beforeAll(async () => {
+            await fs.mkdir(CONFIG_WITH_FOLDERS, { recursive: true })
+            await fs.writeFile(
+                path.join(CONFIG_WITH_FOLDERS, 'app.yaml'),
+                `name: TestSite\nfolders:\n  assets: ./static\n  pages: ${PAGES}\n`
+            )
+        })
+
+        const load = () =>
+            loadAppData({
+                folders: {
+                    ...defaultSettings.folders,
+                    config: CONFIG_WITH_FOLDERS,
+                },
+            })
+
+        it('overrides the default for a key app.yaml names', () => {
+            expect(load().app.folders.assets).toBe('./static')
+        })
+
+        it('keeps the defaults for every key it does not name', () => {
+            const { folders } = load().app
+
+            expect(folders.dist).toBe(defaultSettings.folders.dist)
+            expect(folders.views).toBe(defaultSettings.folders.views)
+        })
+
+        it('lists pages from the configured folder', () => {
+            expect(load().pages).toContain('index.md')
+        })
+
+        it('never lets app.yaml redirect the config folder it was read from', () => {
+            expect(load().app.folders.config).toBe(CONFIG_WITH_FOLDERS)
+        })
+    })
+
     it('handles missing pages directory gracefully', () => {
         const settings = {
             folders: {
@@ -80,6 +136,73 @@ describe('loadAppData', () => {
         }
         const data = loadAppData(settings)
         expect(data.pages).toEqual([])
+    })
+
+    // Revised theme layout (ROADMAP-themes.md §1b): the presentation folders are
+    // resolved by probing for a `<site>/theme/` directory relative to cwd. These
+    // assert the returned folder strings only (no file copying), so they are
+    // immune to the symlinked-tmpdir quirks that dog the render/copy tests.
+    describe('theme/ folder probe', () => {
+        let probeRoot, prevCwd
+
+        beforeEach(async () => {
+            prevCwd = process.cwd()
+            probeRoot = path.join(TMP_DIR, `probe-${Math.random().toString(36).slice(2)}`)
+            await fs.mkdir(path.join(probeRoot, 'config'), { recursive: true })
+            await fs.writeFile(
+                path.join(probeRoot, 'config', 'app.yaml'),
+                'name: Probe\nlang: en\n'
+            )
+            process.chdir(probeRoot)
+        })
+
+        afterEach(async () => {
+            process.chdir(prevCwd)
+            await fs.rm(probeRoot, { recursive: true, force: true })
+        })
+
+        it('points views/assets at theme/ when that folder exists', async () => {
+            await fs.mkdir(path.join(probeRoot, 'theme', 'views'), {
+                recursive: true,
+            })
+
+            const { folders } = loadAppData().app
+
+            expect(folders.views).toBe('./theme/views')
+            expect(folders.assets).toBe('./theme/assets')
+        })
+
+        it('falls back to legacy root views/assets with a deprecation warning', async () => {
+            const warn = vi
+                .spyOn(console, 'warn')
+                .mockImplementation(() => {})
+
+            const { folders } = loadAppData().app
+
+            expect(folders.views).toBe('./views')
+            expect(folders.assets).toBe('./assets')
+            expect(warn).toHaveBeenCalledWith(
+                expect.stringContaining('deprecated')
+            )
+
+            warn.mockRestore()
+        })
+
+        it('lets an explicit app.yaml folders block win over the probe', async () => {
+            await fs.mkdir(path.join(probeRoot, 'theme', 'views'), {
+                recursive: true,
+            })
+            await fs.writeFile(
+                path.join(probeRoot, 'config', 'app.yaml'),
+                'name: Probe\nfolders:\n  views: ./custom-views\n'
+            )
+
+            const { folders } = loadAppData().app
+
+            expect(folders.views).toBe('./custom-views')
+            // assets was not named, so the probe still points it at theme/
+            expect(folders.assets).toBe('./theme/assets')
+        })
     })
 })
 

@@ -45,7 +45,8 @@
     "pretty": "^2.0.0",
     "pug": "^3.0.2",
     "rimraf": "^6.0.1",
-    "yaml": "^2.4.1"
+    "yaml": "^2.4.1",
+    "semver": "^7.8.5"
   },
   "devDependencies": {
     "chokidar": "^5.0.0",
@@ -58,10 +59,10 @@
     "vite": "^8.1.5",
     "vitest": "^4.1.10"
   },
-  "nera": {
-    "version": "4.4.0"
-  },
   "overrides": {
     "shell-quote": "^1.9.0"
+  },
+  "nera": {
+    "version": "4.6.0"
   }
 }
