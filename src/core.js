@@ -7,6 +7,20 @@ import yaml from 'yaml'
 
 const md = new MarkdownIt({ html: true }).use(meta)
 
+// Normalise a site's `base_path` (config/app.yaml) into a URL prefix.
+// Absent/blank/`/` → '' so a root-served site is untouched and renders
+// byte-identically. Otherwise: trim, drop trailing slashes, guarantee one
+// leading slash. `nera-website` → `/nera-website`; `/foo/bar/` → `/foo/bar`.
+// This is the prefix a subdirectory deploy (e.g. GitHub *project* Pages served
+// under `/<repo>/`) needs so that every root-absolute link and asset resolves.
+export const normalizeBasePath = (raw) => {
+    if (typeof raw !== 'string') return ''
+    const trimmed = raw.trim()
+    if (trimmed === '' || trimmed === '/') return ''
+    const noTrailing = trimmed.replace(/\/+$/, '')
+    return noTrailing.startsWith('/') ? noTrailing : `/${noTrailing}`
+}
+
 export const defaultSettings = {
     folders: {
         assets: './assets',
@@ -77,6 +91,11 @@ export const loadAppData = (settings = defaultSettings) => {
 
     appConfig = { ...appConfig, folders }
 
+    // The site's URL prefix for subdirectory deploys, exposed to templates and
+    // plugins as `app.basePath` and used by getPagesData/render to prefix
+    // root-absolute URLs. '' for a root-served site (the default) → no-op.
+    appConfig.basePath = normalizeBasePath(appConfig.base_path)
+
     // Load pages directory with error handling
     try {
         if (fs.existsSync(appConfig.folders.pages)) {
@@ -133,7 +152,7 @@ export const getPagesData = (
             // (pagination, tag overviews, page lists, printed dates). Only when
             // frontmatter carries neither key do we fall back to `birthtime`,
             // which keeps a purely-local build byte-identical to before.
-            // Ported from nera generator 4.7.0 (nera-platform R1).
+            // See nera-platform R1 (plans/01) and ROADMAP notes.
             let createdAt = md.meta.createdAt || md.meta.date
             if (!createdAt) {
                 try {
@@ -157,6 +176,13 @@ export const getPagesData = (
                 .join('/')
                 .replace(/\.md$/, '.html')}`
 
+            // `href` stays in the site's LOGICAL (un-prefixed) namespace — the
+            // same value whether or not the site is deployed to a subdirectory.
+            // A `base_path` prefix is applied uniformly at the very end, in the
+            // render/asset URL rewrite, NOT here: templates and plugins do URL
+            // math on `meta.href` (e.g. a language switcher stripping `/de`, an
+            // active-link `link.href === meta.href` check), and pre-prefixing it
+            // would break that math and double-prefix on rewrite.
             results.push({
                 content,
                 meta: {

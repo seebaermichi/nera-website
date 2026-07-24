@@ -2,6 +2,12 @@ lang: en
 name: Nera
 robots: index,follow
 
+# Served from a GitHub *project* Pages subpath
+# (https://seebaermichi.github.io/nera-website/), so every root-absolute link and
+# asset is prefixed with this at build time. Remove it (or set to '') once the
+# site moves to a custom domain served at the root.
+base_path: /nera-website
+
 # Site-wide values available as `app.*` in every view.
 repo_url: https://github.com/seebaermichi/nera
 plugins_url: https://github.com/seebaermichi/nera/blob/main/PLUGINS.md

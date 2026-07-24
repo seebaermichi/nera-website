@@ -2,7 +2,12 @@ import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } 
 import path from 'path'
 import fs from 'fs/promises'
 import fssync from 'fs'
-import { loadAppData, getPagesData, defaultSettings } from '../core'
+import {
+    loadAppData,
+    getPagesData,
+    defaultSettings,
+    normalizeBasePath,
+} from '../core'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -31,6 +36,18 @@ beforeAll(async () => {
     await fs.writeFile(path.join(PAGES, 'blog/post.md'), '# Blog Post')
     await fs.writeFile(path.join(PAGES, 'broken.md'), '::::')
     await fs.writeFile(path.join(PAGES, 'page.mdx'), '# MDX')
+    await fs.writeFile(
+        path.join(PAGES, 'dated-created.md'),
+        '---\ntitle: Dated\ncreatedAt: 2021-03-04\n---\n\n# Dated'
+    )
+    await fs.writeFile(
+        path.join(PAGES, 'dated-date.md'),
+        '---\ntitle: Dated\ndate: 2019-11-02\n---\n\n# Dated'
+    )
+    await fs.writeFile(
+        path.join(PAGES, 'dated-both.md'),
+        '---\ntitle: Dated\ncreatedAt: 2022-06-07\ndate: 2019-11-02\n---\n\n# Dated'
+    )
     await fs.mkdir(path.join(PAGES, 'a.md.notes'), { recursive: true })
     await fs.writeFile(path.join(PAGES, 'a.md.notes/b.md'), '# Notes')
 })
@@ -81,7 +98,10 @@ describe('loadAppData', () => {
 
         expect(data.app).toHaveProperty('folders')
         expect(data.app.folders).toEqual(settings.folders)
-        expect(Object.keys(data.app)).toEqual(['folders']) // no other keys present
+        // `basePath` is always resolved (defaults to '' — root-served); no other
+        // keys are invented when app.yaml is absent.
+        expect(Object.keys(data.app).sort()).toEqual(['basePath', 'folders'])
+        expect(data.app.basePath).toBe('')
     })
 
     // A `folders` block in app.yaml used to be honoured by anything reading
@@ -261,5 +281,64 @@ describe('getPagesData', () => {
     it('skips non-existing files', () => {
         const result = getPagesData(['non-existing.md'], PAGES)
         expect(result).toHaveLength(0) // File should be skipped, not included with empty content
+    })
+
+    // base_path (subdirectory deploy) is applied at the render/asset URL rewrite,
+    // NOT here: `meta.href` stays in the site's logical (un-prefixed) namespace
+    // so templates/plugins can do URL math on it without double-prefixing. See
+    // the rewrite tests in render.test.js.
+    it('keeps meta.href in the logical namespace (base_path applied later)', () => {
+        const [{ meta }] = getPagesData(['blog/post.md'], PAGES)
+        expect(meta.href).toBe('/blog/post.html')
+        expect(meta.fullPath).toBe('/blog/post.html')
+    })
+
+    // createdAt resolution (nera-platform R1): frontmatter wins over the
+    // filesystem birthtime, which is unreliable under CI where a fresh
+    // checkout stamps every file with the same date and silently breaks any
+    // date ordering/display.
+    describe('createdAt resolution', () => {
+        const asISO = (d) => new Date(d).toISOString().slice(0, 10)
+
+        it('reads createdAt from frontmatter when present', () => {
+            const [{ meta }] = getPagesData(['dated-created.md'], PAGES)
+            expect(asISO(meta.createdAt)).toBe('2021-03-04')
+        })
+
+        it('falls back to a frontmatter `date` when createdAt is absent', () => {
+            const [{ meta }] = getPagesData(['dated-date.md'], PAGES)
+            expect(asISO(meta.createdAt)).toBe('2019-11-02')
+        })
+
+        it('prefers createdAt over date when both are present', () => {
+            const [{ meta }] = getPagesData(['dated-both.md'], PAGES)
+            expect(asISO(meta.createdAt)).toBe('2022-06-07')
+        })
+
+        it('falls back to filesystem birthtime when frontmatter has no date', () => {
+            // index.md carries a title but no date keys, so createdAt must come
+            // from the file's birthtime — a Date near now for a just-written file.
+            const [{ meta }] = getPagesData(['index.md'], PAGES)
+            expect(meta.createdAt).toBeInstanceOf(Date)
+            expect(Number.isNaN(new Date(meta.createdAt).getTime())).toBe(false)
+        })
+    })
+})
+
+describe('normalizeBasePath', () => {
+    it('returns "" for absent/blank/root values (root-served, no-op)', () => {
+        for (const raw of [undefined, null, '', '   ', '/', 42, {}]) {
+            expect(normalizeBasePath(raw)).toBe('')
+        }
+    })
+
+    it('adds a leading slash and strips trailing slashes', () => {
+        expect(normalizeBasePath('nera-website')).toBe('/nera-website')
+        expect(normalizeBasePath('/nera-website/')).toBe('/nera-website')
+        expect(normalizeBasePath('  /foo/bar//  ')).toBe('/foo/bar')
+    })
+
+    it('preserves an already-normalised nested path', () => {
+        expect(normalizeBasePath('/foo/bar')).toBe('/foo/bar')
     })
 })
