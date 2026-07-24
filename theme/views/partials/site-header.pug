@@ -4,7 +4,10 @@ include ../vendor/plugin-navigation/partials/link-list-navigation
 - const mainNav = app.nav['main' + (curLang === 'en' ? '' : '_' + curLang)]
 //- Language-neutral path (strip any /de or /es prefix) → build each language's URL.
 - const basePath = meta.href ? meta.href.replace(/^\/(de|es)(?=\/)/, '') : '/index.html'
-- const langs = [{ code: 'en', prefix: '' }, { code: 'de', prefix: '/de' }, { code: 'es', prefix: '/es' }]
+//- ES is temporarily hidden from the switcher pending a native-speaker review of
+//- the Spanish content. Re-add `{ code: 'es', prefix: '/es' }` (and `es` to
+//- canonical-links.yaml available_languages, and drop the ES noindex) to restore.
+- const langs = [{ code: 'en', prefix: '' }, { code: 'de', prefix: '/de' }]
 
 header.site-header
   .site-header__inner.container

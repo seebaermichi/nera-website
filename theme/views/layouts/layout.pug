@@ -2,6 +2,12 @@
 //- (Pug inlines includes/blocks into one scope, so these must not be re-declared).
 - const curLang = meta.lang || app.lang
 - const langPrefix = curLang === 'en' ? '' : '/' + curLang
+//- Languages temporarily hidden pending review (Spanish awaits a native-speaker
+//- pass). Any page in these languages — authored OR plugin-generated, e.g. tag
+//- overview pages — is forced to noindex here in one place. To restore a
+//- language: drop it from this list, re-add it to the switcher (site-header.pug)
+//- and to available_languages (config/canonical-links.yaml).
+- const hiddenLangs = ['es']
 <!DOCTYPE html>
 html(lang=curLang)
   head
@@ -11,7 +17,7 @@ html(lang=curLang)
     meta(name="description", content=`${ meta.description || t('app_description') }`)
     meta(name="keywords", content=`${ meta.keywords || t('app_keywords') }`)
     meta(name="generator" content=`nera - ${ process.env.npm_package_version }`)
-    meta(name="robots" content=`${ meta.robots || app.robots }`)
+    meta(name="robots" content=(hiddenLangs.includes(curLang) ? 'noindex,follow' : (meta.robots || app.robots)))
     // Canonical + alternate language links (plugin-canonical-links)
     include ../vendor/plugin-canonical-links/index
 

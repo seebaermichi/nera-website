@@ -2,7 +2,9 @@
 # Pages in different languages that share a `slug` are cross-linked via hreflang.
 app_origin: https://nera.js.org
 page_identifier: slug
+# `es` is temporarily hidden pending a native-speaker review of the Spanish
+# content — re-add it here (and to the switcher in site-header.pug, and drop the
+# ES noindex) to restore hreflang alternates for Spanish.
 available_languages:
     - en
     - de
-    - es
