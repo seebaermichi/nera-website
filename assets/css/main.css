@@ -780,6 +780,9 @@ img, svg, video { max-width: 100%; height: auto; }
    -------------------------------------------------------------------------- */
 .search-page .search { padding-block: var(--space-7) var(--space-8); }
 .search__input, .search__results { max-width: 40rem; }
+.search-page.container {
+  padding-top: var(--space-8);
+}
 .search__title {
   font-size: var(--text-xl);
   font-weight: 700;
