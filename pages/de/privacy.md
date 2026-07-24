@@ -5,16 +5,9 @@ slug: privacy
 lang: de
 description: Was diese Website mit Besucherdaten macht — und was nicht.
 keywords: datenschutz, dsgvo, datenschutzerklärung
-robots: noindex,follow
 ---
 
 # Datenschutz
-
-> **Noch nicht veröffentlicht.** Die technischen Aussagen unten beschreiben die
-> Website zutreffend. Offen ist noch der Abschnitt zu den Server-Logfiles, in dem
-> der Hosting-Anbieter benannt werden muss — das hängt davon ab, wo die Website
-> betrieben wird. Ergänzen, prüfen lassen und dann `robots: noindex,follow` aus
-> dem Frontmatter entfernen. Diese deutsche Fassung ist die maßgebliche.
 
 ## Verantwortlicher
 
@@ -44,17 +37,27 @@ werden nirgendwohin übertragen.
 
 ## Server-Logfiles
 
-Damit eine Seite ausgeliefert werden kann, verbindet sich dein Browser mit dem
-Hosting-Anbieter. Dieser protokolliert dabei technische Daten — in der Regel
-IP-Adresse, Zeitpunkt der Anfrage, die angeforderte Datei sowie Referrer und
-User-Agent, die dein Browser sendet.
+Diese Website wird bei **GitHub Pages** gehostet, einem Dienst der GitHub, Inc.,
+88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA — einer Tochter der
+Microsoft Corporation.
 
-Das ist für die Auslieferung und die Sicherheit der Website erforderlich und
-erfolgt auf Grundlage eines berechtigten Interesses, Art. 6 Abs. 1 lit. f DSGVO.
+Damit eine Seite ausgeliefert werden kann, verbindet sich dein Browser mit den
+Servern von GitHub. Zur Auslieferung und zum Schutz der Website vor Missbrauch
+protokolliert GitHub dabei automatisch technische Daten, darunter die IP-Adresse
+des Besuchers, den Zeitpunkt der Anfrage, die angeforderte Datei sowie Referrer
+und User-Agent, die dein Browser sendet. Das erfolgt auf Grundlage eines
+berechtigten Interesses am sicheren Betrieb der Website, Art. 6 Abs. 1 lit. f
+DSGVO.
 
-> **[ZU ERGÄNZEN]** Hosting-Anbieter benennen, Speicherdauer der Logs angeben und
-> klären, ob ein Auftragsverarbeitungsvertrag (Art. 28 DSGVO) vorliegt. Das hängt
-> davon ab, wo die Website betrieben wird.
+Da die GitHub, Inc. in den USA ansässig ist, werden dabei personenbezogene Daten
+in ein Drittland übermittelt. Geeignete Garantien nach Art. 44 ff. DSGVO liegen
+vor: GitHub hat seine Einhaltung des EU-US Data Privacy Framework zertifiziert und
+stützt sich zusätzlich auf die Standardvertragsklauseln der Europäischen
+Kommission (Durchführungsbeschluss (EU) 2021/914).
+
+Wie GitHub diese Daten selbst verarbeitet, einschließlich der Speicherdauer, ist
+in der [GitHub-Datenschutzerklärung](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement)
+beschrieben.
 
 ## Deine Rechte
 

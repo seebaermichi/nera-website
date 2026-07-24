@@ -10,11 +10,8 @@ robots: noindex,follow
 
 # Privacidad
 
-> **Aún no publicada.** Las afirmaciones técnicas de abajo describen el sitio con
-> exactitud. Queda una laguna: la sección de registros del servidor debe nombrar
-> al proveedor de alojamiento, lo que depende de dónde se despliegue el sitio.
-> Complétala, haz revisar el resultado y luego elimina `robots: noindex,follow`
-> del frontmatter. La versión alemana es la jurídicamente vinculante.
+> La versión alemana de esta página es la jurídicamente vinculante; esta es una
+> traducción de cortesía.
 
 ## Responsable
 
@@ -44,17 +41,25 @@ localmente. Tus términos de búsqueda no se transmiten a ningún sitio.
 
 ## Archivos de registro del servidor
 
-Para entregar una página, tu navegador se conecta al proveedor de alojamiento, y
-este registra datos técnicos: normalmente dirección IP, momento de la petición,
-el archivo solicitado y el referente y el agente de usuario que envía tu
-navegador.
+Este sitio se aloja en **GitHub Pages**, un servicio de GitHub, Inc., 88 Colin
+P. Kelly Jr. Street, San Francisco, CA 94107, EE. UU. — una filial de Microsoft
+Corporation.
 
-Es necesario para servir el sitio y mantenerlo seguro, y se trata sobre la base
-de un interés legítimo, art. 6.1.f del RGPD.
+Para entregar una página, tu navegador se conecta a los servidores de GitHub.
+Para servir el sitio y protegerlo frente a abusos, GitHub registra
+automáticamente datos técnicos, entre ellos la dirección IP del visitante, el
+momento de la petición, el archivo solicitado y el referente y el agente de
+usuario que envía tu navegador. Esto se basa en un interés legítimo en operar el
+sitio de forma segura, art. 6.1.f del RGPD.
 
-> **[POR COMPLETAR]** Indicar el proveedor de alojamiento, el plazo de
-> conservación de sus registros y si existe un contrato de encargo de tratamiento
-> (art. 28 del RGPD). Depende de dónde se despliegue el sitio.
+Como GitHub, Inc. tiene su sede en los Estados Unidos, la entrega del sitio
+implica una transferencia de datos personales a un tercer país. Existen garantías
+adecuadas según los art. 44 y ss. del RGPD: GitHub ha certificado su adhesión al
+Marco de Privacidad de Datos UE-EE. UU. y, además, se apoya en las Cláusulas
+Contractuales Tipo de la Comisión Europea (Decisión de Ejecución (UE) 2021/914).
+
+Cómo trata GitHub estos datos, incluidos los plazos de conservación, se describe
+en la [Declaración de privacidad de GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
 
 ## Tus derechos
 

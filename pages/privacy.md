@@ -5,16 +5,12 @@ slug: privacy
 lang: en
 description: What this website does and does not do with visitor data.
 keywords: privacy, data protection, gdpr, datenschutz
-robots: noindex,follow
 ---
 
 # Privacy
 
-> **Not published yet.** The technical statements below describe the site
-> accurately. One gap remains: the server-log section needs the hosting provider
-> named, which depends on where the site is deployed. Fill that in, have the
-> result reviewed, then remove `robots: noindex,follow` from the frontmatter. The
-> German version is the legally authoritative one.
+> The German version of this page is the legally authoritative one; this is a
+> courtesy translation.
 
 ## Controller
 
@@ -44,16 +40,24 @@ are never transmitted anywhere.
 
 ## Server log files
 
-Serving a web page requires your browser to connect to the hosting provider, and
-that provider records technical data — typically IP address, time of request,
-the file requested, and the referring page and user agent your browser sends.
+This site is hosted on **GitHub Pages**, a service of GitHub, Inc., 88 Colin
+P. Kelly Jr. Street, San Francisco, CA 94107, USA — a subsidiary of Microsoft
+Corporation.
 
-This is necessary to deliver the site and to keep it secure, and is processed on
-the basis of a legitimate interest, Art. 6 (1) (f) GDPR.
+Serving a page requires your browser to connect to GitHub's servers. To deliver
+the site and protect it from abuse, GitHub automatically records technical data,
+including the visitor's IP address, the time of the request, the file requested,
+and the user agent and referrer your browser sends. This rests on a legitimate
+interest in operating the site securely, Art. 6 (1) (f) GDPR.
 
-> **[TO COMPLETE]** Name the hosting provider, the retention period for their
-> logs, and whether a data processing agreement (Art. 28 GDPR) is in place. This
-> depends on where the site is deployed.
+Because GitHub, Inc. is based in the United States, delivering the site involves a
+transfer of personal data to a third country. Appropriate safeguards under
+Art. 44 ff. GDPR are in place: GitHub has certified its adherence to the EU–U.S.
+Data Privacy Framework and additionally relies on the European Commission's
+Standard Contractual Clauses (Implementing Decision (EU) 2021/914).
+
+How GitHub itself handles this data, including retention periods, is set out in the
+[GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
 
 ## Your rights
 
