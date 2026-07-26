@@ -10,6 +10,10 @@ plugins:
       package: '@nera-static/plugin-canonical-links'
       description: Añade etiquetas <link> canónicas y de idioma alternativo para SEO.
       url: https://github.com/seebaermichi/nera-plugin-canonical-links
+    - name: Contact form
+      package: '@nera-static/plugin-contact-form'
+      description: Renderiza un formulario de contacto sin backend que crea un enlace mailto al enviar.
+      url: https://github.com/seebaermichi/nera-plugin-contact-form
     - name: Link attributes
       package: '@nera-static/plugin-link-attributes'
       description: Reescribe los enlaces para añadir target, rel y otros atributos.
