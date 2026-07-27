@@ -33,5 +33,13 @@ jobs:
             - name: Run linter
               run: npm run lint
 
-            - name: Run tests
-              run: npx vitest run
+            # This is a Nera site, not a library: there is no unit-test suite to
+            # run. What can actually break here is the content and the templates,
+            # so the build is the test — it fails on a bad layout, a missing
+            # include or malformed frontmatter — and `nera validate` reports the
+            # same class of problem with file/line detail.
+            - name: Validate site
+              run: npm run validate
+
+            - name: Build site
+              run: npm run build
