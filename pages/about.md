@@ -11,7 +11,7 @@ keywords: about nera, static site generator philosophy
 
 Nera is an open-source static site generator with a deliberately small surface
 area. The whole pipeline — load, render, apply plugins, write — fits in a handful
-of files you can read in one sitting.
+of files you can read in a single sitting.
 
 ## Philosophy
 
