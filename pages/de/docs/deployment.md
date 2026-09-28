@@ -25,6 +25,28 @@ npm run build
 - **GitHub Pages** — in CI rendern, dann `public/` in den `gh-pages`-Branch veröffentlichen.
 - **Beliebiger statischer Host / CDN** — den Inhalt von `public/` hochladen.
 
+## Cache Busting
+
+Browser speichern Stylesheets, Skripte und Schriften zwischen, deshalb sehen
+Besucher nach einem Deploy eventuell noch das alte CSS oder JS, bis sie die Seite
+hart neu laden. Aktiviere Content-Hashing in `config/app.yaml` (benötigt
+`@nera-static/core` 4.11 oder neuer):
+
+```yaml
+asset_hashing: true
+```
+
+Bei jedem Build hängt Nera `?v=<hash>` an jede lokale Asset-URL an — Stylesheets,
+Skripte, Bilder, `srcset`, den Suchindex und `url(…)`-Verweise im CSS wie
+Schriften. Der Hash stammt aus dem Inhalt der Datei, die URL ändert sich also
+genau dann, wenn sich die Datei ändert, und bleibt sonst cachebar. Deine
+Templates behalten einfache Pfade wie `/css/main.css`; füge `?v=` niemals von
+Hand hinzu.
+
+Links auf Seiten, externe URLs und URLs, die bereits einen Query-String haben,
+bleiben unverändert, und es funktioniert zusammen mit `base_path`. Ohne den
+Schlüssel bleibt die Build-Ausgabe unverändert.
+
 ## Bevor du startest
 
 - Setze `app_origin` in `config/canonical-links.yaml` auf deine echte Domain,
