@@ -7,6 +7,10 @@ robots: index,follow
 folders:
     plugins: ./plugins
 
+# Cache busting: append ?v=<content hash> to local CSS/JS/font/image URLs
+# (@nera-static/core >= 4.11).
+asset_hashing: true
+
 # Site-wide values available as `app.*` in every view.
 repo_url: https://github.com/seebaermichi/nera
 plugins_url: https://github.com/seebaermichi/nera/blob/main/PLUGINS.md
