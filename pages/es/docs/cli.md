@@ -104,6 +104,21 @@ privacy:
 Para silenciar una regla en una sola página, añádela al frontmatter de la
 página: `validate_ignore: [a11y-h1]`.
 
+Para silenciar una regla en archivos o carpetas enteros, enuméralos bajo
+`ignore`. También funciona con `nera validate` — por ejemplo para
+`layout-missing` en fragmentos de contenido que otra página incluye, o en
+borradores, que no tienen `layout` a propósito:
+
+```yaml
+ignore:
+  layout-missing:
+    - pages/*/references      # una carpeta abarca todo lo que contiene
+    - pages/de/blog/drafts    # * representa un nombre de carpeta
+```
+
+Las rutas son relativas a la raíz del sitio. Requiere `@nera-static/validate`
+1.3.0, que `npm update` trae a un sitio existente.
+
 **Tu propio host.** Para distinguir tus recursos de los de terceros,
 `privacy-third-party` lee `origin` de `config/app.yaml`, o si no `app_origin`
 de `config/canonical-links.yaml` (con y sin `www.`). Si no hay ninguno, solo

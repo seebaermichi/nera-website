@@ -104,6 +104,21 @@ privacy:
 Um eine Regel auf einer einzelnen Seite stummzuschalten, trage sie im
 Frontmatter der Seite ein: `validate_ignore: [a11y-h1]`.
 
+Um eine Regel für ganze Dateien oder Ordner stummzuschalten, liste sie unter
+`ignore` auf. Das wirkt auch bei `nera validate` — etwa für `layout-missing`
+bei Inhaltsbausteinen, die eine andere Seite einbindet, oder bei Entwürfen, die
+absichtlich kein `layout` haben:
+
+```yaml
+ignore:
+  layout-missing:
+    - pages/*/references      # ein Ordner umfasst alles darunter
+    - pages/de/blog/drafts    # * steht für einen Ordnernamen
+```
+
+Die Pfade sind relativ zum Wurzelordner der Website. Das braucht
+`@nera-static/validate` 1.3.0, das `npm update` in eine bestehende Website holt.
+
 **Dein eigener Host.** Um deine Ressourcen von denen Dritter zu unterscheiden,
 liest `privacy-third-party` `origin` aus `config/app.yaml`, sonst `app_origin`
 aus `config/canonical-links.yaml` (mit und ohne `www.`). Ist beides nicht

@@ -101,6 +101,21 @@ privacy:
 To silence a rule on one page, list it in the page's frontmatter as
 `validate_ignore: [a11y-h1]`.
 
+To silence a rule on whole files or folders, list them under `ignore`. This
+works for `nera validate` too — for example for `layout-missing` on content
+fragments that another page pulls in, or on drafts, which have no `layout` on
+purpose:
+
+```yaml
+ignore:
+  layout-missing:
+    - pages/*/references      # a folder covers everything below it
+    - pages/de/blog/drafts    # * stands for one folder name
+```
+
+Paths are relative to the site root. Requires `@nera-static/validate` 1.3.0,
+which `npm update` brings into an existing site.
+
 **Your own host.** To tell your resources from third-party ones,
 `privacy-third-party` reads `origin` from `config/app.yaml`, else `app_origin`
 from `config/canonical-links.yaml` (with and without `www.`). With neither set,
