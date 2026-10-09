@@ -35,6 +35,21 @@ export function getMetaData({ app, pagesData }) {
 `getAppData` runs first; `getMetaData` sees the `app` it returned. **Keep hooks
 synchronous** — an async hook can wipe `app` on older generator versions.
 
+A plugin that produces files (generated images, for example) also exports
+`getAssets` (core ≥ 4.13.0). It runs after every plugin's `getAppData` and
+`getMetaData`, sees the final `app` and `pagesData`, and returns what to copy into
+`public/`:
+
+```js
+export function getAssets({ app, pagesData }) {
+    return [{ from: '/abs/path/to/files', to: '_img' }]
+}
+```
+
+`from` is an absolute file or folder, `to` a path inside `public/`. Core copies
+these after the theme's assets and before your own, so your `assets/` still wins
+on a name clash. Invalid entries are skipped with a warning.
+
 ## Config lives in your project
 
 Every plugin reads `config/<name>.yaml` from **your** site, not from the package.
