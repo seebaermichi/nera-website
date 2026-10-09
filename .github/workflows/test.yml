@@ -41,5 +41,9 @@ jobs:
             - name: Validate site
               run: npm run validate
 
-            - name: Build site
-              run: npm run build
+            # `--check` then checks the built public/ for accessibility, privacy
+            # and legal-notice problems (`nera check`). Every finding is a
+            # warning unless config/validate.yaml promotes a rule to error, so
+            # this fails only on a rule promoted there.
+            - name: Build and check site
+              run: npm run build -- --check
