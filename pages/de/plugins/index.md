@@ -14,6 +14,10 @@ plugins:
       package: '@nera-static/plugin-contact-form'
       description: Rendert ein Backend-freies Kontaktformular, das beim Absenden einen mailto-Link erzeugt.
       url: https://github.com/seebaermichi/nera-plugin-contact-form
+    - name: Images
+      package: '@nera-static/plugin-images'
+      description: Erzeugt beim Build responsive AVIF/WebP-Bilder mit srcset, width/height und Lazy Loading.
+      url: https://github.com/seebaermichi/nera-plugin-images
     - name: Link attributes
       package: '@nera-static/plugin-link-attributes'
       description: Schreibt Links um, um target, rel und andere Attribute hinzuzufügen.
