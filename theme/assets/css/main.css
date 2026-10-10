@@ -429,9 +429,9 @@ img, svg, video { max-width: 100%; height: auto; }
   --nera-code-font: var(--font-mono);
   --nera-code-size: 0.84375rem;
   --nera-code-radius: var(--radius-none);
+  --nera-code-button-radius: var(--radius-none);
   --nera-code-margin: var(--space-4) 0 var(--space-5);
 }
-.nera-code .nera-code__copy { border-radius: var(--radius-none); }
 @media (prefers-color-scheme: dark) {
   .nera-code {
     --nera-code-muted: var(--color-muted);
