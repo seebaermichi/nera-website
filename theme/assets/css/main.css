@@ -413,33 +413,33 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 .prose pre code { background: none; border: none; padding: 0; font-size: inherit; }
 
-/* Code block with filename header + copy affordance:
-   <figure class="code-block"><figcaption>…<button class="code-block__copy">…
-   </figcaption><pre><code>…</code></pre></figure> */
-.code-block { margin: var(--space-4) 0 var(--space-5); border: var(--border); }
-.code-block__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-4);
-  background: var(--color-bg-code);
-  border-bottom: var(--border);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-faint);
+/* Highlighted code blocks (div.nera-code from @nera-static/plugin-code-blocks,
+   styled by /_nera/code-blocks.css). Its stylesheet reads every color and size
+   from --nera-code-*, so the site only maps its tokens here. Light mode uses
+   slightly darker muted/accent shades: the site's own reach only 4.4:1 on
+   --color-bg-code, these 5.1:1. Every token color is >= 4.5:1 in both modes. */
+.nera-code {
+  --nera-code-bg: var(--color-bg-code);
+  --nera-code-ink: var(--color-ink);
+  --nera-code-line: var(--color-border);
+  --nera-code-muted: #6b655b;
+  --nera-code-accent: #a54c08;
+  --nera-code-string: #2f6f45;
+  --nera-code-symbol: #8a3ab9;
+  --nera-code-font: var(--font-mono);
+  --nera-code-size: 0.84375rem;
+  --nera-code-radius: var(--radius-none);
+  --nera-code-margin: var(--space-4) 0 var(--space-5);
 }
-.code-block__copy {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-muted);
-  background: none;
-  border: 1px solid var(--color-border-strong);
-  padding: var(--space-1) var(--space-2);
-  cursor: pointer;
+.nera-code .nera-code__copy { border-radius: var(--radius-none); }
+@media (prefers-color-scheme: dark) {
+  .nera-code {
+    --nera-code-muted: var(--color-muted);
+    --nera-code-accent: var(--color-accent);
+    --nera-code-string: #8fc79a;
+    --nera-code-symbol: #c79be0;
+  }
 }
-.code-block__copy:hover { color: var(--color-ink); border-color: var(--color-accent); }
-.code-block pre { border: none; margin: 0; background: var(--color-bg-code); }
 
 /* Tables — scroll within their own wrapper on narrow screens */
 .prose table {

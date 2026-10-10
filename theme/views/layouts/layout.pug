@@ -32,7 +32,12 @@ html(lang=curLang)
     link(rel="manifest", href="/site.webmanifest")
     meta(name="theme-color", content="#b45309")
 
+    //- Code-block card + copy button (@nera-static/plugin-code-blocks, copied to
+    //- public/_nera/ by its getAssets hook). Before main.css, whose .nera-code
+    //- rules map the card onto the site's tokens.
+    link(rel="stylesheet", href="/_nera/code-blocks.css")
     link(rel="stylesheet", href="/css/main.css")
+    script(src="/_nera/code-blocks.js", defer)
 
   body
     include ../partials/site-header

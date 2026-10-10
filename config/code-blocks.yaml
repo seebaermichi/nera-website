@@ -1,0 +1,7 @@
+# Code blocks (@nera-static/plugin-code-blocks). Every other key keeps the
+# plugin's default (bar: always, highlight.js with Pug, assets on); see
+# `npx nera-code-blocks` for the documented file.
+#
+# en and de labels are built in; Spanish pages need their own.
+labels:
+    es: { copy: Copiar, copied: Copiado, terminal: terminal }
