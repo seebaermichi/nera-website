@@ -6,3 +6,5 @@ ISSUES.md
 .vite
 # npm credentials — never commit
 .npmrc
+# plugin build cache (plugins/llms-txt writes llms*.txt here)
+.nera-cache
