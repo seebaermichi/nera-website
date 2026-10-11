@@ -260,19 +260,19 @@ test('llms.txt lists Docs, Tutorials, Plugins, CLI and Optional in that order', 
     const headings = index.split('\n').filter((line) => line.startsWith('## '))
     assert.deepEqual(headings, ['## Docs', '## Tutorials', '## Plugins', '## CLI', '## Optional'])
     assert.deepEqual(section(index, 'Docs'), [
-        `- [Intro](${ORIGIN}/docs/index.html): What Nera is.`,
-        `- [CLI reference](${ORIGIN}/docs/cli.html): The nera CLI.`,
+        `- [Intro](${ORIGIN}/docs/index.md): What Nera is.`,
+        `- [CLI reference](${ORIGIN}/docs/cli.md): The nera CLI.`,
     ])
     assert.deepEqual(section(index, 'Tutorials'), [
-        `- [Blog](${ORIGIN}/tutorials/blog.html): Build a blog.`,
-        `- [Search](${ORIGIN}/tutorials/search.html): Add search.`,
+        `- [Blog](${ORIGIN}/tutorials/blog.md): Build a blog.`,
+        `- [Search](${ORIGIN}/tutorials/search.md): Add search.`,
     ])
     assert.deepEqual(section(index, 'Plugins'), [
         '- [@nera-static/plugin-canonical-links](https://github.test/canonical): Adds <link> tags.',
         '- [@nera-static/plugin-tags](https://github.test/tags): Tag pages.',
     ])
     assert.deepEqual(section(index, 'CLI'), [
-        `- [CLI reference](${ORIGIN}/docs/cli.html): The nera CLI.`,
+        `- [CLI reference](${ORIGIN}/docs/cli.md): The nera CLI.`,
         '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
     ])
     assert.deepEqual(section(index, 'Optional'), [
@@ -297,6 +297,33 @@ test('llms.txt takes the plugins and the CLI page from the English pages only', 
     assert.ok(warnings.some((message) => /no plugins list on \/plugins\/index\.html/.test(message)), warnings)
 })
 
+test('every page link in llms.txt points at a .md file getAssets emits', () => {
+    writePage('docs/index.md', 'title: Intro', '# Intro\n')
+    writePage('docs/cli.md', 'title: CLI', '# CLI\n')
+    writePage('tutorials/blog.md', 'title: Blog', 'Blog.\n')
+
+    const { assets, index } = build([
+        meta('/docs/index.html', { title: 'Intro', description: 'Intro.', pagination_order: 1 }),
+        meta('/docs/cli.html', { title: 'CLI', description: 'CLI.', pagination_order: 2 }),
+        meta('/tutorials/blog.html', { title: 'Blog', description: 'Blog.', pagination_order: 1 }),
+    ])
+
+    const linked = [...index.matchAll(/\]\((https:\/\/example\.test\/[^)]*\.md)\)/g)].map(([, url]) => url)
+    assert.equal(linked.length, 4) // three pages, the CLI page twice (Docs and CLI)
+    const emitted = assets.map(({ to }) => `${ORIGIN}/${to}`)
+    for (const url of linked) assert.ok(emitted.includes(url), `${url} not emitted`)
+    assert.ok(!/\]\(https:\/\/example\.test\/[^)]*\.html\)/.test(index), index)
+})
+
+test('a CLI page left out of llms-full.txt is not linked under CLI', () => {
+    const { index } = build([meta('/docs/cli.html', { title: 'CLI', description: 'CLI.' })])
+
+    assert.deepEqual(section(index, 'CLI'), [
+        '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
+    ])
+    assert.ok(!index.includes('docs/cli'), index)
+})
+
 test('an llms.txt item without a description is listed bare, with a warning', () => {
     writePage('docs/index.md', 'title: Intro', '# Intro\n')
 
@@ -305,6 +332,6 @@ test('an llms.txt item without a description is listed bare, with a warning', ()
         meta('/plugins/index.html', { plugins: PLUGINS }),
     ])
 
-    assert.deepEqual(section(index, 'Docs'), [`- [Intro](${ORIGIN}/docs/index.html)`])
-    assert.deepEqual(warnings, [`⚠️ llms-txt: ${ORIGIN}/docs/index.html has no description in llms.txt`])
+    assert.deepEqual(section(index, 'Docs'), [`- [Intro](${ORIGIN}/docs/index.md)`])
+    assert.deepEqual(warnings, [`⚠️ llms-txt: ${ORIGIN}/docs/index.md has no description in llms.txt`])
 })

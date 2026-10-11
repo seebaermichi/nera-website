@@ -49,7 +49,7 @@ slice-2 "links keep `.html`" note for those items. (User decision.)
 - **Risks:** `.md` files in `public/` reaching the search index or tripping `nera build --check` (both should only read `.html` — check the build output)
 - **Walkthrough:** none
 
-### Step 2 — llms.txt links the .md files — ⬜ todo
+### Step 2 — llms.txt links the .md files — ✅ done
 
 - **Goal:** every page item in `llms.txt` (`## Docs`, `## Tutorials`, the CLI page in `## CLI`) links `<origin>/<dirname>/<name>.md`; the plugin catalog, the npm link and `## Optional` are unchanged.
 - **Files:** `plugins/llms-txt/index.js` — `pageItem` URL; `plugins/llms-txt/index.test.js` — link assertions updated, one test that a linked `.md` is among the returned assets

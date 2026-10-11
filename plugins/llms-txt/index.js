@@ -91,15 +91,21 @@ export function markdownPath(href) {
  * same order; Plugins is the English catalog's `plugins:` list; CLI points at
  * the CLI reference and the npm package; Optional links llms-full.txt itself.
  * An empty section is left out.
+ *
+ * A page item links the page's own `.md` file, through the same `markdownPath`
+ * as the asset, so only pages in `pages` (the ones emitted) are ever linked —
+ * the CLI page included.
  */
 export function renderIndex({ title, summary, origin, pages, pagesData, defaultLang = LANG }) {
-    const pageItem = (meta) => ({ title: meta.title || meta.href, url: `${origin}${meta.href}`, description: meta.description })
-    const english = pagesData
-        .map(({ meta }) => meta || {})
-        .filter((meta) => (meta.lang || defaultLang) === LANG)
-    const findPage = (href) => english.find((meta) => meta.href === href)
+    const pageItem = (meta) => ({
+        title: meta.title || meta.href,
+        url: `${origin}/${markdownPath(meta.href)}`,
+        description: meta.description,
+    })
 
-    const pluginsPage = findPage(PLUGINS_PAGE)
+    const pluginsPage = pagesData
+        .map(({ meta }) => meta || {})
+        .find((meta) => meta.href === PLUGINS_PAGE && (meta.lang || defaultLang) === LANG)
     if (!Array.isArray(pluginsPage?.plugins)) {
         console.warn(`⚠️ llms-txt: no plugins list on ${PLUGINS_PAGE}, the Plugins section is left out of ${INDEX_FILE}`)
     }
@@ -109,7 +115,7 @@ export function renderIndex({ title, summary, origin, pages, pagesData, defaultL
         description: plugin.description,
     }))
 
-    const cliPage = findPage(CLI_PAGE)
+    const cliPage = pages.find((meta) => meta.href === CLI_PAGE)
     const sections = [
         ['Docs', pages.filter((meta) => meta.dirname === '/docs').map(pageItem)],
         ['Tutorials', pages.filter((meta) => meta.dirname === '/tutorials').map(pageItem)],
