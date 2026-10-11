@@ -416,3 +416,23 @@ goal met (3 links retargeted, conventions updated) · verify: `grep add-search` 
 ## Step 5 — approved (2026-10-11)
 
 snagio: ticked
+commit: dd8e49b
+
+## Browser test (2026-10-11)
+
+- **Result:** PASSED — all 5 cases pass after fix step 5 (re-run of the stale earlier test)
+- **Guide:** plans/issues/browser-tests/01a1260d-8e5f-70f2-bdba-00a921ecb67d-nera-website-generate-llms-txt-and-llms-full-txt-from-the.md
+- **Base URL / roles:** http://localhost:3124/ · visitor
+- **AC source:** plan + snapshot 2026-10-11 (TC-5 derived from fix step 5)
+- **Tested by:** Claude (Playwright MCP)
+
+| TC | AC (short) | Status | Evidence |
+|---|---|---|---|
+| TC-1 | llms.txt: H1, summary, linked sections | PASS | `# Nera`, one `>` summary, Docs/Tutorials/Plugins/CLI/Optional, 35 items all with description |
+| TC-2 | links absolute and working | PASS | all nera.js.org links absolute, 17/17 answer 200 locally with matching titles |
+| TC-3 | llms-full.txt: all EN pages, no frontmatter, ordered | PASS | 16 H1s, 7 docs then 9 tutorials, order matches llms.txt, no frontmatter outside fences |
+| TC-4 | English only (negative) | PASS | 0 /de/ /es/ links or titles; no per-language llms files in public/ |
+| TC-5 | Tags link fixed (derived) | PASS | click opens tag-your-content.html; llms-full.txt carries the absolute tag-your-content link |
+
+### Carry forward
+- none
