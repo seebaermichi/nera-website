@@ -1,6 +1,6 @@
 # Browser test: 01a1260d-8e75-7115-9c33-7c54f4639765 — [nera-website] Raw Markdown next to each English docs page
 
-**Date:** 2026-10-11 · **Branch:** main · **Base URL:** http://localhost:3124/
+**Date:** 2026-10-11 (re-run after step 4) · **Branch:** main · **Base URL:** http://localhost:3124/
 **AC source:** plan + snapshot 2026-10-11
 
 Not browser-observable, so not cases here (proven by the loop's steps 1–3, see the log):
@@ -26,7 +26,7 @@ build --check passes", AC 6 "decisions written back into ROADMAP-ai.md".
 4. Expect: all 16 return 200.
 
 **Expected:** all 16 English docs/tutorials `.md` URLs are served.
-**Evidence:** PASS — all 16 `Source:` pages of /llms-full.txt answer `/<dirname>/<name>.md` with 200 `text/markdown`, none is HTML. Local server sends no charset, so `→` shows mis-decoded in the browser (file is UTF-8; same as llms.txt in the earlier test).
+**Evidence:** PASS — all 16 `Source:` pages of /llms-full.txt answer `/<dirname>/<name>.md` with 200 `text/markdown`, none is HTML.
 
 ---
 
@@ -39,7 +39,7 @@ build --check passes", AC 6 "decisions written back into ROADMAP-ai.md".
 2. Expect: neither serves Markdown (404 / not found).
 
 **Expected:** no translated page has a `.md` file.
-**Evidence:** PASS — `public/de` and `public/es` hold 0 `.md` files; `/de/docs/cli.md`, `/es/docs/cli.md`, `/de/tutorials/build-a-blog.md` get the dev server's SPA fallback (byte-identical to `/`, as for `/no-such-page-xyz.md`), not Markdown.
+**Evidence:** PASS — `/de/docs/cli.md`, `/es/docs/cli.md`, `/de/` and `/es/tutorials/build-a-blog.md` return the server's SPA fallback (`text/html`, byte-identical to `/`), not Markdown.
 
 ---
 
@@ -55,7 +55,7 @@ build --check passes", AC 6 "decisions written back into ROADMAP-ai.md".
 5. Repeat 2–4 on `/tutorials/build-a-blog.md` and `/docs/index.md`.
 
 **Expected:** the three sampled files are frontmatter-free, single-H1, absolute-linked, with the right `Source:` URL.
-**Evidence:** PASS — cli, build-a-blog, index: no leading `---`, exactly one H1 outside code fences, `Source: https://nera.js.org/<page>.html` correct; no root-relative links, site links absolute (e.g. `https://nera.js.org/tutorials/tag-your-content.html`). The only `layout:` line sits in a fenced frontmatter example in build-a-blog (author content).
+**Evidence:** PASS — cli, build-a-blog, index: no leading `---`, one H1 outside code fences, correct `Source: https://nera.js.org/<page>.html`, 0 root-relative links (e.g. `https://nera.js.org/tutorials/tag-your-content.html`).
 
 ---
 
@@ -71,7 +71,7 @@ build --check passes", AC 6 "decisions written back into ROADMAP-ai.md".
 5. Expect: each returns the Markdown file (200).
 
 **Expected:** all docs/tutorials/CLI items point to existing `.md` files.
-**Evidence:** PASS — Docs 7/7 and Tutorials 9/9 links end in `.md`, CLI page link is `.md` (the second CLI item is the npm package, not a page); Plugins keep GitHub URLs; all 17 site links resolve 200 locally.
+**Evidence:** PASS — Docs 7/7, Tutorials 9/9 and the CLI page link end in `.md` (second CLI item is the npm package); Plugins keep 16 GitHub URLs; all 17 site links resolve 200 locally.
 
 ---
 
@@ -84,4 +84,33 @@ build --check passes", AC 6 "decisions written back into ROADMAP-ai.md".
 2. Expect: the normal rendered page, no console errors.
 
 **Expected:** the HTML page still renders as before.
-**Evidence:** PASS — /docs/cli.html renders normally (screenshot 01a1260d-8e75-tc-5-cli-html.png), 0 console errors/warnings; clicking **Getting started** in the sidebar navigates (click probe).
+**Evidence:** PASS — /docs/cli.html renders normally (screenshot 01a1260d-8e75-tc-5-cli-html.png), 0 console errors/warnings, no failed requests; clicking **Getting started** in the sidebar navigates (click probe).
+
+---
+
+### TC-6 — each English docs/tutorials page advertises its .md in the head
+
+**AC:** plan step 4 (triage item, user decision 2026-10-11) — "`layout.pug` renders `link(rel="alternate", type="text/markdown", href=meta.markdown_href)` in `head`" on exactly the pages `selectPages` returns
+**Status:** PASS
+
+1. Navigate to `/docs/cli.html`, `/tutorials/build-a-blog.html`, `/docs/index.html`.
+2. Expect: the `head` holds one `<link rel="alternate" type="text/markdown">` whose `href` is the page's own `.md` (`/docs/cli.md`, …), no `hreflang`.
+3. Follow each `href` (resolved against the page).
+4. Expect: 200 with the page's Markdown (`Source:` line names that page).
+
+**Expected:** the head link exists on the sampled English pages and resolves to their Markdown file.
+**Evidence:** PASS — cli, build-a-blog, docs/index each carry exactly one `link rel=alternate type=text/markdown`, no `hreflang`, resolving 200 `text/markdown` with the matching `Source:` line. Observation: href carries core's cache-buster, e.g. `/docs/cli.md?v=b199fa56ea`, not bare `/docs/cli.md`.
+
+---
+
+### TC-7 — no Markdown link on translated or non-docs pages (negative)
+
+**AC:** plan step 4 — "`/de/`, `/es/` and non-docs pages get no link"
+**Status:** PASS
+
+1. Navigate to `/de/docs/cli.html`, `/es/tutorials/build-a-blog.html`, `/` and `/plugins/`.
+2. Expect: no `link[type="text/markdown"]` in the head; the hreflang alternates of canonical-links are still there.
+
+**Expected:** only the 16 English docs/tutorials pages carry the link.
+**Evidence:** PASS — `/de/docs/cli.html`, `/de/docs/index.html`, `/es/docs/cli.html`, `/es/tutorials/build-a-blog.html`, `/`, `/plugins/index.html`: 0 Markdown links; canonical-links hreflang alternates still present (1–2 each).
+

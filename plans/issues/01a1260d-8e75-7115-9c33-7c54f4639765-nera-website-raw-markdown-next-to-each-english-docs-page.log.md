@@ -376,3 +376,25 @@ Divergence: `/tutorials/index.html` carries no link, though the step's test ment
 ## Step 4 — approved (2026-10-11)
 
 snagio: ticked
+commit: 178d22a
+
+## Browser test (2026-10-11)
+
+- **Result:** PASSED — all 7 cases pass, including step 4's head link (re-run after the earlier test went stale)
+- **Guide:** plans/issues/browser-tests/01a1260d-8e75-7115-9c33-7c54f4639765-nera-website-raw-markdown-next-to-each-english-docs-page.md
+- **Base URL / roles:** http://localhost:3124/ · visitor
+- **AC source:** plan + snapshot 2026-10-11 (TC-6/7 from plan step 4, TC-5 derived)
+- **Tested by:** Claude (Playwright MCP)
+
+| TC | AC (short) | Status | Evidence |
+|---|---|---|---|
+| TC-1 | 16 English `.md` emitted | PASS | all 16 `Source:` pages → `.md` 200 `text/markdown` |
+| TC-2 | none for /de/, /es/ | PASS | 4 translated `.md` URLs get the SPA fallback (HTML = `/`), no Markdown |
+| TC-3 | clean Markdown, absolute links, Source line | PASS | 3 samples: no frontmatter, one H1, 0 root-relative links, correct `Source:` |
+| TC-4 | llms.txt links `.md` | PASS | Docs 7/7, Tutorials 9/9, CLI page `.md`; 17 site links resolve 200 |
+| TC-5 | HTML pages unaffected (derived) | PASS | /docs/cli.html renders, 0 console errors, sidebar click navigates |
+| TC-6 | head link on English docs/tutorials | PASS | 1 `rel=alternate type=text/markdown`, no hreflang, resolves 200; href carries `?v=<hash>` |
+| TC-7 | no link on de/es/home/plugins | PASS | 6 pages: 0 Markdown links, hreflang alternates intact |
+
+### Carry forward
+- none
