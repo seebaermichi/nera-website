@@ -5,10 +5,14 @@
 // then every tutorial, each in `pagination_order`, with the frontmatter cut off
 // and root-relative links made absolute so the text stands on its own.
 //
+// Each of those pages is also published on its own, as `/<dirname>/<name>.md`
+// beside its `.html` (`/docs/cli.md`), holding exactly its llms-full.txt section.
+//
 // The bodies are read from the Markdown sources, not from `pagesData` — core
-// hands plugins rendered HTML. Both files are written to `.nera-cache/llms-txt/`
-// and handed to core through `getAssets` (core >= 4.13.0): `public/` is deleted
-// after the plugins run, so anything written there directly would be lost.
+// hands plugins rendered HTML. Every file is written to `.nera-cache/llms-txt/`
+// (the per-page ones under `pages/`, so they cannot collide with the two index
+// files) and handed to core through `getAssets` (core >= 4.13.0): `public/` is
+// deleted after the plugins run, so anything written there directly would be lost.
 //
 // Kept synchronous on purpose — see the plugin contract in CLAUDE.md.
 // Spec: ../nera-cli/ROADMAP-ai.md, slice 2 (L2), English only (D3).
@@ -28,6 +32,8 @@ const UNORDERED_PAGES = ['/tutorials/index.html']
 const CACHE_DIR = '.nera-cache/llms-txt'
 const FULL_FILE = 'llms-full.txt'
 const INDEX_FILE = 'llms.txt'
+// Per-page Markdown, below CACHE_DIR, mirroring the page's path in public/.
+const PAGES_CACHE_DIR = 'pages'
 // The English plugin catalog, whose `plugins:` frontmatter feeds `## Plugins`.
 const PLUGINS_PAGE = '/plugins/index.html'
 const CLI_PAGE = '/docs/cli.html'
@@ -46,9 +52,8 @@ export function getAssets({ app, pagesData }) {
     const pagesDir = path.resolve(cwd, 'pages')
 
     const pages = selectPages(pagesData, app?.lang)
-    const full = pages
-        .map((meta) => renderPage(meta, pagesDir, origin))
-        .join('\n\n')
+    const pageFiles = pages.map((meta) => [markdownPath(meta.href), renderPage(meta, pagesDir, origin)])
+    const full = pageFiles.map(([, text]) => text).join('\n\n')
     const index = renderIndex({
         title: config.title || DEFAULT_TITLE,
         summary: config.summary || DEFAULT_SUMMARY,
@@ -59,13 +64,26 @@ export function getAssets({ app, pagesData }) {
     })
 
     const cacheDir = path.resolve(cwd, CACHE_DIR)
+    // Start the per-page folder empty, so a removed page leaves no stale file behind.
+    fs.rmSync(path.join(cacheDir, PAGES_CACHE_DIR), { recursive: true, force: true })
     fs.mkdirSync(cacheDir, { recursive: true })
 
-    return [[INDEX_FILE, index], [FULL_FILE, full]].map(([file, text]) => {
-        const from = path.join(cacheDir, file)
+    const files = [
+        [INDEX_FILE, INDEX_FILE, index],
+        [FULL_FILE, FULL_FILE, full],
+        ...pageFiles.map(([to, text]) => [path.join(PAGES_CACHE_DIR, to), to, text]),
+    ]
+    return files.map(([cacheFile, to, text]) => {
+        const from = path.join(cacheDir, cacheFile)
+        fs.mkdirSync(path.dirname(from), { recursive: true })
         fs.writeFileSync(from, `${text}\n`)
-        return { from, to: file }
+        return { from, to }
     })
+}
+
+// `/docs/cli.html` → `docs/cli.md`: relative to public/, as getAssets wants it.
+export function markdownPath(href) {
+    return href.replace(/^\/+/, '').replace(/\.html$/, '.md')
 }
 
 /**

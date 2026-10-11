@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
-import { getAssets, stripFrontmatter, absolutizeLinks } from './index.js'
+import { getAssets, stripFrontmatter, absolutizeLinks, markdownPath } from './index.js'
 
 const ORIGIN = 'https://example.test'
 
@@ -87,7 +87,7 @@ test('absolutizeLinks rewrites root-relative targets only', () => {
     )
 })
 
-test('getAssets writes llms.txt and llms-full.txt to the cache and returns them for public/', () => {
+test('getAssets writes llms.txt, llms-full.txt and each page .md to the cache and returns them for public/', () => {
     writePage('docs/index.md', 'title: Introduction', '# Documentation\n\nHello.\n')
 
     const { assets } = build([meta('/docs/index.html', { title: 'Introduction', pagination_order: 1 })])
@@ -96,8 +96,53 @@ test('getAssets writes llms.txt and llms-full.txt to the cache and returns them 
     assert.deepEqual(assets, [
         { from: path.join(cache, 'llms.txt'), to: 'llms.txt' },
         { from: path.join(cache, 'llms-full.txt'), to: 'llms-full.txt' },
+        { from: path.join(cache, 'pages/docs/index.md'), to: 'docs/index.md' },
     ])
     assert.equal(fs.existsSync(path.join(tmp, 'public')), false)
+})
+
+test('markdownPath maps a page href to its .md path relative to public/', () => {
+    assert.equal(markdownPath('/docs/cli.html'), 'docs/cli.md')
+    assert.equal(markdownPath('/tutorials/build-a-blog.html'), 'tutorials/build-a-blog.md')
+})
+
+test('each selected page gets its own .md, holding exactly its llms-full.txt section', () => {
+    writePage('docs/index.md', 'title: Intro', '# Intro\n\nDocs one, see [CLI](/docs/cli.html).\n')
+    writePage('docs/cli.md', 'title: CLI\nlayout: pages/default.pug', '# CLI\n\nDocs two.\n')
+    writePage('tutorials/blog.md', 'title: Blog', 'Tutorial one.\n')
+
+    const { assets, text } = build([
+        meta('/docs/index.html', { title: 'Intro', pagination_order: 1 }),
+        meta('/docs/cli.html', { title: 'CLI', pagination_order: 2 }),
+        meta('/tutorials/blog.html', { title: 'Blog', pagination_order: 1 }),
+        meta('/tutorials/index.html', { title: 'Tutorials' }),
+        meta('/de/docs/index.html', { title: 'Einführung', lang: 'de', pagination_order: 1 }),
+        meta('/es/docs/cli.html', { title: 'CLI', lang: 'es', pagination_order: 2 }),
+    ])
+
+    const pageAssets = assets.filter(({ to }) => to.endsWith('.md'))
+    assert.deepEqual(pageAssets.map(({ to }) => to), ['docs/index.md', 'docs/cli.md', 'tutorials/blog.md'])
+    const sections = pageAssets.map(({ from }) => fs.readFileSync(from, 'utf-8').replace(/\n$/, ''))
+    assert.equal(`${sections.join('\n\n')}\n`, text)
+    assert.equal(
+        sections[0],
+        `# Intro\n\nSource: ${ORIGIN}/docs/index.html\n\nDocs one, see [CLI](${ORIGIN}/docs/cli.html).`
+    )
+    assert.ok(!sections[1].includes('layout:'), sections[1])
+})
+
+test('a page removed since the last build leaves no .md in the cache', () => {
+    writePage('docs/index.md', 'title: Intro', '# Intro\n')
+    writePage('docs/old.md', 'title: Old', '# Old\n')
+    build([
+        meta('/docs/index.html', { title: 'Intro', pagination_order: 1 }),
+        meta('/docs/old.html', { title: 'Old', pagination_order: 2 }),
+    ])
+
+    build([meta('/docs/index.html', { title: 'Intro', pagination_order: 1 })])
+
+    const cache = path.join(tmp, '.nera-cache/llms-txt/pages/docs')
+    assert.deepEqual(fs.readdirSync(cache), ['index.md'])
 })
 
 test('llms-full.txt orders docs then tutorials, each by pagination_order', () => {
