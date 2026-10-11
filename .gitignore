@@ -8,3 +8,5 @@ ISSUES.md
 .npmrc
 # plugin build cache (plugins/llms-txt writes llms*.txt here)
 .nera-cache
+# Playwright MCP snapshots from browser tests
+.playwright-mcp/
