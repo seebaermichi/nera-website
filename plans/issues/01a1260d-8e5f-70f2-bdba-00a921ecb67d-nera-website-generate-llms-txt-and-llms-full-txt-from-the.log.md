@@ -247,3 +247,72 @@ goal (test.yml runs `npm test` after lint, before validate; comment no longer co
 ## Step 3 — approved (2026-10-11)
 
 snagio: ticked
+commit: 9ebfd65
+
+## Step 4 — started (2026-10-11)
+
+base_sha: 9ebfd6532dd57117464b75c312912e6d6d804325
+nera_cli_base_sha: bbbec1b916de6361d799dbf48d271c65025d0610
+mode: fresh
+
+## Step 4 — implemented (2026-10-11)
+
+base_sha: 9ebfd65
+nera_cli_base_sha: bbbec1b
+nera_cli_commit: d392984
+
+### Changed
+- `../nera-cli/ROADMAP-ai.md` — status header names slice 2 as under way (llms files committed, not deployed); slice plan item 2 marks the llms part done; new section "Slice 2 — progress" records the plugin path, D1–D5 (with the actual `npm test` glob instead of the plan's `node --test plugins/`, and Starters omitted), the per-page heading + `Source:` line, verified numbers, and what remains open (push/deploy, "Using Nera with AI" page, 2b raw `.md`, `llms.txt` link in the template's `AGENTS.md`)
+- Committed in `nera-cli` as `d392984` (local, not pushed) — the step goal asks for the commit there, and `/approve-step` commits only in `nera-website`
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Verification
+```
+git -C ../nera-cli diff --stat → ROADMAP-ai.md | 57 ++++…  1 file changed, 55 insertions(+), 2 deletions(-)   (before commit)
+grep -n 'llms-full.txt' ../nera-cli/ROADMAP-ai.md → new hits at 10, 480, 720, 723, 745, 752, 759
+grep -cE '/(de|es)/' public/llms.txt → 0 ; public/llms-full.txt → 5 (all inside code examples of English pages: impressum/datenschutz config sample, a drafts glob, tags output paths)
+grep -c '^Source:' public/llms-full.txt → 16
+```
+
+### Self-critique
+- "Not yet deployed" stated three times (header, slice plan, progress heading): nera-website is 4 commits ahead of origin/main, nothing pushed.
+- English-only claim phrased as "no page from /de/ or /es/" with the code-example caveat, because a naive grep finds 5 such paths in llms-full.txt.
+- The "0 errors" for `build -- --check` is taken from the Step 3 review (3 a11y warnings on HTML pages); not re-run in this step since only the ROADMAP changed.
+- Left the L2 layer description (which still lists "Starters" among sections) unchanged; the progress note says Starters is omitted until slice 5 — the L2 text describes the target, not the current state.
+- Committed in nera-cli myself, which departs from the loop's "commit at approve" — least sure whether the reviewer wants that commit amended if findings come up.
+
+### Pressure-test questions for the reviewer
+1. Does every factual sentence in "Slice 2 — progress" hold against `plugins/llms-txt/index.js` and the built files (counts 7/9/16/2, 16 pages, config keys with fallbacks)?
+2. Is it right to keep the `llms.txt` link in the template's `AGENTS.md` open until deploy rather than adding it now?
+
+## Step 4 — reviewed (2026-10-11)
+
+Verdict: approve
+
+### 🔴 Blocking
+- none
+
+### Fixed in review
+- none
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Checked
+Goal: `../nera-cli/ROADMAP-ai.md` (commit d392984 on bbbec1b, only file changed, nera-cli tree clean, not pushed) updates the status header and slice-plan item 2, and adds "Slice 2 — progress" with the plugin path, D1–D5 and the open items · Verify: `git show --stat d392984` → ROADMAP-ai.md 55+/2−, 1 file; grep finds the new llms-full.txt hits · conventions: Non-negotiables (spec written back in a nera-cli commit; no push: nera-website is 4 ahead of origin/main) · each fact checked against `plugins/llms-txt/index.js`, `config/llms-txt.yaml`, `package.json` (`node --test plugins/*/*.test.js`), `test.yml` (`npm test`), `.gitignore` (`.nera-cache`), and the built `public/llms*.txt` · self-critique: "not deployed" is accurate; the /de/|/es/ caveat holds (llms.txt 0, llms-full.txt 5, all inside code examples); leaving the L2 "Starters" target text unchanged is right · walkthrough n/a
+
+### Answers to the pressure-test questions
+1. Yes. llms.txt sections count Docs 7 / Tutorials 9 / Plugins 16 / CLI 2 (+ Optional 1). `grep -c '^Source:'` → 16 pages. Config keys `origin`/`title`/`summary` have fallbacks (index.js:45,53,54; DEFAULT_ORIGIN `https://nera.js.org`). getAssets hands `{ from, to: file }` out of `.nera-cache/llms-txt` (index.js:28,67). The frontmatter split only opens on line 1 (index.js:182–184). The ordering is docs then tutorials by `pagination_order` (index.js:149–150). "No page has two H1s": 16 H1s outside code fences for 16 pages; the 2 extra `# ` lines (125, 480) sit inside code fences. "0 errors" for `--check` is carried from the Step 3 review, which is acceptable because only the ROADMAP changed.
+2. Yes. A link in the scaffold's `AGENTS.md` would point every new site at a 404 until nera.js.org serves the file. Slice 1 deferred it for exactly that reason, so it follows the deploy. Committing in nera-cli during implement is what the Non-negotiables require ("a commit in nera-cli, named in the work log"), so no amend is needed.
+
+## Step 4 — approved (2026-10-11)
+
+snagio: ticked

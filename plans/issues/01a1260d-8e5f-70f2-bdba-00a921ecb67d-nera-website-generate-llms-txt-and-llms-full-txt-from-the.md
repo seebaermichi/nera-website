@@ -72,7 +72,7 @@ reference + the `@nera-static/nera` npm page), and an `Optional` section linking
 - **Risks:** the husky pre-push hook runs `nera validate` only — unaffected
 - **Walkthrough:** none
 
-### Step 4 — Record the slice-2 progress in the spec — ⬜ todo
+### Step 4 — Record the slice-2 progress in the spec — ✅ done
 
 - **Goal:** `../nera-cli/ROADMAP-ai.md` records D1–D5 and that the `llms.txt`/`llms-full.txt` part of slice 2 is done (remaining: the "Using Nera with AI" page, 2b raw `.md` pages, the `llms.txt` link in the template's `AGENTS.md`); committed in `nera-cli` and named in the work log.
 - **Files:** `../nera-cli/ROADMAP-ai.md` — slice 2 progress note + status header
