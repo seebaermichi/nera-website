@@ -7,6 +7,8 @@
 //
 // Each of those pages is also published on its own, as `/<dirname>/<name>.md`
 // beside its `.html` (`/docs/cli.md`), holding exactly its llms-full.txt section.
+// `getMetaData` sets `meta.markdown_href` on those pages, which the layout renders
+// as `<link rel="alternate" type="text/markdown">` so the page advertises its .md.
 //
 // The bodies are read from the Markdown sources, not from `pagesData` — core
 // hands plugins rendered HTML. Every file is written to `.nera-cache/llms-txt/`
@@ -41,6 +43,22 @@ const CLI_PACKAGE = {
     title: '@nera-static/nera on npm',
     url: 'https://www.npmjs.com/package/@nera-static/nera',
     description: 'The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
+}
+
+/**
+ * Sets `meta.markdown_href` (`/docs/cli.md`) on exactly the pages `getAssets`
+ * emits a .md for — same `selectPages`, same `markdownPath` — so the layout can
+ * never link a file that does not exist. Those pages get a new meta object;
+ * every other page is passed through untouched.
+ */
+export function getMetaData({ app, pagesData }) {
+    if (!Array.isArray(pagesData)) return pagesData
+
+    // getAssets runs the same selection and reports the warnings once.
+    const selected = new Set(selectPages(pagesData, app?.lang, { warn: false }))
+    return pagesData.map((page) => selected.has(page.meta)
+        ? { ...page, meta: { ...page.meta, markdown_href: `/${markdownPath(page.meta.href)}` } }
+        : page)
 }
 
 export function getAssets({ app, pagesData }) {
@@ -154,16 +172,17 @@ function oneLine(text) {
  * The English pages directly inside `/docs` and `/tutorials`, docs first, each
  * section by `pagination_order`. A page there without `pagination_order` has
  * no place in the reading order: it is left out with a warning, except for the
- * listing pages in UNORDERED_PAGES.
+ * listing pages in UNORDERED_PAGES. `warn: false` silences that warning for a
+ * second caller.
  */
-export function selectPages(pagesData, defaultLang = LANG) {
+export function selectPages(pagesData, defaultLang = LANG, { warn = true } = {}) {
     const pages = pagesData
         .map(({ meta }) => meta || {})
         .filter((meta) => SECTIONS.includes(meta.dirname))
         .filter((meta) => (meta.lang || defaultLang) === LANG)
         .filter((meta) => {
             if (hasOrder(meta.pagination_order)) return true
-            if (!UNORDERED_PAGES.includes(meta.href)) {
+            if (warn && !UNORDERED_PAGES.includes(meta.href)) {
                 console.warn(`⚠️ llms-txt: ${meta.href} has no pagination_order, left out of ${FULL_FILE}`)
             }
             return false

@@ -20,6 +20,10 @@ html(lang=curLang)
     meta(name="robots" content=(hiddenLangs.includes(curLang) ? 'noindex,follow' : (meta.robots || app.robots)))
     // Canonical + alternate language links (plugin-canonical-links)
     include ../vendor/plugin-canonical-links/index
+    //- The page as plain Markdown for AI assistants, set by plugins/llms-txt
+    //- on the English docs and tutorials only.
+    if meta.markdown_href
+      link(rel="alternate", type="text/markdown", href=meta.markdown_href)
 
     //- Brand favicon / app icons. SVG first for modern browsers (it carries its
     //- own light/dark swap), PNG fallbacks, .ico for legacy, apple-touch for

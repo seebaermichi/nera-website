@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
-import { getAssets, stripFrontmatter, absolutizeLinks, markdownPath } from './index.js'
+import { getAssets, getMetaData, stripFrontmatter, absolutizeLinks, markdownPath } from './index.js'
 
 const ORIGIN = 'https://example.test'
 
@@ -334,4 +334,43 @@ test('an llms.txt item without a description is listed bare, with a warning', ()
 
     assert.deepEqual(section(index, 'Docs'), [`- [Intro](${ORIGIN}/docs/index.md)`])
     assert.deepEqual(warnings, [`⚠️ llms-txt: ${ORIGIN}/docs/index.md has no description in llms.txt`])
+})
+
+test('getMetaData sets markdown_href on exactly the pages getAssets emits a .md for', () => {
+    writePage('docs/cli.md', 'title: CLI', '# CLI\n')
+    writePage('tutorials/blog.md', 'title: Blog', 'Blog.\n')
+    const pagesData = [
+        meta('/docs/cli.html', { title: 'CLI', pagination_order: 1 }),
+        meta('/tutorials/blog.html', { title: 'Blog', pagination_order: 1 }),
+        meta('/de/docs/cli.html', { title: 'CLI', lang: 'de', pagination_order: 1 }),
+        meta('/docs/draft.html', { title: 'Draft' }),
+        meta('/tutorials/index.html', { title: 'Tutorials' }),
+        meta('/index.html', { title: 'Home' }),
+    ]
+
+    const result = getMetaData({ app: { lang: 'en' }, pagesData })
+
+    assert.ok(Array.isArray(result))
+    const emitted = getAssets({ app: { lang: 'en' }, pagesData })
+        .filter(({ to }) => to.endsWith('.md'))
+        .map(({ to }) => `/${to}`)
+    const linked = result.filter(({ meta }) => meta.markdown_href).map(({ meta }) => meta.markdown_href)
+    assert.deepEqual(linked, ['/docs/cli.md', '/tutorials/blog.md'])
+    assert.deepEqual(linked.sort(), emitted.sort())
+    for (const index of [2, 3, 4, 5]) assert.equal(result[index], pagesData[index])
+})
+
+test('getMetaData does not mutate pagesData and warns nothing itself', () => {
+    const pagesData = [
+        meta('/docs/cli.html', { title: 'CLI', pagination_order: 1 }),
+        meta('/docs/draft.html', { title: 'Draft' }),
+    ]
+
+    const result = getMetaData({ app: { lang: 'en' }, pagesData })
+
+    assert.notEqual(result, pagesData)
+    assert.notEqual(result[0].meta, pagesData[0].meta)
+    assert.equal(pagesData[0].meta.markdown_href, undefined)
+    assert.equal(result[0].meta.title, 'CLI')
+    assert.deepEqual(warnings, [])
 })

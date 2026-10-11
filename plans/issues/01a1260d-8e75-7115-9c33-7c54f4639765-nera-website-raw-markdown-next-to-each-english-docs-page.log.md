@@ -246,3 +246,133 @@ Goal (status header, L2 bullet, slice-order item 2, D3 amendment, new 2b "Done" 
 ## Step 3 — approved (2026-10-11)
 
 snagio: ticked
+commit: 44146e0
+
+## Browser test (2026-10-11)
+
+- **Result:** PASSED — all 5 cases pass: 16 English .md files served, none for de/es, clean Markdown, llms.txt links them
+- **Guide:** plans/issues/browser-tests/01a1260d-8e75-7115-9c33-7c54f4639765-nera-website-raw-markdown-next-to-each-english-docs-page.md
+- **Base URL / roles:** http://localhost:3124/ · visitor
+- **AC source:** plan + snapshot 2026-10-11
+- **Tested by:** Claude (Playwright MCP)
+
+| TC | AC (short) | Status | Evidence |
+|---|---|---|---|
+| TC-1 | 16 English .md files emitted | PASS | all 16 `Source:` pages answer `.md` 200 `text/markdown` |
+| TC-2 | none for /de/, /es/ | PASS | 0 `.md` under public/de, public/es; local URLs hit the SPA fallback only |
+| TC-3 | no frontmatter, absolute links, Source line | PASS | cli, build-a-blog, index: one H1, correct `Source:`, no root-relative links |
+| TC-4 | llms.txt links the .md files | PASS | Docs 7/7, Tutorials 9/9, CLI page → `.md`; 17 site links resolve |
+| TC-5 | HTML pages unaffected (derived) | PASS | /docs/cli.html renders, 0 console errors, sidebar click navigates |
+
+### Carry forward
+- none
+
+## Triage (2026-10-11)
+
+| # | item | from | disposition | why |
+|---|---|---|---|---|
+| 1 | design · `theme/views/layouts/layout.pug` — advertise each English docs/tutorial page's `.md` via `<link rel="alternate" type="text/markdown">` | Plan cut scope | file | separate feature: new head markup on every page, not asked for by slice 2b; layout untouched by this issue |
+
+Already done / elsewhere: none
+Planning signal: none
+
+## Decision (2026-10-11)
+
+- **Triage item 1 overruled:** classified `file` (separate feature); the user chose **fix here**, so it became Step 4 (head `link rel="alternate" type="text/markdown"` driven by a plugin `getMetaData`).
+
+## Step 4 — started (2026-10-11)
+
+base_sha: 44146e0920726408cd642f90022a25237e59bb8c
+mode: fresh
+
+## Decision (2026-10-11)
+
+Core's asset hashing (`asset_hashing: true`) renders the head link as `href="/docs/cli.md?v=<hash>"` — accept it, or render an absolute URL, or fix core? → Accept `?v=` (the link resolves to the same file and the hash busts caches when the doc changes; noted in the spec line and the Verify result).
+
+## Step 4 — implemented (2026-10-11)
+
+base_sha: 44146e0
+
+### Changed
+- `plugins/llms-txt/index.js` — new `getMetaData`: sets `meta.markdown_href = '/' + markdownPath(href)` on exactly the pages `selectPages` returns (matched by meta identity), new meta object for those, every other page passed through by reference; `selectPages` gains `{ warn = true }` so the pagination_order warning is printed once (by `getAssets`), not twice; header comment names the hook
+- `plugins/llms-txt/index.test.js` — two tests: `markdown_href` set on selected pages only and equal to `/` + every emitted `.md` asset `to` (de page, unordered draft, tutorials index, home untouched by reference; returns an array); no mutation of `pagesData`, no warning from `getMetaData`
+- `theme/views/layouts/layout.pug` — `if meta.markdown_href` → `link(rel="alternate", type="text/markdown", href=…)` right after the canonical-links include
+- `../nera-cli/ROADMAP-ai.md` — D10 under "Slice 2 — progress" (2b): the head link, how it is derived, the accepted `?v=` (uncommitted in `nera-cli`, to be committed with the approval like step 3's `049a8f5`)
+
+### Fixed alongside
+- none
+
+### Carry forward
+- debt · S · `../nera-cli/ROADMAP-ai.md` slice 2b "Verified" paragraph — says the 3 `--check` warnings are "the pre-existing `a11y-form-label` on the search pages"; they are 3 rules (`a11y-skip-link`, `a11y-nav-name`, `a11y-form-label`), identical at base 44146e0 — wording fix only, unrelated to this step
+
+### Verification
+```
+npm test → # tests 23 / # pass 23 / # fail 0
+npm run lint → (eslint, no output, exit 0)
+npm run validate → ✓ No problems found.
+npm run build -- --check → 0 error(s), 3 warning(s)   (same 3 rules at base 44146e0 with this step's files stashed)
+grep -o '<link rel="alternate" type="text/markdown"[^>]*>' public/docs/cli.html → <link rel="alternate" type="text/markdown" href="/docs/cli.md?v=b199fa56ea" />
+grep -c 'text/markdown' public/de/docs/cli.html public/index.html → public/de/docs/cli.html:0 / public/index.html:0
+grep -l 'text/markdown' -r public --include='*.html' | wc -l → 16
+every linked href (query stripped) exists under public/ → no MISSING lines
+```
+
+### Self-critique
+- The href carries `?v=<hash>` from core's `asset_hashing` (`.md` is not in core's PAGE_EXTENSIONS). Asked the user: accepted (Decision logged); rejected rendering an absolute URL (breaks `nera dev`) and a core change (separate release).
+- `selectPages` runs twice per build (getMetaData, getAssets); cheap (16 pages, pure filter/sort). Considered passing the selection through `meta.markdown_href` into `getAssets` instead, rejected: `getAssets` must stay correct when called on its own (tests do), and one rule in two places is what the step forbids.
+- The `warn` option is the only change to existing behaviour; existing warning tests still pass, and the new test proves `getMetaData` is silent.
+- Least sure: the identity match `selected.has(page.meta)` relies on `selectPages` returning the original meta objects (it does: `meta || {}` only substitutes for a missing meta, which never passes the dirname filter).
+
+### Pressure-test questions for the reviewer
+1. Does any linked `.md` not exist? (Loop over the 16 pages with the query stripped returned no MISSING; the unit test pins `linked == emitted`.)
+2. Is `pagesData` mutated anywhere? (Spread into new page and meta objects; test asserts the original meta lacks `markdown_href`.)
+3. Is the `?v=` suffix acceptable to an agent following the link? (User decision: yes.)
+4. Does the second `rel="alternate"` (no hreflang) disturb canonical-links or `--check`? (`--check` output identical to base.)
+
+## Step 4 — reviewed (2026-10-11)
+
+Verdict: approve
+
+### 🔴 Blocking
+- none
+
+### Fixed in review
+- `../nera-cli/ROADMAP-ai.md:809` — slice 2b "Verified" paragraph: the 3 `--check` warnings named as 3 rules (`a11y-skip-link`, `a11y-nav-name`, `a11y-form-label`) instead of "`a11y-form-label` on the search pages", test count 21/21 → 23/23, plus the D10 head-link check (16 pages, each to an existing `.md`). Was the implementer's carry-forward; wording only, file already in this step — `npm run build -- --check` → 0 error(s), 3 warning(s) (those three rules)
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Checked
+goal (getMetaData from selectPages + markdownPath, conditional pug link) · Verify: npm test 23/23, lint clean, validate ✓, build --check 0 errors / 3 pre-existing warnings, cli.html → `<link rel="alternate" type="text/markdown" href="/docs/cli.md?v=b199fa56ea" />`, de/docs/cli.html:0, index.html:0, 16 HTML files carry the link, none under de/ or es/, every href (query stripped) exists in public/ · Non-negotiables (spec written back as D10, slice-local numbering continuing D9; no push; public/ untouched; English only per D3) · Framework (sync hook, fresh array, new meta objects) · Tests & hygiene · UI/template rules · self-critique claims · walkthrough n/a (none)
+
+### Answers to the pressure-test questions
+1. No. A loop over all 16 linked pages, with the `?v=` stripped, checked each href with `[ -f public$h ]` and printed no MISSING. The unit test asserts `linked.sort()` deepEqual the emitted `.md` `to` paths.
+2. No mutation. `getMetaData` spreads `{ ...page, meta: { ...page.meta, markdown_href } }` for the selected pages and passes the rest through by reference (the test asserts reference equality for indexes 2–5). The second test asserts the original meta has no `markdown_href`. The identity match works because `selectPages` returns `meta` itself. The `|| {}` fallback only applies to a missing meta, which the dirname filter drops.
+3. Acceptable. It is a user decision, recorded as D10 in the spec, and `/docs/cli.md?v=…` serves the same static file.
+4. No. `docs/cli.html` carries the hreflang alternates (`hreflang="de"` …) next to the new link, which has `type` and no `hreflang`. `--check` reports the same 3 rules as at base 44146e0.
+
+## Step 4 — reviewed (2026-10-11)
+
+#### UI walkthrough — layout head (`/docs/cli.html` and comparison pages)
+
+Tier 1: Playwright MCP (navigate, evaluate, console_messages), run at /approve-step after the gate hook asked for it. Boot: `npm run build && npx nera serve --port 3124`.
+
+| control | label promises | nonce | observed after | resulting URL | verdict |
+|---|---|---|---|---|---|
+| `<link rel="alternate" type="text/markdown">` in `/docs/cli.html` head | the page's Markdown twin | — | live DOM: exactly 1 such link, `href="/docs/cli.md?v=b199fa56ea"`; `fetch` → 200, `content-type: text/markdown`, first line `# CLI reference`; `document.visibilityState` = visible, `<html lang="en">` | http://localhost:3124/docs/cli.md?v=b199fa56ea | ✓ |
+| same link on `/de/docs/cli.html` | none (not English) | — | fetched + parsed head: 0 links, status 200 | /de/docs/cli.html | ✓ |
+| same link on `/index.html` | none (not docs/tutorials) | — | 0 links, status 200 | /index.html | ✓ |
+| same link on `/tutorials/index.html` | none (listing page in UNORDERED_PAGES) | — | 0 links, status 200; no `public/tutorials/index.md` is emitted either | /tutorials/index.html | ✓ |
+
+No class-1 or class-2 exit: the change is one non-interactive `<link>` in `<head>`, so the nonce does not apply.
+
+Console (cli.html, all levels, verbatim): `[DEBUG] [vite] connecting... @ http://localhost:3124/@vite/client:850` · `[DEBUG] [vite] connected. @ http://localhost:3124/@vite/client:954` — 0 errors, 0 warnings.
+
+Divergence: `/tutorials/index.html` carries no link, though the step's test mentions a "tutorials index". Checked against `plugins/llms-txt/index.js:33`: it is in UNORDERED_PAGES, so `selectPages` drops it, no `.md` is emitted for it, and the missing link matches. 16 HTML files carry the link (7 docs, 9 tutorials). Browser closed and server on :3124 stopped after the run.
+
+## Step 4 — approved (2026-10-11)
+
+snagio: ticked

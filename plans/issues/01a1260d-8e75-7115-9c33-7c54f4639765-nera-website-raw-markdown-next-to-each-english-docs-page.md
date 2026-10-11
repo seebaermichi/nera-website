@@ -66,3 +66,12 @@ slice-2 "links keep `.html`" note for those items. (User decision.)
 - **Review hardest:** the earlier "Links keep the `.html` paths the site serves" sentence must be amended, not left contradicting D4
 - **Risks:** none beyond the spec text
 - **Walkthrough:** none
+
+### Step 4 — Each English docs/tutorials page advertises its .md via a head link — ✅ done
+
+- **Goal:** (triage item 1, user decision 2026-10-11: fix here) the plugin gains a `getMetaData` hook that sets `meta.markdown_href = '/' + markdownPath(meta.href)` on exactly the pages `selectPages` returns (one mapping with the emitted assets and the `llms.txt` links), and `theme/views/layouts/layout.pug` renders `link(rel="alternate", type="text/markdown", href=meta.markdown_href)` in `head` only when it is set; `/de/`, `/es/` and non-docs pages get no link. Spec note in `../nera-cli/ROADMAP-ai.md` slice 2 progress.
+- **Files:** `plugins/llms-txt/index.js` — `getMetaData`, header comment; `plugins/llms-txt/index.test.js` — `markdown_href` set on selected pages only, equals `/` + the asset `to` path, other pages unchanged, returns an array; `theme/views/layouts/layout.pug` — conditional `link`; `../nera-cli/ROADMAP-ai.md` — one line under slice 2b
+- **Verify:** `npm test && npm run lint && npm run validate && npm run build -- --check && grep -o '<link rel="alternate" type="text/markdown"[^>]*>' public/docs/cli.html && grep -c 'text/markdown' public/de/docs/cli.html public/index.html` — `cli.html` carries `href="/docs/cli.md"`, the German page and the home page carry none; `grep -l 'text/markdown' -r public --include=*.html | wc -l` is 16
+- **Review hardest:** the link must never point at a `.md` that was not emitted — derive it from `selectPages` + `markdownPath`, not a second rule in Pug; `getMetaData` must return new page objects, not mutate `pagesData`
+- **Risks:** the canonical-links plugin also writes `rel="alternate"` (hreflang) — the new link carries `type` and no `hreflang`, so it must not confuse `nera build --check`; check the build output
+- **Walkthrough:** none
