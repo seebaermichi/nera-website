@@ -27,7 +27,7 @@ npm-Skript, z. B. `npm run dev`):
 | `nera build` | `pages/` → `public/` bauen; mit `--check` danach auch das Ergebnis prüfen |
 | `nera dev` | Bauen + Live-Reload-Vorschau auf `:3000` |
 | `nera serve` | `public/` ausliefern, ohne neu zu bauen |
-| `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`) |
+| `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`), dann `AGENTS.md` und `CLAUDE.md` anlegen oder auffrischen |
 | `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
 | `nera check` | Das gebaute `public/` auf Probleme bei Barrierefreiheit, Datenschutz und Impressum prüfen |
 
@@ -132,6 +132,32 @@ Seiten unter `legal.imprint.<lang>` und `legal.privacy.<lang>`.
 
 Die vollständigen Regelbeschreibungen stehen in der
 [README von `@nera-static/validate`](https://github.com/seebaermichi/nera-validate#checking-the-built-output).
+
+### Anweisungen für KI-Assistenten
+
+Jede neu angelegte Website enthält eine `AGENTS.md` – die Datei, die Codex,
+Cursor, Copilot und andere Assistenten zuerst lesen – und eine `CLAUDE.md` mit
+der einzigen Zeile `@AGENTS.md`, damit Claude Code denselben Text lädt.
+`AGENTS.md` endet mit einem Abschnitt **Notes for this site** für deine eigenen
+Anweisungen, unterhalb der Markierungszeile `<!-- nera:site-notes … -->`. Lass
+diese Zeile stehen: Der Teil darüber gehört Nera, der Teil darunter dir.
+
+Ab `@nera-static/nera` 1.7.0 hält `nera update` beide Dateien aktuell, ohne
+zusätzliche Option. Nach dem Aktualisieren der Pakete (und nach
+`nera update --migrate`)
+
+- legt es `AGENTS.md` und `CLAUDE.md` an, wenn sie fehlen, sodass auch eine
+  ältere Website sie bekommt;
+- ersetzt es nur den Teil von `AGENTS.md` oberhalb der Markierungszeile durch
+  den Text aus dem installierten `@nera-static/nera`; die Markierungszeile und
+  deine Notizen darunter bleiben genau, wie sie sind;
+- lässt es eine `AGENTS.md` ohne Markierungszeile unverändert und gibt einen
+  Hinweis aus – kopiere die Markierungszeile aus der Vorlage direkt über deine
+  eigenen Notizen, um mitzumachen;
+- fasst es eine vorhandene `CLAUDE.md` nie an.
+
+Eine Datei wird nur geschrieben, wenn sich ihr Inhalt ändert; ein erneutes
+`nera update` ändert also nichts.
 
 ### Eine ältere (geklonte) Website migrieren
 

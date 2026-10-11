@@ -26,7 +26,7 @@ A scaffolded site depends on `@nera-static/nera`, so run these from inside it
 | `nera build` | Build `pages/` → `public/`; with `--check`, check the result too |
 | `nera dev` | Build + live-reload preview on `:3000` |
 | `nera serve` | Serve `public/` without rebuilding |
-| `nera update` | Update the site's Nera packages (`npm update`) |
+| `nera update` | Update the site's Nera packages (`npm update`), then create or refresh `AGENTS.md` and `CLAUDE.md` |
 | `nera validate` | Check layouts, includes and YAML before publishing |
 | `nera check` | Check the built `public/` for accessibility, privacy and legal-notice problems |
 
@@ -129,6 +129,31 @@ English pages. For any other language, name the pages under
 
 The full rule descriptions are in the
 [`@nera-static/validate` README](https://github.com/seebaermichi/nera-validate#checking-the-built-output).
+
+### Instructions for AI assistants
+
+Every scaffolded site carries an `AGENTS.md` — the file Codex, Cursor, Copilot
+and other assistants read first — and a `CLAUDE.md` holding the single line
+`@AGENTS.md`, so Claude Code loads the same text. `AGENTS.md` ends with a
+**Notes for this site** section for your own instructions, below the marker
+line `<!-- nera:site-notes … -->`. Keep that line in place: the part above it
+is Nera's, the part below it is yours.
+
+From `@nera-static/nera` 1.7.0 on, `nera update` keeps both files current, with
+no extra flag. After updating the packages (and after `nera update --migrate`)
+it:
+
+- creates `AGENTS.md` and `CLAUDE.md` when they are missing, so an older site
+  gets them too;
+- replaces only the part of `AGENTS.md` above the marker line with the text from
+  the installed `@nera-static/nera`; the marker line and your notes below it
+  stay exactly as they are;
+- leaves an `AGENTS.md` without the marker line alone and prints a hint — copy
+  the marker line from the template directly above your own notes to opt in;
+- never touches an existing `CLAUDE.md`.
+
+A file is written only when its content changes, so running `nera update` again
+changes nothing.
 
 ### Migrating an older (cloned) site
 

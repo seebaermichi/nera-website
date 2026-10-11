@@ -27,7 +27,7 @@ dentro de él (el andamiaje también los enlaza a un script npm, p. ej.
 | `nera build` | Compila `pages/` → `public/`; con `--check`, revisa también el resultado |
 | `nera dev` | Compila + vista previa con recarga en vivo en `:3000` |
 | `nera serve` | Sirve `public/` sin recompilar |
-| `nera update` | Actualiza los paquetes Nera del sitio (`npm update`) |
+| `nera update` | Actualiza los paquetes Nera del sitio (`npm update`) y luego crea o renueva `AGENTS.md` y `CLAUDE.md` |
 | `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
 | `nera check` | Revisa el `public/` compilado en busca de problemas de accesibilidad, privacidad y aviso legal |
 
@@ -132,6 +132,32 @@ en páginas en alemán e inglés. Para un sitio en español, indica las páginas
 
 Las descripciones completas de las reglas están en el
 [README de `@nera-static/validate`](https://github.com/seebaermichi/nera-validate#checking-the-built-output).
+
+### Instrucciones para asistentes de IA
+
+Cada sitio creado con el andamiaje incluye un `AGENTS.md` —el archivo que
+Codex, Cursor, Copilot y otros asistentes leen primero— y un `CLAUDE.md` con la
+única línea `@AGENTS.md`, para que Claude Code cargue el mismo texto.
+`AGENTS.md` termina con una sección **Notes for this site** para tus propias
+instrucciones, debajo de la línea marcadora `<!-- nera:site-notes … -->`. No
+borres esa línea: la parte de arriba es de Nera, la de abajo es tuya.
+
+Desde `@nera-static/nera` 1.7.0, `nera update` mantiene ambos archivos al día,
+sin ninguna opción extra. Después de actualizar los paquetes (y después de
+`nera update --migrate`):
+
+- crea `AGENTS.md` y `CLAUDE.md` si faltan, así que un sitio antiguo también
+  los recibe;
+- sustituye solo la parte de `AGENTS.md` por encima de la línea marcadora por el
+  texto del `@nera-static/nera` instalado; la línea marcadora y tus notas debajo
+  quedan exactamente como están;
+- deja intacto un `AGENTS.md` sin línea marcadora y muestra una pista: copia la
+  línea marcadora de la plantilla justo encima de tus propias notas para
+  activarlo;
+- nunca toca un `CLAUDE.md` existente.
+
+Un archivo solo se escribe cuando su contenido cambia, así que volver a ejecutar
+`nera update` no cambia nada.
 
 ### Migrar un sitio antiguo (clonado)
 
