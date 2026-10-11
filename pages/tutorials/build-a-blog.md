@@ -47,5 +47,5 @@ site does exactly that for its tutorials — see `src/plugins/tutorials-list`.)
 npm run dev
 ```
 
-That's a working blog. From here, add [Tags](/tutorials/add-search.html) or
+That's a working blog. From here, add [Tags](/tutorials/tag-your-content.html) or
 pagination to grow it.

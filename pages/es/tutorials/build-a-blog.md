@@ -49,4 +49,4 @@ npm run dev
 ```
 
 Eso es un blog funcional. A partir de aquí, añade
-[etiquetas](/es/tutorials/add-search.html) o paginación para hacerlo crecer.
+[etiquetas](/es/tutorials/tag-your-content.html) o paginación para hacerlo crecer.

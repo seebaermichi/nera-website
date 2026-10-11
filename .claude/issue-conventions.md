@@ -61,9 +61,10 @@ releases); this file only adds what a reviewer checks per diff.
 
 ## Tests & hygiene
 
-- `npm run lint && npm run validate && npm run build -- --check` must pass — the
-  same as CI (`test.yml`). There is no unit-test suite; a local plugin that needs
-  one gets a test file beside it, stated in the plan.
+- `npm run lint && npm test && npm run validate && npm run build -- --check` must
+  pass — the same as CI (`test.yml`). Local plugins carry `node --test` files
+  beside them (`plugins/*/*.test.js`), run by `npm test` in CI; a new local plugin
+  gets one too, stated in the plan.
 - Instruments: `nera validate` proves layouts/includes/YAML; `nera build --check`
   proves the built output (a11y/privacy/legal); inspecting the files in `public/`
   proves what a plugin emitted. None of them prove an AI reads the result well —

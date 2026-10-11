@@ -316,3 +316,103 @@ Goal: `../nera-cli/ROADMAP-ai.md` (commit d392984 on bbbec1b, only file changed,
 ## Step 4 — approved (2026-10-11)
 
 snagio: ticked
+commit: c8b60c6
+
+## Browser test (2026-10-11)
+
+- **Result:** PASSED — both files are served with the right shape, links, order and English-only content
+- **Guide:** plans/issues/browser-tests/01a1260d-8e5f-70f2-bdba-00a921ecb67d-nera-website-generate-llms-txt-and-llms-full-txt-from-the.md
+- **Base URL / roles:** http://localhost:3124/ · visitor
+- **AC source:** plan + snapshot 2026-10-11
+- **Tested by:** Claude (Playwright MCP)
+
+| TC | AC (short) | Status | Evidence |
+|---|---|---|---|
+| TC-1 | llms.txt: H1, summary, Docs/Tutorials/Plugins/CLI, described links | PASS | headings in order, 35/35 items `[Title](url): desc`; em dash garbled locally only (serve sends no charset, file is UTF-8) |
+| TC-2 | llms.txt links work (derived) | PASS | all absolute `https://nera.js.org/…`, 18/18 return 200 locally |
+| TC-3 | llms-full.txt: all EN docs+tutorials, no frontmatter, in order | PASS | 16 H1s, docs then tutorials, order = index; frontmatter-like lines only inside code examples |
+| TC-4 | English only | PASS | 0 `/de/` `/es/` links or titles; no language copies in public/ |
+
+AC 3 (via `getAssets`), AC 5 (lint/validate/check) and AC 6 (ROADMAP write-back) are not browser-observable; covered by steps 1–4.
+
+### Carry forward
+- note · TC-1 — encoding: `nera serve` sends `text/plain` without `charset=utf-8`, so browsers show `—` as `â€”`. Not a failed criterion: the file is valid UTF-8. Check the `Content-Type` on nera.js.org after deploy (GitHub Pages normally sends `charset=utf-8`); if it lacks one, consider a fix in `@nera-static/nera` serve (guide TC-1)
+
+## Triage (2026-10-11)
+
+| # | item | from | disposition | why |
+|---|---|---|---|---|
+| 1 | bug · `pages/tutorials/build-a-blog.md:50` (+ `de:52`, `es:52`) — the "Tags" link points at `add-search.html`; it should point at `tag-your-content.html` | Step 1 — reviewed | fix | 3 one-link content fixes; the wrong target now also reaches `llms-full.txt` |
+| 2 | debt · `.claude/issue-conventions.md:64-66` — says "There is no unit-test suite"; the hygiene check lacks `npm test` | Step 3 — reviewed | fix | this issue added `npm test` (node --test) to CI; one-paragraph doc edit |
+
+Already done / elsewhere: none. Not a row: TC-1 `text/plain` without charset under `nera serve` (no criterion failed; file is valid UTF-8) — check the `Content-Type` on nera.js.org after deploy, and fix `nera serve` in `nera-cli` only if the live site lacks a charset.
+Planning signal: none
+
+## Step 5 — started (2026-10-11)
+
+base_sha: c8b60c6f4ed30c8b710e9ff083b3a8fb11090261
+mode: fresh
+
+## Step 5 — implemented (2026-10-11)
+
+base_sha: c8b60c6
+
+### Changed
+- `pages/tutorials/build-a-blog.md:50` — Tags link `/tutorials/add-search.html` → `/tutorials/tag-your-content.html`
+- `pages/de/tutorials/build-a-blog.md:52` — same, keeps `/de/` prefix
+- `pages/es/tutorials/build-a-blog.md:52` — same, keeps `/es/` prefix
+- `.claude/issue-conventions.md` (Tests & hygiene) — hygiene check now `npm run lint && npm test && npm run validate && npm run build -- --check`; "no unit-test suite" replaced by local plugins' `node --test` files (`plugins/*/*.test.js`) run by `npm test` in CI
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Verification
+```
+grep -rn 'add-search' pages/*/tutorials/build-a-blog.md pages/tutorials/build-a-blog.md → (no output, exit 1)
+npm run build && grep -c 'tag-your-content.html' public/llms-full.txt → 2
+  public/llms-full.txt:497: That's a working blog. From here, add [Tags](https://nera.js.org/tutorials/tag-your-content.html) or
+npm run lint → eslint . (exit 0)
+npm test → # tests 16 / # pass 16 / # fail 0
+npm run validate → ✓ No problems found.
+npm run build -- --check → 0 error(s), 3 warning(s) (pre-existing a11y-skip-link, a11y-nav-name, a11y-form-label), exit 0
+```
+
+### Self-critique
+- Target files exist: `pages/tutorials/tag-your-content.md`, `pages/de/tutorials/tag-your-content.md`, `pages/es/tutorials/tag-your-content.md` (checked with `ls`).
+- `package.json` `test` is `node --test plugins/*/*.test.js`, and `test.yml` runs `npm test` in step "Run local plugin tests" — the conventions text matches both.
+- Checked `test.yml`'s own comment ("Beyond the local plugins … there is no unit-test suite") — already accurate, left alone.
+- Only the link targets changed; the link texts ("Tags", "etiquetas") were already right.
+
+### Pressure-test questions for the reviewer
+1. Does each of the three links keep its language prefix and resolve to an existing page?
+2. Does the new conventions sentence match `package.json` and `test.yml` word for word on the command?
+
+## Step 5 — reviewed (2026-10-11)
+
+Verdict: approve
+
+### 🔴 Blocking
+- none
+
+### Fixed in review
+- none
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Checked
+goal met (3 links retargeted, conventions updated) · verify: `grep add-search` on the three build-a-blog files → no output (exit 1); `npm run build && grep -c tag-your-content.html public/llms-full.txt` → 2; `npm run lint && npm test && npm run validate && npm run build -- --check` → eslint clean, 16/16 tests pass, "No problems found", 0 error(s) 3 warning(s) (pre-existing a11y) · conventions: Tests & hygiene · self-critique claims verified (target files exist, `test` script and test.yml match, test.yml comment already accurate) · diff scope limited to the step's 4 files plus loop bookkeeping · walkthrough n/a (none)
+
+### Answers to the pressure-test questions
+1. Yes. Diff shows `/tutorials/tag-your-content.html`, `/de/tutorials/tag-your-content.html`, `/es/tutorials/tag-your-content.html`; `ls` confirms `pages/tutorials/tag-your-content.md`, `pages/de/tutorials/tag-your-content.md`, `pages/es/tutorials/tag-your-content.md` exist. No other page in `pages/` still links `add-search.html`.
+2. Yes. `package.json` `"test": "node --test plugins/*/*.test.js"` matches "`node --test` files … (`plugins/*/*.test.js`)"; `test.yml` step "Run local plugin tests" runs `npm test`, and its order lint → test → validate → build matches the new hygiene command.
+
+## Step 5 — approved (2026-10-11)
+
+snagio: ticked

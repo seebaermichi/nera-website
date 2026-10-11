@@ -49,4 +49,4 @@ npm run dev
 ```
 
 Das ist ein funktionierender Blog. Von hier aus kannst du
-[Tags](/de/tutorials/add-search.html) oder Pagination ergänzen, um ihn auszubauen.
+[Tags](/de/tutorials/tag-your-content.html) oder Pagination ergänzen, um ihn auszubauen.

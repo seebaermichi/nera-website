@@ -80,3 +80,12 @@ reference + the `@nera-static/nera` npm page), and an `Optional` section linking
 - **Review hardest:** that the note states only what is true after the build (not yet deployed — no push)
 - **Risks:** none outside the doc
 - **Walkthrough:** none
+
+### Step 5 — Fix the Tags link in build-a-blog and the stale test note in the conventions — ✅ done
+
+- **Goal:** the "Tags" link at the end of the build-a-blog tutorial points at the tag tutorial in all three languages (so `llms-full.txt` carries the right target too), and `.claude/issue-conventions.md` describes the local plugin tests that CI now runs.
+- **Files:** `pages/tutorials/build-a-blog.md:50`, `pages/de/tutorials/build-a-blog.md:52`, `pages/es/tutorials/build-a-blog.md:52` — `add-search.html` → `tag-your-content.html` (keep the language prefix); `.claude/issue-conventions.md` (Tests & hygiene) — hygiene check gains `npm test`, "There is no unit-test suite" becomes "local plugins carry `node --test` files beside them (`plugins/*/*.test.js`), run by `npm test` in CI"
+- **Verify:** `grep -rn 'add-search' pages/*/tutorials/build-a-blog.md pages/tutorials/build-a-blog.md` prints nothing; `npm run build && grep -c 'tag-your-content.html' public/llms-full.txt` ≥ 1; `npm run lint && npm test && npm run validate && npm run build -- --check` passes
+- **Review hardest:** that each link keeps its language prefix (`/de/…`, `/es/…`) and the target files exist; that the conventions text matches `package.json`'s `test` script and `test.yml`
+- **Risks:** none outside content and project docs
+- **Walkthrough:** none
