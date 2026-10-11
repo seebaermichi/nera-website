@@ -170,3 +170,79 @@ goal (Docs/Tutorials/CLI page items link `.md` via `markdownPath`, the same help
 ## Step 2 — approved (2026-10-11)
 
 snagio: ticked
+commit: 8ebd359
+
+## Step 3 — started (2026-10-11)
+
+base_sha: 8ebd3598df242a7970580862502504e109062582
+nera_cli_base_sha: 29239f5d8e520b1ec3fc73e943c82c94ea0ffa79
+mode: fresh
+
+## Step 3 — implemented (2026-10-11)
+
+base_sha: 8ebd359 (nera-website, unchanged by this step); nera-cli base 29239f5 → commit 049a8f5
+
+### Changed
+- `../nera-cli/ROADMAP-ai.md` (status header) — names 2b as done (`/docs/cli.md`, linked from `llms.txt`); "Still open in slice 2" now only the "Using Nera with AI" page
+- `../nera-cli/ROADMAP-ai.md` (L2 bullet) — `/<page>.md` now "docs and tutorials", example `/docs/cli.md` beside `/docs/cli.html`, and that `llms.txt` links these files
+- `../nera-cli/ROADMAP-ai.md` (slice order, item 2) — "raw `.md` pages (2b) done 2026-10-11"
+- `../nera-cli/ROADMAP-ai.md` (Slice 2 progress, earlier D3) — "Links keep the `.html` paths" amended: since 2b `llms.txt` links `.md`; `Source:` lines and in-body links still `.html`
+- `../nera-cli/ROADMAP-ai.md` (Slice 2 progress) — new "Done 2026-10-11 … (2b)" block: mechanism, D6–D9 (= this plan's D1–D4, renumbered to avoid clashing with the section's D1–D5), verification from steps 1–2, deploy note; "Still open" keeps only the "Using Nera with AI" page
+- Committed in nera-cli as `049a8f5` (`docs(roadmap): ROADMAP-ai.md records the raw Markdown pages (2b)`), not pushed
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Verification
+```
+git -C ../nera-cli diff --stat (before commit) → ROADMAP-ai.md | 53 ++++++++++++++++++++++++++++++++++++++++++++---------  1 file changed, 44 insertions(+), 9 deletions(-)
+grep -n "2b" ../nera-cli/ROADMAP-ai.md →
+13:> 2b, done 2026-10-11), which `llms.txt` links (see "Slice 2 — progress").
+163:  Markdown, e.g. `/docs/cli.md` beside `/docs/cli.html` (slice 2b). `llms.txt`
+487:   pages (2b) done 2026-10-11**, see "Slice 2 — progress".
+745:  context. Links keep the `.html` paths the site serves. (Since 2b,
+780:next to each English docs and tutorials page (2b).** The same plugin writes
+git -C ../nera-cli status --porcelain (after commit) → (empty)
+```
+
+### Self-critique
+- Renumbered the plan's D1–D4 to D6–D9 in the spec: the "Slice 2 — progress" section already has its own D1–D5, and a second D1–D4 in the same section would be ambiguous. The plan's labels stay as they are.
+- Wrote "Goes live on nera.js.org with the next `nera-website` push" rather than "live": `nera-website` is 2 commits ahead of origin, so claiming deployment would be false. Once pushed and checked, a follow-up note could say "deployed".
+- Verification numbers (21/21 tests, 16 files, 17 `.md` links) are copied from the steps 1–2 reports, not re-run in this step (this step changed no site code).
+- Did not push nera-cli (not asked).
+
+### Pressure-test questions for the reviewer
+1. Does any sentence still contradict D4/D9 — i.e. say `llms.txt` links `.html`? (Line ~745 is the one amended; check the D4 "sections" bullet too.)
+2. Is "17 `.md` links" vs "16 pages" clear enough? (The CLI reference is linked under both Docs and `## CLI`.)
+3. Is the "Goes live with the next push" phrasing the right call versus leaving deploy state out?
+
+## Step 3 — reviewed (2026-10-11)
+
+Verdict: approve
+
+### 🔴 Blocking
+- none
+
+### Fixed in review
+- none
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Checked
+Goal (status header, L2 bullet, slice-order item 2, D3 amendment, new 2b "Done" block, "Still open" trimmed to the "Using Nera with AI" page) all present in nera-cli `049a8f5` (diff 29239f5..049a8f5: ROADMAP-ai.md only, +44/−9; `git -C ../nera-cli status --porcelain` empty) · Verify: `grep -n "2b"` → lines 13, 163, 487, 745, 780, each reads as done · Non-negotiables: decision written back to the spec as a nera-cli commit, named in the log; nothing pushed; no public/ edit · Self-critique claims checked against `plugins/llms-txt/index.js`: cache emptied first (:68 `rmSync`), same `markdownPath` helper for asset path and llms.txt link (:55, :102), `.md` text is the same `renderPage` output joined into llms-full.txt (:55–56) so D8's "exactly the page's section of llms-full.txt" is accurate · D6–D9 renumbering justified (section already has D1–D5) · Scope: nera-website diff is only the plan/log/active-marker bookkeeping · Walkthrough n/a (none).
+
+### Answers to the pressure-test questions
+1. No contradiction left. The only "Links keep the `.html` paths" sentence (:745) is amended in place to say `llms.txt` links `.md` since 2b while `Source:` lines and in-body links stay `.html`. The D4 "sections" bullet (:748–754) names no link form ("the CLI reference"), so it does not conflict with D9. `grep -n '\.html'` finds no other claim that llms.txt links `.html`.
+2. Clear enough: D9 explicitly names "the CLI reference under `## CLI`" as a page item, which accounts for 17 links over 16 pages to a careful reader. An explicit "(the CLI reference appears twice)" would be marginally clearer but is not needed.
+3. Right call. nera-website is ahead of origin and the conventions forbid pushing, so "live" would be false; "Goes live … with the next push" is accurate and tells the next session what to update once deployed.
+
+## Step 3 — approved (2026-10-11)
+
+snagio: ticked

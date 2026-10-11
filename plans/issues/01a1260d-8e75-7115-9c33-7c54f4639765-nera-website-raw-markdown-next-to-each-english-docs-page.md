@@ -58,7 +58,7 @@ slice-2 "links keep `.html`" note for those items. (User decision.)
 - **Risks:** an assistant that already cached `llms.txt` links to `.html` — harmless, those pages still exist
 - **Walkthrough:** none
 
-### Step 3 — Write the decisions back into the spec — ⬜ todo
+### Step 3 — Write the decisions back into the spec — ✅ done
 
 - **Goal:** `../nera-cli/ROADMAP-ai.md` "Slice 2 — progress" records 2b done (D1–D4 above, what was verified), the L2 bullet names `/docs/cli.md` as the example and that `llms.txt` links the `.md` files, and the "Still open in slice 2" line keeps only the "Using Nera with AI" page; the status header at the top agrees. Committed in `nera-cli` and named in the work log.
 - **Files:** `../nera-cli/ROADMAP-ai.md` — slice 2 progress, L2 bullet, status header
