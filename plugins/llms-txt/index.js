@@ -1,10 +1,12 @@
 // Local plugin: publishes the English docs and tutorials as plain Markdown for
-// AI assistants (llmstxt.org). `llms-full.txt` is every English docs page, then
-// every tutorial, each in `pagination_order`, with the frontmatter cut off and
-// root-relative links made absolute so the text stands on its own.
+// AI assistants (llmstxt.org). `llms.txt` is the index: an H1, a one-paragraph
+// summary, then linked sections (Docs, Tutorials, Plugins, CLI, Optional), each
+// item with a one-line description. `llms-full.txt` is every English docs page,
+// then every tutorial, each in `pagination_order`, with the frontmatter cut off
+// and root-relative links made absolute so the text stands on its own.
 //
 // The bodies are read from the Markdown sources, not from `pagesData` — core
-// hands plugins rendered HTML. The file is written to `.nera-cache/llms-txt/`
+// hands plugins rendered HTML. Both files are written to `.nera-cache/llms-txt/`
 // and handed to core through `getAssets` (core >= 4.13.0): `public/` is deleted
 // after the plugins run, so anything written there directly would be lost.
 //
@@ -16,6 +18,8 @@ import path from 'path'
 import { getConfig } from '@nera-static/plugin-utils'
 
 const DEFAULT_ORIGIN = 'https://nera.js.org'
+const DEFAULT_TITLE = 'Nera'
+const DEFAULT_SUMMARY = 'Nera is a lightweight, plugin-based static site generator for Node.js.'
 const LANG = 'en'
 // Output order: every docs page before every tutorial.
 const SECTIONS = ['/docs', '/tutorials']
@@ -23,6 +27,15 @@ const SECTIONS = ['/docs', '/tutorials']
 const UNORDERED_PAGES = ['/tutorials/index.html']
 const CACHE_DIR = '.nera-cache/llms-txt'
 const FULL_FILE = 'llms-full.txt'
+const INDEX_FILE = 'llms.txt'
+// The English plugin catalog, whose `plugins:` frontmatter feeds `## Plugins`.
+const PLUGINS_PAGE = '/plugins/index.html'
+const CLI_PAGE = '/docs/cli.html'
+const CLI_PACKAGE = {
+    title: '@nera-static/nera on npm',
+    url: 'https://www.npmjs.com/package/@nera-static/nera',
+    description: 'The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
+}
 
 export function getAssets({ app, pagesData }) {
     if (!Array.isArray(pagesData)) return []
@@ -32,16 +45,85 @@ export function getAssets({ app, pagesData }) {
     const origin = String(config.origin || DEFAULT_ORIGIN).replace(/\/+$/, '')
     const pagesDir = path.resolve(cwd, 'pages')
 
-    const full = selectPages(pagesData, app?.lang)
+    const pages = selectPages(pagesData, app?.lang)
+    const full = pages
         .map((meta) => renderPage(meta, pagesDir, origin))
         .join('\n\n')
+    const index = renderIndex({
+        title: config.title || DEFAULT_TITLE,
+        summary: config.summary || DEFAULT_SUMMARY,
+        origin,
+        pages,
+        pagesData,
+        defaultLang: app?.lang,
+    })
 
     const cacheDir = path.resolve(cwd, CACHE_DIR)
     fs.mkdirSync(cacheDir, { recursive: true })
-    const fullPath = path.join(cacheDir, FULL_FILE)
-    fs.writeFileSync(fullPath, `${full}\n`)
 
-    return [{ from: fullPath, to: FULL_FILE }]
+    return [[INDEX_FILE, index], [FULL_FILE, full]].map(([file, text]) => {
+        const from = path.join(cacheDir, file)
+        fs.writeFileSync(from, `${text}\n`)
+        return { from, to: file }
+    })
+}
+
+/**
+ * The llms.txt index. Docs and Tutorials are the pages of llms-full.txt, in the
+ * same order; Plugins is the English catalog's `plugins:` list; CLI points at
+ * the CLI reference and the npm package; Optional links llms-full.txt itself.
+ * An empty section is left out.
+ */
+export function renderIndex({ title, summary, origin, pages, pagesData, defaultLang = LANG }) {
+    const pageItem = (meta) => ({ title: meta.title || meta.href, url: `${origin}${meta.href}`, description: meta.description })
+    const english = pagesData
+        .map(({ meta }) => meta || {})
+        .filter((meta) => (meta.lang || defaultLang) === LANG)
+    const findPage = (href) => english.find((meta) => meta.href === href)
+
+    const pluginsPage = findPage(PLUGINS_PAGE)
+    if (!Array.isArray(pluginsPage?.plugins)) {
+        console.warn(`⚠️ llms-txt: no plugins list on ${PLUGINS_PAGE}, the Plugins section is left out of ${INDEX_FILE}`)
+    }
+    const plugins = (pluginsPage?.plugins || []).map((plugin) => ({
+        title: plugin.package || plugin.name,
+        url: plugin.url,
+        description: plugin.description,
+    }))
+
+    const cliPage = findPage(CLI_PAGE)
+    const sections = [
+        ['Docs', pages.filter((meta) => meta.dirname === '/docs').map(pageItem)],
+        ['Tutorials', pages.filter((meta) => meta.dirname === '/tutorials').map(pageItem)],
+        ['Plugins', plugins],
+        ['CLI', [...(cliPage ? [pageItem(cliPage)] : []), CLI_PACKAGE]],
+        ['Optional', [{
+            title: FULL_FILE,
+            url: `${origin}/${FULL_FILE}`,
+            description: 'Every English docs page and tutorial above as one Markdown file, in reading order.',
+        }]],
+    ]
+
+    const body = sections
+        .filter(([, items]) => items.length > 0)
+        .map(([name, items]) => `## ${name}\n\n${items.map(renderItem).join('\n')}`)
+        .join('\n\n')
+
+    return `# ${title}\n\n> ${oneLine(summary)}\n\n${body}`
+}
+
+// `- [Title](url): description`, without the colon part when there is none.
+function renderItem({ title, url, description }) {
+    if (!description) {
+        console.warn(`⚠️ llms-txt: ${url} has no description in ${INDEX_FILE}`)
+        return `- [${title}](${url})`
+    }
+    return `- [${title}](${url}): ${oneLine(description)}`
+}
+
+// A folded or multi-line YAML value would break the blockquote or the list item.
+function oneLine(text) {
+    return String(text).replace(/\s+/g, ' ').trim()
 }
 
 /**

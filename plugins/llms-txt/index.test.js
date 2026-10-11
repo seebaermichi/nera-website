@@ -32,8 +32,20 @@ function meta(href, extra = {}) {
 
 function build(pagesData) {
     const assets = getAssets({ app: { lang: 'en' }, pagesData })
-    return { assets, text: fs.readFileSync(assets[0].from, 'utf-8') }
+    const read = (file) => fs.readFileSync(assets.find(({ to }) => to === file).from, 'utf-8')
+    return { assets, text: read('llms-full.txt'), index: read('llms.txt') }
 }
+
+// The parts of llms.txt between `## <name>` and the next heading.
+function section(index, name) {
+    const match = index.match(new RegExp(`^## ${name}\\n\\n([\\s\\S]*?)(?=\\n\\n## |\\n$)`, 'm'))
+    return match ? match[1].split('\n') : null
+}
+
+const PLUGINS = [
+    { name: 'Canonical links', package: '@nera-static/plugin-canonical-links', description: 'Adds <link> tags.', url: 'https://github.test/canonical' },
+    { name: 'Tags', package: '@nera-static/plugin-tags', description: 'Tag pages.', url: 'https://github.test/tags' },
+]
 
 beforeEach(() => {
     tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'llms-txt-'))
@@ -75,12 +87,16 @@ test('absolutizeLinks rewrites root-relative targets only', () => {
     )
 })
 
-test('getAssets writes llms-full.txt to the cache and returns it for public/', () => {
+test('getAssets writes llms.txt and llms-full.txt to the cache and returns them for public/', () => {
     writePage('docs/index.md', 'title: Introduction', '# Documentation\n\nHello.\n')
 
     const { assets } = build([meta('/docs/index.html', { title: 'Introduction', pagination_order: 1 })])
 
-    assert.deepEqual(assets, [{ from: path.join(fs.realpathSync(tmp), '.nera-cache/llms-txt/llms-full.txt'), to: 'llms-full.txt' }])
+    const cache = path.join(fs.realpathSync(tmp), '.nera-cache/llms-txt')
+    assert.deepEqual(assets, [
+        { from: path.join(cache, 'llms.txt'), to: 'llms.txt' },
+        { from: path.join(cache, 'llms-full.txt'), to: 'llms-full.txt' },
+    ])
     assert.equal(fs.existsSync(path.join(tmp, 'public')), false)
 })
 
@@ -148,9 +164,10 @@ test('a page without pagination_order is left out with a warning, the tutorials 
     ])
 
     assert.ok(!text.includes('Draft'), text)
-    assert.equal(warnings.length, 2)
-    assert.match(warnings[0], /\/docs\/draft\.html has no pagination_order/)
-    assert.match(warnings[1], /\/docs\/empty\.html has no pagination_order/)
+    const orderWarnings = warnings.filter((message) => message.includes('pagination_order'))
+    assert.equal(orderWarnings.length, 2)
+    assert.match(orderWarnings[0], /\/docs\/draft\.html has no pagination_order/)
+    assert.match(orderWarnings[1], /\/docs\/empty\.html has no pagination_order/)
 })
 
 test('the origin falls back to nera.js.org without a config file', () => {
@@ -161,4 +178,88 @@ test('the origin falls back to nera.js.org without a config file', () => {
 
     assert.ok(text.includes('Source: https://nera.js.org/docs/index.html'), text)
     assert.ok(text.includes('[CLI](https://nera.js.org/docs/cli.html)'), text)
+})
+
+test('llms.txt opens with the configured H1 and the summary as one blockquote line', () => {
+    fs.appendFileSync(path.join(tmp, 'config/llms-txt.yaml'), 'title: Example\nsummary: >\n    First line\n    and second.\n')
+
+    const { index } = build([])
+
+    assert.ok(index.startsWith('# Example\n\n> First line and second.\n\n## '), index)
+})
+
+test('llms.txt falls back to the default title and summary without a config file', () => {
+    fs.rmSync(path.join(tmp, 'config/llms-txt.yaml'))
+
+    const { index } = build([])
+
+    assert.ok(index.startsWith('# Nera\n\n> Nera is a lightweight, plugin-based static site generator for Node.js.\n\n'), index)
+    assert.ok(index.includes('(https://nera.js.org/llms-full.txt)'), index)
+})
+
+test('llms.txt lists Docs, Tutorials, Plugins, CLI and Optional in that order', () => {
+    writePage('docs/index.md', 'title: Intro', '# Intro\n')
+    writePage('docs/cli.md', 'title: CLI reference', '# CLI\n')
+    writePage('tutorials/blog.md', 'title: Blog', 'Blog.\n')
+    writePage('tutorials/search.md', 'title: Search', 'Search.\n')
+
+    const { index } = build([
+        meta('/tutorials/search.html', { title: 'Search', description: 'Add search.', pagination_order: 2 }),
+        meta('/docs/cli.html', { title: 'CLI reference', description: 'The nera CLI.', pagination_order: 7 }),
+        meta('/tutorials/blog.html', { title: 'Blog', description: 'Build a blog.', pagination_order: 1 }),
+        meta('/docs/index.html', { title: 'Intro', description: 'What Nera is.', pagination_order: 1 }),
+        meta('/tutorials/index.html', { title: 'Tutorials', description: 'All tutorials.' }),
+        meta('/plugins/index.html', { title: 'Plugins', plugins: PLUGINS }),
+    ])
+
+    const headings = index.split('\n').filter((line) => line.startsWith('## '))
+    assert.deepEqual(headings, ['## Docs', '## Tutorials', '## Plugins', '## CLI', '## Optional'])
+    assert.deepEqual(section(index, 'Docs'), [
+        `- [Intro](${ORIGIN}/docs/index.html): What Nera is.`,
+        `- [CLI reference](${ORIGIN}/docs/cli.html): The nera CLI.`,
+    ])
+    assert.deepEqual(section(index, 'Tutorials'), [
+        `- [Blog](${ORIGIN}/tutorials/blog.html): Build a blog.`,
+        `- [Search](${ORIGIN}/tutorials/search.html): Add search.`,
+    ])
+    assert.deepEqual(section(index, 'Plugins'), [
+        '- [@nera-static/plugin-canonical-links](https://github.test/canonical): Adds <link> tags.',
+        '- [@nera-static/plugin-tags](https://github.test/tags): Tag pages.',
+    ])
+    assert.deepEqual(section(index, 'CLI'), [
+        `- [CLI reference](${ORIGIN}/docs/cli.html): The nera CLI.`,
+        '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
+    ])
+    assert.deepEqual(section(index, 'Optional'), [
+        `- [llms-full.txt](${ORIGIN}/llms-full.txt): Every English docs page and tutorial above as one Markdown file, in reading order.`,
+    ])
+    assert.deepEqual(warnings, [])
+})
+
+test('llms.txt takes the plugins and the CLI page from the English pages only', () => {
+    const { index } = build([
+        meta('/de/plugins/index.html', { lang: 'de', plugins: [{ package: '@nera-static/plugin-de', description: 'Deutsch.', url: 'https://github.test/de' }] }),
+        meta('/plugins/index.html', { lang: 'de', plugins: [{ package: '@nera-static/plugin-mislabelled', description: 'X.', url: 'https://github.test/x' }] }),
+        meta('/de/docs/cli.html', { title: 'CLI', lang: 'de', description: 'Deutsch.' }),
+    ])
+
+    assert.equal(section(index, 'Plugins'), null)
+    assert.ok(!index.includes('/de/'), index)
+    assert.deepEqual(section(index, 'CLI'), [
+        '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
+    ])
+    assert.equal(section(index, 'Docs'), null)
+    assert.ok(warnings.some((message) => /no plugins list on \/plugins\/index\.html/.test(message)), warnings)
+})
+
+test('an llms.txt item without a description is listed bare, with a warning', () => {
+    writePage('docs/index.md', 'title: Intro', '# Intro\n')
+
+    const { index } = build([
+        meta('/docs/index.html', { title: 'Intro', pagination_order: 1 }),
+        meta('/plugins/index.html', { plugins: PLUGINS }),
+    ])
+
+    assert.deepEqual(section(index, 'Docs'), [`- [Intro](${ORIGIN}/docs/index.html)`])
+    assert.deepEqual(warnings, [`⚠️ llms-txt: ${ORIGIN}/docs/index.html has no description in llms.txt`])
 })

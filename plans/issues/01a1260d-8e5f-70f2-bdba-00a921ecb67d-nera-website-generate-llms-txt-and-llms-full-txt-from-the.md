@@ -54,7 +54,7 @@ reference + the `@nera-static/nera` npm page), and an `Optional` section linking
 - **Risks:** `getAssets` is called once per build; writing under `process.cwd()` assumes the build runs from the site root, like every plugin's config lookup
 - **Walkthrough:** none
 
-### Step 2 — Plugin emits the llms.txt index — ⬜ todo
+### Step 2 — Plugin emits the llms.txt index — ✅ done
 
 - **Goal:** `getAssets` also writes and returns `llms.txt`: `# <title>`, `> <summary>`, then `## Docs`, `## Tutorials`, `## Plugins`, `## CLI`, `## Optional`, each item `- [Title](absolute URL): description`.
 - **Files:** `plugins/llms-txt/index.js` — index builder; `plugins/llms-txt/index.test.js` — section/order/link tests; `config/llms-txt.yaml` — final summary text

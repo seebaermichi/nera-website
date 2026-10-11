@@ -107,3 +107,75 @@ goal (selection, order, strip, absolutise, cache + getAssets, warning) · Verify
 ## Step 1 — approved (2026-10-11)
 
 snagio: ticked
+commit: ec5e60b
+
+## Step 2 — started (2026-10-11)
+
+base_sha: ec5e60bce66898b6953cf11d2d798fd7235870ee
+mode: fresh
+
+## Step 2 — implemented (2026-10-11)
+
+base_sha: ec5e60bce66898b6953cf11d2d798fd7235870ee
+
+### Changed
+- `plugins/llms-txt/index.js` — new exported `renderIndex()` builds `llms.txt` (`# title`, `> summary`, then `## Docs`/`## Tutorials` from the same `selectPages()` list as llms-full.txt, `## Plugins` from the English `/plugins/index.html` `plugins:` frontmatter, `## CLI` = CLI reference page + `@nera-static/nera` npm page, `## Optional` = llms-full.txt); `getAssets` now writes and returns both files (`llms.txt` first); title/summary fallbacks; empty sections left out; missing description → bare item + warning; missing plugins list → warning
+- `plugins/llms-txt/index.test.js` — `build()` picks files by `to`; asset test covers both files; the pagination warning test filters to its own warnings; 5 new tests: H1 + folded summary as one blockquote line, default title/summary/origin without config, section order + exact items, English-only plugins/CLI source (a `/de/` catalog and a mislabelled `lang: de` one are ignored), bare item + warning without description
+- `config/llms-txt.yaml` — unchanged: `title`/`summary` already landed in Step 1 with their final text
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Verification
+```
+npm test → # tests 16 / # pass 16 / # fail 0
+npm run lint → eslint . (no output, exit 0)
+npm run build → 📄 Page processing complete: 69 success, 0 errors (no llms-txt warning)
+cat public/llms.txt → H1 "# Nera", one-line "> Nera is a lightweight…" summary, sections Docs (7), Tutorials (9), Plugins (16), CLI (2), Optional (1)
+awk Plugins section | grep -c '^- ' → 16
+grep '^- ' public/llms.txt | grep -vcE '\]\(https://[^)]*\): .' → 0   (every item absolute + described)
+```
+
+### Self-critique
+- Links use the `.html` paths the site serves (`/docs/index.html`, not `/docs/`), matching the `Source:` lines in llms-full.txt and the site's own internal links; GitHub Pages serves both forms, so this is the consistent choice, not a necessity.
+- Plugin items use the **package name** as link text (`@nera-static/plugin-tags`), not the display name ("Tags"): what an assistant needs is the thing to `npm install`. Falls back to `name` when `package` is absent. Links go to the catalog's `url` (GitHub README), which is where the docs are.
+- The CLI reference appears twice (Docs and CLI) — D4 asks for both; Docs mirrors the reading order of llms-full.txt, CLI is the quick entry point.
+- `CLI_PACKAGE`'s description lists the seven commands by hand; checked against `pages/docs/cli.md` (all seven named there). It will drift if a command is added — acceptable for one line, not config-worthy.
+- A plugin entry without a `url` would render `[name](undefined)`; the catalog is maintained by hand and every entry has one, so I did not add a guard. Least sure about this one.
+- `<link>` in the canonical-links description passes through verbatim; inside a Markdown list item it reads as text in a plain .txt fetch, so left as is (plan's Risks line).
+
+### Pressure-test questions for the reviewer
+1. Is the package name the right link text for Plugins, or should it be `Name (package)`?
+2. Should a catalog entry without `url` be skipped with a warning rather than rendered?
+3. Is a section-order assertion via exact item arrays (`section()` helper regex) robust enough, or should the test compare the whole file?
+
+## Step 2 — reviewed (2026-10-11)
+
+Verdict: approve
+
+### 🔴 Blocking
+- none
+
+### Fixed in review
+- none
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Checked
+Goal met (H1, one-line `>` summary, Docs/Tutorials/Plugins/CLI/Optional in order, `- [Title](url): description`; Starters omitted per plan D4) · Verify run: `npm test` → 16/16 pass, `npm run lint` → clean, `npm run build` → 69 success, no llms-txt warning; `cat public/llms.txt` → Docs 7, Tutorials 9, Plugins 16 (= 16 `package:` entries in `pages/plugins/index.md`), CLI 2, Optional 1; `grep '^- ' public/llms.txt | grep -vcE '\]\(https://[^)]*\): .'` → 0 · Non-negotiables (English only per D3, no `public/` edits, no bump/CHANGELOG, no push) · Framework (synchronous `getAssets`, files via cache + `getAssets`, per-key fallbacks for title/summary/origin, ESM/eslint style, no new dependency) · Tests & hygiene (test file beside the plugin, as planned) · Scope: only the step's files plus the log/marker · Self-critique claims verified: `.html` links match `Source:` lines in llms-full.txt; CLI_PACKAGE's seven commands match the table in `pages/docs/cli.md:26-31`; CLI reference listed in both Docs and CLI per plan D4; `pages/docs` and `pages/tutorials` have no subfolders, so the `dirname` filter loses nothing · Walkthrough: n/a (`none`).
+
+### Answers to the pressure-test questions
+1. Package name is right: the plugin section's job for an assistant is "what to `npm install`", and the descriptions already say what each one does. `Name (package)` would add noise; the display names ("Tags") are ambiguous without the scope.
+2. Not needed now. All 16 catalog entries carry `url:` (16 `url:` lines in `pages/plugins/index.md`), and the site's own catalog page would show the same gap. Skipping vs. falling back to the npm URL would also be a design choice, so it is no fixed-alongside candidate either.
+3. Robust enough. The headings assertion pins the section order, and the `section()` helper pins every item exactly and returns `null` for a missing section, which the English-only test relies on. A whole-file comparison would duplicate those assertions and break on any wording change.
+
+## Step 2 — approved (2026-10-11)
+
+snagio: ticked
