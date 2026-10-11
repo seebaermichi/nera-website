@@ -33,11 +33,18 @@ jobs:
             - name: Run linter
               run: npm run lint
 
-            # This is a Nera site, not a library: there is no unit-test suite to
-            # run. What can actually break here is the content and the templates,
-            # so the build is the test — it fails on a bad layout, a missing
-            # include or malformed frontmatter — and `nera validate` reports the
-            # same class of problem with file/line detail.
+            # Local plugins under plugins/ carry their own node:test files beside
+            # them. The glob in `npm test` is expanded by the shell, not by Node,
+            # so it behaves the same on every Node version in the matrix.
+            - name: Run local plugin tests
+              run: npm test
+
+            # Beyond the local plugins this is a Nera site, not a library: there
+            # is no unit-test suite. What can actually break here is the content
+            # and the templates, so the build is the test — it fails on a bad
+            # layout, a missing include or malformed frontmatter — and
+            # `nera validate` reports the same class of problem with file/line
+            # detail.
             - name: Validate site
               run: npm run validate
 

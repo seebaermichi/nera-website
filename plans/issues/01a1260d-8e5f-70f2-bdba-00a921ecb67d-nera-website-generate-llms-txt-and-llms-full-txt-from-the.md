@@ -63,7 +63,7 @@ reference + the `@nera-static/nera` npm page), and an `Optional` section linking
 - **Risks:** a plugin `description` with Markdown-significant characters (`<link>`) passes through verbatim — acceptable in Markdown, check it reads cleanly
 - **Walkthrough:** none
 
-### Step 3 — Wire the tests into CI and prove the full check — ⬜ todo
+### Step 3 — Wire the tests into CI and prove the full check — ✅ done
 
 - **Goal:** CI runs the plugin tests; the full hygiene check passes on the built site.
 - **Files:** `.github/workflows/test.yml` — a "Run local plugin tests" step (`npm test`) after lint

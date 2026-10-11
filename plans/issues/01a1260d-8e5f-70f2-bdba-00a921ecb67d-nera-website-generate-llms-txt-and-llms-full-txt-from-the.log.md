@@ -179,3 +179,71 @@ Goal met (H1, one-line `>` summary, Docs/Tutorials/Plugins/CLI/Optional in order
 ## Step 2 — approved (2026-10-11)
 
 snagio: ticked
+commit: 0af5ea1
+
+## Step 3 — started (2026-10-11)
+
+base_sha: 0af5ea18c57791d18845f37b1cd6868523dd4ee6
+mode: fresh
+
+## Step 3 — implemented (2026-10-11)
+
+base_sha: 0af5ea1
+
+### Changed
+- `.github/workflows/test.yml` — new "Run local plugin tests" step (`npm test`) right after the linter; the comment above "Validate site" reworded from "there is no unit-test suite" to "beyond the local plugins … no unit-test suite" so it no longer contradicts the new step, and rewrapped.
+
+### Fixed alongside
+- none
+
+### Carry forward
+- none
+
+### Verification
+```
+npm run lint → eslint . (exit 0, no output)
+npm test (Node v20.20.0) → # tests 16 / # pass 16 / # fail 0
+npm test (Node v22.22.0) → # tests 16 / # pass 16 / # fail 0
+npm run validate → ✓ No problems found.
+npm run build -- --check → 0 error(s), 3 warning(s)   (a11y-skip-link, a11y-nav-name, a11y-form-label — all on .html pages, pre-existing; none on the .txt files)
+ls -l public/llms.txt public/llms-full.txt → 5708 / 33472 bytes, both present
+yaml.parse(.github/workflows/test.yml) → yaml ok
+grep '/de/\|/es/' public/llms.txt → 0; public/llms-full.txt → 5 hits, all path examples inside English docs (impressum/datenschutz config sample, ignore pattern, per-language tag URLs) — not German/Spanish pages
+```
+
+### Self-critique
+- Plan's "Review hardest" assumed `node --test plugins/`; the actual script (from Step 1) is `node --test plugins/*/*.test.js`. npm runs scripts through `sh`, so the shell expands the glob before Node sees it — the dir/glob semantics difference between Node 20 and 22 never comes into play. Proven by running it on both v20.20.0 and v22.22.0 locally (16/16 each). I kept the script as is rather than switching to the directory form, which is the version-sensitive one.
+- Caveat of the shell glob: if no test file existed the literal pattern would reach Node and fail — acceptable, it would signal a deleted test.
+- "No new check warnings": the 3 warnings are page-level a11y hints on HTML (skip link, nav name, search label); this step changes only CI YAML and `--check` does not inspect .txt, so they cannot be new. I did not rebuild at a pre-plugin commit to diff them.
+- Not run in real GitHub Actions (no push allowed); YAML parsed and indentation matches the sibling steps.
+
+### Pressure-test questions for the reviewer
+1. Does `npm test` in CI run from the repo root with the shell glob matching `plugins/llms-txt/index.test.js` on ubuntu `sh` (dash)? (dash expands `*` the same way.)
+2. Is placing the test step before "Validate site" right — fast unit failures first?
+
+## Step 3 — reviewed (2026-10-11)
+
+Verdict: approve
+
+### 🔴 Blocking
+- none
+
+### Fixed in review
+- none
+
+### Fixed alongside
+- none
+
+### Carry forward
+- debt · S · `.claude/issue-conventions.md` (Tests & hygiene) — still says "There is no unit-test suite" and lists the hygiene check without `npm test`, now that CI runs the local plugin tests — unrelated to this step's files (project workflow config, not the step's diff)
+
+### Checked
+goal (test.yml runs `npm test` after lint, before validate; comment no longer contradicts it) · verify run: lint exit 0; `npm test` 16/16 on Node v20.20.0 and v22.22.0; validate "✓ No problems found."; `build -- --check` 0 errors / 3 warnings (a11y-skip-link, a11y-nav-name, a11y-form-label, HTML pages only — the step changes only CI YAML, so none can be new); `public/llms.txt` 5708 B, `public/llms-full.txt` 33472 B · Non-negotiables (no push/tag, no version/CHANGELOG, no public/ edit), Framework correctness, Tests & hygiene · self-critique claims (shell-expanded glob, both Node versions) confirmed · walkthrough n/a (none)
+
+### Answers to the pressure-test questions
+1. Yes. npm runs scripts via `sh -c` from the package root (CI's working directory is the checkout root, no `working-directory` set); POSIX `sh`/dash performs pathname expansion, and `sh -c 'echo plugins/*/*.test.js'` here yields `plugins/llms-txt/index.test.js`. Node receives an explicit file path, so the Node 20/22 directory-vs-glob difference in `node --test` never applies. `plugins/tutorials-list/` has no test file and is simply not matched.
+2. Yes. Unit tests take well under a second and fail with a precise assertion; running them before the slower validate/build steps gives the fastest, most specific signal. The steps are independent (tests do not need `public/`), so the order has no correctness impact.
+
+## Step 3 — approved (2026-10-11)
+
+snagio: ticked
