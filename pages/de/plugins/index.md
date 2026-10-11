@@ -54,6 +54,10 @@ plugins:
       package: '@nera-static/plugin-simple-page-list'
       description: Rendert eine einfache Liste von Seiten aus einem Verzeichnis.
       url: https://github.com/seebaermichi/nera-plugin-simple-page-list
+    - name: Sitemap
+      package: '@nera-static/plugin-sitemap'
+      description: Generiert eine sitemap.xml aller gerenderten Seiten und eine robots.txt, die darauf verweist.
+      url: https://github.com/seebaermichi/nera-plugin-sitemap
     - name: Social media links
       package: '@nera-static/plugin-social-media-links'
       description: Rendert konfigurierbare Social-Media-Icon-Links.
