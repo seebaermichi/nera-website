@@ -44,6 +44,7 @@ translations:
         docs_nav_plugins: Plugins
         docs_nav_deployment: Deployment
         docs_nav_cli: CLI reference
+        docs_nav_ai: Using Nera with AI
         language_label: Language
 
     de:
@@ -71,6 +72,7 @@ translations:
         docs_nav_plugins: Plugins
         docs_nav_deployment: Deployment
         docs_nav_cli: CLI-Referenz
+        docs_nav_ai: Nera mit KI nutzen
         language_label: Sprache
 
     es:
@@ -98,4 +100,5 @@ translations:
         docs_nav_plugins: Plugins
         docs_nav_deployment: Despliegue
         docs_nav_cli: Referencia de la CLI
+        docs_nav_ai: Usar Nera con IA
         language_label: Idioma
