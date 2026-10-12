@@ -47,4 +47,5 @@ npx nera update
 
 `nera update` aktualisiert die Nera-Pakete der Website mit `npm update` und
 erneuert Neras Teil der `AGENTS.md`, während deine `pages/`, `config/` und
-`theme/` unangetastet bleiben.
+`theme/` unangetastet bleiben. Wie ein KI-Assistent `AGENTS.md` nutzt, steht in
+[Nera mit KI nutzen](/de/docs/using-ai.html).

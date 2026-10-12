@@ -48,3 +48,4 @@ baut sie weiterhin, mit einer Deprecation-Warnung, bis du beide Ordner nach
 > (`layout-missing`).
 
 Weiter geht es mit **Erste Schritte**, um deine erste Website zu erstellen.
+Du arbeitest mit einem KI-Assistenten? Lies [Nera mit KI nutzen](/de/docs/using-ai.html).

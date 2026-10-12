@@ -45,4 +45,5 @@ obsolescencia, hasta que muevas ambas carpetas a `theme/`.
 > él se omiten silenciosamente — es la causa más común de «¿por qué falta mi página?».
 > `npx nera validate` las enumera (`layout-missing`).
 
-Continúa en **Primeros pasos** para crear tu primer sitio.
+Continúa en **Primeros pasos** para crear tu primer sitio. ¿Trabajas con un
+asistente de IA? Lee [Usar Nera con IA](/es/docs/using-ai.html).

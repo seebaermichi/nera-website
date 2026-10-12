@@ -47,4 +47,5 @@ npx nera update
 
 `nera update` actualiza los paquetes Nera del sitio con `npm update` y renueva
 la parte de Nera de `AGENTS.md`, dejando intactos tus `pages/`, `config/` y
-`theme/`.
+`theme/`. Cómo usa un asistente de IA `AGENTS.md` se explica en
+[Usar Nera con IA](/es/docs/using-ai.html).

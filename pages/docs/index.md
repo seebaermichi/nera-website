@@ -45,4 +45,5 @@ warning, until you move both folders under `theme/`.
 > are silently skipped — this is the single most common "why is my page missing?"
 > `npx nera validate` lists them (`layout-missing`).
 
-Continue to **Getting started** to scaffold your first site.
+Continue to **Getting started** to scaffold your first site. Working with an AI
+assistant? Read [Using Nera with AI](/docs/using-ai.html).

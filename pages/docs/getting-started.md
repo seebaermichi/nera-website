@@ -46,4 +46,5 @@ npx nera update
 
 `nera update` bumps the site's Nera packages with `npm update` and refreshes
 Nera's part of `AGENTS.md`, leaving your `pages/`, `config/` and `theme/`
-untouched.
+untouched. How an AI assistant uses `AGENTS.md` is explained in
+[Using Nera with AI](/docs/using-ai.html).
