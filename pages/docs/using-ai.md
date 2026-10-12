@@ -35,7 +35,7 @@ The part above the marker is Nera's.
 **An existing site?** From `@nera-static/nera` 1.7.0 on, `npx nera update`
 creates `AGENTS.md` and `CLAUDE.md` when they are missing and refreshes only
 Nera's part of `AGENTS.md`, so your notes stay. The details are in the
-[CLI reference](/docs/cli.html#instructions-for-ai-assistants).
+[CLI reference](/docs/cli.html), under "Instructions for AI assistants".
 
 ## Per assistant
 
