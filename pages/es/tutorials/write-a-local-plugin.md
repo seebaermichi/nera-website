@@ -10,9 +10,17 @@ pagination_order: 8
 createdAt: 2026-07-14
 ---
 No necesitas publicar en npm para extender Nera. Cualquier módulo en
-`src/plugins/<name>/index.js` se detecta y aplica automáticamente. Construyamos
-uno real: un plugin que recopila cada tutorial en una lista para una página de
-índice — exactamente el plugin que impulsa este sitio.
+`src/plugins/<name>/index.js` se detecta y aplica automáticamente. Para guardar
+los plugins locales en otro sitio, indica la carpeta en `config/app.yaml` — este
+sitio usa `plugins/`:
+
+```yaml
+folders:
+    plugins: ./plugins
+```
+
+Construyamos uno real: un plugin que recopila cada tutorial en una lista para una
+página de índice — una versión simplificada del plugin que impulsa este sitio.
 
 ## El contrato
 

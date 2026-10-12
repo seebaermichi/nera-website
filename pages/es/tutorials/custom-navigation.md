@@ -20,7 +20,7 @@ npx nera-navigation
 ```
 
 El segundo comando copia las plantillas de navegación en
-`views/vendor/plugin-navigation/`, donde puedes editarlas libremente.
+`theme/views/vendor/plugin-navigation/`, donde puedes editarlas libremente.
 
 ## 2. Define el menú
 

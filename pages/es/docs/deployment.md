@@ -22,7 +22,8 @@ npm run build
 
 - **Netlify / Vercel** — comando de compilación `npm run build`, directorio de
   publicación `public`.
-- **GitHub Pages** — renderiza en CI, luego publica `public/` en la rama `gh-pages`.
+- **GitHub Pages** — compila en GitHub Actions y despliega `public/` con
+  `actions/upload-pages-artifact` y `actions/deploy-pages`, como hace este sitio.
 - **Cualquier host estático / CDN** — sube el contenido de `public/`.
 
 ## Invalidación de caché

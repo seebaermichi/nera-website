@@ -24,8 +24,8 @@ npm install @nera-static/plugin-search
 npx nera-search
 ```
 
-This copies the search box into `views/vendor/plugin-search/` and the client into
-`assets/js/search.js`.
+This copies the search box into `theme/views/vendor/plugin-search/` and the client into
+`theme/assets/js/search.js`.
 
 ## 3. Configure
 

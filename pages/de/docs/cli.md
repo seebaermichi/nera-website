@@ -18,9 +18,12 @@ Website. Eine neue Website erstellst du mit:
 npx @nera-static/nera new <project-name>
 ```
 
+`nera new .` erstellt die Website stattdessen im aktuellen, leeren Ordner, und
+`--theme <name>` startet sie mit einem Theme.
+
 Eine erstellte Website hängt von `@nera-static/nera` ab, führe diese Befehle also
-aus ihrem Inneren aus (der Scaffold verknüpft jeden zusätzlich mit einem
-npm-Skript, z. B. `npm run dev`):
+in ihr mit `npx` aus, z. B. `npx nera validate`. Der Scaffold verknüpft
+außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
 
 | Befehl | Was er macht |
 | --- | --- |
@@ -170,7 +173,7 @@ mitgeführte `src/`-Engine und installiert, während deine `pages/`, `config/` u
 ## Plugin-Publish-Befehle
 
 Jedes Template-ausliefernde Plugin stellt ein Bin bereit, um sein Pug nach
-`views/vendor/` zu kopieren, z. B.:
+`theme/views/vendor/` zu kopieren, z. B.:
 
 ```bash
 npx nera-navigation

@@ -20,7 +20,7 @@ npx nera-navigation
 ```
 
 Der zweite Befehl kopiert die Nav-Templates nach
-`views/vendor/plugin-navigation/`, wo du sie frei bearbeiten kannst.
+`theme/views/vendor/plugin-navigation/`, wo du sie frei bearbeiten kannst.
 
 ## 2. Das Menü definieren
 

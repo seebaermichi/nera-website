@@ -40,7 +40,9 @@ Willkommen in meinem neuen Nera-Blog.
 Ein kleines lokales Plugin unter `src/plugins/` kann jeden Beitrag in `app.posts`
 sammeln, sortiert nach `meta.createdAt`. Dein Übersichts-Layout iteriert dann über
 diese Liste. (Genau das macht diese Website für ihre Tutorials — siehe
-`src/plugins/tutorials-list`.)
+`plugins/tutorials-list`; sie legt ihre lokalen Plugins per `folders.plugins` in
+`plugins/` ab.) Gib jedem Beitrag ein `createdAt`-Datum im Frontmatter, damit die
+Reihenfolge auch auf einem CI-Build-Server stimmt.
 
 ## 4. Vorschau
 

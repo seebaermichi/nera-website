@@ -17,12 +17,22 @@ folder to a deployed site.
 
 ```
 my-site/
-├── config/        # app.yaml + one <plugin>.yaml per plugin
-├── pages/         # your Markdown content
-├── views/         # Pug layouts (and vendor/ templates from plugins)
-├── assets/        # CSS, JS, images — copied verbatim to public/
-└── public/        # generated output (never edit by hand)
+├── config/          # app.yaml + one <plugin>.yaml per plugin
+├── pages/           # your Markdown content
+├── theme/
+│   ├── views/       # Pug layouts and page templates (vendor/ holds plugin templates)
+│   └── assets/      # CSS, JS, images, fonts — copied verbatim to public/
+├── src/plugins/     # optional local plugins, one folder each
+├── public/          # generated output (never edit by hand)
+├── AGENTS.md        # instructions for AI assistants (CLAUDE.md points to it)
+└── package.json     # one Nera dependency: @nera-static/nera
 ```
+
+`nera new` creates everything here except `src/plugins/` and `public/`. Local
+plugins can live in another folder, set with `folders.plugins` in
+`config/app.yaml`. Sites from before the theme system keep `views/` and
+`assets/` at the project root; Nera still builds them, with a deprecation
+warning, until you move both folders under `theme/`.
 
 ## How a page becomes HTML
 
@@ -33,5 +43,6 @@ my-site/
 
 > A page is only rendered if its frontmatter sets a `layout`. Pages without one
 > are silently skipped — this is the single most common "why is my page missing?"
+> `npx nera validate` lists them (`layout-missing`).
 
 Continue to **Getting started** to scaffold your first site.

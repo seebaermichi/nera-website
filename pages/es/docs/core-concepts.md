@@ -28,7 +28,7 @@ Los plugins añaden datos a ambos — por ejemplo, `plugin-navigation` establece
 
 ## Layouts
 
-Los layouts son archivos Pug bajo `views/`. El frontmatter `layout` de una página elige uno:
+Los layouts son archivos Pug bajo `theme/views/`. El frontmatter `layout` de una página elige uno:
 
 ```markdown
 ---
@@ -36,6 +36,15 @@ layout: pages/docs.pug
 title: My page
 ---
 ```
+
+La ruta es relativa a `theme/views/`, así que `pages/docs.pug` es
+`theme/views/pages/docs.pug`.
+
+Si `config/app.yaml` define `theme:` (un paquete como `@nera-static/theme-example`
+o una carpeta local), los layouts vienen de ese tema, y un archivo en tu propio
+`theme/views/` o `theme/assets/` sustituye al archivo del tema en la misma ruta —
+así sobrescribes una sola plantilla sin copiar el resto. `npx @nera-static/nera
+new my-site --theme example` crea un sitio de esa forma.
 
 ## Traducciones
 

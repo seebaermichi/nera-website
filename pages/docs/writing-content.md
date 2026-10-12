@@ -56,7 +56,11 @@ Nera adds these automatically:
 | `meta.href` | URL path of the generated HTML file |
 | `meta.dirname` | Directory the page lives in |
 | `meta.filename` | Source filename |
-| `meta.createdAt` | File creation time |
+| `meta.createdAt` | `createdAt` or `date` from the frontmatter, else the file's creation time |
+
+Set `createdAt` (or `date`) in the frontmatter of anything sorted by date, such
+as posts. A fresh checkout in CI gives every file the same creation time, so
+without it the order is lost on the build server.
 
 ## Folders become URLs
 

@@ -39,7 +39,9 @@ Welcome to my new Nera blog.
 
 A tiny local plugin under `src/plugins/` can collect every post into `app.posts`,
 sorted by `meta.createdAt`. Your index layout then loops over that list. (This very
-site does exactly that for its tutorials — see `src/plugins/tutorials-list`.)
+site does exactly that for its tutorials — see `plugins/tutorials-list`; it keeps
+its local plugins in `plugins/` via `folders.plugins`.) Give each post a
+`createdAt` date in its frontmatter so the order holds on a CI build server too.
 
 ## 4. Preview
 

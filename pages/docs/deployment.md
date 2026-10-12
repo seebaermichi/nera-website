@@ -22,7 +22,8 @@ npm run build
 
 - **Netlify / Vercel** — build command `npm run build`, publish directory
   `public`.
-- **GitHub Pages** — render in CI, then publish `public/` to the `gh-pages` branch.
+- **GitHub Pages** — build in GitHub Actions and deploy `public/` with
+  `actions/upload-pages-artifact` and `actions/deploy-pages`, as this site does.
 - **Any static host / CDN** — upload the contents of `public/`.
 
 ## Cache busting

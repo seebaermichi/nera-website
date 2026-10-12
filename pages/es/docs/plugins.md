@@ -15,8 +15,14 @@ pagination_order: 5
 npm install @nera-static/plugin-navigation
 ```
 
-Cualquier dependencia cuyo nombre empiece por `@nera-static/` se descubre y se aplica
-automáticamente — sin paso de registro.
+Cualquier dependencia cuyo nombre empiece por `@nera-static/plugin-` se descubre
+y se aplica automáticamente — sin paso de registro. (`@nera-static/plugin-utils`
+es una biblioteca auxiliar, no un plugin, y se omite.)
+
+Un plugin para un solo sitio no necesita paquete: ponlo en
+`src/plugins/<name>/index.js`, o indica otra carpeta con `folders.plugins` en
+`config/app.yaml`. Consulta
+[Escribe tu propio plugin local](/es/tutorials/write-a-local-plugin.html).
 
 ## El contrato de hooks
 
@@ -48,7 +54,7 @@ export function getAssets({ app, pagesData }) {
 
 `from` es un archivo o una carpeta con ruta absoluta, `to` una ruta dentro de
 `public/`. Core los copia después de los assets del tema y antes de los tuyos,
-así que tu `assets/` sigue ganando si un nombre coincide. Las entradas no válidas
+así que tu `theme/assets/` sigue ganando si un nombre coincide. Las entradas no válidas
 se omiten con una advertencia.
 
 ## La configuración vive en tu proyecto
@@ -68,7 +74,7 @@ la última para que indexe los datos finales de las páginas.
 Los plugins que incluyen vistas exponen un comando de publicación:
 
 ```bash
-npx nera-navigation      # copies templates into views/vendor/plugin-navigation/
+npx nera-navigation      # copies templates into theme/views/vendor/plugin-navigation/
 ```
 
 Luego `include` desde tus layouts. La publicación **se omite si la carpeta ya

@@ -17,12 +17,22 @@ una carpeta vacía a un sitio publicado.
 
 ```
 my-site/
-├── config/        # app.yaml + un <plugin>.yaml por plugin
-├── pages/         # tu contenido en Markdown
-├── views/         # plantillas Pug (y plantillas vendor/ de los plugins)
-├── assets/        # CSS, JS, imágenes — copiados tal cual a public/
-└── public/        # salida generada (nunca editar a mano)
+├── config/          # app.yaml + un <plugin>.yaml por plugin
+├── pages/           # tu contenido en Markdown
+├── theme/
+│   ├── views/       # layouts y plantillas de página Pug (vendor/ guarda las de los plugins)
+│   └── assets/      # CSS, JS, imágenes, fuentes — copiados tal cual a public/
+├── src/plugins/     # plugins locales opcionales, uno por carpeta
+├── public/          # salida generada (nunca editar a mano)
+├── AGENTS.md        # instrucciones para asistentes de IA (CLAUDE.md apunta a él)
+└── package.json     # una sola dependencia de Nera: @nera-static/nera
 ```
+
+`nera new` crea todo esto salvo `src/plugins/` y `public/`. Los plugins locales
+pueden vivir en otra carpeta, indicada con `folders.plugins` en
+`config/app.yaml`. Los sitios anteriores al sistema de temas tienen `views/` y
+`assets/` en la raíz del proyecto; Nera los sigue construyendo, con un aviso de
+obsolescencia, hasta que muevas ambas carpetas a `theme/`.
 
 ## Cómo una página se convierte en HTML
 
@@ -33,5 +43,6 @@ my-site/
 
 > Una página solo se renderiza si su frontmatter define un `layout`. Las páginas sin
 > él se omiten silenciosamente — es la causa más común de «¿por qué falta mi página?».
+> `npx nera validate` las enumera (`layout-missing`).
 
 Continúa en **Primeros pasos** para crear tu primer sitio.

@@ -18,8 +18,12 @@ a new one with:
 npx @nera-static/nera new <project-name>
 ```
 
+`nera new .` scaffolds into the current, empty folder instead, and
+`--theme <name>` starts the site from a theme.
+
 A scaffolded site depends on `@nera-static/nera`, so run these from inside it
-(the scaffold wires each to an npm script too, e.g. `npm run dev`):
+with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
+`serve` to npm scripts, e.g. `npm run dev`:
 
 | Command | What it does |
 | --- | --- |
@@ -166,7 +170,7 @@ untouched.
 ## Plugin publish commands
 
 Each template-shipping plugin exposes a bin to copy its Pug into
-`views/vendor/`, e.g.:
+`theme/views/vendor/`, e.g.:
 
 ```bash
 npx nera-navigation

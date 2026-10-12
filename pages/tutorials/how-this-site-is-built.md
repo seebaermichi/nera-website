@@ -14,14 +14,14 @@ generator and the same public plugins you'd install. Here's the full recipe.
 
 ## Scaffolded like any site
 
-It started with the nera CLI, which scaffolds a site that depends on the
-`@nera-static/core` engine:
+It started with the nera CLI, which scaffolds a site whose one Nera dependency is
+`@nera-static/nera` (it brings the `@nera-static/core` engine):
 
 ```bash
 npx @nera-static/nera new nera-website
 ```
 
-## Seven plugins, each doing one thing
+## Nine plugins, each doing one thing
 
 | Plugin | Job | Config |
 | --- | --- | --- |
@@ -31,18 +31,25 @@ npx @nera-static/nera new nera-website
 | `plugin-page-pagination` | Prev/next in docs and tutorials | `config/page-pagination.yaml` |
 | `plugin-canonical-links` | Canonical `<link>` tags for SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | External links open in a new tab | `config/link-attributes.yaml` |
+| `plugin-code-blocks` | Build-time syntax highlighting with a copy button | `config/code-blocks.yaml` |
 | `tutorials-list` (local) | Builds `app.tutorials` for the index | — |
+| `llms-txt` (local) | `llms.txt`, `llms-full.txt` and a `.md` per page for AI assistants | `config/llms-txt.yaml` |
 
-Each has its own tutorial in this section, if you want the details.
+The two local plugins live in `plugins/`, set with `folders.plugins` in
+`config/app.yaml`. Most of the others have their own tutorial in this section,
+if you want the details.
 
-## Order matters — search runs last
+## Order matters — canonical links and search run last
 
 Search builds its index from the final state of every page, so it has to run after
-everything else. `config/plugin-order.yaml` says so:
+everything else. Canonical links have to come after `plugin-tags` too, or the tag
+pages it generates get no canonical link — and alphabetically, `canonical-links`
+would run before `tags`. `config/plugin-order.yaml` says so:
 
 ```yaml
 plugin-order:
     - end:
+          - plugin-canonical-links
           - plugin-search
 ```
 
@@ -51,7 +58,7 @@ ordering is load-bearing on this site.
 
 ## Templates we own
 
-Plugins that ship views were published into `views/vendor/` with commands like
+Plugins that ship views were published into `theme/views/vendor/` with commands like
 `npx nera-navigation`. Those copies are ours to edit and style — nothing important
 is hidden inside `node_modules`.
 

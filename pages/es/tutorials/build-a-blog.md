@@ -40,7 +40,9 @@ Bienvenido a mi nuevo blog en Nera.
 Un pequeño plugin local en `src/plugins/` puede reunir cada entrada en `app.posts`,
 ordenada por `meta.createdAt`. Tu plantilla índice recorre entonces esa lista.
 (Este mismo sitio hace exactamente eso con sus tutoriales — mira
-`src/plugins/tutorials-list`.)
+`plugins/tutorials-list`; guarda sus plugins locales en `plugins/` mediante
+`folders.plugins`.) Da a cada entrada una fecha `createdAt` en su frontmatter
+para que el orden se mantenga también en un servidor de compilación CI.
 
 ## 4. Vista previa
 

@@ -15,14 +15,14 @@ completa.
 
 ## Andamiado como cualquier sitio
 
-Comenzó con la CLI de nera, que crea un sitio que depende del motor
-`@nera-static/core`:
+Comenzó con la CLI de nera, que crea un sitio cuya única dependencia de Nera es
+`@nera-static/nera` (que trae el motor `@nera-static/core`):
 
 ```bash
 npx @nera-static/nera new nera-website
 ```
 
-## Siete plugins, cada uno haciendo una cosa
+## Nueve plugins, cada uno haciendo una cosa
 
 | Plugin | Trabajo | Configuración |
 | --- | --- | --- |
@@ -32,19 +32,26 @@ npx @nera-static/nera new nera-website
 | `plugin-page-pagination` | Anterior/siguiente en docs y tutoriales | `config/page-pagination.yaml` |
 | `plugin-canonical-links` | Etiquetas `<link>` canónicas para SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | Los enlaces externos se abren en una pestaña nueva | `config/link-attributes.yaml` |
+| `plugin-code-blocks` | Resaltado de sintaxis en la compilación, con botón de copiar | `config/code-blocks.yaml` |
 | `tutorials-list` (local) | Construye `app.tutorials` para el índice | — |
+| `llms-txt` (local) | `llms.txt`, `llms-full.txt` y un `.md` por página para asistentes de IA | `config/llms-txt.yaml` |
 
-Cada uno tiene su propio tutorial en esta sección, si quieres los detalles.
+Los dos plugins locales viven en `plugins/`, indicado con `folders.plugins` en
+`config/app.yaml`. La mayoría de los demás tiene su propio tutorial en esta
+sección, si quieres los detalles.
 
-## El orden importa — la búsqueda se ejecuta al final
+## El orden importa — los enlaces canónicos y la búsqueda se ejecutan al final
 
 La búsqueda construye su índice a partir del estado final de cada página, así que
-tiene que ejecutarse después de todo lo demás. `config/plugin-order.yaml` así lo
-indica:
+tiene que ejecutarse después de todo lo demás. Los enlaces canónicos también
+deben ir después de `plugin-tags`, o las páginas de etiquetas que genera se quedan
+sin enlace canónico — y por orden alfabético `canonical-links` se ejecutaría antes
+que `tags`. `config/plugin-order.yaml` así lo indica:
 
 ```yaml
 plugin-order:
     - end:
+          - plugin-canonical-links
           - plugin-search
 ```
 
@@ -53,7 +60,7 @@ orden de los plugins es determinante en este sitio.
 
 ## Plantillas que nos pertenecen
 
-Los plugins que incluyen vistas se publicaron en `views/vendor/` con comandos como
+Los plugins que incluyen vistas se publicaron en `theme/views/vendor/` con comandos como
 `npx nera-navigation`. Esas copias son nuestras para editar y dar estilo — nada
 importante está oculto dentro de `node_modules`.
 

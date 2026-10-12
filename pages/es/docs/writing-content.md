@@ -57,7 +57,12 @@ Nera añade estos automáticamente:
 | `meta.href` | Ruta URL del archivo HTML generado |
 | `meta.dirname` | Directorio donde reside la página |
 | `meta.filename` | Nombre del archivo de origen |
-| `meta.createdAt` | Hora de creación del archivo |
+| `meta.createdAt` | `createdAt` o `date` del frontmatter; si faltan, la hora de creación del archivo |
+
+Pon `createdAt` (o `date`) en el frontmatter de todo lo que se ordene por
+fecha, como las entradas de un blog. Un checkout nuevo en CI da a todos los
+archivos la misma hora de creación, así que sin ese valor el orden se pierde en
+el servidor de compilación.
 
 ## Las carpetas se convierten en URLs
 

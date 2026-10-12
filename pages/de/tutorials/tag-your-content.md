@@ -46,7 +46,7 @@ tag_overview_layout: pages/tag-overview.pug
 ```
 
 Das `tag_overview_layout` verweist auf ein Layout, das das veröffentlichte Übersichts-Template
-rendert. Erstelle `views/pages/tag-overview.pug`:
+rendert. Erstelle `theme/views/pages/tag-overview.pug`:
 
 ```pug
 extends ../layouts/layout

@@ -15,14 +15,15 @@ Hier ist das vollständige Rezept.
 
 ## Wie jede Seite aufgesetzt
 
-Es begann mit der nera-CLI, die eine Website erstellt, die von der
-`@nera-static/core`-Engine abhängt:
+Es begann mit der nera-CLI, die eine Website erstellt, deren einzige
+Nera-Abhängigkeit `@nera-static/nera` ist (das Paket bringt die
+`@nera-static/core`-Engine mit):
 
 ```bash
 npx @nera-static/nera new nera-website
 ```
 
-## Sieben Plugins, jedes mit einer Aufgabe
+## Neun Plugins, jedes mit einer Aufgabe
 
 | Plugin | Aufgabe | Konfiguration |
 | --- | --- | --- |
@@ -32,18 +33,25 @@ npx @nera-static/nera new nera-website
 | `plugin-page-pagination` | Zurück/Weiter in Docs und Tutorials | `config/page-pagination.yaml` |
 | `plugin-canonical-links` | Canonical-`<link>`-Tags für SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | Externe Links öffnen in einem neuen Tab | `config/link-attributes.yaml` |
+| `plugin-code-blocks` | Syntax-Highlighting zur Build-Zeit mit Kopier-Button | `config/code-blocks.yaml` |
 | `tutorials-list` (lokal) | Baut `app.tutorials` für den Index | — |
+| `llms-txt` (lokal) | `llms.txt`, `llms-full.txt` und eine `.md` je Seite für KI-Assistenten | `config/llms-txt.yaml` |
 
-Jedes hat in diesem Bereich sein eigenes Tutorial, falls du die Details möchtest.
+Die beiden lokalen Plugins liegen in `plugins/`, festgelegt mit `folders.plugins`
+in `config/app.yaml`. Die meisten anderen haben in diesem Bereich ein eigenes
+Tutorial, falls du die Details möchtest.
 
-## Reihenfolge zählt — die Suche läuft zuletzt
+## Reihenfolge zählt — Canonical Links und Suche laufen zuletzt
 
 Die Suche baut ihren Index aus dem Endzustand jeder Seite, also muss sie nach allem
-anderen laufen. `config/plugin-order.yaml` legt das fest:
+anderen laufen. Auch die Canonical Links müssen nach `plugin-tags` kommen, sonst
+bekommen dessen generierte Tag-Seiten keinen Canonical Link — und alphabetisch
+liefe `canonical-links` vor `tags`. `config/plugin-order.yaml` legt das fest:
 
 ```yaml
 plugin-order:
     - end:
+          - plugin-canonical-links
           - plugin-search
 ```
 
@@ -53,7 +61,7 @@ Plugin-Reihenfolge auf dieser Seite tragend ist.
 ## Templates, die uns gehören
 
 Plugins, die Views mitliefern, wurden mit Befehlen wie `npx nera-navigation` nach
-`views/vendor/` veröffentlicht. Diese Kopien gehören uns zum Bearbeiten und Gestalten
+`theme/views/vendor/` veröffentlicht. Diese Kopien gehören uns zum Bearbeiten und Gestalten
 — nichts Wichtiges ist in `node_modules` versteckt.
 
 ## Inhalt ist einfach Markdown

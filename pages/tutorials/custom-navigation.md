@@ -20,7 +20,7 @@ npx nera-navigation
 ```
 
 The second command copies the nav templates into
-`views/vendor/plugin-navigation/`, where you can edit them freely.
+`theme/views/vendor/plugin-navigation/`, where you can edit them freely.
 
 ## 2. Define the menu
 

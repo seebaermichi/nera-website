@@ -18,9 +18,12 @@ uno nuevo con:
 npx @nera-static/nera new <project-name>
 ```
 
+`nera new .` crea el sitio en la carpeta actual, que debe estar vacía, y
+`--theme <name>` lo arranca a partir de un tema.
+
 Un sitio creado depende de `@nera-static/nera`, así que ejecuta estos desde
-dentro de él (el andamiaje también los enlaza a un script npm, p. ej.
-`npm run dev`):
+dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaza
+`build`, `dev` y `serve` a scripts npm, p. ej. `npm run dev`:
 
 | Comando | Qué hace |
 | --- | --- |
@@ -169,7 +172,7 @@ incluido e instala, dejando intactos tus `pages/`, `config/` y `theme/`.
 ## Comandos de publicación de plugins
 
 Cada plugin que incluye plantillas expone un bin para copiar su Pug a
-`views/vendor/`, p. ej.:
+`theme/views/vendor/`, p. ej.:
 
 ```bash
 npx nera-navigation

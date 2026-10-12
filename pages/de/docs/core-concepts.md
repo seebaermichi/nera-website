@@ -28,7 +28,7 @@ Plugins ergänzen beide — zum Beispiel setzt `plugin-navigation` `app.nav`, un
 
 ## Layouts
 
-Layouts sind Pug-Dateien unter `views/`. Das `layout`-Frontmatter einer Seite wählt eines aus:
+Layouts sind Pug-Dateien unter `theme/views/`. Das `layout`-Frontmatter einer Seite wählt eines aus:
 
 ```markdown
 ---
@@ -36,6 +36,16 @@ layout: pages/docs.pug
 title: My page
 ---
 ```
+
+Der Pfad ist relativ zu `theme/views/`, `pages/docs.pug` ist also
+`theme/views/pages/docs.pug`.
+
+Setzt `config/app.yaml` ein `theme:` (ein Paket wie `@nera-static/theme-example`
+oder einen lokalen Ordner), kommen die Layouts aus diesem Theme, und eine Datei in
+deinem eigenen `theme/views/` oder `theme/assets/` ersetzt die Datei des Themes
+am selben Pfad — so überschreibst du ein einzelnes Template, ohne den Rest zu
+kopieren. `npx @nera-static/nera new my-site --theme example` startet eine
+Website auf diese Weise.
 
 ## Übersetzungen
 

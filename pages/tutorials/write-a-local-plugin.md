@@ -10,9 +10,17 @@ pagination_order: 8
 createdAt: 2026-07-14
 ---
 You don't need to publish to npm to extend Nera. Any module at
-`src/plugins/<name>/index.js` is discovered and applied automatically. Let's build
-a real one: a plugin that collects every tutorial into a list for an index page —
-the exact plugin that powers this site.
+`src/plugins/<name>/index.js` is discovered and applied automatically. To keep
+local plugins elsewhere, set the folder in `config/app.yaml` — this site uses
+`plugins/`:
+
+```yaml
+folders:
+    plugins: ./plugins
+```
+
+Let's build a real one: a plugin that collects every tutorial into a list for an
+index page — a simplified version of the plugin that powers this site.
 
 ## The contract
 

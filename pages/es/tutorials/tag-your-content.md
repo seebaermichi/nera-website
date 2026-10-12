@@ -46,7 +46,7 @@ tag_overview_layout: pages/tag-overview.pug
 ```
 
 El `tag_overview_layout` apunta a un layout que renderiza la plantilla de resumen
-publicada. Crea `views/pages/tag-overview.pug`:
+publicada. Crea `theme/views/pages/tag-overview.pug`:
 
 ```pug
 extends ../layouts/layout

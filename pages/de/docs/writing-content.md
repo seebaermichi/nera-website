@@ -57,7 +57,12 @@ Nera fügt diese automatisch hinzu:
 | `meta.href` | URL-Pfad der generierten HTML-Datei |
 | `meta.dirname` | Verzeichnis, in dem die Seite liegt |
 | `meta.filename` | Quelldateiname |
-| `meta.createdAt` | Erstellungszeitpunkt der Datei |
+| `meta.createdAt` | `createdAt` oder `date` aus dem Frontmatter, sonst der Erstellungszeitpunkt der Datei |
+
+Setze `createdAt` (oder `date`) im Frontmatter von allem, was nach Datum
+sortiert wird, etwa Beiträgen. Ein frischer Checkout in CI gibt jeder Datei
+denselben Erstellungszeitpunkt, ohne den Wert geht die Reihenfolge auf dem
+Build-Server also verloren.
 
 ## Ordner werden zu URLs
 
