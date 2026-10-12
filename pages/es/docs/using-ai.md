@@ -24,7 +24,8 @@ Un sitio creado con `npx @nera-static/nera new` (desde `@nera-static/nera`
   Eleventy, Hugo, Astro ni Jekyll), describe las carpetas, enumera los
   comandos, señala las trampas habituales — una página necesita `layout`, las
   URLs terminan en `.html`, `public/` se borra en cada compilación — y pide
-  buscar en el catálogo de plugins antes de escribir una función.
+  buscar en el catálogo de plugins antes de escribir una función. Desde la
+  1.8.0 también enlaza la documentación de Nera para IA (ver más abajo).
 - **`CLAUDE.md`** — una línea, `@AGENTS.md`, para que Claude Code cargue el
   mismo texto.
 
@@ -93,7 +94,8 @@ Añadir una página:
 
 ```text
 Añade una página "Sobre nosotros" en pages/about.md con el mismo layout que
-pages/index.md y enlázala desde la navegación. Luego ejecuta
+pages/index.md y enlázala desde el menú (instala
+@nera-static/plugin-navigation si el sitio aún no tiene menú). Luego ejecuta
 npx nera validate y npx nera build --check y corrige lo que informen.
 ```
 

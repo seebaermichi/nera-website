@@ -24,7 +24,8 @@ Eine Website, die mit `npx @nera-static/nera new` erstellt wurde (ab
   nicht Eleventy, Hugo, Astro oder Jekyll ist), beschreibt die Ordner, listet
   die Befehle, nennt die üblichen Stolperfallen — eine Seite braucht `layout`,
   URLs enden auf `.html`, `public/` wird bei jedem Build gelöscht — und sagt,
-  dass vor einer eigenen Funktion erst der Plugin-Katalog dran ist.
+  dass vor einer eigenen Funktion erst der Plugin-Katalog dran ist. Ab 1.8.0
+  verlinkt sie auch Neras Doku für KI (siehe unten).
 - **`CLAUDE.md`** — eine Zeile, `@AGENTS.md`, damit Claude Code denselben Text
   lädt.
 
@@ -92,8 +93,10 @@ Eine Seite hinzufügen:
 
 ```text
 Füge eine Seite "Über uns" unter pages/about.md hinzu, mit demselben Layout
-wie pages/index.md, und verlinke sie in der Navigation. Führe dann
-npx nera validate und npx nera build --check aus und behebe, was sie melden.
+wie pages/index.md, und verlinke sie im Menü (installiere
+@nera-static/plugin-navigation, falls die Website noch kein Menü hat). Führe
+dann npx nera validate und npx nera build --check aus und behebe, was sie
+melden.
 ```
 
 Ein Kontaktformular mit dem Plugin einbauen:

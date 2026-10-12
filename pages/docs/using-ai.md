@@ -24,7 +24,7 @@ A site created with `npx @nera-static/nera new` (from `@nera-static/nera`
   Eleventy, Hugo, Astro or Jekyll), maps the folders, lists the commands, names
   the usual traps — a page needs `layout`, URLs end in `.html`, `public/` is
   wiped on every build — and says to look in the plugin catalog before writing
-  a feature.
+  a feature. From 1.8.0 on it also links Nera's docs for AI (see below).
 - **`CLAUDE.md`** — one line, `@AGENTS.md`, so Claude Code loads the same text.
 
 `AGENTS.md` ends with a **Notes for this site** section below the marker line
@@ -89,8 +89,9 @@ Add a page:
 
 ```text
 Add an "About us" page at pages/about.md with the same layout as
-pages/index.md, and link it from the navigation. Then run npx nera validate
-and npx nera build --check and fix what they report.
+pages/index.md, and link it from the menu (add
+@nera-static/plugin-navigation if the site has no menu yet). Then run
+npx nera validate and npx nera build --check and fix what they report.
 ```
 
 Add a contact form with the plugin:
