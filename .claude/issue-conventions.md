@@ -17,6 +17,8 @@ releases); this file only adds what a reviewer checks per diff.
   into the issue.
 - **Never push or publish.** No `git push` (a push to `main` deploys the live site
   via CI), no tags, no posts anywhere public. The session hands over the commands.
+  Exception: a Claude Code cloud session (`/work-issue-cloud`) pushes its own
+  `issue/…` branch, which its brief names — never `main`.
 - The site is not published to npm: no version bump, no `CHANGELOG.md`.
 - Never edit `public/` — it is deleted on every build.
 - Three languages (`pages/`, `pages/de/`, `pages/es/`): a change to a page or a
