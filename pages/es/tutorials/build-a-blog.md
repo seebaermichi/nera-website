@@ -20,7 +20,7 @@ npx @nera-static/nera new my-blog
 cd my-blog
 ```
 
-`nera new` crea el sitio e instala sus dependencias. Trabajarás en tres sitios:
+`nera new` crea el sitio e instala sus dependencias. Trabajarás en tres lugares:
 `pages/` para tu contenido (empieza con `pages/index.md`), `theme/views/` para las
 plantillas Pug (`layouts/layout.pug` es el esqueleto HTML y `pages/default.pug`
 renderiza una página dentro de él) y `config/` para la configuración.
