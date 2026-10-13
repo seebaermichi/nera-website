@@ -3,7 +3,7 @@ layout: pages/tutorial.pug
 title: Wie diese Website gebaut ist
 slug: how-this-site-is-built
 lang: de
-description: Eine Fallstudie über die Nera-Seite selbst — die Plugins, die Reihenfolge und das lokale Plugin dahinter.
+description: Eine Fallstudie über die Nera-Seite selbst — die Plugins, die Reihenfolge, die lokalen Plugins und wie sie geprüft und veröffentlicht wird.
 keywords: nera Fallstudie, Static-Site-Beispiel, nera Website, Dogfooding
 tags: case-study, plugins, advanced
 pagination_order: 9
@@ -23,7 +23,7 @@ Nera-Abhängigkeit `@nera-static/nera` ist (das Paket bringt die
 npx @nera-static/nera new nera-website
 ```
 
-## Neun Plugins, jedes mit einer Aufgabe
+## Zehn Plugins, jedes mit einer Aufgabe
 
 | Plugin | Aufgabe | Konfiguration |
 | --- | --- | --- |
@@ -36,9 +36,15 @@ npx @nera-static/nera new nera-website
 | `plugin-code-blocks` | Syntax-Highlighting zur Build-Zeit mit Kopier-Button | `config/code-blocks.yaml` |
 | `tutorials-list` (lokal) | Baut `app.tutorials` für den Index | — |
 | `llms-txt` (lokal) | `llms.txt`, `llms-full.txt` und eine `.md` je Seite für KI-Assistenten | `config/llms-txt.yaml` |
+| `skill-zip` (lokal) | [Der Nera-Skill](/de/docs/using-ai.html) als Zip für claude.ai und Claude Desktop | — |
 
-Die beiden lokalen Plugins liegen in `plugins/`, festgelegt mit `folders.plugins`
-in `config/app.yaml`. Die meisten anderen haben in diesem Bereich ein eigenes
+Die drei lokalen Plugins — `tutorials-list`, `llms-txt` und `skill-zip` — liegen
+in `plugins/`, festgelegt mit `folders.plugins` in `config/app.yaml`. `llms-txt`
+und `skill-zip` erzeugen Dateien statt Daten und übergeben sie dem Build über den
+`getAssets`-Hook (siehe
+[Schreibe dein eigenes lokales Plugin](/de/tutorials/write-a-local-plugin.html)).
+`skill-zip` liest den Skill aus dem installierten `@nera-static/nera`, damit der
+Download immer zur CLI passt, mit der die Seite gebaut wird. Die meisten anderen haben in diesem Bereich ein eigenes
 Tutorial, falls du die Details möchtest.
 
 ## Reihenfolge zählt — Canonical Links und Suche laufen zuletzt
@@ -76,6 +82,29 @@ keine Routing-Konfiguration.
 ```bash
 npm run build   # pages/ -> public/
 ```
+
+## Prüfen und veröffentlichen
+
+Jeder Push auf `main` und jeder Pull Request dorthin startet
+`.github/workflows/test.yml` auf Node 20 und 22 — dieselben Befehle, die du auch
+lokal ausführen kannst:
+
+```bash
+npm ci
+npm run lint              # eslint
+npm test                  # node --test mit den Tests neben den lokalen Plugins
+npm run validate          # nera validate: Layouts, Includes, Frontmatter
+npm run build -- --check  # nera build --check
+```
+
+`--check` untersucht das gebaute `public/` auf Probleme bei Barrierefreiheit,
+Datenschutz und Impressum und meldet, was es findet. Die Funde sind Warnungen;
+den Lauf lassen sie nur bei einer Regel scheitern, die `config/validate.yaml` zum
+Fehler hochstuft.
+
+Ein Push auf `main` startet danach `.github/workflows/deploy.yml`: `npm ci`,
+`npm run build`, und `public/` wird auf GitHub Pages veröffentlicht — die Seite,
+die du gerade auf nera.js.org liest.
 
 Das ist der gesamte Stack: Markdown rein, statisches HTML raus, Plugins für den Rest.
 Wenn du die anderen Tutorials in diesem Bereich gelesen hast, hast du jetzt jedes
