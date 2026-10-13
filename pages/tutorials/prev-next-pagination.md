@@ -10,7 +10,7 @@ pagination_order: 5
 createdAt: 2026-07-17
 verified_on: 2026-10-13
 verified_with:
-    plugin-page-pagination: 2.3.2
+    plugin-page-pagination: 2.4.0
 ---
 `@nera-static/plugin-page-pagination` links each page to its previous and next
 **sibling** — pages in the same directory — in an order you control. Perfect for

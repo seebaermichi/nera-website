@@ -11,7 +11,7 @@ createdAt: 2026-07-21
 verified_on: 2026-10-13
 verified_with:
     nera: 1.11.0
-    core: 4.15.2
+    core: 4.16.0
 ---
 In this tutorial you'll scaffold a Nera site, add a couple of posts, and list them
 newest-first on an index page.
