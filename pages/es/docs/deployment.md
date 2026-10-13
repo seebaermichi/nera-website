@@ -50,8 +50,8 @@ compilación no cambia.
 
 ## Antes de lanzar
 
-- Configura `app_origin` en `config/canonical-links.yaml` con tu dominio real para
-  que las URL canónicas sean correctas.
+- Configura `origin` en `config/app.yaml` con tu dominio real para que las URL
+  canónicas sean correctas (consulta [Añadir enlaces canónicos para SEO](/es/tutorials/canonical-links-seo.html)).
 - Añade un `.neraignore` en la raíz del proyecto para mantener los recursos solo
   de origen fuera de la compilación.
 

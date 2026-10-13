@@ -48,8 +48,8 @@ is unchanged.
 
 ## Before you launch
 
-- Set `app_origin` in `config/canonical-links.yaml` to your real domain so
-  canonical URLs are correct.
+- Set `origin` in `config/app.yaml` to your real domain so canonical URLs are
+  correct (see [Canonical links for SEO](/tutorials/canonical-links-seo.html)).
 - Add an `.neraignore` at the project root to keep source-only assets out of the
   build.
 

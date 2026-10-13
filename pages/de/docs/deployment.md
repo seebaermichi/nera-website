@@ -51,8 +51,8 @@ Schlüssel bleibt die Build-Ausgabe unverändert.
 
 ## Bevor du startest
 
-- Setze `app_origin` in `config/canonical-links.yaml` auf deine echte Domain,
-  damit die kanonischen URLs korrekt sind.
+- Setze `origin` in `config/app.yaml` auf deine echte Domain, damit die
+  kanonischen URLs korrekt sind (siehe [Canonical-Links für SEO](/de/tutorials/canonical-links-seo.html)).
 - Füge eine `.neraignore` im Projektstamm hinzu, um reine Quell-Assets aus dem
   Build herauszuhalten.
 
