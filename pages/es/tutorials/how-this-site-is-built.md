@@ -43,8 +43,8 @@ Los tres plugins locales — `tutorials-list`, `llms-txt` y `skill-zip` — vive
 mediante el hook `getAssets` (consulta
 [Escribe tu propio plugin local](/es/tutorials/write-a-local-plugin.html)).
 `skill-zip` lee la skill del `@nera-static/nera` instalado, así que la descarga
-siempre coincide con la CLI con la que se compila el sitio. La mayoría de los demás tiene su propio tutorial en esta
-sección, si quieres los detalles.
+siempre coincide con la CLI con la que se compila el sitio. La mayoría de los
+demás tiene su propio tutorial en esta sección, si quieres los detalles.
 
 ## El orden importa — los enlaces canónicos y la búsqueda se ejecutan al final
 

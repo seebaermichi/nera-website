@@ -44,8 +44,8 @@ und `skill-zip` erzeugen Dateien statt Daten und übergeben sie dem Build über 
 `getAssets`-Hook (siehe
 [Schreibe dein eigenes lokales Plugin](/de/tutorials/write-a-local-plugin.html)).
 `skill-zip` liest den Skill aus dem installierten `@nera-static/nera`, damit der
-Download immer zur CLI passt, mit der die Seite gebaut wird. Die meisten anderen haben in diesem Bereich ein eigenes
-Tutorial, falls du die Details möchtest.
+Download immer zur CLI passt, mit der die Seite gebaut wird. Die meisten anderen
+haben in diesem Bereich ein eigenes Tutorial, falls du die Details möchtest.
 
 ## Reihenfolge zählt — Canonical Links und Suche laufen zuletzt
 

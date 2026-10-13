@@ -51,8 +51,8 @@ The three local plugins — `tutorials-list`, `llms-txt` and `skill-zip` — liv
 `skill-zip` write files rather than data, and hand them to the build through the
 `getAssets` hook (see [Write your own local plugin](/tutorials/write-a-local-plugin.html)).
 `skill-zip` reads the skill from the installed `@nera-static/nera`, so the
-download always matches the CLI the site builds with. Most of the others have their own tutorial in this section,
-if you want the details.
+download always matches the CLI the site builds with. Most of the others have
+their own tutorial in this section, if you want the details.
 
 ## Order matters — canonical links and search run last
 
