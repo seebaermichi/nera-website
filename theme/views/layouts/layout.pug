@@ -19,7 +19,7 @@ html(lang=curLang)
     meta(name="generator" content=`nera - ${ process.env.npm_package_version }`)
     meta(name="robots" content=(hiddenLangs.includes(curLang) ? 'noindex,follow' : (meta.robots || app.robots)))
     // Canonical + alternate language links (plugin-canonical-links)
-    include ../vendor/plugin-canonical-links/index
+    include /vendor/plugin-canonical-links/index
     //- The page as plain Markdown for AI assistants, set by plugins/llms-txt
     //- on the English docs and tutorials only.
     if meta.markdown_href
