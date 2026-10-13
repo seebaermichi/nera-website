@@ -1,11 +1,14 @@
 # Result — Tutorial "Add client-side search" (01a136ac-bc82-70f7-9a8f-aaef6fddb2c3)
 
-> **Push status:** at the time of writing, `git push` of
+> **Push failed — branch delivered as a bundle and patch series.** `git push` of
 > `issue/01a136ac-bc82-search-tutorial` was refused with 403 "seebaermichi/nera-website
 > is not in this session's authorized repository set" (the session had no
-> `origin` remote at all; I added it). The session cannot attach the repo itself.
-> See the final chat message for whether the push went through after the repo
-> was attached, or for the fallback.
+> `origin` remote at all; I added it). The maintainer attached the repo during
+> the session, but four more retries with backoff (4/8/16/32 s) were still
+> refused. Fallback, uncommitted in the session's working directory:
+> `plans/cloud/01a136ac-bc82-search-tutorial.bundle`
+> (`git fetch <bundle> issue/01a136ac-bc82-search-tutorial:issue/01a136ac-bc82-search-tutorial`)
+> and `plans/cloud/01a136ac-bc82-patches/*.patch` (`git am`).
 
 ## Plan
 
