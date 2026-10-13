@@ -38,6 +38,25 @@ elements:
       name: Docs
 ```
 
+Alle drei Klassen-Schlüssel sind optional, und die Werte oben sind ihre Standardwerte —
+dieses Beispiel rendert also genauso wie eines ohne sie. `active_class` landet auf dem Link
+zur aktuellen Seite, `active_path_class` auf einem Link, dessen Verzeichnis die aktuelle
+Seite enthält (das Wurzelverzeichnis zählt nie). `nav_class` ist der BEM-Blockname, von dem
+sich die übrigen Klassen ableiten: `nav_class: mainmenu` benennt die ganze Familie um in
+`.mainmenu`, `.mainmenu--list`, `.mainmenu__item`, `.mainmenu__link`,
+`.mainmenu__link--active` und `.mainmenu__link--active-path`. Die beiden Zustands-Schlüssel
+überschreiben nur ihre eigene Klasse — wenn du umbenennst, lass sie also weg; so wie oben
+gesetzt, bleibt es bei `nav__link--active`.
+
+Jeder Eintrag braucht ein `href`: Einer ohne wird mit einer Warnung übersprungen, und der
+Build läuft trotzdem durch.
+
+> Du aktualisierst von 2.x? Das Veröffentlichen überspringt einen vorhandenen Ordner
+> `theme/views/vendor/plugin-navigation/`, also bleiben die alten Templates, und `nav_class`
+> scheint nichts zu bewirken. Führe einmal `npx nera-navigation --force` aus — es
+> überschreibt diesen Ordner. Hast du deine Kopie bearbeitet, sichere deine Änderungen also
+> vorher und übertrage sie danach.
+
 Brauchst du mehr als ein Menü? Verschachtele sie unter Namen — jedes wird zu
 `app.nav.<name>.elements`:
 

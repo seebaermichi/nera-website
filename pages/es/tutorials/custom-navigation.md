@@ -38,6 +38,23 @@ elements:
       name: Docs
 ```
 
+Las tres claves de clase son opcionales, y los valores de arriba son sus valores por
+defecto, así que este ejemplo se renderiza igual que uno sin ellas. `active_class` va en el
+enlace a la página actual, y `active_path_class` en un enlace cuyo directorio contiene la
+página actual (la raíz del sitio nunca cuenta). `nav_class` es el nombre de bloque BEM del
+que derivan las demás clases: `nav_class: mainmenu` renombra toda la familia a `.mainmenu`,
+`.mainmenu--list`, `.mainmenu__item`, `.mainmenu__link`, `.mainmenu__link--active` y
+`.mainmenu__link--active-path`. Las dos claves de estado solo sobrescriben su propia clase,
+así que al renombrar, quítalas — tal como están arriba, se quedan en `nav__link--active`.
+
+Cada entrada necesita un `href`: una sin él se omite con una advertencia, y el build se
+completa igualmente.
+
+> ¿Actualizas desde 2.x? Publicar omite una carpeta `theme/views/vendor/plugin-navigation/`
+> ya existente, así que las plantillas antiguas se quedan y `nav_class` parece no hacer nada.
+> Ejecuta `npx nera-navigation --force` una vez — sobrescribe esa carpeta, así que si
+> editaste tu copia, guarda antes tus cambios y vuelve a aplicarlos.
+
 ¿Necesitas más de un menú? Anídalos bajo nombres — cada uno se convierte en
 `app.nav.<name>.elements`:
 
