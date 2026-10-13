@@ -50,6 +50,7 @@ translations:
         docs_nav_cli: CLI reference
         docs_nav_ai: Using Nera with AI
         language_label: Language
+        nav_main_label: Main menu
         search_label: Search
         Pagination: Previous and next page
         Navigation: Navigation
@@ -82,6 +83,7 @@ translations:
         docs_nav_cli: CLI-Referenz
         docs_nav_ai: Nera mit KI nutzen
         language_label: Sprache
+        nav_main_label: Hauptmenü
         search_label: Suche
         Pagination: Vorherige und nächste Seite
         Navigation: Navigation
@@ -114,6 +116,7 @@ translations:
         docs_nav_cli: Referencia de la CLI
         docs_nav_ai: Usar Nera con IA
         language_label: Idioma
+        nav_main_label: Menú principal
         search_label: Buscar
         Pagination: Página anterior y siguiente
         Navigation: Navegación
