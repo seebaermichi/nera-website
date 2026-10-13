@@ -41,6 +41,23 @@ elements:
       name: Docs
 ```
 
+All three class keys are optional, and the values above are their defaults, so this
+example renders the same as one without them. `active_class` goes on the link to the
+current page, `active_path_class` on a link whose directory contains the current page
+(the site root never counts). `nav_class` is the BEM block name the other classes derive
+from: `nav_class: mainmenu` renames the whole family to `.mainmenu`, `.mainmenu--list`,
+`.mainmenu__item`, `.mainmenu__link`, `.mainmenu__link--active` and
+`.mainmenu__link--active-path`. The two state keys override just their own class, so
+when you rename, drop them — left as above, they keep `nav__link--active`.
+
+Every entry needs an `href`: one without it is skipped with a warning, and the build
+still succeeds.
+
+> Upgrading from 2.x? Publishing skips an existing `theme/views/vendor/plugin-navigation/`,
+> so the old templates stay and `nav_class` seems to do nothing. Run
+> `npx nera-navigation --force` once — it overwrites that folder, so if you edited your
+> copy, save your changes first and carry them over.
+
 Need more than one menu? Nest them under names — each becomes
 `app.nav.<name>.elements`:
 
