@@ -37,6 +37,25 @@ creates `AGENTS.md` and `CLAUDE.md` when they are missing and refreshes only
 Nera's part of `AGENTS.md`, so your notes stay. The details are in the
 [CLI reference](/docs/cli.html), under "Instructions for AI assistants".
 
+## The Nera skill
+
+From `@nera-static/nera` 1.10.0 on, every new site also contains the **Nera
+skill**, an Agent Skill: a `SKILL.md` with the workflow and the checks to run,
+plus short recipes for a business site, a blog, a portfolio, a contact form,
+search, images, a second language and a custom domain. Assistants that support
+skills load it when a task is about Nera. It sits in two folders:
+
+- `.agents/skills/nera/` — read by Codex, Cursor, GitHub Copilot and Gemini CLI;
+- `.claude/skills/nera/` — read by Claude Code.
+
+Both folders are Nera's: `npx nera update` adds them to an existing site and
+keeps them in step with the installed version, so commit them but do not edit
+them. Write your own notes in `AGENTS.md` instead.
+
+**claude.ai and Claude Desktop** install skills by upload. Download
+[`nera-skill.zip`](/downloads/nera-skill.zip) — the same skill a new site
+gets — and upload it in the skills section of the settings.
+
 ## Per assistant
 
 Open the site's folder in the assistant — the folder with `package.json` and
@@ -71,6 +90,7 @@ language.
 2. Let the assistant edit the files.
 3. It runs `npx nera validate`, then `npx nera build --check`, and fixes what
    they report. `AGENTS.md` tells it to; say so in the prompt if it does not.
+   With `--json` (from 1.9.0 on) both print their findings for machines.
 4. Preview with `npm run dev` on `http://localhost:3000`.
 5. Review the diff (`git diff`) before you publish.
 
@@ -130,10 +150,6 @@ with the files I need to create and their content.
 
 Planned, not available yet:
 
-- a **Nera skill** (an Agent Skill) copied into every site for assistants that
-  load skills, plus a download for claude.ai and Claude Desktop;
-- **`--json` output** for `nera validate` and `nera check`, so assistants can
-  read the findings directly;
 - **`nera publish`** — getting a site online from the CLI;
 - an **MCP server** for Nera: a local one for Claude Desktop, Claude Code and
   Cursor, and a hosted connector for claude.ai and ChatGPT that works on your

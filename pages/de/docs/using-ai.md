@@ -40,6 +40,28 @@ nur Neras Teil der `AGENTS.md` auf — deine Notizen bleiben. Die Details stehen
 in der [CLI-Referenz](/de/docs/cli.html) unter „Anweisungen für
 KI-Assistenten“.
 
+## Der Nera-Skill
+
+Ab `@nera-static/nera` 1.10.0 enthält jede neue Website auch den
+**Nera-Skill**, einen Agent Skill: eine `SKILL.md` mit dem Ablauf und den
+Prüfungen, dazu kurze Rezepte für eine Firmen-Website, einen Blog, ein
+Portfolio, ein Kontaktformular, die Suche, Bilder, eine zweite Sprache und eine
+eigene Domain. Assistenten, die Skills unterstützen, laden ihn, sobald es um
+Nera geht. Er liegt in zwei Ordnern:
+
+- `.agents/skills/nera/` — gelesen von Codex, Cursor, GitHub Copilot und
+  Gemini CLI;
+- `.claude/skills/nera/` — gelesen von Claude Code.
+
+Beide Ordner gehören Nera: `npx nera update` legt sie in einer bestehenden
+Website an und hält sie auf dem Stand der installierten Version. Committe sie,
+aber ändere sie nicht; deine eigenen Hinweise gehören in `AGENTS.md`.
+
+**claude.ai und Claude Desktop** installieren Skills per Upload. Lade
+[`nera-skill.zip`](/downloads/nera-skill.zip) herunter — derselbe Skill, den
+eine neue Website bekommt — und lade ihn in den Einstellungen im Bereich für
+Skills hoch.
+
 ## Je nach Assistent
 
 Öffne im Assistenten den Ordner der Website — den mit `package.json` und
@@ -74,7 +96,8 @@ englische Doku gut und antworten trotzdem auf Deutsch.
 2. Lass den Assistenten die Dateien bearbeiten.
 3. Er führt `npx nera validate` und dann `npx nera build --check` aus und
    behebt, was sie melden. `AGENTS.md` verlangt das; tut er es nicht, schreib
-   es in den Prompt.
+   es in den Prompt. Mit `--json` (ab 1.9.0) geben beide ihre Befunde
+   maschinenlesbar aus.
 4. Sieh dir das Ergebnis mit `npm run dev` unter `http://localhost:3000` an.
 5. Prüfe den Diff (`git diff`), bevor du veröffentlichst.
 
@@ -137,11 +160,6 @@ hinzufüge, mit den Dateien, die ich anlegen muss, und ihrem Inhalt.
 
 Geplant, noch nicht verfügbar:
 
-- ein **Nera-Skill** (ein Agent Skill), der in jede Website kopiert wird, für
-  Assistenten, die Skills laden, plus ein Download für claude.ai und Claude
-  Desktop;
-- **`--json`-Ausgabe** für `nera validate` und `nera check`, damit Assistenten
-  die Befunde direkt lesen können;
 - **`nera publish`** — eine Website direkt aus der CLI online bringen;
 - ein **MCP-Server** für Nera: ein lokaler für Claude Desktop, Claude Code und
   Cursor sowie ein gehosteter Connector für claude.ai und ChatGPT, der mit

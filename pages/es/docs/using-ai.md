@@ -40,6 +40,26 @@ de `AGENTS.md`, así que tus notas se mantienen. Los detalles están en la
 [referencia de la CLI](/es/docs/cli.html), en «Instrucciones para asistentes
 de IA».
 
+## La skill de Nera
+
+Desde `@nera-static/nera` 1.10.0, cada sitio nuevo incluye también la **skill
+de Nera**, una Agent Skill: un `SKILL.md` con el flujo de trabajo y las
+comprobaciones, y recetas cortas para un sitio de empresa, un blog, un
+portafolio, un formulario de contacto, la búsqueda, imágenes, un segundo idioma
+y un dominio propio. Los asistentes que admiten skills la cargan cuando la
+tarea trata de Nera. Está en dos carpetas:
+
+- `.agents/skills/nera/` — la leen Codex, Cursor, GitHub Copilot y Gemini CLI;
+- `.claude/skills/nera/` — la lee Claude Code.
+
+Las dos carpetas son de Nera: `npx nera update` las añade a un sitio existente
+y las mantiene al día con la versión instalada. Haz commit de ellas, pero no
+las edites; tus propias notas van en `AGENTS.md`.
+
+**claude.ai y Claude Desktop** instalan skills subiéndolas. Descarga
+[`nera-skill.zip`](/downloads/nera-skill.zip) — la misma skill que recibe un
+sitio nuevo — y súbela en la sección de skills de la configuración.
+
 ## Según el asistente
 
 Abre en el asistente la carpeta del sitio — la que tiene `package.json` y
@@ -75,7 +95,8 @@ bien la documentación en inglés y te responden en español.
 2. Deja que el asistente edite los archivos.
 3. El asistente ejecuta `npx nera validate` y luego `npx nera build --check`,
    y corrige lo que informen. `AGENTS.md` se lo pide; si no lo hace, dilo en
-   el prompt.
+   el prompt. Con `--json` (desde la 1.9.0) ambos dan sus resultados en un
+   formato legible por máquinas.
 4. Revisa el resultado con `npm run dev` en `http://localhost:3000`.
 5. Revisa el diff (`git diff`) antes de publicar.
 
@@ -136,11 +157,6 @@ mi sitio Nera, con los archivos que tengo que crear y su contenido.
 
 Previsto, todavía no disponible:
 
-- una **skill de Nera** (una Agent Skill) copiada en cada sitio para los
-  asistentes que cargan skills, más una descarga para claude.ai y Claude
-  Desktop;
-- **salida `--json`** para `nera validate` y `nera check`, para que los
-  asistentes lean los resultados directamente;
 - **`nera publish`** — publicar un sitio desde la CLI;
 - un **servidor MCP** para Nera: uno local para Claude Desktop, Claude Code y
   Cursor, y un conector alojado para claude.ai y ChatGPT que trabaja sobre tu
