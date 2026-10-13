@@ -86,4 +86,10 @@ releases); this file only adds what a reviewer checks per diff.
 - Tutorial changed or added: the English page's `verified_with`/`verified_on`
   are current, and `node ../.claude/skills/tutorial-review/drift.mjs` shows it
   `current` with de/es parity.
+- Remove the issue's plan files last, once nothing else needs them:
+  `git rm` its tracked files under `plans/` (`plans/issues/<id>-*`,
+  `plans/issues/browser-tests/<first 8 chars>-*`, `plans/cloud/<id>-*`), delete
+  the untracked ones, and commit
+  `chore(plan): remove the plan files of the resolved <short title> issue`.
+  Git history keeps them; `plans/` holds only open issues.
 - Hand over the deploy command (`git push` in `nera-website`) — do not run it.
