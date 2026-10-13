@@ -183,10 +183,10 @@ liest denselben Origin (`origin` aus `app.yaml`, sonst `app_origin`) und denselb
 `base_path` — die URLs in deiner Sitemap und deine canonical-Links stimmen also
 überein, auf einer Website mit `base_path` ab plugin-canonical-links 2.2.3.
 
-Auch diese Website nutzt das Plugin. Ihre `config/canonical-links.yaml` setzt
-`app_origin: https://nera.js.org` und führt nur `en` und `de` als Sprachen —
-Spanisch bleibt außen vor, bis eine muttersprachliche Durchsicht erfolgt ist, daher
-trägt noch keine Seite ein `hreflang="es"`-Alternate. Ihre `config/plugin-order.yaml`
-stellt `plugin-canonical-links` unter `end:`, und ihr Layout nutzt das relative
-`include ../vendor/plugin-canonical-links/index`, das aus `theme/views/layouts/`
-gleichwertig ist. Sieh dir den Quelltext dieser Seite an, um das Ergebnis zu sehen.
+Auch diese Website nutzt das Plugin, eingerichtet wie in diesem Tutorial:
+`origin: https://nera.js.org` in `config/app.yaml`, das root-absolute Include im Layout und
+`plugin-canonical-links` unter `end:` in `config/plugin-order.yaml`. Ihre
+`config/canonical-links.yaml` führt nur `en` und `de` als Sprachen — Spanisch
+bleibt außen vor, bis eine muttersprachliche Durchsicht erfolgt ist, daher trägt
+noch keine Seite ein `hreflang="es"`-Alternate. Der Quelltext dieser Seite zeigt
+das Ergebnis.

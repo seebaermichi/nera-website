@@ -179,10 +179,9 @@ reads the same origin (`origin` in `app.yaml`, else `app_origin`) and the same
 `base_path`, so the URLs in your sitemap and your canonical links agree — on a
 `base_path` site from plugin-canonical-links 2.2.3 on.
 
-This site uses the plugin as well. Its `config/canonical-links.yaml` sets
-`app_origin: https://nera.js.org` and lists only `en` and `de` as languages —
-Spanish is left out until a native-speaker review is done, so no page carries an
-`hreflang="es"` alternate yet. Its `config/plugin-order.yaml` puts
-`plugin-canonical-links` under `end:`, and its layout uses the relative
-`include ../vendor/plugin-canonical-links/index`, which is equivalent from
-`theme/views/layouts/`. View the source of this page to see the result.
+This site uses the plugin as well, set up as this tutorial describes:
+`origin: https://nera.js.org` in `config/app.yaml`, the root-absolute include in its layout,
+and `plugin-canonical-links` under `end:` in `config/plugin-order.yaml`. Its
+`config/canonical-links.yaml` lists only `en` and `de` as languages — Spanish is
+left out until a native-speaker review is done, so no page carries an
+`hreflang="es"` alternate yet. View the source of this page to see the result.
