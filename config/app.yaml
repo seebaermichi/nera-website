@@ -46,6 +46,9 @@ translations:
         docs_nav_cli: CLI reference
         docs_nav_ai: Using Nera with AI
         language_label: Language
+        search_label: Search
+        Pagination: Previous and next page
+        Navigation: Navigation
 
     de:
         app_description: Nera ist ein leichtgewichtiger, Plugin-basierter Static-Site-Generator. Schreibe Markdown, gestalte mit Pug und erweitere mit kleinen, fokussierten Plugins.
@@ -74,6 +77,9 @@ translations:
         docs_nav_cli: CLI-Referenz
         docs_nav_ai: Nera mit KI nutzen
         language_label: Sprache
+        search_label: Suche
+        Pagination: Vorherige und nächste Seite
+        Navigation: Navigation
 
     es:
         app_description: Nera es un generador de sitios estáticos ligero y basado en plugins. Escribe Markdown, maqueta con Pug y amplía con plugins pequeños y específicos.
@@ -102,3 +108,6 @@ translations:
         docs_nav_cli: Referencia de la CLI
         docs_nav_ai: Usar Nera con IA
         language_label: Idioma
+        search_label: Buscar
+        Pagination: Página anterior y siguiente
+        Navigation: Navegación
