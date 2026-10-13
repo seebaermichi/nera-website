@@ -87,7 +87,7 @@ npm run build   # pages/ -> public/
 ## Prüfen und veröffentlichen
 
 Jeder Push auf `main` und jeder Pull Request dorthin startet
-`.github/workflows/test.yml` auf Node 20 und 22 — dieselben Befehle, die du auch
+[`.github/workflows/test.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/test.yml) auf Node 20 und 22 — dieselben Befehle, die du auch
 lokal ausführen kannst:
 
 ```bash
@@ -103,7 +103,7 @@ Datenschutz und Impressum und meldet, was es findet. Die Funde sind Warnungen;
 den Lauf lassen sie nur bei einer Regel scheitern, die `config/validate.yaml` zum
 Fehler hochstuft.
 
-Ein Push auf `main` startet danach `.github/workflows/deploy.yml`: `npm ci`,
+Ein Push auf `main` startet danach [`.github/workflows/deploy.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/deploy.yml): `npm ci`,
 `npm run build`, und `public/` wird auf GitHub Pages veröffentlicht — die Seite,
 die du gerade auf nera.js.org liest.
 

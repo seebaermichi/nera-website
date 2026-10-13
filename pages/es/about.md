@@ -34,4 +34,5 @@ requests son bienvenidos — consulta el catálogo de plugins en la página
 Este sitio web está construido con Nera, usando `plugin-navigation`,
 `plugin-tags`, `plugin-search`, `plugin-page-pagination` y
 `plugin-canonical-links` — más un pequeño plugin local para la lista de
-tutoriales.
+tutoriales. Su código fuente está en
+[GitHub](https://github.com/seebaermichi/nera-website).

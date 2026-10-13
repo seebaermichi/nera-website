@@ -32,5 +32,6 @@ Gemäß § 18 Abs. 2 MStV: **Michael Becker**, Anschrift wie oben.
 Diese Website dokumentiert Nera, einen quelloffenen Static-Site-Generator unter
 der MIT-Lizenz. Sie ist rein informativ; es wird nichts verkauft.
 
-Der Quellcode der Website und aller beschriebenen Plugins liegt auf
-[GitHub](https://github.com/seebaermichi/nera).
+Der Quellcode dieser Website liegt auf [GitHub](https://github.com/seebaermichi/nera-website).
+Nera selbst und alle beschriebenen Plugins haben eigene Repositories,
+verlinkt im [Nera-Repository](https://github.com/seebaermichi/nera).

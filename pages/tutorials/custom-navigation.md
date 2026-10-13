@@ -100,4 +100,4 @@ navigation landmark for screen readers. The leading `/` in the include resolves 
 > `pipe-separated-navigation` partials — same data, different markup.
 
 This site uses exactly this setup for its header and footer — see
-`config/navigation.yaml` in the source.
+[`config/navigation.yaml`](https://github.com/seebaermichi/nera-website/blob/main/config/navigation.yaml) in the source.

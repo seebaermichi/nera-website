@@ -17,6 +17,7 @@ asset_hashing: true
 
 # Site-wide values available as `app.*` in every view.
 repo_url: https://github.com/seebaermichi/nera
+site_repo_url: https://github.com/seebaermichi/nera-website
 plugins_url: https://github.com/seebaermichi/nera/blob/main/PLUGINS.md
 npm_scope: '@nera-static'
 npm_org_url: https://www.npmjs.com/org/nera-static

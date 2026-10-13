@@ -99,4 +99,4 @@ aus aufgelöst, egal wo die einbindende Datei liegt.
 > `pipe-separated-navigation` — dieselben Daten, anderes Markup.
 
 Diese Seite nutzt genau dieses Setup für ihre Kopf- und Fußzeile — siehe
-`config/navigation.yaml` im Quellcode.
+[`config/navigation.yaml`](https://github.com/seebaermichi/nera-website/blob/main/config/navigation.yaml) im Quellcode.

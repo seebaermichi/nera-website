@@ -35,5 +35,6 @@ Conforme al § 18 (2) MStV: **Michael Becker**, dirección indicada arriba.
 Este sitio documenta Nera, un generador de sitios estáticos de código abierto
 publicado bajo licencia MIT. Es informativo y no vende nada.
 
-El código fuente del sitio y de cada plugin que describe está en
-[GitHub](https://github.com/seebaermichi/nera).
+El código fuente de este sitio está en [GitHub](https://github.com/seebaermichi/nera-website).
+Nera y cada plugin que describe tienen sus propios repositorios,
+enlazados desde [el repositorio de Nera](https://github.com/seebaermichi/nera).

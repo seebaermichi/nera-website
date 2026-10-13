@@ -97,4 +97,4 @@ desde `theme/views/`, esté donde esté el archivo que lo incluye.
 > `pipe-separated-navigation` — los mismos datos, distinto markup.
 
 Este sitio usa exactamente esta configuración para su cabecera y pie de página — consulta
-`config/navigation.yaml` en el código fuente.
+[`config/navigation.yaml`](https://github.com/seebaermichi/nera-website/blob/main/config/navigation.yaml) en el código fuente.

@@ -32,4 +32,5 @@ are welcome — see the plugin catalog on the [Plugins](/plugins/index.html) pag
 
 This website is itself built with Nera, using `plugin-navigation`, `plugin-tags`,
 `plugin-search`, `plugin-page-pagination` and `plugin-canonical-links` — plus one
-small local plugin for the tutorials list.
+small local plugin for the tutorials list. Its source is on
+[GitHub](https://github.com/seebaermichi/nera-website).

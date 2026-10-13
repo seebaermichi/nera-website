@@ -87,7 +87,7 @@ npm run build   # pages/ -> public/
 ## Comprobar y desplegar
 
 Cada push a `main` y cada pull request contra esa rama ejecutan
-`.github/workflows/test.yml` en Node 20 y 22, con los mismos comandos que puedes
+[`.github/workflows/test.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/test.yml) en Node 20 y 22, con los mismos comandos que puedes
 ejecutar en local:
 
 ```bash
@@ -103,7 +103,7 @@ privacidad y aviso legal, e informa de lo que encuentra. Los hallazgos son
 advertencias: solo hacen fallar la ejecución con una regla que
 `config/validate.yaml` eleve a error.
 
-Después, un push a `main` ejecuta `.github/workflows/deploy.yml`: `npm ci`,
+Después, un push a `main` ejecuta [`.github/workflows/deploy.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/deploy.yml): `npm ci`,
 `npm run build`, y `public/` se publica en GitHub Pages — el sitio que estás
 leyendo en nera.js.org.
 

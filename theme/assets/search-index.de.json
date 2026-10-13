@@ -2,7 +2,7 @@
   {
     "title": "Über Nera",
     "description": "Was Nera ist, seine Philosophie und wie man mitmacht.",
-    "content": "Über Nera Nera ist ein quelloffener Static-Site-Generator mit einer bewusst kleinen Angriffsfläche. Die gesamte Pipeline — laden, rendern, Plugins anwenden, schreiben — passt in eine Handvoll Dateien, die du in einer Sitzung lesen kannst. Philosophie Transparent statt magisch. Keine versteckten Konventionen; eine Seite wird gerendert, weil ihr Frontmatter es so sagt. Kompositionsfähig statt monolithisch. Funktionen leben in kleinen @nera-static/plugin-*-Paketen, für die du dich entscheidest. Dir gehörend. Templates werden in dein Projekt veröffentlicht, damit du sie direkt gestalten und bearbeiten kannst. Mitmachen Nera und seine Plugins werden offen auf GitHub entwickelt. Issues, Ideen und Pull Requests sind willkommen — siehe den Plugin-Katalog auf der Seite Plugins. Diese Seite Diese Website ist selbst mit Nera gebaut und nutzt plugin-navigation, plugin-tags, plugin-search, plugin-page-pagination und plugin-canonical-links — plus ein kleines lokales Plugin für die Tutorials-Liste.",
+    "content": "Über Nera Nera ist ein quelloffener Static-Site-Generator mit einer bewusst kleinen Angriffsfläche. Die gesamte Pipeline — laden, rendern, Plugins anwenden, schreiben — passt in eine Handvoll Dateien, die du in einer Sitzung lesen kannst. Philosophie Transparent statt magisch. Keine versteckten Konventionen; eine Seite wird gerendert, weil ihr Frontmatter es so sagt. Kompositionsfähig statt monolithisch. Funktionen leben in kleinen @nera-static/plugin-*-Paketen, für die du dich entscheidest. Dir gehörend. Templates werden in dein Projekt veröffentlicht, damit du sie direkt gestalten und bearbeiten kannst. Mitmachen Nera und seine Plugins werden offen auf GitHub entwickelt. Issues, Ideen und Pull Requests sind willkommen — siehe den Plugin-Katalog auf der Seite Plugins. Diese Seite Diese Website ist selbst mit Nera gebaut und nutzt plugin-navigation, plugin-tags, plugin-search, plugin-page-pagination und plugin-canonical-links — plus ein kleines lokales Plugin für die Tutorials-Liste. Ihr Quellcode liegt auf GitHub.",
     "href": "/de/about.html",
     "lang": "de"
   },
@@ -72,7 +72,7 @@
   {
     "title": "Impressum",
     "description": "Anbieterkennzeichnung für diese Website.",
-    "content": "Impressum Anbieter Angaben gemäß § 5 DDG. Michael Becker Wotanstraße 31 10365 Berlin Deutschland Kontakt E-Mail: info@michael-becker-berlin.de Redaktionell verantwortlich Gemäß § 18 Abs. 2 MStV: Michael Becker, Anschrift wie oben. Zu dieser Website Diese Website dokumentiert Nera, einen quelloffenen Static-Site-Generator unter der MIT-Lizenz. Sie ist rein informativ; es wird nichts verkauft. Der Quellcode der Website und aller beschriebenen Plugins liegt auf GitHub.",
+    "content": "Impressum Anbieter Angaben gemäß § 5 DDG. Michael Becker Wotanstraße 31 10365 Berlin Deutschland Kontakt E-Mail: info@michael-becker-berlin.de Redaktionell verantwortlich Gemäß § 18 Abs. 2 MStV: Michael Becker, Anschrift wie oben. Zu dieser Website Diese Website dokumentiert Nera, einen quelloffenen Static-Site-Generator unter der MIT-Lizenz. Sie ist rein informativ; es wird nichts verkauft. Der Quellcode dieser Website liegt auf GitHub. Nera selbst und alle beschriebenen Plugins haben eigene Repositories, verlinkt im Nera-Repository.",
     "href": "/de/legal-notice.html",
     "lang": "de"
   },
