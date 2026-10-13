@@ -33,7 +33,7 @@
     "@nera-static/plugin-canonical-links": "^2.2.3",
     "@nera-static/plugin-code-blocks": "^1.2.1",
     "@nera-static/plugin-link-attributes": "^2.1.1",
-    "@nera-static/plugin-navigation": "^3.1.0",
+    "@nera-static/plugin-navigation": "^3.1.1",
     "@nera-static/plugin-page-pagination": "^2.4.0",
     "@nera-static/plugin-search": "^2.3.0",
     "@nera-static/plugin-tags": "^3.3.0",
