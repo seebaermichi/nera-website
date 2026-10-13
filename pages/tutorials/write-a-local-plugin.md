@@ -54,8 +54,8 @@ plugins do.
 A hook that returns the wrong type does not stop the build: core prints a warning
 such as `⚠️ Plugin "tutorials-list" getAppData returned invalid format, skipping
 replace.` and keeps the old data. When a plugin seems to do nothing, read the
-build log first. The [hook contract](/docs/plugins.html#the-hook-contract) in the
-docs has the short version.
+build log first. "The hook contract" in the [plugin docs](/docs/plugins.html) has
+the short version.
 
 ## Build it
 
