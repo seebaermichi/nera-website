@@ -8,6 +8,9 @@ keywords: nera navigation, plugin-navigation, active menu, static site nav
 tags: plugins, navigation
 pagination_order: 2
 createdAt: 2026-07-20
+verified_on: 2026-10-13
+verified_with:
+    plugin-navigation: 3.0.3
 ---
 `@nera-static/plugin-navigation` turns a YAML list into a navigation menu and marks
 the link for the current page — no JavaScript required.

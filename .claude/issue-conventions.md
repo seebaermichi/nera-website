@@ -26,6 +26,13 @@ releases); this file only adds what a reviewer checks per diff.
   for `llms.txt`, decision D3).
 - Paste-ready text for the maintainer goes in a fenced code block between
   `----- START: … -----` and `----- END -----` lines, never in a blockquote.
+- **Tutorials carry a `verified_with` stamp** (English page only; de/es follow
+  the English text): package names without `@nera-static/` → the version the
+  text is accurate for, plus `verified_on`. A tutorial issue bumps the stamp of
+  the packages it re-checked; a new tutorial ships with one. Never bump a stamp
+  without reading the CHANGELOG entries it skips. Report:
+  `node ../.claude/skills/tutorial-review/drift.mjs` (see `/tutorial-review`,
+  started from the workspace root).
 
 ## Framework correctness
 
@@ -76,4 +83,7 @@ releases); this file only adds what a reviewer checks per diff.
 
 - Update `../nera-cli/ROADMAP-ai.md`: mark the slice item done with the date and
   any choice made on the way (a commit in `nera-cli`).
+- Tutorial changed or added: the English page's `verified_with`/`verified_on`
+  are current, and `node ../.claude/skills/tutorial-review/drift.mjs` shows it
+  `current` with de/es parity.
 - Hand over the deploy command (`git push` in `nera-website`) — do not run it.

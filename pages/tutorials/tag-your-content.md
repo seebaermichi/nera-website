@@ -8,6 +8,9 @@ keywords: nera tags, plugin-tags, tag pages, topic pages, static site tags
 tags: plugins, tags
 pagination_order: 3
 createdAt: 2026-07-19
+verified_on: 2026-10-13
+verified_with:
+    plugin-tags: 3.2.3
 ---
 `@nera-static/plugin-tags` reads a `tags:` field from your frontmatter, then builds
 a browsable overview page for every tag automatically.
