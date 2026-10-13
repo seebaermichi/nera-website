@@ -44,9 +44,12 @@ html(lang=curLang)
     script(src="/_nera/code-blocks.js", defer)
 
   body
+    //- First focusable element, so keyboard users can jump past the header
+    //- (WCAG 2.4.1, `a11y-skip-link` in `nera build --check`).
+    a.skip-link(href="#main") #{ t('skip_link') }
     include ../partials/site-header
 
-    main.site-main
+    main#main.site-main(tabindex="-1")
       block content
 
     include ../partials/site-footer

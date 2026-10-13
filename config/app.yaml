@@ -49,6 +49,7 @@ translations:
         search_label: Search
         Pagination: Previous and next page
         Navigation: Navigation
+        skip_link: Skip to content
 
     de:
         app_description: Nera ist ein leichtgewichtiger, Plugin-basierter Static-Site-Generator. Schreibe Markdown, gestalte mit Pug und erweitere mit kleinen, fokussierten Plugins.
@@ -80,6 +81,7 @@ translations:
         search_label: Suche
         Pagination: Vorherige und nächste Seite
         Navigation: Navigation
+        skip_link: Zum Inhalt springen
 
     es:
         app_description: Nera es un generador de sitios estáticos ligero y basado en plugins. Escribe Markdown, maqueta con Pug y amplía con plugins pequeños y específicos.
@@ -111,3 +113,4 @@ translations:
         search_label: Buscar
         Pagination: Página anterior y siguiente
         Navigation: Navegación
+        skip_link: Saltar al contenido
