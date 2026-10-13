@@ -106,8 +106,11 @@ block content
     include /vendor/plugin-simple-page-list/simple-page-list
 ```
 
-Der führende Schrägstrich lässt den Include-Pfad bei `theme/views/` beginnen,
-egal wo das Template liegt.
+Die beiden `content` haben nichts miteinander zu tun. `block content` füllt den
+gleichnamigen Platzhalter in `layouts/layout.pug`. `!= content` gibt den Markdown
+der Seite aus, den Nera schon zu HTML gerendert hat; `!=` lässt ihn unmaskiert,
+sodass er als Markup ankommt. Der führende Schrägstrich lässt den Include-Pfad
+bei `theme/views/` beginnen, egal wo das Template liegt.
 
 Zum Schluss soll die Startseite es verwenden. Ersetze `pages/index.md` durch:
 

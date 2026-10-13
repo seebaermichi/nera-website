@@ -107,6 +107,9 @@ block content
     include /vendor/plugin-simple-page-list/simple-page-list
 ```
 
+The two `content`s are unrelated. `block content` fills the slot of that name
+in `layouts/layout.pug`. `!= content` outputs the page's Markdown, which Nera
+has already rendered to HTML; `!=` leaves it unescaped, so it arrives as markup.
 The leading slash makes the include path start at `theme/views/`, wherever the
 template sits.
 

@@ -105,8 +105,11 @@ block content
     include /vendor/plugin-simple-page-list/simple-page-list
 ```
 
-La barra inicial hace que la ruta del include empiece en `theme/views/`, esté
-donde esté la plantilla.
+Los dos `content` no tienen relación. `block content` rellena el hueco del
+mismo nombre en `layouts/layout.pug`. `!= content` imprime el Markdown de la
+página, que Nera ya ha convertido en HTML; `!=` lo deja sin escapar, así que
+llega como marcado. La barra inicial hace que la ruta del include empiece en
+`theme/views/`, esté donde esté la plantilla.
 
 Por último, haz que la página de inicio la use. Sustituye `pages/index.md` por:
 
