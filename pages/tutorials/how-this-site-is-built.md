@@ -31,7 +31,7 @@ It started with the nera CLI, which scaffolds a site whose one Nera dependency i
 npx @nera-static/nera new nera-website
 ```
 
-## Ten plugins, each doing one thing
+## Eleven plugins, each doing one thing
 
 | Plugin | Job | Config |
 | --- | --- | --- |
@@ -45,9 +45,10 @@ npx @nera-static/nera new nera-website
 | `tutorials-list` (local) | Builds `app.tutorials` for the index | — |
 | `llms-txt` (local) | `llms.txt`, `llms-full.txt` and a `.md` per page for AI assistants | `config/llms-txt.yaml` |
 | `skill-zip` (local) | [The Nera skill](/docs/using-ai.html) as a zip for claude.ai and Claude Desktop | — |
+| `heading-ids` (local) | An `id` on every h2–h4, so sections can be linked | — |
 
-The three local plugins — `tutorials-list`, `llms-txt` and `skill-zip` — live in
-`plugins/`, set with `folders.plugins` in `config/app.yaml`. `llms-txt` and
+The four local plugins — `tutorials-list`, `llms-txt`, `skill-zip` and
+`heading-ids` — live in `plugins/`, set with `folders.plugins` in `config/app.yaml`. `llms-txt` and
 `skill-zip` write files rather than data, and hand them to the build through the
 `getAssets` hook (see [Write your own local plugin](/tutorials/write-a-local-plugin.html)).
 `skill-zip` reads the skill from the installed `@nera-static/nera`, so the
