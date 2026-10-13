@@ -10,7 +10,7 @@ pagination_order: 2
 createdAt: 2026-07-20
 verified_on: 2026-10-13
 verified_with:
-    plugin-navigation: 3.1.0
+    plugin-navigation: 3.1.1
 ---
 `@nera-static/plugin-navigation` turns a YAML list into a navigation menu and marks
 the link for the current page — no JavaScript required.
@@ -43,7 +43,8 @@ elements:
 
 All three class keys are optional, and the values above are their defaults, so this
 example renders the same as one without them. `active_class` goes on the link to the
-current page, `active_path_class` on a link whose directory contains the current page
+current page, `active_path_class` on a section link — one pointing at a folder's index,
+such as `/docs/index.html` or `/docs/` — when the current page sits in that folder or below
 (the site root never counts). `nav_class` is the BEM block name the other classes derive
 from: `nav_class: mainmenu` renames the whole family to `.mainmenu`, `.mainmenu--list`,
 `.mainmenu__item`, `.mainmenu__link`, `.mainmenu__link--active` and
@@ -80,16 +81,20 @@ The plugin exposes everything under `app.nav`.
 Include the published partial and call its mixin:
 
 ```pug
-include ../vendor/plugin-navigation/partials/link-list-navigation
+include /vendor/plugin-navigation/partials/link-list-navigation
 
 header.site-header
   if app.nav && app.nav.main
-    +linkListNav(app.nav.main.elements, 'nav--main')
+    nav.nav--main(aria-label='Main menu')
+      +linkListNav(app.nav.main.elements)
 ```
 
-The plugin adds `nav__link--active` to the link matching the current page and
-`nav__link--active-path` to any ancestor link, so styling the current section is
-just CSS.
+The plugin adds the active class from section 2 (`nav__link--active` by default) to
+the link matching the current page, and the active-path class
+(`nav__link--active-path`) to the section link the page sits in, so styling the
+current section is just CSS. The `nav` with its `aria-label` makes the menu a named
+navigation landmark for screen readers. The leading `/` in the include resolves from
+`theme/views/`, wherever the including file sits.
 
 > Prefer a different shape? The plugin also ships `simple-navigation` and
 > `pipe-separated-navigation` partials — same data, different markup.

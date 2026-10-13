@@ -40,8 +40,9 @@ elements:
 
 Alle drei Klassen-Schlüssel sind optional, und die Werte oben sind ihre Standardwerte —
 dieses Beispiel rendert also genauso wie eines ohne sie. `active_class` landet auf dem Link
-zur aktuellen Seite, `active_path_class` auf einem Link, dessen Verzeichnis die aktuelle
-Seite enthält (das Wurzelverzeichnis zählt nie). `nav_class` ist der BEM-Blockname, von dem
+zur aktuellen Seite, `active_path_class` auf einem Bereichs-Link — einem, der auf den Index
+eines Ordners zeigt, etwa `/docs/index.html` oder `/docs/` —, wenn die aktuelle Seite in diesem
+Ordner oder darunter liegt (das Wurzelverzeichnis zählt nie). `nav_class` ist der BEM-Blockname, von dem
 sich die übrigen Klassen ableiten: `nav_class: mainmenu` benennt die ganze Familie um in
 `.mainmenu`, `.mainmenu--list`, `.mainmenu__item`, `.mainmenu__link`,
 `.mainmenu__link--active` und `.mainmenu__link--active-path`. Die beiden Zustands-Schlüssel
@@ -79,16 +80,20 @@ Das Plugin stellt alles unter `app.nav` bereit.
 Binde das veröffentlichte Partial ein und rufe sein Mixin auf:
 
 ```pug
-include ../vendor/plugin-navigation/partials/link-list-navigation
+include /vendor/plugin-navigation/partials/link-list-navigation
 
 header.site-header
   if app.nav && app.nav.main
-    +linkListNav(app.nav.main.elements, 'nav--main')
+    nav.nav--main(aria-label='Hauptmenü')
+      +linkListNav(app.nav.main.elements)
 ```
 
-Das Plugin fügt dem Link, der zur aktuellen Seite passt, `nav__link--active` hinzu und
-`nav__link--active-path` jedem übergeordneten Link, sodass das Stylen des aktuellen Bereichs
-reines CSS ist.
+Das Plugin fügt dem Link, der zur aktuellen Seite passt, die aktive Klasse aus Abschnitt 2
+hinzu (standardmäßig `nav__link--active`) und dem Bereichs-Link, in dem die Seite liegt, die
+Active-Path-Klasse (`nav__link--active-path`), sodass das Stylen des aktuellen Bereichs reines
+CSS ist. Das `nav` mit seinem `aria-label` macht das Menü zu einer benannten
+Navigations-Landmarke für Screenreader. Der führende `/` im Include wird von `theme/views/`
+aus aufgelöst, egal wo die einbindende Datei liegt.
 
 > Bevorzugst du eine andere Form? Das Plugin liefert auch die Partials `simple-navigation` und
 > `pipe-separated-navigation` — dieselben Daten, anderes Markup.

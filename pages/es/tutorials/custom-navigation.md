@@ -40,8 +40,9 @@ elements:
 
 Las tres claves de clase son opcionales, y los valores de arriba son sus valores por
 defecto, así que este ejemplo se renderiza igual que uno sin ellas. `active_class` va en el
-enlace a la página actual, y `active_path_class` en un enlace cuyo directorio contiene la
-página actual (la raíz del sitio nunca cuenta). `nav_class` es el nombre de bloque BEM del
+enlace a la página actual, y `active_path_class` en un enlace de sección —uno que apunta al
+índice de una carpeta, como `/docs/index.html` o `/docs/`— cuando la página actual está en esa
+carpeta o más abajo (la raíz del sitio nunca cuenta). `nav_class` es el nombre de bloque BEM del
 que derivan las demás clases: `nav_class: mainmenu` renombra toda la familia a `.mainmenu`,
 `.mainmenu--list`, `.mainmenu__item`, `.mainmenu__link`, `.mainmenu__link--active` y
 `.mainmenu__link--active-path`. Las dos claves de estado solo sobrescriben su propia clase,
@@ -77,16 +78,20 @@ El plugin expone todo bajo `app.nav`.
 Incluye el partial publicado y llama a su mixin:
 
 ```pug
-include ../vendor/plugin-navigation/partials/link-list-navigation
+include /vendor/plugin-navigation/partials/link-list-navigation
 
 header.site-header
   if app.nav && app.nav.main
-    +linkListNav(app.nav.main.elements, 'nav--main')
+    nav.nav--main(aria-label='Menú principal')
+      +linkListNav(app.nav.main.elements)
 ```
 
-El plugin añade `nav__link--active` al enlace que coincide con la página actual y
-`nav__link--active-path` a cualquier enlace ancestro, de modo que dar estilo a la sección actual
-es solo CSS.
+El plugin añade la clase activa de la sección 2 (`nav__link--active` por defecto) al enlace
+que coincide con la página actual, y la clase de ruta activa (`nav__link--active-path`) al
+enlace de la sección en la que está la página, de modo que dar estilo a la sección actual es
+solo CSS. El `nav` con su `aria-label` convierte el menú en un punto de referencia de
+navegación con nombre para los lectores de pantalla. La `/` inicial del include se resuelve
+desde `theme/views/`, esté donde esté el archivo que lo incluye.
 
 > ¿Prefieres una forma diferente? El plugin también incluye los partials `simple-navigation` y
 > `pipe-separated-navigation` — los mismos datos, distinto markup.
