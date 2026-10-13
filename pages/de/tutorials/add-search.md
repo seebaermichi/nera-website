@@ -27,24 +27,105 @@ npx nera-search
 Dies kopiert das Suchfeld nach `theme/views/vendor/plugin-search/` und den Client nach
 `theme/assets/js/search.js`.
 
+Beide Kopien gehören ab dann dir. Ein erneutes `npx nera-search` überspringt das
+Template, sobald der Ordner `vendor/plugin-search/` existiert, und den Client,
+sobald `search.js` existiert — es verwirft also nie deine Änderungen, bringt aber
+auch eine Template-Änderung aus einem neuen Release nicht von selbst auf deine
+Website. Zum Auffrischen nach einem Update führst du `npx nera-search --force`
+aus, aber nur, wenn du die Kopien nie bearbeitet hast: Es überschreibt beide.
+Hast du sie angepasst, vergleiche sie mit dem Paket und übernimm die Änderungen
+von Hand (der Abschnitt *Template Publishing* in der README des Plugins listet
+sie auf).
+
 ## 3. Konfigurieren
 
-`config/search.yaml` steuert, welche Felder indexiert werden:
+`config/search.yaml` steuert, welche Felder indexiert werden. Die Datei ist
+optional; das sind die Standardwerte:
 
 ```yaml
 fields:
     - title
-    - description
+    - excerpt
     - content
     - href
 strip_html: true
 output_filename: search-index.json
 ```
 
+`fields` ersetzt die Standardliste, statt sie zu erweitern — behalte also
+`content` (den Seiteninhalt) und `href` (den Link des Treffers). Jeder andere
+Frontmatter-Schlüssel funktioniert, sofern deine Seiten ihn setzen: Die
+Startseite, die `nera new` anlegt, hat ein `description`, aber kein `excerpt`.
+Nimm `description` also in die Liste auf, wenn es indexiert werden soll; fehlt
+ein Feld auf einer Seite, bleibt es in ihrem Eintrag einfach weg.
+
+Um einen Teil einer Seite aus dem Index herauszuhalten, markiere ihn mit
+`data-search-ignore`: Das Element fällt samt Inhalt aus `content` heraus.
+`@nera-static/plugin-code-blocks` (ab 1.1.0) markiert so die Leiste seiner
+Codeblöcke, damit Dateinamen und der Kopieren-Button nicht in deinen Treffern
+landen. In Markdown schreibst du das Attribut an rohes HTML:
+
+```html
+<aside data-search-ignore>Not part of the index.</aside>
+```
+
 ## 4. Eine Suchseite hinzufügen
 
-Erstelle eine Seite, die das veröffentlichte Such-Partial einbindet, und stelle dann sicher, dass die Suche
-**zuletzt** in `config/plugin-order.yaml` läuft, damit sie die finalen Seitendaten indexiert:
+Das Suchfeld ist Pug und gehört deshalb in eine View, nicht ins Markdown. Lege
+`theme/views/pages/search.pug` auf Basis des Layouts an, das `nera new` erzeugt:
+
+```pug
+extends ../layouts/layout
+
+block content
+  main
+    article!= content
+    include /vendor/plugin-search/search.pug
+```
+
+Der führende Schrägstrich löst das Include ab `theme/views/` auf. Dann verweist
+du eine Seite auf die View — eine Seite ohne `layout` wird weder gerendert noch
+indexiert:
+
+```markdown
+---
+title: Suche
+layout: pages/search.pug
+---
+
+# Suche
+
+Durchsuche die Dokumentation.
+```
+
+Diese Seite bringt ihre eigene Überschrift `# Suche` mit. Schalte deshalb das
+`h1` des Templates in `config/search.yaml` ab, sonst warnt
+`nera build --check` mit `a11y-h1` vor zwei davon:
+
+```yaml
+show_title: false
+```
+
+Hat deine Seite keine eigene Überschrift, lass `show_title` weg — dann ist das
+`h1` des Templates die Überschrift der Seite.
+
+Die Texte des Templates laufen über `t()`: `search_title` (die Überschrift,
+Standard `Search`), `search_placeholder` (Standard `Search...`) und
+`search_label`, der zugängliche Name des Eingabefelds (Standard `Search`).
+Übersetze sie unter `translations` in `config/app.yaml`, zum Beispiel für
+Deutsch:
+
+```yaml
+translations:
+    de:
+        search_title: Suche
+        search_placeholder: Suchen…
+        search_label: Suche
+```
+
+Stelle zum Schluss sicher, dass die Suche **zuletzt** in
+`config/plugin-order.yaml` läuft, damit sie die finalen Seitendaten indexiert —
+auch Seiten, die andere Plugins erzeugen:
 
 ```yaml
 plugin-order:
@@ -88,14 +169,9 @@ Weil die Suche zuletzt läuft (Schritt 4), landen auch von anderen Plugins
 erzeugte Seiten in der richtigen Sprache — die Tag-Seiten aus `plugin-tags`
 zum Beispiel.
 
-Beim Aktualisieren einer bestehenden Website gibt es einen Haken: `npx
-nera-search` überspringt bereits veröffentlichte Dateien, und `--force`
-überschreibt sie samt deiner Anpassungen. Sind deine Kopien angepasst, führe die
-beiden Änderungen lieber von Hand zusammen — das Attribut `data-search-index` im
-Template und `input.dataset.searchIndex` in `search.js`. Bis dahin fragt der alte
-Client weiterhin `/search-index.json` ab, und jede Seite durchsucht die
-Standardsprache.
-
-Rendere, und du hast eine funktionierende Suche. Die [Suchseite](/de/search.html) dieser Website ist
-genau auf diese Weise gebaut, mit `group_by_lang: true` — das Suchfeld liefert
-nur Seiten in der Sprache, die du gerade liest.
+Rendere, und du hast eine funktionierende Suche. Die [Suchseite](/de/search.html)
+dieser Website ist aus denselben Teilen gebaut, mit zwei Unterschieden: Ihr
+Markdown hat keine Überschrift, also behält sie das `h1` des Templates, übersetzt
+über die drei Schlüssel in Englisch, Deutsch und Spanisch; und sie setzt
+`group_by_lang: true`, sodass das Suchfeld nur Seiten in der Sprache liefert, die
+du gerade liest.
