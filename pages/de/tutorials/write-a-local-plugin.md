@@ -26,7 +26,7 @@ antreibt — und dieselbe Liste anschließend als `tutorials.json` veröffentlic
 
 ## Der Vertrag
 
-Ein Plugin exportiert einen, mehrere oder alle von drei Hooks:
+Ein Plugin exportiert bis zu drei Hooks:
 
 ```js
 export function getAppData({ app, pagesData }) {

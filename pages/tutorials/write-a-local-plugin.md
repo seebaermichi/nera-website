@@ -158,8 +158,8 @@ After `nera build`, `public/tutorials.json` holds the list, newest first:
 
 Core copies the files in the order theme → plugins → site, so a file of the same
 name in your own `theme/assets/` still wins. The copy happens before `base_path`
-and asset hashing, so both cover plugin files too. An entry with a relative `from` or a `to`
-outside `public/` is skipped with a warning, such as
+and asset hashing, so both cover plugin files too. An entry with a relative
+`from` or a `to` outside `public/` is skipped with a warning, such as
 `⚠️ Plugin "tutorials-list" getAssets entry skipped: "from" must be an absolute
 path (…)`. For real-world examples, see this site's
 [`llms-txt`](https://github.com/seebaermichi/nera-website/tree/main/plugins/llms-txt)
