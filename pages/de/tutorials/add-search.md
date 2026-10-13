@@ -55,7 +55,7 @@ output_filename: search-index.json
 `fields` ersetzt die Standardliste, statt sie zu erweitern — behalte also
 `content` (den Seiteninhalt) und `href` (den Link des Treffers). Jeder andere
 Frontmatter-Schlüssel funktioniert, sofern deine Seiten ihn setzen: Die
-Startseite, die `nera new` anlegt, hat ein `description`, aber kein `excerpt`.
+Startseite, die `nera new` anlegt, hat ein Feld `description`, aber kein `excerpt`.
 Nimm `description` also in die Liste auf, wenn es indexiert werden soll; fehlt
 ein Feld auf einer Seite, bleibt es in ihrem Eintrag einfach weg.
 
