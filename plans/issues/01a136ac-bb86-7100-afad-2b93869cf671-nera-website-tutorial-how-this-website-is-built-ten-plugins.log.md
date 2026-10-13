@@ -93,3 +93,18 @@ Planning signal: none
 - **#3** `2b1add9` feat(a11y): `a.skip-link` first in `body`, `main#main(tabindex=-1)`, CSS hidden until focus, `skip_link` key en/de/es.
 - **Verified (Node 22.22.0):** lint, 28/28 tests, validate, `build --check` → "✓ No problems found" (was 3 warnings). Output diff against the pre-change build: only skip link, `main` id/tabindex, `aria-label` on the pagination `<nav>` and the search input, main.css; header/footer nav byte-identical.
 - **Not verified:** skip link visually (focus state) in a browser.
+
+## Browser test (2026-10-13)
+
+- **Run outside `/test-issue-in-chrome`** (that skill needs a plan file; cloud issues have none), in Claude in Chrome against live nera.js.org after the deploy, 2026-10-13.
+- **Result:** pass, 5/5.
+
+| # | case | result |
+|---|---|---|
+| 1 | `/docs/cli.html`: skip link is the first focusable element, off-screen before focus (bottom −33 px) | pass |
+| 2 | focused: visible top-left at 8/8 px, amber background, light text, focus ring | pass |
+| 3 | Enter → URL `#main`, focus on `main#main`, skip link hidden again | pass |
+| 4 | pagination `<nav>` `aria-label="Previous and next page"` | pass |
+| 5 | `/de/search.html`: "Zum Inhalt springen", input `aria-label="Suche"` | pass |
+
+- **Limit:** the extension's Tab key does not reach a freshly loaded page (focus stays in the browser UI), so focus was set by script (`focus({focusVisible:true})`); tab order checked in the DOM.
