@@ -14,7 +14,8 @@
 // (core >= 4.13.0): `public/` is deleted after the plugins run. A missing skill
 // throws, failing the build, rather than publishing a page that links a 404.
 //
-// Kept synchronous on purpose — see the plugin contract in CLAUDE.md.
+// Kept synchronous on purpose: core awaits hooks since 4.3.0, but synchronous
+// is the safe default — see "The hook contract" in pages/docs/plugins.md.
 // Spec: ../nera-cli/ROADMAP-ai.md, slice 4 (L4).
 
 import fs from 'fs'

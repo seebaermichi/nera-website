@@ -3,8 +3,8 @@
 // page's language. Each tutorial lives at <lang-prefix>/tutorials/<slug>.html,
 // so we match on the directory ending in "/tutorials" and skip the index page.
 //
-// Kept synchronous on purpose — see CLAUDE.md / the generator's plugin contract:
-// an async getAppData silently replaces app with a Promise on older generators.
+// Kept synchronous on purpose: core awaits hooks since 4.3.0, but synchronous
+// is the safe default — see "The hook contract" in pages/docs/plugins.md.
 
 export function getAppData({ app, pagesData }) {
     if (!app || typeof app !== 'object') return app

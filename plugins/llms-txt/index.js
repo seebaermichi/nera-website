@@ -16,7 +16,8 @@
 // files) and handed to core through `getAssets` (core >= 4.13.0): `public/` is
 // deleted after the plugins run, so anything written there directly would be lost.
 //
-// Kept synchronous on purpose — see the plugin contract in CLAUDE.md.
+// Kept synchronous on purpose: core awaits hooks since 4.3.0, but synchronous
+// is the safe default — see "The hook contract" in pages/docs/plugins.md.
 // Spec: ../nera-cli/ROADMAP-ai.md, slice 2 (L2), English only (D3).
 
 import fs from 'fs'
