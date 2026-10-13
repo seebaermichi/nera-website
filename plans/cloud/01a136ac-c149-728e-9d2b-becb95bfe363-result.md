@@ -1,5 +1,10 @@
 # Result — Tutorial "Open external links in a new tab" (01a136ac-c149-728e-9d2b-becb95bfe363)
 
+> **Push status:** `git push -u origin issue/01a136ac-c149-link-attributes` failed with 403
+> "seebaermichi/nera-website is not in this session's authorized repository set" (tried at the
+> start and at the end). The session cannot attach the repo itself; once it is added to the
+> session's sources, the branch is pushed with that command. All commits are local on the branch.
+
 ## Plan
 
 1. Baseline on the branch: `npm ci`, then `npm run lint && npm test && npm run validate
