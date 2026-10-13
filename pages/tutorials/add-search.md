@@ -36,7 +36,7 @@ template if the `vendor/plugin-search/` folder exists and the client if
 new release never reaches your site on its own. To refresh after an upgrade, run
 `npx nera-search --force`, but only if you never edited the copies: it overwrites
 both. If you did, diff them against the package and merge the changes by hand
-(the plugin README's *Template Publishing* section lists them).
+(the plugin README's *Template Publishing* section explains how).
 
 ## 3. Configure
 

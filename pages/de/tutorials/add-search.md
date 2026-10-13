@@ -34,8 +34,8 @@ auch eine Template-Änderung aus einem neuen Release nicht von selbst auf deine
 Website. Zum Auffrischen nach einem Update führst du `npx nera-search --force`
 aus, aber nur, wenn du die Kopien nie bearbeitet hast: Es überschreibt beide.
 Hast du sie angepasst, vergleiche sie mit dem Paket und übernimm die Änderungen
-von Hand (der Abschnitt *Template Publishing* in der README des Plugins listet
-sie auf).
+von Hand (der Abschnitt *Template Publishing* in der README des Plugins
+erklärt, wie).
 
 ## 3. Konfigurieren
 

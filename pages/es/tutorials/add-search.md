@@ -34,7 +34,8 @@ lleva por sí solo a tu sitio un cambio de plantilla de una versión nueva. Para
 actualizarlas tras subir de versión, ejecuta `npx nera-search --force`, pero solo
 si nunca editaste las copias: sobrescribe las dos. Si las editaste, compáralas
 con el paquete y combina los cambios a mano (la sección *Template Publishing* del
-README del plugin los enumera).
+README del plugin
+explica cómo).
 
 ## 3. Configura
 
