@@ -174,7 +174,9 @@ and `verified_on: <today>`.)
   floor left at `^10.11.0` (lockfile has 10.12.0, nothing needs the floor raised).
 - The uncommitted change on `main` in
   `plans/issues/01a136ac-bb86-…-ten-plugins.log.md` (a browser-test section from another
-  issue) was present when the container started; it is not mine and is left uncommitted.
+  issue) was present when the container started; it is not mine. It is committed on its own
+  (`chore(plan): browser-test section for the ten-plugins tutorial issue log`) so it is not
+  lost with the container — drop that commit in review if it already lives elsewhere.
 
 ## Proposed spec note
 none
