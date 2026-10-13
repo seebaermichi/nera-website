@@ -26,7 +26,8 @@ Ein Plugin nur für eine Website braucht kein Paket: Lege es unter
 
 ## Der Hook-Vertrag
 
-Ein Plugin ist ein ESM-Modul, das einen oder beide Hooks exportiert:
+Ein Plugin ist ein ESM-Modul, das bis zu drei Hooks exportiert, `getAppData`,
+`getMetaData` und `getAssets` (unten):
 
 ```js
 export function getAppData({ app, pagesData }) {
@@ -38,8 +39,10 @@ export function getMetaData({ app, pagesData }) {
 }
 ```
 
-`getAppData` läuft zuerst; `getMetaData` sieht das `app`, das es zurückgegeben hat. **Halte Hooks
-synchron** — ein asynchroner Hook kann `app` auf älteren Generator-Versionen auslöschen.
+`getAppData` läuft zuerst; `getMetaData` sieht das `app`, das es zurückgegeben
+hat. Core wartet auf jeden Hook (seit Core 4.3.0; ältere Versionen ersetzten
+`app` stillschweigend durch ein Promise), aber **synchron bleibt die sichere
+Wahl** — so machen es auch die veröffentlichten Plugins.
 
 Ein Plugin, das Dateien erzeugt (zum Beispiel generierte Bilder), exportiert
 zusätzlich `getAssets` (Core ≥ 4.13.0). Der Hook läuft nach `getAppData` und

@@ -25,7 +25,8 @@ A plugin for one site only needs no package: put it in
 
 ## The hook contract
 
-A plugin is an ESM module exporting either or both hooks:
+A plugin is an ESM module exporting up to three hooks, `getAppData`,
+`getMetaData` and `getAssets` (below):
 
 ```js
 export function getAppData({ app, pagesData }) {
@@ -37,8 +38,10 @@ export function getMetaData({ app, pagesData }) {
 }
 ```
 
-`getAppData` runs first; `getMetaData` sees the `app` it returned. **Keep hooks
-synchronous** — an async hook can wipe `app` on older generator versions.
+`getAppData` runs first; `getMetaData` sees the `app` it returned. Core awaits
+every hook (since core 4.3.0; older versions silently replaced `app` with a
+Promise), but **synchronous stays the safe default** — it is what the published
+plugins do.
 
 A plugin that produces files (generated images, for example) also exports
 `getAssets` (core ≥ 4.13.0). It runs after every plugin's `getAppData` and

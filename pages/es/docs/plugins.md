@@ -26,7 +26,8 @@ Un plugin para un solo sitio no necesita paquete: ponlo en
 
 ## El contrato de hooks
 
-Un plugin es un módulo ESM que exporta uno o ambos hooks:
+Un plugin es un módulo ESM que exporta hasta tres hooks, `getAppData`,
+`getMetaData` y `getAssets` (más abajo):
 
 ```js
 export function getAppData({ app, pagesData }) {
@@ -38,8 +39,10 @@ export function getMetaData({ app, pagesData }) {
 }
 ```
 
-`getAppData` se ejecuta primero; `getMetaData` ve el `app` que devolvió. **Mantén los hooks
-síncronos** — un hook asíncrono puede borrar `app` en versiones antiguas del generador.
+`getAppData` se ejecuta primero; `getMetaData` ve el `app` que devolvió. Core
+espera a cada hook (desde core 4.3.0; las versiones antiguas reemplazaban `app`
+en silencio por una Promise), pero **lo síncrono sigue siendo la opción segura**
+— es lo que hacen los plugins publicados.
 
 Un plugin que genera archivos (por ejemplo, imágenes procesadas) exporta además
 `getAssets` (core ≥ 4.13.0). Se ejecuta después de `getAppData` y `getMetaData`
