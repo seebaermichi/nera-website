@@ -1,14 +1,11 @@
 # Result — Tutorial "Add client-side search" (01a136ac-bc82-70f7-9a8f-aaef6fddb2c3)
 
-> **Push failed — branch delivered as a bundle and patch series.** `git push` of
-> `issue/01a136ac-bc82-search-tutorial` was refused with 403 "seebaermichi/nera-website
-> is not in this session's authorized repository set" (the session had no
-> `origin` remote at all; I added it). The maintainer attached the repo during
-> the session, but four more retries with backoff (4/8/16/32 s) were still
-> refused. Fallback, uncommitted in the session's working directory:
-> `plans/cloud/01a136ac-bc82-search-tutorial.bundle`
-> (`git fetch <bundle> issue/01a136ac-bc82-search-tutorial:issue/01a136ac-bc82-search-tutorial`)
-> and `plans/cloud/01a136ac-bc82-patches/*.patch` (`git am`).
+> **Push:** the branch is pushed to `origin`. The first pushes were refused with
+> 403 "seebaermichi/nera-website is not in this session's authorized repository
+> set" (the session also had no `origin` remote; I added it). Attaching the repo
+> from the settings page did not help; attaching it from inside the session
+> (`add_repo` with push access) did, and the push then went through. The
+> interim bundle/patch fallback was deleted and was never committed.
 
 ## Plan
 
@@ -61,12 +58,14 @@ The site half was already done on `main` and re-confirmed, not redone.
 ## Commits
 
 ```
+ab24c1e docs(plans): record the blocked push in the result
+326af64 docs(plans): result for the plugin-search 2.3 tutorial issue
 e9c3de0 docs(tutorials): smoother German wording for the description field
 b51058b docs(tutorials): bring the search tutorial up to plugin-search 2.3.0
 be62e1e chore(plan): plan for the plugin-search 2.3 tutorial issue
 ```
 
-(plus the commit adding this filled-in result file)
+(plus the commit that updates the push note above)
 
 ## Verification
 
