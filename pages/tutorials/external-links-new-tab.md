@@ -23,11 +23,21 @@ without you touching the Markdown.
 npm install @nera-static/plugin-link-attributes
 ```
 
-No template to publish — this plugin only transforms content.
+No template to publish — this plugin only transforms content. Its one setting
+lives in a config file.
 
 ## 2. Configure
 
-`config/link-attributes.yaml` lists the attributes to add:
+`config/link-attributes.yaml` lists the attributes to add. The quick way to get
+it is the plugin's own command, which writes the defaults shown below:
+
+```bash
+npx nera-link-attributes
+```
+
+An existing file is left alone, so re-running never overwrites your edits;
+`npx nera-link-attributes --force` replaces it with a fresh copy. You can also
+write the file by hand:
 
 ```yaml
 attributes:
@@ -35,9 +45,13 @@ attributes:
     - rel="noopener noreferrer"
 ```
 
+Without any `attributes` the plugin leaves your pages unchanged — no file, no new
+tabs.
+
 The plugin targets only links whose `href` starts with `http` or `www`, so your
-internal links (`/docs/...`) are left alone. The `rel="noopener noreferrer"` is
-worth keeping — it closes the tab-nabbing hole that bare `target="_blank"` opens.
+internal links (`/docs/...`) are left alone, and an attribute a link already has
+is never overwritten. The `rel="noopener noreferrer"` is worth keeping — it closes
+the tab-nabbing hole that bare `target="_blank"` opens.
 
 ## 3. The one gotcha: layout links
 
@@ -51,6 +65,3 @@ a.site-header__cta(href=app.repo_url, target="_blank", rel="noopener noreferrer"
 
 Render, and every outbound link — in content and in your layout — opens in a new
 tab. This site does exactly this; try any GitHub link.
-
-> Node note: this plugin uses cheerio under the hood, so it needs Node ≥ 20.18.1 to
-> build. It doesn't affect your visitors — the output is plain HTML.

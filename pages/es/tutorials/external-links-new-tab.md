@@ -19,11 +19,21 @@ sin que tengas que tocar el Markdown.
 npm install @nera-static/plugin-link-attributes
 ```
 
-No hay plantilla que publicar — este plugin solo transforma el contenido.
+No hay plantilla que publicar — este plugin solo transforma el contenido. Su único ajuste
+vive en un archivo de configuración.
 
 ## 2. Configurar
 
-`config/link-attributes.yaml` lista los atributos a añadir:
+`config/link-attributes.yaml` lista los atributos a añadir. La forma rápida de obtenerlo
+es el comando del propio plugin, que escribe los valores por defecto que ves abajo:
+
+```bash
+npx nera-link-attributes
+```
+
+Si el archivo ya existe, lo deja tal cual, así que volver a ejecutarlo nunca sobrescribe tus
+cambios; `npx nera-link-attributes --force` lo reemplaza por una copia nueva. También puedes
+escribir el archivo a mano:
 
 ```yaml
 attributes:
@@ -31,9 +41,13 @@ attributes:
     - rel="noopener noreferrer"
 ```
 
+Sin ningún atributo en `attributes`, el plugin deja tus páginas sin cambios — sin archivo,
+no hay pestañas nuevas.
+
 El plugin apunta solo a los enlaces cuyo `href` empieza por `http` o `www`, así que tus
-enlaces internos (`/docs/...`) quedan intactos. Vale la pena conservar el `rel="noopener noreferrer"`
-— cierra el agujero de tab-nabbing que abre un `target="_blank"` a secas.
+enlaces internos (`/docs/...`) quedan intactos, y nunca se sobrescribe un atributo que el
+enlace ya tenga. Vale la pena conservar el `rel="noopener noreferrer"` — cierra el agujero
+de tab-nabbing que abre un `target="_blank"` a secas.
 
 ## 3. El único inconveniente: enlaces del layout
 
@@ -47,6 +61,3 @@ a.site-header__cta(href=app.repo_url, target="_blank", rel="noopener noreferrer"
 
 Renderiza, y cada enlace saliente — en el contenido y en tu layout — se abre en una pestaña
 nueva. Este sitio hace exactamente esto; prueba cualquier enlace de GitHub.
-
-> Nota sobre Node: este plugin usa cheerio internamente, así que necesita Node ≥ 20.18.1 para
-> compilar. No afecta a tus visitantes — la salida es HTML plano.
