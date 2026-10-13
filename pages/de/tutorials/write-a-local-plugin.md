@@ -52,7 +52,7 @@ Ein Hook, der den falschen Typ zurückgibt, bricht den Build nicht ab: Core gibt
 eine Warnung aus, etwa `⚠️ Plugin "tutorials-list" getAppData returned invalid
 format, skipping replace.`, und behält die alten Daten. Scheint ein Plugin nichts
 zu tun, lies zuerst das Build-Log. „Der Hook-Vertrag“ in der
-[Plugin-Doku](/de/docs/plugins.html) fasst das kurz zusammen.
+[Plugin-Doku](/de/docs/plugins.html#der-hook-vertrag) fasst das kurz zusammen.
 
 ## Baue es
 

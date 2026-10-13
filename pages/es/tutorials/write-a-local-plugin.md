@@ -52,7 +52,7 @@ Un hook que devuelve el tipo equivocado no detiene el build: core muestra un avi
 como `⚠️ Plugin "tutorials-list" getAppData returned invalid format, skipping
 replace.` y conserva los datos anteriores. Si un plugin parece no hacer nada, mira
 primero el log del build. «El contrato de hooks» en la
-[documentación de plugins](/es/docs/plugins.html) lo resume brevemente.
+[documentación de plugins](/es/docs/plugins.html#el-contrato-de-hooks) lo resume brevemente.
 
 ## Constrúyelo
 
