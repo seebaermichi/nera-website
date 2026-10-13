@@ -66,7 +66,8 @@ export function getAssets({ app, pagesData }) {
 
     const cwd = process.cwd()
     const config = getConfig(path.resolve(cwd, 'config/llms-txt.yaml'))
-    const origin = String(config.origin || DEFAULT_ORIGIN).replace(/\/+$/, '')
+    // The site origin from config/app.yaml, unless this plugin's config overrides it.
+    const origin = String(config.origin || app?.origin || DEFAULT_ORIGIN).replace(/\/+$/, '')
     const pagesDir = path.resolve(cwd, 'pages')
 
     const pages = selectPages(pagesData, app?.lang)

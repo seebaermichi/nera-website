@@ -1,7 +1,7 @@
 # Local plugin plugins/llms-txt: llms.txt and llms-full.txt for AI assistants
 # (llmstxt.org), English only. Spec: ../nera-cli/ROADMAP-ai.md, slice 2.
-# Root-relative links in the pages become absolute against this origin.
-origin: https://nera.js.org
+# Root-relative links in the pages become absolute against `origin` from
+# config/app.yaml; set `origin:` here only to override it for these files.
 # H1 and one-paragraph summary at the top of llms.txt.
 title: Nera
 summary: Nera is a lightweight, plugin-based static site generator for Node.js. You write Markdown with YAML frontmatter, template with Pug, and extend the build with small single-purpose npm plugins; one CLI, `@nera-static/nera`, scaffolds, builds, previews, validates and updates a site.

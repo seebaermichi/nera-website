@@ -225,6 +225,32 @@ test('the origin falls back to nera.js.org without a config file', () => {
     assert.ok(text.includes('[CLI](https://nera.js.org/docs/cli.html)'), text)
 })
 
+test('the origin comes from app.origin when the plugin config sets none', () => {
+    fs.writeFileSync(path.join(tmp, 'config/llms-txt.yaml'), 'title: Example\n')
+    writePage('docs/index.md', 'title: Intro', '# Intro\n\nSee [CLI](/docs/cli.html).\n')
+
+    const assets = getAssets({
+        app: { lang: 'en', origin: 'https://app.example/' },
+        pagesData: [meta('/docs/index.html', { title: 'Intro', pagination_order: 1 })],
+    })
+    const text = fs.readFileSync(assets.find(({ to }) => to === 'llms-full.txt').from, 'utf-8')
+
+    assert.ok(text.includes('Source: https://app.example/docs/index.html'), text)
+    assert.ok(text.includes('[CLI](https://app.example/docs/cli.html)'), text)
+})
+
+test('the plugin config origin overrides app.origin', () => {
+    writePage('docs/index.md', 'title: Intro', '# Intro\n')
+
+    const assets = getAssets({
+        app: { lang: 'en', origin: 'https://app.example' },
+        pagesData: [meta('/docs/index.html', { title: 'Intro', pagination_order: 1 })],
+    })
+    const text = fs.readFileSync(assets.find(({ to }) => to === 'llms-full.txt').from, 'utf-8')
+
+    assert.ok(text.includes(`Source: ${ORIGIN}/docs/index.html`), text)
+})
+
 test('llms.txt opens with the configured H1 and the summary as one blockquote line', () => {
     fs.appendFileSync(path.join(tmp, 'config/llms-txt.yaml'), 'title: Example\nsummary: >\n    First line\n    and second.\n')
 

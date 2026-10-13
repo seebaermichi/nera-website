@@ -2,8 +2,8 @@ lang: en
 name: Nera
 robots: index,follow
 
-# The deployed origin, read by plugin-canonical-links and by the own-host
-# check of `nera build --check`.
+# The deployed origin, read by plugin-canonical-links, plugins/llms-txt and the
+# own-host check of `nera build --check`.
 origin: https://nera.js.org
 
 # Local (unpublished) plugins live at the site root under `plugins/` in the thin
