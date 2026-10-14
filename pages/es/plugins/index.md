@@ -18,6 +18,10 @@ plugins:
       package: '@nera-static/plugin-contact-form'
       description: Renderiza un formulario de contacto sin backend que crea un enlace mailto al enviar.
       url: https://github.com/seebaermichi/nera-plugin-contact-form
+    - name: Feed
+      package: '@nera-static/plugin-feed'
+      description: Genera un feed Atom o RSS de las entradas del blog, uno por idioma, y una etiqueta link para la cabecera de la página.
+      url: https://github.com/seebaermichi/nera-plugin-feed
     - name: Images
       package: '@nera-static/plugin-images'
       description: Genera imágenes responsivas AVIF/WebP con srcset, width/height y carga diferida durante el build.
