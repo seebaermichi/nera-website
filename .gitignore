@@ -10,3 +10,4 @@ ISSUES.md
 .nera-cache
 # Playwright MCP snapshots from browser tests
 .playwright-mcp/
+plans/
