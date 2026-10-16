@@ -8,9 +8,9 @@ keywords: nera plugin, local plugin, getAppData, getMetaData, getAssets, plugin 
 tags: plugins, local-plugins, advanced
 pagination_order: 8
 createdAt: 2026-07-14
-verified_on: 2026-10-13
+verified_on: 2026-10-16
 verified_with:
-    core: 4.16.0
+    core: 4.17.0
 ---
 You don't need to publish to npm to extend Nera. Any module at
 `src/plugins/<name>/index.js` is discovered and applied automatically — that is

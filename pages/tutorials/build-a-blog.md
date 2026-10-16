@@ -8,10 +8,10 @@ keywords: nera blog tutorial, static blog, markdown blog, plugin-simple-page-lis
 tags: getting-started, blog, plugins
 pagination_order: 1
 createdAt: 2026-07-21
-verified_on: 2026-10-13
+verified_on: 2026-10-16
 verified_with:
-    nera: 1.11.0
-    core: 4.16.0
+    nera: 1.13.0
+    core: 4.17.0
     plugin-simple-page-list: 2.3.3
 ---
 In this tutorial you'll scaffold a Nera site, write two posts, and turn the home
