@@ -87,7 +87,7 @@ npm run build   # pages/ -> public/
 ## Comprobar y desplegar
 
 Cada push a `main` y cada pull request contra esa rama ejecutan
-[`.github/workflows/test.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/test.yml) en Node 20 y 22, con los mismos comandos que puedes
+[`.github/workflows/test.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/test.yml) en Node 22 y 24, con los mismos comandos que puedes
 ejecutar en local:
 
 ```bash

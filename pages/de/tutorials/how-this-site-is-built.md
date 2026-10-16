@@ -87,7 +87,7 @@ npm run build   # pages/ -> public/
 ## Prüfen und veröffentlichen
 
 Jeder Push auf `main` und jeder Pull Request dorthin startet
-[`.github/workflows/test.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/test.yml) auf Node 20 und 22 — dieselben Befehle, die du auch
+[`.github/workflows/test.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/test.yml) auf Node 22 und 24 — dieselben Befehle, die du auch
 lokal ausführen kannst:
 
 ```bash
