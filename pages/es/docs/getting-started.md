@@ -11,7 +11,7 @@ pagination_order: 2
 
 ## Requisitos
 
-- **Node.js 20.19 o posterior** (22.12 o posterior en la línea 22)
+- **Node.js 22.12 o posterior**
 - npm (incluido con Node)
 
 ## Crear un sitio

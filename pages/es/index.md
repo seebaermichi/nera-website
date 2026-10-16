@@ -13,7 +13,7 @@ features:
     - title: Plantillas que son tuyas
       description: Publica las plantillas Pug de un plugin en theme/views/vendor/ y dales estilo con tu propio CSS. Nada queda oculto dentro de node_modules.
     - title: Sin paso de compilación
-      description: Ningún bundler que configurar. npm run build construye el sitio y npm run dev da una vista previa con recarga en vivo. Node 20.19+ o 22.12+, y ya está.
+      description: Ningún bundler que configurar. npm run build construye el sitio y npm run dev da una vista previa con recarga en vivo. Node.js 22.12 o posterior, y ya está.
 ---
 
 ## Por qué Nera

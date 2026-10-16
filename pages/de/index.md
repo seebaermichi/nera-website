@@ -13,7 +13,7 @@ features:
     - title: Templates, die dir gehören
       description: Veröffentliche die Pug-Templates eines Plugins in theme/views/vendor/ und gestalte sie mit deinem eigenen CSS. Nichts ist in node_modules versteckt.
     - title: Kein Build-Schritt
-      description: Kein Bundler zu konfigurieren. npm run build baut die Website, npm run dev liefert eine Live-Vorschau. Node 20.19+ oder 22.12+ — das ist die ganze Geschichte.
+      description: Kein Bundler zu konfigurieren. npm run build baut die Website, npm run dev liefert eine Live-Vorschau. Node.js 22.12 oder neuer — das ist die ganze Geschichte.
 ---
 
 ## Warum Nera
