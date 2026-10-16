@@ -11,3 +11,4 @@ ISSUES.md
 # Playwright MCP snapshots from browser tests
 .playwright-mcp/
 plans/
+.claude/.work-issue-active
