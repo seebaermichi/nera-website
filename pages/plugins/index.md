@@ -14,6 +14,10 @@ plugins:
       package: '@nera-static/plugin-code-blocks'
       description: Highlights fenced code blocks at build time, with a file name bar, copy button and shell prompts.
       url: https://github.com/seebaermichi/nera-plugin-code-blocks
+    - name: Consent
+      package: '@nera-static/plugin-consent'
+      description: Adds a consent banner and settings dialog, and keeps scripts and embeds inert until the visitor agrees — or just an info notice when nothing needs consent.
+      url: https://github.com/seebaermichi/nera-plugin-consent
     - name: Contact form
       package: '@nera-static/plugin-contact-form'
       description: Renders a backend-free contact form that builds a mailto link on submit.

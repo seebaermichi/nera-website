@@ -14,6 +14,10 @@ plugins:
       package: '@nera-static/plugin-code-blocks'
       description: Hebt Codeblöcke beim Build hervor, mit Dateinamen-Leiste, Kopier-Button und Shell-Prompts.
       url: https://github.com/seebaermichi/nera-plugin-code-blocks
+    - name: Consent
+      package: '@nera-static/plugin-consent'
+      description: Fügt ein Consent-Banner und einen Einstellungsdialog hinzu und hält Skripte und Einbettungen inaktiv, bis Besucher zustimmen — oder nur einen Hinweis, wenn nichts eine Einwilligung braucht.
+      url: https://github.com/seebaermichi/nera-plugin-consent
     - name: Contact form
       package: '@nera-static/plugin-contact-form'
       description: Rendert ein Backend-freies Kontaktformular, das beim Absenden einen mailto-Link erzeugt.
