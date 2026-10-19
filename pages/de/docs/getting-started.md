@@ -47,5 +47,8 @@ npx nera update
 
 `nera update` aktualisiert die Nera-Pakete der Website mit `npm update` und
 erneuert Neras Teil der `AGENTS.md`, während deine `pages/`, `config/` und
-`theme/` unangetastet bleiben. Wie ein KI-Assistent `AGENTS.md` nutzt, steht in
+`theme/` unangetastet bleiben. Ab `@nera-static/nera` 1.15.0 hebt es außerdem
+ihre `^`-Versionsbereiche in `package.json` (und `package-lock.json`) auf die
+installierten Versionen an, aus `^1.0.0` wird etwa `^1.15.0`; über eine
+Hauptversion hinweg geht es nie. Wie ein KI-Assistent `AGENTS.md` nutzt, steht in
 [Nera mit KI nutzen](/de/docs/using-ai.html).

@@ -30,7 +30,7 @@ dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaz
 | `nera build` | Compila `pages/` → `public/`; con `--check`, revisa también el resultado |
 | `nera dev` | Compila + vista previa con recarga en vivo en `:3000` |
 | `nera serve` | Sirve `public/` sin recompilar |
-| `nera update` | Actualiza los paquetes Nera del sitio (`npm update`) y luego crea o renueva `AGENTS.md` y `CLAUDE.md` |
+| `nera update` | Actualiza los paquetes Nera del sitio (`npm update`), eleva sus rangos `^` en `package.json` a las versiones instaladas y luego crea o renueva `AGENTS.md` y `CLAUDE.md` |
 | `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
 | `nera check` | Revisa el `public/` compilado en busca de problemas de accesibilidad, privacidad y aviso legal |
 

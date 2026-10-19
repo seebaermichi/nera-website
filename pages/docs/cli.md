@@ -30,7 +30,7 @@ with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
 | `nera build` | Build `pages/` → `public/`; with `--check`, check the result too |
 | `nera dev` | Build + live-reload preview on `:3000` |
 | `nera serve` | Serve `public/` without rebuilding |
-| `nera update` | Update the site's Nera packages (`npm update`), then create or refresh `AGENTS.md` and `CLAUDE.md` |
+| `nera update` | Update the site's Nera packages (`npm update`) and raise their `^` ranges in `package.json` to the installed versions, then create or refresh `AGENTS.md` and `CLAUDE.md` |
 | `nera validate` | Check layouts, includes and YAML before publishing |
 | `nera check` | Check the built `public/` for accessibility, privacy and legal-notice problems |
 

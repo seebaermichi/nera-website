@@ -47,5 +47,7 @@ npx nera update
 
 `nera update` actualiza los paquetes Nera del sitio con `npm update` y renueva
 la parte de Nera de `AGENTS.md`, dejando intactos tus `pages/`, `config/` y
-`theme/`. Cómo usa un asistente de IA `AGENTS.md` se explica en
+`theme/`. Desde `@nera-static/nera` 1.15.0 también eleva sus rangos `^` en
+`package.json` (y `package-lock.json`) a las versiones instaladas, de modo que
+`^1.0.0` pasa a ser, por ejemplo, `^1.15.0`; nunca cruza una versión mayor. Cómo usa un asistente de IA `AGENTS.md` se explica en
 [Usar Nera con IA](/es/docs/using-ai.html).

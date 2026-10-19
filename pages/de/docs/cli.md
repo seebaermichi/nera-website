@@ -30,7 +30,7 @@ außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
 | `nera build` | `pages/` → `public/` bauen; mit `--check` danach auch das Ergebnis prüfen |
 | `nera dev` | Bauen + Live-Reload-Vorschau auf `:3000` |
 | `nera serve` | `public/` ausliefern, ohne neu zu bauen |
-| `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`), dann `AGENTS.md` und `CLAUDE.md` anlegen oder auffrischen |
+| `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`) und ihre `^`-Versionsbereiche in `package.json` auf die installierten Versionen anheben, dann `AGENTS.md` und `CLAUDE.md` anlegen oder auffrischen |
 | `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
 | `nera check` | Das gebaute `public/` auf Probleme bei Barrierefreiheit, Datenschutz und Impressum prüfen |
 
