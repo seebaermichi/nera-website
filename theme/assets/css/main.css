@@ -371,6 +371,15 @@ img, svg, video { max-width: 100%; height: auto; }
   line-height: var(--leading-normal);
   margin: var(--space-1) 0 0;
 }
+.home-body__feature-desc p { margin: 0; }
+.home-body__feature-desc code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--color-ink);
+  background: var(--color-bg-code);
+  border: var(--border);
+  padding: 0 0.25rem;
+}
 @media (min-width: 45rem) {
   .home-body__grid { grid-template-columns: 1fr 1fr; }
   .home-body__feature { padding: var(--space-6); border-bottom: none; }

@@ -16,14 +16,16 @@ block content
 
   section.home-body
     .container
-      //- Feature grid, authored as a `features:` list in the page frontmatter.
-      if meta.features && meta.features.length
+      //- Feature grid: one stack page per feature in pages/<lang>/stacks/home-features/,
+      //- grouped and ordered by @nera-static/plugin-stacks (stack_group, stack_order).
+      - const features = app.stackGroupsByLang?.home_features?.[curLang] || []
+      if features.length
         .home-body__grid
-          each feature, i in meta.features
+          each feature, i in features
             .home-body__feature
               p.home-body__feature-num #{ String(i + 1).padStart(2, '0') }
-              h2.home-body__feature-title #{ feature.title }
-              p.home-body__feature-desc #{ feature.description }
+              h2.home-body__feature-title #{ feature.meta.title }
+              .home-body__feature-desc!= feature.content
 
       //- Any prose authored in the Markdown body renders below the grid.
       if content && content.trim()

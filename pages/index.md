@@ -5,15 +5,6 @@ slug: home
 lang: en
 description: Nera is a lightweight, plugin-based static site generator. Write Markdown, template with Pug, extend with small single-purpose plugins.
 keywords: nera, static site generator, ssg, markdown, pug, node
-features:
-    - title: Markdown in, HTML out
-      description: Author content in Markdown with YAML frontmatter. Nera renders each page through a Pug layout you control and writes plain, fast HTML.
-    - title: Plugins, not magic
-      description: Navigation, tags, search, pagination and more ship as separate @nera-static/plugin-* packages. Install what you need; ignore the rest.
-    - title: Templates you own
-      description: Publish a plugin's Pug templates into theme/views/vendor/ and style them from your own CSS. Nothing is hidden inside node_modules.
-    - title: Zero build step
-      description: No bundler to configure. npm run build builds the site and npm run dev gives a live-reloading preview. Node.js 22.12 or newer is the whole story.
 ---
 
 ## Why Nera
