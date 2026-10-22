@@ -12,7 +12,7 @@ pagination_order: 2
 ## Requirements
 
 - **Node.js 22.12 or newer**
-- npm (bundled with Node)
+- npm 10.9 or newer (bundled with Node.js 22.12)
 
 ## Scaffold a site
 

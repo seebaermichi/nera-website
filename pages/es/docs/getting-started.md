@@ -12,7 +12,7 @@ pagination_order: 2
 ## Requisitos
 
 - **Node.js 22.12 o posterior**
-- npm (incluido con Node)
+- npm 10.9 o posterior (incluido con Node.js 22.12)
 
 ## Crear un sitio
 

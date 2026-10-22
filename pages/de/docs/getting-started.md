@@ -12,7 +12,7 @@ pagination_order: 2
 ## Voraussetzungen
 
 - **Node.js 22.12 oder neuer**
-- npm (in Node enthalten)
+- npm 10.9 oder neuer (in Node.js 22.12 enthalten)
 
 ## Website erstellen
 
