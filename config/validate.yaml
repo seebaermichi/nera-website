@@ -1,7 +1,0 @@
-# Settings for `nera validate` and `nera build --check` (@nera-static/validate).
-ignore:
-    # Stack pages (@nera-static/plugin-stacks) are fragments rendered into other
-    # pages, so they have no layout on purpose.
-    layout-missing:
-        - pages/stacks
-        - pages/*/stacks
