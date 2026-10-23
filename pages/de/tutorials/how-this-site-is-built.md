@@ -6,7 +6,7 @@ lang: de
 description: Eine Fallstudie über die Nera-Seite selbst — die Plugins, die Reihenfolge, die lokalen Plugins und wie sie geprüft und veröffentlicht wird.
 keywords: nera Fallstudie, Static-Site-Beispiel, nera Website, Dogfooding
 tags: case-study, plugins, advanced
-pagination_order: 9
+pagination_order: 10
 createdAt: 2026-07-13
 ---
 Diese ganze Seite ist mit Nera gebaut. Nichts hier ist ein Sonderfall — es ist
@@ -34,7 +34,7 @@ npx @nera-static/nera new nera-website
 | `plugin-canonical-links` | Canonical-`<link>`-Tags für SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | Externe Links öffnen in einem neuen Tab | `config/link-attributes.yaml` |
 | `plugin-code-blocks` | Syntax-Highlighting zur Build-Zeit mit Kopier-Button | `config/code-blocks.yaml` |
-| `plugin-stacks` | Das Feature-Raster der Startseite, eine Markdown-Datei je Feature in `pages/de/stacks/home-features/` | — |
+| `plugin-stacks` | Das Feature-Raster der Startseite, eine Markdown-Datei je Feature in `pages/de/stacks/home-features/` (siehe [Wiederverwendbare Inhaltsblöcke](/de/tutorials/reusable-content-blocks.html)) | — |
 | `tutorials-list` (lokal) | Baut `app.tutorials` für den Index | — |
 | `llms-txt` (lokal) | `llms.txt`, `llms-full.txt` und eine `.md` je Seite für KI-Assistenten | `config/llms-txt.yaml` |
 | `skill-zip` (lokal) | [Der Nera-Skill](/de/docs/using-ai.html) als Zip für claude.ai und Claude Desktop | — |

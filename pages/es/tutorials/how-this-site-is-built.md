@@ -6,7 +6,7 @@ lang: es
 description: Un caso de estudio del propio sitio Nera — los plugins, el orden, los plugins locales y cómo se comprueba y se despliega.
 keywords: nera caso de estudio, ejemplo de sitio estático, nera website, dogfooding
 tags: case-study, plugins, advanced
-pagination_order: 9
+pagination_order: 10
 createdAt: 2026-07-13
 ---
 Todo este sitio está construido con Nera. Nada aquí es un caso especial — es el
@@ -33,7 +33,7 @@ npx @nera-static/nera new nera-website
 | `plugin-canonical-links` | Etiquetas `<link>` canónicas para SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | Los enlaces externos se abren en una pestaña nueva | `config/link-attributes.yaml` |
 | `plugin-code-blocks` | Resaltado de sintaxis en la compilación, con botón de copiar | `config/code-blocks.yaml` |
-| `plugin-stacks` | La cuadrícula de funciones de la portada, un archivo Markdown por función en `pages/es/stacks/home-features/` | — |
+| `plugin-stacks` | La cuadrícula de funciones de la portada, un archivo Markdown por función en `pages/es/stacks/home-features/` (ver [Bloques de contenido reutilizables](/es/tutorials/reusable-content-blocks.html)) | — |
 | `tutorials-list` (local) | Construye `app.tutorials` para el índice | — |
 | `llms-txt` (local) | `llms.txt`, `llms-full.txt` y un `.md` por página para asistentes de IA | `config/llms-txt.yaml` |
 | `skill-zip` (local) | [La skill de Nera](/es/docs/using-ai.html) como zip para claude.ai y Claude Desktop | — |

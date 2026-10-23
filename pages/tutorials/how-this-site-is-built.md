@@ -6,7 +6,7 @@ lang: en
 description: A case study of the Nera site itself — the plugins, the ordering, the local plugins, and how it is checked and deployed.
 keywords: nera case study, static site example, nera website, dogfooding
 tags: case-study, plugins, advanced
-pagination_order: 9
+pagination_order: 10
 createdAt: 2026-07-13
 verified_on: 2026-10-23
 verified_with:
@@ -43,7 +43,7 @@ npx @nera-static/nera new nera-website
 | `plugin-canonical-links` | Canonical `<link>` tags for SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | External links open in a new tab | `config/link-attributes.yaml` |
 | `plugin-code-blocks` | Build-time syntax highlighting with a copy button | `config/code-blocks.yaml` |
-| `plugin-stacks` | The homepage feature grid, one Markdown file per feature in `pages/stacks/home-features/` | — |
+| `plugin-stacks` | The homepage feature grid, one Markdown file per feature in `pages/stacks/home-features/` (see [Reusable content blocks](/tutorials/reusable-content-blocks.html)) | — |
 | `tutorials-list` (local) | Builds `app.tutorials` for the index | — |
 | `llms-txt` (local) | `llms.txt`, `llms-full.txt` and a `.md` per page for AI assistants | `config/llms-txt.yaml` |
 | `skill-zip` (local) | [The Nera skill](/docs/using-ai.html) as a zip for claude.ai and Claude Desktop | — |
