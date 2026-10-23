@@ -22,7 +22,7 @@ Comenzó con la CLI de nera, que crea un sitio cuya única dependencia de Nera e
 npx @nera-static/nera new nera-website
 ```
 
-## Doce plugins, cada uno haciendo una cosa
+## Trece plugins, cada uno haciendo una cosa
 
 | Plugin | Trabajo | Configuración |
 | --- | --- | --- |
@@ -38,9 +38,10 @@ npx @nera-static/nera new nera-website
 | `llms-txt` (local) | `llms.txt`, `llms-full.txt` y un `.md` por página para asistentes de IA | `config/llms-txt.yaml` |
 | `skill-zip` (local) | [La skill de Nera](/es/docs/using-ai.html) como zip para claude.ai y Claude Desktop | — |
 | `heading-ids` (local) | Un `id` en cada h2–h4, para poder enlazar las secciones | — |
+| `table-scroll` (local) | Envuelve cada tabla Markdown en una caja `.table-scroll`, para que las tablas anchas se desplacen en el móvil | — |
 
-Los cuatro plugins locales — `tutorials-list`, `llms-txt`, `skill-zip` y
-`heading-ids` — viven en `plugins/`, indicado con `folders.plugins` en `config/app.yaml`. `llms-txt` y
+Los cinco plugins locales — `tutorials-list`, `llms-txt`, `skill-zip`,
+`heading-ids` y `table-scroll` — viven en `plugins/`, indicado con `folders.plugins` en `config/app.yaml`. `llms-txt` y
 `skill-zip` generan archivos en lugar de datos y se los entregan a la compilación
 mediante el hook `getAssets` (consulta
 [Escribe tu propio plugin local](/es/tutorials/write-a-local-plugin.html)).

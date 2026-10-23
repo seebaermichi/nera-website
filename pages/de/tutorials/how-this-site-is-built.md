@@ -23,7 +23,7 @@ Nera-Abhängigkeit `@nera-static/nera` ist (das Paket bringt die
 npx @nera-static/nera new nera-website
 ```
 
-## Zwölf Plugins, jedes mit einer Aufgabe
+## Dreizehn Plugins, jedes mit einer Aufgabe
 
 | Plugin | Aufgabe | Konfiguration |
 | --- | --- | --- |
@@ -39,9 +39,10 @@ npx @nera-static/nera new nera-website
 | `llms-txt` (lokal) | `llms.txt`, `llms-full.txt` und eine `.md` je Seite für KI-Assistenten | `config/llms-txt.yaml` |
 | `skill-zip` (lokal) | [Der Nera-Skill](/de/docs/using-ai.html) als Zip für claude.ai und Claude Desktop | — |
 | `heading-ids` (lokal) | Eine `id` an jedem h2–h4, damit Abschnitte verlinkbar sind | — |
+| `table-scroll` (lokal) | Packt jede Markdown-Tabelle in eine `.table-scroll`-Box, damit breite Tabellen auf dem Handy scrollen | — |
 
-Die vier lokalen Plugins — `tutorials-list`, `llms-txt`, `skill-zip` und
-`heading-ids` — liegen in `plugins/`, festgelegt mit `folders.plugins` in `config/app.yaml`. `llms-txt`
+Die fünf lokalen Plugins — `tutorials-list`, `llms-txt`, `skill-zip`,
+`heading-ids` und `table-scroll` — liegen in `plugins/`, festgelegt mit `folders.plugins` in `config/app.yaml`. `llms-txt`
 und `skill-zip` erzeugen Dateien statt Daten und übergeben sie dem Build über den
 `getAssets`-Hook (siehe
 [Schreibe dein eigenes lokales Plugin](/de/tutorials/write-a-local-plugin.html)).
