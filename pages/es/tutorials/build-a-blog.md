@@ -21,7 +21,9 @@ cd my-blog
 ```
 
 `nera new` crea el sitio e instala sus dependencias. Trabajarás en tres lugares:
-`pages/` para tu contenido (empieza con `pages/index.md`), `theme/views/` para las
+`pages/` para tu contenido (empieza con `pages/index.md`, además de
+`pages/imprint.md` y `pages/privacy.md`, marcadores que debes reemplazar antes de
+publicar), `theme/views/` para las
 plantillas Pug (`layouts/layout.pug` es el esqueleto HTML y `pages/default.pug`
 renderiza una página dentro de él) y `config/` para la configuración.
 
@@ -100,7 +102,7 @@ debajo, la lista. Crea `theme/views/pages/blog.pug`:
 extends ../layouts/layout
 
 block content
-  main
+  main#main
     != content
     include /vendor/plugin-simple-page-list/simple-page-list
 ```

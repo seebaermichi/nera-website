@@ -23,7 +23,7 @@ Nera-Abhängigkeit `@nera-static/nera` ist (das Paket bringt die
 npx @nera-static/nera new nera-website
 ```
 
-## Elf Plugins, jedes mit einer Aufgabe
+## Zwölf Plugins, jedes mit einer Aufgabe
 
 | Plugin | Aufgabe | Konfiguration |
 | --- | --- | --- |
@@ -34,6 +34,7 @@ npx @nera-static/nera new nera-website
 | `plugin-canonical-links` | Canonical-`<link>`-Tags für SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | Externe Links öffnen in einem neuen Tab | `config/link-attributes.yaml` |
 | `plugin-code-blocks` | Syntax-Highlighting zur Build-Zeit mit Kopier-Button | `config/code-blocks.yaml` |
+| `plugin-stacks` | Das Feature-Raster der Startseite, eine Markdown-Datei je Feature in `pages/de/stacks/home-features/` | — |
 | `tutorials-list` (lokal) | Baut `app.tutorials` für den Index | — |
 | `llms-txt` (lokal) | `llms.txt`, `llms-full.txt` und eine `.md` je Seite für KI-Assistenten | `config/llms-txt.yaml` |
 | `skill-zip` (lokal) | [Der Nera-Skill](/de/docs/using-ai.html) als Zip für claude.ai und Claude Desktop | — |

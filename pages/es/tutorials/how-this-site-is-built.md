@@ -22,7 +22,7 @@ Comenzó con la CLI de nera, que crea un sitio cuya única dependencia de Nera e
 npx @nera-static/nera new nera-website
 ```
 
-## Once plugins, cada uno haciendo una cosa
+## Doce plugins, cada uno haciendo una cosa
 
 | Plugin | Trabajo | Configuración |
 | --- | --- | --- |
@@ -33,6 +33,7 @@ npx @nera-static/nera new nera-website
 | `plugin-canonical-links` | Etiquetas `<link>` canónicas para SEO | `config/canonical-links.yaml` |
 | `plugin-link-attributes` | Los enlaces externos se abren en una pestaña nueva | `config/link-attributes.yaml` |
 | `plugin-code-blocks` | Resaltado de sintaxis en la compilación, con botón de copiar | `config/code-blocks.yaml` |
+| `plugin-stacks` | La cuadrícula de funciones de la portada, un archivo Markdown por función en `pages/es/stacks/home-features/` | — |
 | `tutorials-list` (local) | Construye `app.tutorials` para el índice | — |
 | `llms-txt` (local) | `llms.txt`, `llms-full.txt` y un `.md` por página para asistentes de IA | `config/llms-txt.yaml` |
 | `skill-zip` (local) | [La skill de Nera](/es/docs/using-ai.html) como zip para claude.ai y Claude Desktop | — |

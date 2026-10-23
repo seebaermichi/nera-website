@@ -8,10 +8,10 @@ keywords: nera blog tutorial, static blog, markdown blog, plugin-simple-page-lis
 tags: getting-started, blog, plugins
 pagination_order: 1
 createdAt: 2026-07-21
-verified_on: 2026-10-16
+verified_on: 2026-10-23
 verified_with:
-    nera: 1.13.0
-    core: 4.17.0
+    nera: 1.16.1
+    core: 4.18.1
     plugin-simple-page-list: 2.3.3
 ---
 In this tutorial you'll scaffold a Nera site, write two posts, and turn the home
@@ -26,7 +26,9 @@ cd my-blog
 ```
 
 `nera new` creates the site and installs its dependencies. You'll touch three
-places: `pages/` for your content (it starts with `pages/index.md`),
+places: `pages/` for your content (it starts with `pages/index.md`, plus
+`pages/imprint.md` and `pages/privacy.md` — placeholders to replace before you
+publish),
 `theme/views/` for the Pug templates (`layouts/layout.pug` is the HTML shell,
 `pages/default.pug` renders a page into it), and `config/` for settings.
 
@@ -102,7 +104,7 @@ Create `theme/views/pages/blog.pug`:
 extends ../layouts/layout
 
 block content
-  main
+  main#main
     != content
     include /vendor/plugin-simple-page-list/simple-page-list
 ```
