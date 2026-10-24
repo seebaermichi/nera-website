@@ -494,6 +494,10 @@ img, svg, video { max-width: 100%; height: auto; }
   padding: var(--space-3);
   border-bottom: var(--border);
   vertical-align: top;
+
+  &:first-of-type {
+    white-space: nowrap;
+  }
 }
 .prose tr:last-child td { border-bottom: none; }
 
