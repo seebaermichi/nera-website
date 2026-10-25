@@ -29,7 +29,7 @@
     "node": ">=22.12.0"
   },
   "dependencies": {
-    "@nera-static/nera": "^1.15.0",
+    "@nera-static/nera": "^1.16.1",
     "@nera-static/plugin-canonical-links": "^2.2.3",
     "@nera-static/plugin-code-blocks": "^1.2.1",
     "@nera-static/plugin-link-attributes": "^2.1.1",
