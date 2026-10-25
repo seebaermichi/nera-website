@@ -11,7 +11,7 @@ block content
       include ../vendor/plugin-tags/partials/tag-cloud
 
     //- Tutorials in the current language, newest first. `app.tutorials` is
-    //- built in src/plugins/tutorials-list (curLang comes from layout.pug).
+    //- built in plugins/tutorials-list (curLang comes from layout.pug).
     - const posts = (app.tutorials || []).filter(post => post.lang === curLang)
     if posts.length
       ul.tutorials__list
