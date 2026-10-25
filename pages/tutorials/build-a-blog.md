@@ -11,7 +11,7 @@ createdAt: 2026-07-21
 verified_on: 2026-10-25
 verified_with:
     nera: 1.16.1
-    core: 4.18.1
+    core: 4.18.2
     plugin-simple-page-list: 2.3.3
     starter-blog: 1.1.0
 ---
