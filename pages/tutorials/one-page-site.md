@@ -236,8 +236,8 @@ unless you set `anchor_id`. And an `<h1>` per section is not what you want on
 a one-page site: the home page already has its `<h1>`, and with `team.md` in
 place `nera build --check` warns `` page has more than one `<h1>` ``
 (`a11y-h1`). So give the sections `##` headings and an explicit `anchor_id`, as
-in step 3, and delete `team.md` again. Explicit ids also stay the same when you rename a
-heading or translate the page (see step 10).
+in step 3, and delete `team.md` again. Explicit ids also stay the same when you
+rename a heading or translate the page (see step 10).
 
 ## 5. Sections without a page of their own
 
