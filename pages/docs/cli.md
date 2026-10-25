@@ -28,6 +28,10 @@ from a ready-to-edit starter kit instead (`blank`, `blog`, `business` or
 npx @nera-static/nera new my-blog --starter blog --name "My Blog" --lang de
 ```
 
+On a terminal, without `--starter` or `--yes`, `nera new` asks what you are
+building, the site name and the language; with `--yes`, or without a terminal,
+it never asks. [Starter kits](#starter-kits) below has the details.
+
 A scaffolded site depends on `@nera-static/nera`, so run these from inside it
 with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
 `serve` to npm scripts, e.g. `npm run dev`:
@@ -40,6 +44,65 @@ with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
 | `nera update` | Update the site's Nera packages (`npm update`) and raise their `^` ranges in `package.json` to the installed versions, then create or refresh `AGENTS.md` and `CLAUDE.md` |
 | `nera validate` | Check layouts, includes and YAML before publishing |
 | `nera check` | Check the built `public/` for accessibility, privacy and legal-notice problems |
+
+### Starter kits
+
+A starter kit is a whole ready-to-edit site: sample pages, config, optional
+site-level `theme/` overrides, assets and the theme and plugins it depends on.
+`nera new --starter` copies its `pages/`, `config/`, `theme/`, `assets/`,
+`plugins/` and `.neraignore` over the base template, adds its `dependencies`
+to the site's `package.json`, applies `--name` and `--lang`, installs, and
+prints the `## First steps` section of the starter's README (nothing, when it
+has none). After that the site owns the files: a starter has no update path,
+though the theme it depends on still updates through npm.
+
+`--name "<site name>"` and `--lang <code>` set `name:` and `lang:` in
+`config/app.yaml`, with or without a starter. A new language gets a copy of
+the current language's `translations:` entry, ready to translate, so no page
+shows a raw translation key.
+
+`--starter` takes:
+
+- a starter name: `blank`, `blog`, `business` or `portfolio`, short for
+  `@nera-static/starter-blank` and so on;
+- a package name: `@acme/starter-shop`, or unscoped `nera-starter-shop`;
+- a GitHub URL: `https://github.com/owner/repo` (optionally `.git`, `#ref`),
+  or `github:owner/repo#ref`;
+- a local path: `./my-starter`, `../my-starter` or an absolute path.
+
+Packages and GitHub repositories are downloaded with
+`npm pack --ignore-scripts`, so no script of the starter runs. A starter is a
+package whose `package.json` has a `nera.starter` field
+(`{ "label": "…", "description": "…" }`); anything else is refused before
+anything is written. A starter that sets `theme:` in its `config/app.yaml`
+leaves out the scaffold's starter templates, as `--theme` does.
+
+Run `nera new my-site` on a terminal and it asks instead:
+
+```text
+What are you building?
+  1) Empty — the base template, no starter
+  2) …
+Choose 1–2 [1]:
+Site name [My Nera Site]:
+Language [en]:
+```
+
+The list comes from the npm registry (packages with the keyword
+`nera-starter`, official `@nera-static/` ones first), or from a short list
+bundled with the CLI when the registry cannot be reached. Enter accepts the
+default. Every question has a flag (`--starter`, `--name`, `--lang`); with
+`--yes`, or without a terminal (scripts, CI, AI agents), nothing is asked and
+`nera new` scaffolds the base template.
+
+The official starters:
+
+| Starter | What you get |
+| --- | --- |
+| `blank` | One accessible layout, no theme |
+| `blog` | A blog on `@nera-static/theme-blog` with tags, an archive, an Atom feed and a sitemap |
+| `business` | A small-business site on `@nera-static/theme-business` with services, opening hours and a contact form |
+| `portfolio` | A designer's portfolio on `@nera-static/theme-business` with projects in image galleries, an about page and a contact form |
 
 ### Checking the built site
 
