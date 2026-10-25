@@ -19,7 +19,14 @@ npx @nera-static/nera new <project-name>
 ```
 
 `nera new .` erstellt die Website stattdessen im aktuellen, leeren Ordner, und
-`--theme <name>` startet sie mit einem Theme.
+`--theme <name>` startet sie mit einem Theme. `--starter <name>` startet sie
+stattdessen mit einem fertigen Starter-Kit zum Anpassen (`blank`, `blog` oder
+`business`; nicht zusammen mit `--theme`), und `--name "<site name>"` und
+`--lang <code>` setzen `name` und `lang` in `config/app.yaml`:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog --name "Mein Blog" --lang de
+```
 
 Eine erstellte Website hängt von `@nera-static/nera` ab, führe diese Befehle also
 in ihr mit `npx` aus, z. B. `npx nera validate`. Der Scaffold verknüpft

@@ -19,7 +19,14 @@ npx @nera-static/nera new <project-name>
 ```
 
 `nera new .` scaffolds into the current, empty folder instead, and
-`--theme <name>` starts the site from a theme.
+`--theme <name>` starts the site from a theme. `--starter <name>` starts it
+from a ready-to-edit starter kit instead (`blank`, `blog` or `business`; not
+together with `--theme`), and `--name "<site name>"` and `--lang <code>` set
+`name` and `lang` in `config/app.yaml`:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog --name "My Blog" --lang de
+```
 
 A scaffolded site depends on `@nera-static/nera`, so run these from inside it
 with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and

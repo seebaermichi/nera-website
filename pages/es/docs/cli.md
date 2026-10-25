@@ -19,7 +19,14 @@ npx @nera-static/nera new <project-name>
 ```
 
 `nera new .` crea el sitio en la carpeta actual, que debe estar vacía, y
-`--theme <name>` lo arranca a partir de un tema.
+`--theme <name>` lo arranca a partir de un tema. `--starter <name>` lo arranca,
+en cambio, a partir de un starter kit listo para editar (`blank`, `blog` o
+`business`; no junto con `--theme`), y `--name "<site name>"` y `--lang <code>`
+fijan `name` y `lang` en `config/app.yaml`:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog --name "Mi blog" --lang es
+```
 
 Un sitio creado depende de `@nera-static/nera`, así que ejecuta estos desde
 dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaza
