@@ -10,7 +10,7 @@ pagination_order: 1
 createdAt: 2026-07-21
 verified_on: 2026-10-25
 verified_with:
-    nera: 1.17.0
+    nera: 1.18.0
     core: 4.18.2
     plugin-simple-page-list: 2.3.3
     starter-blog: 1.1.0

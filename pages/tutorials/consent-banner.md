@@ -10,9 +10,9 @@ pagination_order: 10
 createdAt: 2026-10-25
 verified_on: 2026-10-25
 verified_with:
-    plugin-consent: 1.0.2
+    plugin-consent: 1.0.3
     validate: 1.7.0
-    nera: 1.17.0
+    nera: 1.18.0
 ---
 A consent banner asks visitors to agree before something on the site that
 needs their consent runs: an analytics script, a YouTube video, a map. A site
