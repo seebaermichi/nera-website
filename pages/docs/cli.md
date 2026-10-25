@@ -28,6 +28,8 @@ from a ready-to-edit starter kit instead (`blank`, `blog`, `business` or
 npx @nera-static/nera new my-blog --starter blog --name "My Blog" --lang de
 ```
 
+`--no-install` skips the `npm install` at the end; run it yourself later.
+
 On a terminal, without `--starter` or `--yes`, `nera new` asks what you are
 building, the site name and the language; with `--yes`, or without a terminal,
 it never asks. [Starter kits](#starter-kits) below has the details.

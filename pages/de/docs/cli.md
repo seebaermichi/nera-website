@@ -29,6 +29,8 @@ stattdessen mit einem fertigen Starter-Kit zum Anpassen (`blank`, `blog`,
 npx @nera-static/nera new my-blog --starter blog --name "Mein Blog" --lang de
 ```
 
+`--no-install` lässt das `npm install` am Ende weg; führe es später selbst aus.
+
 In einem Terminal, ohne `--starter` oder `--yes`, fragt `nera new`, was du
 baust, wie die Website heißt und in welcher Sprache sie ist; mit `--yes` oder ohne
 Terminal fragt es nie. Die Details stehen unten unter

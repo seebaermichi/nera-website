@@ -28,6 +28,8 @@ en cambio, a partir de un starter kit listo para editar (`blank`, `blog`,
 npx @nera-static/nera new my-blog --starter blog --name "Mi blog" --lang es
 ```
 
+`--no-install` omite el `npm install` del final; ejecútalo tú más tarde.
+
 En una terminal, sin `--starter` ni `--yes`, `nera new` pregunta qué estás
 construyendo, el nombre del sitio y el idioma; con `--yes`, o sin terminal,
 nunca pregunta. Los detalles están más abajo, en
