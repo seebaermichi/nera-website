@@ -13,9 +13,8 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                # Node 20 reached end of life on 2026-04-30, and the dev
-                # toolchain (vitest 5) needs Node 22.12 or later, so CI tests
-                # 22 and 24. `engines` is unchanged: a CI-only change.
+                # Node 20 reached end of life on 2026-04-30, and `engines`
+                # asks for Node 22.12 or later, so CI tests 22 and 24.
                 node-version: [22, 24]
 
         steps:
