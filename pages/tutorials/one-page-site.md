@@ -10,7 +10,7 @@ pagination_order: 11
 createdAt: 2026-10-25
 verified_on: 2026-10-25
 verified_with:
-    nera: 1.16.1
+    nera: 1.17.0
     plugin-one-page: 3.0.2
     plugin-page-navigation: 2.5.0
     plugin-contact-form: 1.1.1
@@ -234,9 +234,9 @@ It is merged as:
 Lower headings are ignored, so a section with only `##` headings gets no anchor
 unless you set `anchor_id`. And an `<h1>` per section is not what you want on
 a one-page site: the home page already has its `<h1>`, and with `team.md` in
-place `nera build --check` warns `page has more than one <h1>` (`a11y-h1`).
-So give the sections `##` headings and an explicit `anchor_id`, as in step 3,
-and delete `team.md` again. Explicit ids also stay the same when you rename a
+place `nera build --check` warns `` page has more than one `<h1>` ``
+(`a11y-h1`). So give the sections `##` headings and an explicit `anchor_id`, as
+in step 3, and delete `team.md` again. Explicit ids also stay the same when you rename a
 heading or translate the page (see step 10).
 
 ## 5. Sections without a page of their own

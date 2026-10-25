@@ -230,9 +230,9 @@ Los encabezados de nivel inferior se ignoran, así que una sección que solo
 tiene encabezados `##` no recibe ancla a menos que fijes `anchor_id`. Y un
 `<h1>` por sección no es lo que quieres en un sitio de una sola página: la
 página de inicio ya tiene su `<h1>`, y con `team.md` presente
-`nera build --check` avisa `page has more than one <h1>` (`a11y-h1`). Así que
-da a las secciones encabezados `##` y un `anchor_id` explícito, como en el
-paso 3, y vuelve a borrar `team.md`. Los ids explícitos además no cambian
+`nera build --check` avisa `` page has more than one `<h1>` `` (`a11y-h1`).
+Así que da a las secciones encabezados `##` y un `anchor_id` explícito, como en
+el paso 3, y vuelve a borrar `team.md`. Los ids explícitos además no cambian
 cuando renombras un encabezado o traduces la página (ver el paso 10).
 
 ## 5. Secciones sin página propia

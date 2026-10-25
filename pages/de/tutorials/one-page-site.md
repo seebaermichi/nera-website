@@ -231,8 +231,8 @@ Tiefere Überschriften werden ignoriert, ein Abschnitt mit nur
 `##`-Überschriften bekommt also keinen Anker, solange du keine `anchor_id`
 setzt. Und ein `<h1>` je Abschnitt willst du auf einer One-Page-Website nicht:
 Die Startseite hat schon ihr `<h1>`, und mit `team.md` meldet
-`nera build --check` die Warnung `page has more than one <h1>` (`a11y-h1`).
-Gib den Abschnitten deshalb `##`-Überschriften und eine ausdrückliche
+`nera build --check` die Warnung `` page has more than one `<h1>` ``
+(`a11y-h1`). Gib den Abschnitten deshalb `##`-Überschriften und eine ausdrückliche
 `anchor_id`, wie in Schritt 3, und lösche `team.md` wieder. Ausdrückliche IDs
 bleiben außerdem gleich, wenn du eine Überschrift umbenennst oder die Seite
 übersetzt (siehe Schritt 10).
