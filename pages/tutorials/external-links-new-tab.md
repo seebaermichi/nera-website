@@ -8,10 +8,10 @@ keywords: nera external links, plugin-link-attributes, target blank, noopener
 tags: plugins, links
 pagination_order: 6
 createdAt: 2026-07-16
-verified_on: 2026-10-23
+verified_on: 2026-10-25
 verified_with:
     plugin-link-attributes: 2.1.1
-    core: 4.18.1
+    core: 4.18.2
 ---
 `@nera-static/plugin-link-attributes` post-processes your rendered HTML and adds
 attributes to outbound links — so every external link opens in a new tab, safely,

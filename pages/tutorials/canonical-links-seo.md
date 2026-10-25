@@ -8,10 +8,10 @@ keywords: nera seo, plugin-canonical-links, canonical url, hreflang, alternate l
 tags: plugins, seo
 pagination_order: 7
 createdAt: 2026-07-15
-verified_on: 2026-10-15
+verified_on: 2026-10-25
 verified_with:
     plugin-canonical-links: 2.2.3
-    plugin-sitemap: 1.1.0
+    plugin-sitemap: 1.1.1
 ---
 Search engines want a single canonical URL per page, and on a multilingual site
 they want to know which pages are translations of each other.
