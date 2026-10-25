@@ -12,7 +12,7 @@ verified_on: 2026-10-25
 verified_with:
     plugin-consent: 1.0.2
     validate: 1.6.2
-    nera: 1.16.1
+    nera: 1.17.0
 ---
 A consent banner asks visitors to agree before something on the site that
 needs their consent runs: an analytics script, a YouTube video, a map. A site
@@ -425,7 +425,7 @@ one text per language the same way:
 
 `nera build --check` checks the built `public/` for privacy problems, among
 others. The output below is from `@nera-static/validate` 1.6.2, the version
-`@nera-static/nera` 1.16.1 brings. Later releases may report gated markup
+`@nera-static/nera` 1.17.0 brings. Later releases may report gated markup
 differently.
 
 **Before gating**, with the plain iframe in `pages/video.md`, no categories,
@@ -497,14 +497,13 @@ The plugin's texts and behaviour are **defaults, not legal advice**, and
 nothing here makes a site compliant with any law. What the plugin does is
 technical, and it holds whatever the config says:
 
-1. Nothing that is not strictly necessary runs or loads before consent
-   (§ 25 (1) TDDDG); the banner and dialog name each service, its provider and
+1. The banner and dialog name each configured service, its provider and
    purpose, so the consent can be informed and specific (Art. 4 Nr. 11,
    Art. 7 DSGVO).
 2. "Reject all" is on the first layer, as visible and as easy to use as
    "Accept all".
 3. Nothing is pre-selected; "necessary" is implicit and cannot be configured.
-4. Nothing gated runs or loads before consent.
+4. Nothing gated runs or loads before consent (§ 25 (1) TDDDG).
 5. Consent can be withdrawn at any time through the settings link, without a
    rebuild.
 6. A `revision` bump asks every visitor again.

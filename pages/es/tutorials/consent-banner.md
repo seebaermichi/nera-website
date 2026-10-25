@@ -431,7 +431,7 @@ lista todas las claves. El `label` y la `description` de una categoría, y el
 
 `nera build --check` revisa el `public/` generado en busca, entre otras cosas,
 de problemas de privacidad. La salida de abajo es de `@nera-static/validate`
-1.6.2, la versión que trae `@nera-static/nera` 1.16.1. Versiones posteriores
+1.6.2, la versión que trae `@nera-static/nera` 1.17.0. Versiones posteriores
 pueden informar del marcado bloqueado de otra forma.
 
 **Antes de bloquear**, con el iframe sin más en `pages/video.md`, sin
@@ -508,15 +508,15 @@ asesoramiento legal**, y nada de esto hace que un sitio cumpla ninguna ley. Lo
 que hace el plugin es técnico, y se mantiene diga lo que diga la
 configuración:
 
-1. Nada que no sea estrictamente necesario se ejecuta o carga antes del
-   consentimiento (§ 25 (1) TDDDG); el banner y el diálogo nombran cada
-   servicio, su proveedor y su finalidad, para que el consentimiento pueda ser
-   informado y específico (art. 4.11 y art. 7 RGPD).
+1. El banner y el diálogo nombran cada servicio configurado, su proveedor y
+   su finalidad, para que el consentimiento pueda ser informado y específico
+   (art. 4.11 y art. 7 RGPD).
 2. «Reject all» está en la primera capa, tan visible y tan fácil de usar como
    «Accept all».
 3. Nada está preseleccionado; «necesario» es implícito y no se puede
    configurar.
-4. Nada bloqueado se ejecuta o carga antes del consentimiento.
+4. Nada bloqueado se ejecuta o carga antes del consentimiento (§ 25 (1)
+   TDDDG).
 5. El consentimiento se puede retirar en cualquier momento mediante el enlace
    a los ajustes, sin volver a generar el sitio.
 6. Subir `revision` vuelve a preguntar a todos los visitantes.

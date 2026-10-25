@@ -437,7 +437,7 @@ Sprache:
 
 `nera build --check` prüft das gebaute `public/` unter anderem auf
 Datenschutzprobleme. Die Ausgabe unten stammt von `@nera-static/validate`
-1.6.2, der Version, die `@nera-static/nera` 1.16.1 mitbringt. Spätere
+1.6.2, der Version, die `@nera-static/nera` 1.17.0 mitbringt. Spätere
 Versionen können gesperrtes Markup anders melden.
 
 **Vor dem Sperren**, mit dem einfachen iframe in `pages/video.md`, ohne
@@ -512,15 +512,14 @@ Rechtsberatung**, und nichts hier macht eine Website mit irgendeinem Gesetz
 konform. Was das Plugin tut, ist technisch, und es gilt unabhängig davon, was
 in der Konfiguration steht:
 
-1. Nichts, was nicht unbedingt erforderlich ist, läuft oder lädt vor der
-   Einwilligung (§ 25 Abs. 1 TDDDG); Banner und Dialog nennen jeden Dienst,
-   seinen Anbieter und Zweck, damit die Einwilligung informiert und für den
-   bestimmten Fall erteilt werden kann (Art. 4 Nr. 11, Art. 7 DSGVO).
+1. Banner und Dialog nennen jeden konfigurierten Dienst, seinen Anbieter und
+   Zweck, damit die Einwilligung informiert und für den bestimmten Fall
+   erteilt werden kann (Art. 4 Nr. 11, Art. 7 DSGVO).
 2. „Reject all“ steht auf der ersten Ebene, so sichtbar und so leicht zu
    bedienen wie „Accept all“.
 3. Nichts ist vorausgewählt; „notwendig“ ist implizit und nicht
    konfigurierbar.
-4. Nichts Gesperrtes läuft oder lädt vor der Einwilligung.
+4. Nichts Gesperrtes läuft oder lädt vor der Einwilligung (§ 25 Abs. 1 TDDDG).
 5. Die Einwilligung lässt sich jederzeit über den Link zu den Einstellungen
    widerrufen, ohne neuen Build.
 6. Eine erhöhte `revision` fragt alle Besucher erneut.
