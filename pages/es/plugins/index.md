@@ -44,7 +44,7 @@ plugins:
       url: https://github.com/seebaermichi/nera-plugin-one-page
     - name: Page navigation
       package: '@nera-static/plugin-page-navigation'
-      description: Navegación dentro de la página generada a partir de los encabezados de una página.
+      description: Enlaza las páginas hermanas de una carpeta, o las entradas que una página lista en su frontmatter.
       url: https://github.com/seebaermichi/nera-plugin-page-navigation
     - name: Page pagination
       package: '@nera-static/plugin-page-pagination'

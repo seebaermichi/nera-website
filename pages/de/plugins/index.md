@@ -44,7 +44,7 @@ plugins:
       url: https://github.com/seebaermichi/nera-plugin-one-page
     - name: Page navigation
       package: '@nera-static/plugin-page-navigation'
-      description: Seiteninterne Navigation, generiert aus den Überschriften einer Seite.
+      description: Verlinkt die Geschwisterseiten eines Ordners oder die Einträge, die eine Seite in ihrem Frontmatter aufführt.
       url: https://github.com/seebaermichi/nera-plugin-page-navigation
     - name: Page pagination
       package: '@nera-static/plugin-page-pagination'
