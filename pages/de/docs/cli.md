@@ -20,9 +20,10 @@ npx @nera-static/nera new <project-name>
 
 `nera new .` erstellt die Website stattdessen im aktuellen, leeren Ordner, und
 `--theme <name>` startet sie mit einem Theme. `--starter <name>` startet sie
-stattdessen mit einem fertigen Starter-Kit zum Anpassen (`blank`, `blog` oder
-`business`; nicht zusammen mit `--theme`), und `--name "<site name>"` und
-`--lang <code>` setzen `name` und `lang` in `config/app.yaml`:
+stattdessen mit einem fertigen Starter-Kit zum Anpassen (`blank`, `blog`,
+`business` oder `portfolio`; nicht zusammen mit `--theme`), und
+`--name "<site name>"` und `--lang <code>` setzen `name` und `lang` in
+`config/app.yaml`:
 
 ```bash
 npx @nera-static/nera new my-blog --starter blog --name "Mein Blog" --lang de
