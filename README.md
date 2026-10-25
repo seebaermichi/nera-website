@@ -30,9 +30,15 @@ Tag overview pages (`/tags/*.html`) are generated automatically from tutorial
 - `@nera-static/plugin-canonical-links` — canonical and alternate-language links (`config/canonical-links.yaml`)
 - `@nera-static/plugin-code-blocks` — highlighted code blocks (`config/code-blocks.yaml`)
 - `@nera-static/plugin-link-attributes` — attributes for external links (`config/link-attributes.yaml`)
+- `@nera-static/plugin-stacks` — the homepage feature grid (`pages/stacks/home-features/`)
 - `plugins/tutorials-list` — a small **local** plugin that builds `app.tutorials`
 - `plugins/llms-txt` — a **local** plugin that writes `llms.txt`, `llms-full.txt`
   and a `.md` beside every English docs and tutorials page (`config/llms-txt.yaml`)
+- `plugins/skill-zip` — a **local** plugin that publishes the Nera skill from the
+  installed `@nera-static/nera` as a zip
+- `plugins/heading-ids` — a **local** plugin that gives every h2–h4 an `id`
+- `plugins/table-scroll` — a **local** plugin that wraps Markdown tables in a
+  `.table-scroll` box
 
 Published plugin templates live under `theme/views/vendor/` and are safe to edit.
 
