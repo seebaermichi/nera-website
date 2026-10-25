@@ -85,6 +85,7 @@ tu sitio. Cada informe termina con ese recordatorio.
 | `a11y-target-blank` | desactivada (opt-in) | WCAG 3.2.5 (AAA) |
 | `a11y-reduced-motion` | desactivada (opt-in) | WCAG 2.3.3 (AAA) |
 | `privacy-third-party` | aviso | Art. 6 DSGVO |
+| `privacy-consent-leak` | aviso | § 25 TDDDG |
 | `privacy-insecure` | aviso | Art. 32 DSGVO |
 | `privacy-storage` | desactivada (opt-in) | § 25 TDDDG |
 | `legal-imprint-link` | aviso | § 5 DDG |

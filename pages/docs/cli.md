@@ -83,6 +83,7 @@ your site are not checked. Every report ends with that reminder.
 | `a11y-target-blank` | off (opt-in) | WCAG 3.2.5 (AAA) |
 | `a11y-reduced-motion` | off (opt-in) | WCAG 2.3.3 (AAA) |
 | `privacy-third-party` | warning | Art. 6 DSGVO |
+| `privacy-consent-leak` | warning | § 25 TDDDG |
 | `privacy-insecure` | warning | Art. 32 DSGVO |
 | `privacy-storage` | off (opt-in) | § 25 TDDDG |
 | `legal-imprint-link` | warning | § 5 DDG |

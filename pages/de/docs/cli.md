@@ -86,6 +86,7 @@ werden nicht geprüft. Jeder Bericht endet mit diesem Hinweis.
 | `a11y-target-blank` | aus (opt-in) | WCAG 3.2.5 (AAA) |
 | `a11y-reduced-motion` | aus (opt-in) | WCAG 2.3.3 (AAA) |
 | `privacy-third-party` | Warnung | Art. 6 DSGVO |
+| `privacy-consent-leak` | Warnung | § 25 TDDDG |
 | `privacy-insecure` | Warnung | Art. 32 DSGVO |
 | `privacy-storage` | aus (opt-in) | § 25 TDDDG |
 | `legal-imprint-link` | Warnung | § 5 DDG |
