@@ -233,3 +233,5 @@ ruta listada coincide con ella, así que no hay nada que excluir.
 
 [Cómo está construido este sitio web](/es/tutorials/how-this-site-is-built.html)
 muestra cómo plugin-stacks trabaja junto con los demás plugins de este sitio.
+Para unir secciones enteras en una sola página con scroll, consulta
+[Construye un sitio de una sola página](/es/tutorials/one-page-site.html).

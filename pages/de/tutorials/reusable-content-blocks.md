@@ -235,4 +235,6 @@ gelisteter Pfad passt darauf, also muss nichts ausgeschlossen werden.
 
 [Wie diese Website gebaut ist](/de/tutorials/how-this-site-is-built.html)
 zeigt, wie plugin-stacks auf dieser Website mit den anderen Plugins
-zusammenspielt.
+zusammenspielt. Wie du stattdessen ganze Abschnitte zu einer scrollenden Seite
+zusammenfügst, zeigt
+[Eine One-Page-Website bauen](/de/tutorials/one-page-site.html).

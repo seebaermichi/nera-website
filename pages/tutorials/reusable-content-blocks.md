@@ -228,4 +228,6 @@ matches it, so nothing needs excluding.
 ## Next
 
 [How this website is built](/tutorials/how-this-site-is-built.html) shows how
-plugin-stacks works together with the other plugins on this site.
+plugin-stacks works together with the other plugins on this site. To merge
+whole sections into one scrolling page instead, see
+[Build a one-page site](/tutorials/one-page-site.html).
