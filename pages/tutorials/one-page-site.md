@@ -10,13 +10,13 @@ pagination_order: 11
 createdAt: 2026-10-25
 verified_on: 2026-10-25
 verified_with:
-    nera: 1.17.0
+    nera: 1.18.0
     plugin-one-page: 3.0.2
     plugin-page-navigation: 2.5.0
     plugin-contact-form: 1.1.1
     plugin-social-media-links: 2.3.0
     starter-business: 1.0.1
-    validate: 1.6.2
+    validate: 1.7.0
 ---
 A freelancer or a small business often needs one page, not a site: a hero, the
 services, a few words about who you are, and a way to get in touch, all on one
@@ -251,7 +251,7 @@ Leave `layout` out unless you want that second URL.
 
 ```text
 pages/sections/about.md
-        warning  page has no `layout` — the build skips it silently; add `layout: pages/default.pug` to its frontmatter (a template in theme/views), or, if it has none on purpose (a fragment or draft), add `ignore: { layout-missing: [pages/sections/about.md] }` to config/validate.yaml  layout-missing
+  :1    warning  page has no `layout` — the build skips it silently; add `layout: pages/default.pug` to its frontmatter (a template in theme/views), or, if it has none on purpose (a fragment or draft), add `ignore: { layout-missing: [pages/sections/about.md] }` to config/validate.yaml  layout-missing
 …
 0 error(s), 3 warning(s)
 ```

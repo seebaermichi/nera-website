@@ -250,7 +250,7 @@ diese zweite URL nicht willst.
 
 ```text
 pages/sections/about.md
-        warning  page has no `layout` — the build skips it silently; add `layout: pages/default.pug` to its frontmatter (a template in theme/views), or, if it has none on purpose (a fragment or draft), add `ignore: { layout-missing: [pages/sections/about.md] }` to config/validate.yaml  layout-missing
+  :1    warning  page has no `layout` — the build skips it silently; add `layout: pages/default.pug` to its frontmatter (a template in theme/views), or, if it has none on purpose (a fragment or draft), add `ignore: { layout-missing: [pages/sections/about.md] }` to config/validate.yaml  layout-missing
 …
 0 error(s), 3 warning(s)
 ```
