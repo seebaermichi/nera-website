@@ -28,6 +28,11 @@ en cambio, a partir de un starter kit listo para editar (`blank`, `blog`,
 npx @nera-static/nera new my-blog --starter blog --name "Mi blog" --lang es
 ```
 
+En una terminal, sin `--starter` ni `--yes`, `nera new` pregunta qué estás
+construyendo, el nombre del sitio y el idioma; con `--yes`, o sin terminal,
+nunca pregunta. Los detalles están más abajo, en
+[Starter kits](#starter-kits).
+
 Un sitio creado depende de `@nera-static/nera`, así que ejecuta estos desde
 dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaza
 `build`, `dev` y `serve` a scripts npm, p. ej. `npm run dev`:
@@ -40,6 +45,66 @@ dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaz
 | `nera update` | Actualiza los paquetes Nera del sitio (`npm update`), eleva sus rangos `^` en `package.json` a las versiones instaladas y luego crea o renueva `AGENTS.md` y `CLAUDE.md` |
 | `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
 | `nera check` | Revisa el `public/` compilado en busca de problemas de accesibilidad, privacidad y aviso legal |
+
+### Starter kits
+
+Un starter kit es un sitio completo listo para editar: páginas de ejemplo,
+configuración, overrides de `theme/` opcionales a nivel de sitio, assets y el
+tema y los plugins de los que depende. `nera new --starter` copia sus
+`pages/`, `config/`, `theme/`, `assets/`, `plugins/` y `.neraignore` sobre la
+plantilla base, añade sus `dependencies` al `package.json` del sitio, aplica
+`--name` y `--lang`, instala e imprime la sección `## First steps` del README
+del starter (nada, si no la tiene). Después, los archivos son del sitio: un
+starter no tiene vía de actualización, aunque el tema del que depende sigue
+actualizándose con npm.
+
+`--name "<site name>"` y `--lang <code>` fijan `name:` y `lang:` en
+`config/app.yaml`, con o sin starter. Un idioma nuevo recibe una copia de la
+entrada `translations:` del idioma actual, lista para traducir, de modo que
+ninguna página muestra una clave de traducción sin traducir.
+
+`--starter` acepta:
+
+- un nombre de starter: `blank`, `blog`, `business` o `portfolio`, abreviatura
+  de `@nera-static/starter-blank`, etc.;
+- un nombre de paquete: `@acme/starter-shop`, o sin scope `nera-starter-shop`;
+- una URL de GitHub: `https://github.com/owner/repo` (opcionalmente con `.git`,
+  `#ref`), o `github:owner/repo#ref`;
+- una ruta local: `./my-starter`, `../my-starter` o una ruta absoluta.
+
+Los paquetes y repositorios de GitHub se descargan con
+`npm pack --ignore-scripts`, así que no se ejecuta ningún script del starter.
+Un starter es un paquete cuyo `package.json` tiene un campo `nera.starter`
+(`{ "label": "…", "description": "…" }`); cualquier otra cosa se rechaza antes
+de escribir nada. Un starter que fija `theme:` en su `config/app.yaml` omite
+las plantillas de inicio del andamiaje, igual que `--theme`.
+
+Ejecuta `nera new my-site` en una terminal y, en cambio, pregunta:
+
+```text
+What are you building?
+  1) Empty — the base template, no starter
+  2) …
+Choose 1–2 [1]:
+Site name [My Nera Site]:
+Language [en]:
+```
+
+La lista viene del registro de npm (paquetes con la palabra clave
+`nera-starter`, primero los oficiales de `@nera-static/`), o de una lista corta
+incluida en la CLI cuando no se puede acceder al registro. Enter acepta el
+valor por defecto. Cada pregunta tiene un flag (`--starter`, `--name`,
+`--lang`); con `--yes`, o sin terminal (scripts, CI, agentes de IA), no se
+pregunta nada y `nera new` crea la plantilla base.
+
+Los starters oficiales:
+
+| Starter | Qué obtienes |
+| --- | --- |
+| `blank` | Un layout accesible, sin tema |
+| `blog` | Un blog sobre `@nera-static/theme-blog` con etiquetas, un archivo, un feed Atom y un sitemap |
+| `business` | Un sitio para una pequeña empresa sobre `@nera-static/theme-business` con servicios, horario de apertura y un formulario de contacto |
+| `portfolio` | El portfolio de un diseñador sobre `@nera-static/theme-business` con proyectos en galerías de imágenes, una página «sobre mí» y un formulario de contacto |
 
 ### Revisar el sitio compilado
 

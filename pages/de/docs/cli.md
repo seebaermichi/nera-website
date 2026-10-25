@@ -29,6 +29,11 @@ stattdessen mit einem fertigen Starter-Kit zum Anpassen (`blank`, `blog`,
 npx @nera-static/nera new my-blog --starter blog --name "Mein Blog" --lang de
 ```
 
+In einem Terminal, ohne `--starter` oder `--yes`, fragt `nera new`, was du
+baust, wie die Website heißt und in welcher Sprache sie ist; mit `--yes` oder ohne
+Terminal fragt es nie. Die Details stehen unten unter
+[Starter-Kits](#starter-kits).
+
 Eine erstellte Website hängt von `@nera-static/nera` ab, führe diese Befehle also
 in ihr mit `npx` aus, z. B. `npx nera validate`. Der Scaffold verknüpft
 außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
@@ -41,6 +46,66 @@ außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
 | `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`) und ihre `^`-Versionsbereiche in `package.json` auf die installierten Versionen anheben, dann `AGENTS.md` und `CLAUDE.md` anlegen oder auffrischen |
 | `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
 | `nera check` | Das gebaute `public/` auf Probleme bei Barrierefreiheit, Datenschutz und Impressum prüfen |
+
+### Starter-Kits
+
+Ein Starter-Kit ist eine ganze Website zum Anpassen: Beispielseiten, Config,
+optionale `theme/`-Overrides auf Website-Ebene, Assets und das Theme und die
+Plugins, von denen es abhängt. `nera new --starter` kopiert seine `pages/`,
+`config/`, `theme/`, `assets/`, `plugins/` und `.neraignore` über das
+Basis-Template, ergänzt seine `dependencies` in der `package.json` der Website,
+wendet `--name` und `--lang` an, installiert und gibt den Abschnitt
+`## First steps` aus der README des Starters aus (nichts, wenn er keinen hat).
+Danach gehören die Dateien der Website: Ein Starter hat keinen Update-Weg, das
+Theme, von dem er abhängt, wird aber weiter über npm aktualisiert.
+
+`--name "<site name>"` und `--lang <code>` setzen `name:` und `lang:` in
+`config/app.yaml`, mit oder ohne Starter. Eine neue Sprache bekommt eine Kopie
+des `translations:`-Eintrags der bisherigen Sprache, bereit zum Übersetzen,
+sodass keine Seite einen rohen Übersetzungsschlüssel zeigt.
+
+`--starter` nimmt:
+
+- einen Starter-Namen: `blank`, `blog`, `business` oder `portfolio`, kurz für
+  `@nera-static/starter-blank` usw.;
+- einen Paketnamen: `@acme/starter-shop` oder ohne Scope `nera-starter-shop`;
+- eine GitHub-URL: `https://github.com/owner/repo` (optional mit `.git`,
+  `#ref`) oder `github:owner/repo#ref`;
+- einen lokalen Pfad: `./my-starter`, `../my-starter` oder einen absoluten Pfad.
+
+Pakete und GitHub-Repositories werden mit `npm pack --ignore-scripts`
+heruntergeladen, es läuft also kein Skript des Starters. Ein Starter ist ein
+Paket, dessen `package.json` ein Feld `nera.starter` hat
+(`{ "label": "…", "description": "…" }`); alles andere wird abgelehnt, bevor
+irgendetwas geschrieben wird. Ein Starter, der in seiner `config/app.yaml`
+`theme:` setzt, lässt die Starter-Templates des Scaffolds weg, wie `--theme`.
+
+Führst du `nera new my-site` in einem Terminal aus, fragt es stattdessen:
+
+```text
+What are you building?
+  1) Empty — the base template, no starter
+  2) …
+Choose 1–2 [1]:
+Site name [My Nera Site]:
+Language [en]:
+```
+
+Die Liste kommt aus der npm-Registry (Pakete mit dem Keyword `nera-starter`,
+offizielle `@nera-static/`-Pakete zuerst) oder aus einer kurzen Liste, die
+die CLI mitbringt, wenn die Registry nicht erreichbar ist. Enter übernimmt den
+Standardwert. Jede Frage hat ein Flag (`--starter`, `--name`, `--lang`); mit
+`--yes` oder ohne Terminal (Skripte, CI, KI-Agenten) wird nichts gefragt, und
+`nera new` erstellt das Basis-Template.
+
+Die offiziellen Starter:
+
+| Starter | Was du bekommst |
+| --- | --- |
+| `blank` | Ein barrierefreies Layout, kein Theme |
+| `blog` | Ein Blog auf `@nera-static/theme-blog` mit Tags, einem Archiv, einem Atom-Feed und einer Sitemap |
+| `business` | Eine Website für ein kleines Unternehmen auf `@nera-static/theme-business` mit Leistungen, Öffnungszeiten und einem Kontaktformular |
+| `portfolio` | Ein Designer-Portfolio auf `@nera-static/theme-business` mit Projekten in Bildergalerien, einer Über-mich-Seite und einem Kontaktformular |
 
 ### Die gebaute Website prüfen
 
