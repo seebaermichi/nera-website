@@ -6,7 +6,7 @@ lang: de
 description: Eine Fallstudie über die Nera-Seite selbst — die Plugins, die Reihenfolge, die lokalen Plugins und wie sie geprüft und veröffentlicht wird.
 keywords: nera Fallstudie, Static-Site-Beispiel, nera Website, Dogfooding
 tags: case-study, plugins, advanced
-pagination_order: 11
+pagination_order: 12
 createdAt: 2026-07-13
 ---
 Diese ganze Seite ist mit Nera gebaut. Nichts hier ist ein Sonderfall — es ist
