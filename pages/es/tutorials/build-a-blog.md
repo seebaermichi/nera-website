@@ -22,10 +22,10 @@ cd my-blog
 
 `nera new` crea el sitio e instala sus dependencias. Trabajarás en tres lugares:
 `pages/` para tu contenido (empieza con `pages/index.md`, además de
-`pages/imprint.md` y `pages/privacy.md`, marcadores que debes reemplazar antes de
-publicar), `theme/views/` para las
-plantillas Pug (`layouts/layout.pug` es el esqueleto HTML y `pages/default.pug`
-renderiza una página dentro de él) y `config/` para la configuración.
+`pages/imprint.md` y `pages/privacy.md`, marcadores que debes reemplazar antes
+de publicar), `theme/views/` para las plantillas Pug (`layouts/layout.pug` es el
+esqueleto HTML y `pages/default.pug` renderiza una página dentro de él) y
+`config/` para la configuración.
 
 ¿Prefieres un blog terminado que solo tengas que editar? El starter de blog crea
 uno con tema, entradas de ejemplo, etiquetas, archivo, feed y sitemap:

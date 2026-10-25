@@ -16,8 +16,8 @@ verified_with:
     starter-blog: 1.1.0
 ---
 In this tutorial you'll scaffold a Nera site, write two posts, and turn the home
-page into a blog index that lists them newest-first. Every file is shown in full,
-so you can follow along step by step.
+page into a blog index that lists them newest-first. Every file is shown in
+full, so you can follow along step by step.
 
 ## 1. Scaffold the site
 
@@ -29,9 +29,8 @@ cd my-blog
 `nera new` creates the site and installs its dependencies. You'll touch three
 places: `pages/` for your content (it starts with `pages/index.md`, plus
 `pages/imprint.md` and `pages/privacy.md` — placeholders to replace before you
-publish),
-`theme/views/` for the Pug templates (`layouts/layout.pug` is the HTML shell,
-`pages/default.pug` renders a page into it), and `config/` for settings.
+publish), `theme/views/` for the Pug templates (`layouts/layout.pug` is the HTML
+shell, `pages/default.pug` renders a page into it), and `config/` for settings.
 
 Want a finished blog to edit instead? The blog starter sets one up with a
 theme, sample posts, tags, an archive, a feed and a sitemap:
