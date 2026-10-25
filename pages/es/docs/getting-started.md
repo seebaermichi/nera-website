@@ -30,6 +30,10 @@ npm run dev
 `http://localhost:3000`. ¿Ya estás en la carpeta donde debe vivir el sitio?
 `npx @nera-static/nera new .` lo crea en la carpeta actual, que debe estar vacía.
 
+¿Prefieres empezar con un sitio listo para editar? `--starter <name>` lo crea a
+partir de un starter kit como `blog` o `business`; consulta
+[Starter kits](/es/docs/cli.html#starter-kits).
+
 ## Compilar para producción
 
 ```bash

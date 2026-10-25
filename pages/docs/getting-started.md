@@ -30,6 +30,10 @@ npm run dev
 `http://localhost:3000`. Already in the folder the site should live in? `npx
 @nera-static/nera new .` scaffolds into the current, empty folder.
 
+Rather start from a ready-to-edit site? `--starter <name>` scaffolds from a
+starter kit such as `blog` or `business`; see
+[Starter kits](/docs/cli.html#starter-kits).
+
 ## Build for production
 
 ```bash

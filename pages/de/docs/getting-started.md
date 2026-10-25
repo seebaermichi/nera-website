@@ -30,6 +30,10 @@ npm run dev
 `http://localhost:3000`. Bist du schon im Ordner, in dem die Website liegen soll?
 `npx @nera-static/nera new .` erstellt sie im aktuellen, leeren Ordner.
 
+Lieber mit einer fertigen Website zum Bearbeiten beginnen? `--starter <name>`
+erstellt sie aus einem Starter-Kit wie `blog` oder `business`; siehe
+[Starter-Kits](/de/docs/cli.html#starter-kits).
+
 ## Für die Produktion bauen
 
 ```bash
