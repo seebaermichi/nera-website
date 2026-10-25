@@ -27,6 +27,16 @@ und `pages/privacy.md` — Platzhalter, die du vor dem Veröffentlichen ersetzt)
 `theme/views/` für die Pug-Templates (`layouts/layout.pug` ist das HTML-Gerüst,
 `pages/default.pug` rendert eine Seite hinein) und `config/` für Einstellungen.
 
+Lieber einen fertigen Blog, den du nur noch anpasst? Der Blog-Starter legt
+einen an, mit Theme, Beispielbeiträgen, Tags, Archiv, Feed und Sitemap:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog
+```
+
+Seine Dateien passen nicht zu den Schritten unten: Dieses Tutorial baut einen
+einfacheren Blog von Hand, damit du siehst, wie die Teile ineinandergreifen.
+
 ## 2. Beiträge schreiben
 
 Beiträge sind Markdown-Dateien in `pages/posts/`. Erstelle

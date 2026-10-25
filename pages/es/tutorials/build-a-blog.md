@@ -27,6 +27,16 @@ publicar), `theme/views/` para las
 plantillas Pug (`layouts/layout.pug` es el esqueleto HTML y `pages/default.pug`
 renderiza una página dentro de él) y `config/` para la configuración.
 
+¿Prefieres un blog terminado que solo tengas que editar? El starter de blog crea
+uno con tema, entradas de ejemplo, etiquetas, archivo, feed y sitemap:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog
+```
+
+Sus archivos no coinciden con los pasos siguientes: este tutorial construye a
+mano un blog más sencillo, para que veas cómo encajan las piezas.
+
 ## 2. Escribir entradas
 
 Las entradas son archivos Markdown en `pages/posts/`. Crea

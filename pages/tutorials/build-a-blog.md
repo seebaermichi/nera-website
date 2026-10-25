@@ -32,6 +32,16 @@ publish),
 `theme/views/` for the Pug templates (`layouts/layout.pug` is the HTML shell,
 `pages/default.pug` renders a page into it), and `config/` for settings.
 
+Want a finished blog to edit instead? The blog starter sets one up with a
+theme, sample posts, tags, an archive, a feed and a sitemap:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog
+```
+
+Its files won't match the steps below: this tutorial builds a simpler blog by
+hand, to show how the pieces fit together.
+
 ## 2. Write posts
 
 Posts are Markdown files in `pages/posts/`. Create `pages/posts/hello-world.md`:
