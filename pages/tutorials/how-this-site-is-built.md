@@ -8,9 +8,9 @@ keywords: nera case study, static site example, nera website, dogfooding
 tags: case-study, plugins, advanced
 pagination_order: 10
 createdAt: 2026-07-13
-verified_on: 2026-10-23
+verified_on: 2026-10-25
 verified_with:
-    nera: 1.16.1
+    nera: 1.17.0
     plugin-canonical-links: 2.2.3
     plugin-code-blocks: 1.2.1
     plugin-link-attributes: 2.1.1
