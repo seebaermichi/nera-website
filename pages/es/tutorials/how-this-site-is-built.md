@@ -6,7 +6,7 @@ lang: es
 description: Un caso de estudio del propio sitio Nera — los plugins, el orden, los plugins locales y cómo se comprueba y se despliega.
 keywords: nera caso de estudio, ejemplo de sitio estático, nera website, dogfooding
 tags: case-study, plugins, advanced
-pagination_order: 10
+pagination_order: 11
 createdAt: 2026-07-13
 ---
 Todo este sitio está construido con Nera. Nada aquí es un caso especial — es el

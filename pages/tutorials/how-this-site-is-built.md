@@ -6,7 +6,7 @@ lang: en
 description: A case study of the Nera site itself — the plugins, the ordering, the local plugins, and how it is checked and deployed.
 keywords: nera case study, static site example, nera website, dogfooding
 tags: case-study, plugins, advanced
-pagination_order: 10
+pagination_order: 11
 createdAt: 2026-07-13
 verified_on: 2026-10-25
 verified_with:
