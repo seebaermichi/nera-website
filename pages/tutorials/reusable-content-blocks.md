@@ -8,10 +8,10 @@ keywords: nera stacks, plugin-stacks, reusable content, content blocks, stack gr
 tags: plugins, stacks
 pagination_order: 9
 createdAt: 2026-10-23
-verified_on: 2026-10-23
+verified_on: 2026-10-25
 verified_with:
     plugin-stacks: 2.4.0
-    validate: 1.6.2
+    validate: 1.7.0
 ---
 Some content belongs to no single page: a call to action under every article,
 a newsletter box, the feature grid on a homepage. `@nera-static/plugin-stacks`

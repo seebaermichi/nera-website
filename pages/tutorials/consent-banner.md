@@ -11,7 +11,7 @@ createdAt: 2026-10-25
 verified_on: 2026-10-25
 verified_with:
     plugin-consent: 1.0.2
-    validate: 1.6.2
+    validate: 1.7.0
     nera: 1.17.0
 ---
 A consent banner asks visitors to agree before something on the site that
