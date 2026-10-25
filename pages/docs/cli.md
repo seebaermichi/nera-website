@@ -133,6 +133,13 @@ which `npm update` brings into an existing site.
 from `config/canonical-links.yaml` (with and without `www.`). With neither set,
 only relative URLs count as your own.
 
+**Consent-gated resources.** A script or embed in the markup of
+`@nera-static/plugin-consent` (`type="text/plain"` with `data-src`, or
+`data-consent-src` instead of `src`) loads nothing on page view, so
+`privacy-third-party` does not report it. An element marked `data-consent`
+that still loads is what `privacy-consent-leak` reports. The tutorial
+[Add a consent banner — or none](/tutorials/consent-banner.html) shows both.
+
 **Imprint and privacy links in German and English only.** Without `legal`
 config, the links are found by their text — *Impressum*, *Imprint*, *Legal
 notice*, *Datenschutz*, *Privacy*, *Data protection* — and only on German and

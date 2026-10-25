@@ -136,6 +136,14 @@ liest `privacy-third-party` `origin` aus `config/app.yaml`, sonst `app_origin`
 aus `config/canonical-links.yaml` (mit und ohne `www.`). Ist beides nicht
 gesetzt, gelten nur relative URLs als deine eigenen.
 
+**Ressourcen hinter einer Einwilligung.** Ein Skript oder eine Einbettung im
+Markup von `@nera-static/plugin-consent` (`type="text/plain"` mit `data-src`,
+oder `data-consent-src` statt `src`) lädt beim Seitenaufruf nichts, also meldet
+`privacy-third-party` es nicht. Ein Element mit `data-consent`, das trotzdem
+lädt, meldet `privacy-consent-leak`. Das Tutorial
+[Einen Consent-Banner einbauen — oder keinen](/de/tutorials/consent-banner.html)
+zeigt beides.
+
 **Links zu Impressum und Datenschutz nur auf Deutsch und Englisch.** Ohne
 `legal`-Konfiguration werden die Links an ihrem Text erkannt — *Impressum*,
 *Imprint*, *Legal notice*, *Datenschutz*, *Privacy*, *Data protection* — und

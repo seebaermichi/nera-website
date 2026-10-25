@@ -135,6 +135,14 @@ Las rutas son relativas a la raíz del sitio. Requiere `@nera-static/validate`
 de `config/canonical-links.yaml` (con y sin `www.`). Si no hay ninguno, solo
 las URL relativas cuentan como tuyas.
 
+**Recursos tras el consentimiento.** Un script o una inserción con el marcado
+de `@nera-static/plugin-consent` (`type="text/plain"` con `data-src`, o
+`data-consent-src` en lugar de `src`) no carga nada al ver la página, así que
+`privacy-third-party` no informa de él. Un elemento marcado con `data-consent`
+que aun así carga es lo que informa `privacy-consent-leak`. El tutorial
+[Añade un banner de consentimiento — o ninguno](/es/tutorials/consent-banner.html)
+muestra ambos casos.
+
 **Enlaces al aviso legal y a la privacidad solo en alemán e inglés.** Sin
 configuración `legal`, los enlaces se reconocen por su texto — *Impressum*,
 *Imprint*, *Legal notice*, *Datenschutz*, *Privacy*, *Data protection* — y solo
