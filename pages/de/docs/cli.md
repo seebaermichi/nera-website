@@ -48,17 +48,24 @@ außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
 | `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`) und ihre `^`-Versionsbereiche in `package.json` auf die installierten Versionen anheben, dann `AGENTS.md` und `CLAUDE.md` anlegen oder auffrischen |
 | `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
 | `nera check` | Das gebaute `public/` auf Probleme bei Barrierefreiheit, Datenschutz und Impressum prüfen |
+| `nera publish` | Die Website auf GitHub Pages veröffentlichen: mit GitHub anmelden, Repository anlegen, pushen und die Live-URL ausgeben |
 
-**Demnächst: `nera publish`.** Ein folgendes Release von `@nera-static/nera`
-bringt `nera publish`, das eine Website aus ihrem Ordner über GitHub zu einer
-erreichbaren URL bringt: Es meldet dich über die GitHub-App „Nera Static“ an,
-legt das Repository an (oder verwendet das aus `config/publish.yaml` weiter),
-erzeugt `.github/workflows/deploy.yml`, pusht und verfolgt den Actions-Lauf.
-Seine Optionen sind `--target <id>`, `--repo <name>`, `--private`, `--yes`,
-`--json` und `--sign-out`. Die Hosting-Ziele, GitHub Pages und Netlify, kommen
-mit diesem Release; keine Version, die du heute installieren kannst,
-veröffentlicht eine Website. Bis dahin baust du die Website und lädst den Inhalt
-von `public/` zu einem beliebigen statischen Hoster hoch, wie
+**Veröffentlichen mit `nera publish`.** `nera publish` bringt eine Website
+aus ihrem Ordner über GitHub zu einer erreichbaren URL: Es meldet dich über die
+GitHub-App „Nera Static“ an, legt das Repository an (oder verwendet das aus
+`config/publish.yaml` weiter), erzeugt `.github/workflows/deploy.yml`, pusht
+und verfolgt den Actions-Lauf. Der Hoster ist GitHub Pages
+(`--target github-pages`, die Voreinstellung): Es schaltet Pages mit dem
+Build-Typ GitHub Actions ein, setzt `base_path` in `config/app.yaml` für eine Projektseite
+(`/<repo>`; keinen für ein `<user>.github.io`-Repository oder eine eigene
+Domain) und gibt die Live-URL aus. `--domain <host>` setzt eine eigene Domain
+in den Pages-Einstellungen, prüft ihr DNS und gibt die einzutragenden Records
+aus, wenn sie fehlen oder falsch sind. Die weiteren Optionen sind
+`--repo <name>` (Voreinstellung: der Ordnername), `--private` (GitHub Pages
+veröffentlicht ein privates Repository nur mit einem kostenpflichtigen
+GitHub-Plan), `--yes`, `--json` und `--sign-out`. Netlify folgt in einem
+späteren Release. Für einen anderen Hoster baust du die Website und lädst den
+Inhalt von `public/` zu einem beliebigen statischen Hoster hoch, wie
 [Deployment](/de/docs/deployment.html) beschreibt.
 
 ### Starter-Kits

@@ -155,9 +155,6 @@ mi sitio Nera, con los archivos que tengo que crear y su contenido.
 
 ## Lo que está previsto
 
-Previsto, todavía no disponible:
-
-- **`nera publish`** — publicar un sitio desde la CLI;
-- un **servidor MCP** para Nera: uno local para Claude Desktop, Claude Code y
-  Cursor, y un conector alojado para claude.ai y ChatGPT que trabaja sobre tu
-  repositorio de GitHub.
+Previsto, todavía no disponible: un **servidor MCP** para Nera — uno local
+para Claude Desktop, Claude Code y Cursor, y un conector alojado para
+claude.ai y ChatGPT que trabaja sobre tu repositorio de GitHub.

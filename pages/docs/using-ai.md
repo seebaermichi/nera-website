@@ -148,9 +148,6 @@ with the files I need to create and their content.
 
 ## What's planned
 
-Planned, not available yet:
-
-- **`nera publish`** — getting a site online from the CLI;
-- an **MCP server** for Nera: a local one for Claude Desktop, Claude Code and
-  Cursor, and a hosted connector for claude.ai and ChatGPT that works on your
-  GitHub repository.
+Planned, not available yet: an **MCP server** for Nera — a local one for
+Claude Desktop, Claude Code and Cursor, and a hosted connector for claude.ai
+and ChatGPT that works on your GitHub repository.

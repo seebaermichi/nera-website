@@ -46,16 +46,22 @@ with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
 | `nera update` | Update the site's Nera packages (`npm update`) and raise their `^` ranges in `package.json` to the installed versions, then create or refresh `AGENTS.md` and `CLAUDE.md` |
 | `nera validate` | Check layouts, includes and YAML before publishing |
 | `nera check` | Check the built `public/` for accessibility, privacy and legal-notice problems |
+| `nera publish` | Publish the site on GitHub Pages: sign in with GitHub, create the repository, push and print the live URL |
 
-**Coming: `nera publish`.** A following release of `@nera-static/nera` adds
-`nera publish`, which takes a site from its folder to a live URL through
-GitHub: it signs you in with the "Nera Static" GitHub App, creates the
-repository (or reuses the one in `config/publish.yaml`), generates
-`.github/workflows/deploy.yml`, pushes and follows the Actions run. Its flags
-are `--target <id>`, `--repo <name>`, `--private`, `--yes`, `--json` and
-`--sign-out`. The hosting targets, GitHub Pages and Netlify, arrive with that
-release; no version you can install today publishes a site. Until then, build
-and upload the contents of `public/` to any static host, as
+**Publishing with `nera publish`.** `nera publish` takes a site from its
+folder to a live URL through GitHub: it signs you in with the "Nera Static"
+GitHub App, creates the repository (or reuses the one in
+`config/publish.yaml`), generates `.github/workflows/deploy.yml`, pushes and
+follows the Actions run. The host is GitHub Pages (`--target github-pages`,
+the default): it switches Pages on with the GitHub Actions build type, sets
+`base_path` in `config/app.yaml` for a project page (`/<repo>`; none for a
+`<user>.github.io` repository or a custom domain) and prints the live URL.
+`--domain <host>` sets a custom domain in the Pages settings, checks its DNS
+and prints the records to set when they are missing or wrong. The other flags
+are `--repo <name>` (default: the folder name), `--private` (GitHub Pages
+serves a private repository only on a paid GitHub plan), `--yes`, `--json`
+and `--sign-out`. Netlify follows in a later release. To host somewhere else,
+build the site and upload the contents of `public/` to any static host, as
 [Deployment](/docs/deployment.html) describes.
 
 ### Starter kits

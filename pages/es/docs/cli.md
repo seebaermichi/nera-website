@@ -47,17 +47,25 @@ dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaz
 | `nera update` | Actualiza los paquetes Nera del sitio (`npm update`), eleva sus rangos `^` en `package.json` a las versiones instaladas y luego crea o renueva `AGENTS.md` y `CLAUDE.md` |
 | `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
 | `nera check` | Revisa el `public/` compilado en busca de problemas de accesibilidad, privacidad y aviso legal |
+| `nera publish` | Publica el sitio en GitHub Pages: inicia sesión con GitHub, crea el repositorio, hace push e imprime la URL pública |
 
-**Próximamente: `nera publish`.** Una próxima versión de `@nera-static/nera`
-añade `nera publish`, que lleva un sitio desde su carpeta a una URL pública a
-través de GitHub: inicia tu sesión con la GitHub App «Nera Static», crea el
-repositorio (o reutiliza el de `config/publish.yaml`), genera
-`.github/workflows/deploy.yml`, hace push y sigue la ejecución de Actions. Sus
-opciones son `--target <id>`, `--repo <name>`, `--private`, `--yes`, `--json`
-y `--sign-out`. Los destinos de alojamiento, GitHub Pages y Netlify, llegan con
-esa versión; ninguna versión que puedas instalar hoy publica un sitio. Hasta
-entonces, compila el sitio y sube el contenido de `public/` a cualquier
-alojamiento estático, como describe [Despliegue](/es/docs/deployment.html).
+**Publicar con `nera publish`.** `nera publish` lleva un sitio desde su
+carpeta a una URL pública a través de GitHub: inicia tu sesión con la GitHub
+App «Nera Static», crea el repositorio (o reutiliza el de
+`config/publish.yaml`), genera `.github/workflows/deploy.yml`, hace push y
+sigue la ejecución de Actions. Su alojamiento es GitHub Pages
+(`--target github-pages`, el predeterminado): activa Pages con el tipo de
+compilación GitHub Actions, fija `base_path` en `config/app.yaml` para una página de
+proyecto (`/<repo>`; ninguno para un repositorio `<user>.github.io` o un
+dominio propio) e imprime la URL pública. `--domain <host>` fija un dominio
+propio en la configuración de Pages, comprueba su DNS e imprime los registros
+que hay que poner cuando faltan o son incorrectos. Las demás opciones son
+`--repo <name>` (por defecto, el nombre de la carpeta), `--private` (GitHub
+Pages solo sirve un repositorio privado con un plan de pago de GitHub),
+`--yes`, `--json` y `--sign-out`. Netlify llega en una versión posterior. Para
+alojarlo en otro sitio, compila el sitio y sube el contenido de `public/` a
+cualquier alojamiento estático, como describe
+[Despliegue](/es/docs/deployment.html).
 
 ### Starter kits
 

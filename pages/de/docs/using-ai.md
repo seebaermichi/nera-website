@@ -158,9 +158,6 @@ hinzufüge, mit den Dateien, die ich anlegen muss, und ihrem Inhalt.
 
 ## Was geplant ist
 
-Geplant, noch nicht verfügbar:
-
-- **`nera publish`** — eine Website direkt aus der CLI online bringen;
-- ein **MCP-Server** für Nera: ein lokaler für Claude Desktop, Claude Code und
-  Cursor sowie ein gehosteter Connector für claude.ai und ChatGPT, der mit
-  deinem GitHub-Repository arbeitet.
+Geplant, noch nicht verfügbar: ein **MCP-Server** für Nera — ein lokaler für
+Claude Desktop, Claude Code und Cursor sowie ein gehosteter Connector für
+claude.ai und ChatGPT, der mit deinem GitHub-Repository arbeitet.
