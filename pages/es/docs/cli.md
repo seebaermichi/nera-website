@@ -48,6 +48,17 @@ dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaz
 | `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
 | `nera check` | Revisa el `public/` compilado en busca de problemas de accesibilidad, privacidad y aviso legal |
 
+**Próximamente: `nera publish`.** Una próxima versión de `@nera-static/nera`
+añade `nera publish`, que lleva un sitio desde su carpeta a una URL pública a
+través de GitHub: inicia tu sesión con la GitHub App «Nera Static», crea el
+repositorio (o reutiliza el de `config/publish.yaml`), genera
+`.github/workflows/deploy.yml`, hace push y sigue la ejecución de Actions. Sus
+opciones son `--target <id>`, `--repo <name>`, `--private`, `--yes`, `--json`
+y `--sign-out`. Los destinos de alojamiento, GitHub Pages y Netlify, llegan con
+esa versión; ninguna versión que puedas instalar hoy publica un sitio. Hasta
+entonces, compila el sitio y sube el contenido de `public/` a cualquier
+alojamiento estático, como describe [Despliegue](/es/docs/deployment.html).
+
 ### Starter kits
 
 Un starter kit es un sitio completo listo para editar: páginas de ejemplo,

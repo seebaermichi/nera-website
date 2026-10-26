@@ -49,6 +49,18 @@ außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
 | `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
 | `nera check` | Das gebaute `public/` auf Probleme bei Barrierefreiheit, Datenschutz und Impressum prüfen |
 
+**Demnächst: `nera publish`.** Ein folgendes Release von `@nera-static/nera`
+bringt `nera publish`, das eine Website aus ihrem Ordner über GitHub zu einer
+erreichbaren URL bringt: Es meldet dich über die GitHub-App „Nera Static“ an,
+legt das Repository an (oder verwendet das aus `config/publish.yaml` weiter),
+erzeugt `.github/workflows/deploy.yml`, pusht und verfolgt den Actions-Lauf.
+Seine Optionen sind `--target <id>`, `--repo <name>`, `--private`, `--yes`,
+`--json` und `--sign-out`. Die Hosting-Ziele, GitHub Pages und Netlify, kommen
+mit diesem Release; keine Version, die du heute installieren kannst,
+veröffentlicht eine Website. Bis dahin baust du die Website und lädst den Inhalt
+von `public/` zu einem beliebigen statischen Hoster hoch, wie
+[Deployment](/de/docs/deployment.html) beschreibt.
+
 ### Starter-Kits
 
 Ein Starter-Kit ist eine ganze Website zum Anpassen: Beispielseiten, Config,

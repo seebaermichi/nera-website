@@ -47,6 +47,17 @@ with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
 | `nera validate` | Check layouts, includes and YAML before publishing |
 | `nera check` | Check the built `public/` for accessibility, privacy and legal-notice problems |
 
+**Coming: `nera publish`.** A following release of `@nera-static/nera` adds
+`nera publish`, which takes a site from its folder to a live URL through
+GitHub: it signs you in with the "Nera Static" GitHub App, creates the
+repository (or reuses the one in `config/publish.yaml`), generates
+`.github/workflows/deploy.yml`, pushes and follows the Actions run. Its flags
+are `--target <id>`, `--repo <name>`, `--private`, `--yes`, `--json` and
+`--sign-out`. The hosting targets, GitHub Pages and Netlify, arrive with that
+release; no version you can install today publishes a site. Until then, build
+and upload the contents of `public/` to any static host, as
+[Deployment](/docs/deployment.html) describes.
+
 ### Starter kits
 
 A starter kit is a whole ready-to-edit site: sample pages, config, optional
