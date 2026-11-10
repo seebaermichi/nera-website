@@ -8,7 +8,7 @@ keywords: nera plugins, nera-static, plugins de generador de sitios estáticos
 plugins:
     - name: Canonical links
       package: '@nera-static/plugin-canonical-links'
-      description: Añade etiquetas <link> canónicas y de idioma alternativo para SEO.
+      description: Añade etiquetas <link> canónicas y de idioma alternativo para buscadores.
       url: https://github.com/seebaermichi/nera-plugin-canonical-links
     - name: Code blocks
       package: '@nera-static/plugin-code-blocks'
