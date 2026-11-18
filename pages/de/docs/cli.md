@@ -83,6 +83,19 @@ Jeder Push auf `main` deployt, also bündle deine Änderungen. Für einen andere
 Inhalt von `public/` zu einem beliebigen statischen Hoster hoch, wie
 [Deployment](/de/docs/deployment.html) beschreibt.
 
+**Den Hoster wählen und wechseln.** Im Terminal, ohne `--target` und ohne
+Ziel in `config/publish.yaml`, fragt `nera publish` „Is this a site for a
+business?“: Ja empfiehlt Netlify, Nein (oder Enter) empfiehlt GitHub Pages,
+und du kannst beides wählen. Mit `--yes`, `--json` oder ohne Terminal wird
+nichts gefragt, und GitHub Pages ist der Standard. Die Wahl steht danach in
+`config/publish.yaml`. `nera publish --target <anderes>` zieht die Website
+später um: Es richtet den neuen Hoster ein und tauscht den Deploy-Job des
+Workflows, lässt den alten Hoster aber unangetastet und zeigt, wie du die
+Website dort entfernst (und die nicht mehr genutzten Netlify-Secrets). Eine
+eigene Domain zeigt weiter auf den alten Hoster, bis du mit `--domain <host>`
+veröffentlichst und ihre DNS-Records änderst. `--json` meldet den alten
+Hoster als `movedFrom`.
+
 ### Starter-Kits
 
 Ein Starter-Kit ist eine ganze Website zum Anpassen: Beispielseiten, Config,

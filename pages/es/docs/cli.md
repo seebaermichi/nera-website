@@ -83,6 +83,19 @@ alojarlo en otro sitio, compila el sitio y sube el contenido de `public/` a
 cualquier alojamiento estático, como describe
 [Despliegue](/es/docs/deployment.html).
 
+**Elegir y cambiar el alojamiento.** En un terminal, sin `--target` y sin
+destino en `config/publish.yaml`, `nera publish` pregunta "Is this a site for
+a business?": sí recomienda Netlify, no (o Enter) recomienda GitHub Pages, y
+puedes elegir cualquiera de los dos. Con `--yes`, `--json` o sin terminal no
+se pregunta nada y GitHub Pages es el predeterminado. La elección queda en
+`config/publish.yaml`. Más adelante, `nera publish --target <otro>` traslada
+el sitio: configura el nuevo alojamiento y cambia el job de despliegue del
+workflow, pero deja intacto el anterior e indica cómo eliminar allí el sitio
+(y los secretos de Netlify que ya no se usan). Un dominio propio sigue
+apuntando al alojamiento anterior hasta que publiques con `--domain <host>` y
+cambies sus registros DNS. `--json` indica el alojamiento anterior como
+`movedFrom`.
+
 ### Starter kits
 
 Un starter kit es un sitio completo listo para editar: páginas de ejemplo,

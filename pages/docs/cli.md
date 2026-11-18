@@ -78,6 +78,18 @@ to `main` deploys, so batch your changes. To host somewhere else,
 build the site and upload the contents of `public/` to any static host, as
 [Deployment](/docs/deployment.html) describes.
 
+**Choosing and changing the host.** On a terminal, without `--target` and
+without a target in `config/publish.yaml`, `nera publish` asks "Is this a site
+for a business?": yes recommends Netlify, no (or Enter) recommends GitHub
+Pages, and you can pick either. With `--yes`, `--json` or without a terminal
+nothing is asked and GitHub Pages is the default. The choice is kept in
+`config/publish.yaml`. `nera publish --target <other>` later moves the site:
+it sets up the new host and swaps the workflow's deploy job, but leaves the
+old host untouched and prints how to remove the site there (and the unused
+Netlify secrets). A custom domain still points at the old host until you run
+with `--domain <host>` and change its DNS records. `--json` reports the old
+host as `movedFrom`.
+
 ### Starter kits
 
 A starter kit is a whole ready-to-edit site: sample pages, config, optional
