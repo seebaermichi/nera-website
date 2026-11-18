@@ -10,7 +10,7 @@ pagination_order: 11
 createdAt: 2026-10-25
 verified_on: 2026-11-18
 verified_with:
-    nera: 1.21.0
+    nera: 1.22.0
     plugin-one-page: 3.0.2
     plugin-page-navigation: 2.5.0
     plugin-contact-form: 1.1.1
