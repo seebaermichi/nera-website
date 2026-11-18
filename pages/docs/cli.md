@@ -46,7 +46,7 @@ with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
 | `nera update` | Update the site's Nera packages (`npm update`) and raise their `^` ranges in `package.json` to the installed versions, then create or refresh `AGENTS.md` and `CLAUDE.md` |
 | `nera validate` | Check layouts, includes and YAML before publishing |
 | `nera check` | Check the built `public/` for accessibility, privacy and legal-notice problems |
-| `nera publish` | Publish the site on GitHub Pages: sign in with GitHub, create the repository, push and print the live URL |
+| `nera publish` | Publish the site on GitHub Pages or Netlify: sign in with GitHub, create the repository, push and print the live URL |
 
 **Publishing with `nera publish`.** `nera publish` takes a site from its
 folder to a live URL through GitHub: it signs you in with the "Nera Static"
@@ -60,7 +60,21 @@ the default): it switches Pages on with the GitHub Actions build type, sets
 and prints the records to set when they are missing or wrong. The other flags
 are `--repo <name>` (default: the folder name), `--private` (GitHub Pages
 serves a private repository only on a paid GitHub plan), `--yes`, `--json`
-and `--sign-out`. Netlify follows in a later release. To host somewhere else,
+and `--sign-out` (removes the stored GitHub and Netlify sign-ins).
+
+**Netlify** (`--target netlify`) is the host for a business site, since
+Netlify's terms allow commercial sites on the free plan. GitHub Actions still
+builds the site, and Netlify's own build never runs. `nera publish` signs you
+in to Netlify in the browser (the page offers sign-up when you have no
+account), creates the Netlify site (or reuses the one in
+`config/publish.yaml`), stores `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` as
+encrypted repository secrets, removes `base_path` and prints the
+`<name>.netlify.app` address. `--domain <host>` sets the custom domain on the
+Netlify site and checks its DNS the same way: an `A` record `75.2.60.5` for
+an apex domain, a `CNAME` to `<name>.netlify.app` for a subdomain. Netlify's
+free plan has 300 credits a month and a production deploy costs 15, so about
+20 deploys a month; `nera publish` warns from 80 % of that budget. Every push
+to `main` deploys, so batch your changes. To host somewhere else,
 build the site and upload the contents of `public/` to any static host, as
 [Deployment](/docs/deployment.html) describes.
 

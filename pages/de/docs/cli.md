@@ -48,7 +48,7 @@ außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
 | `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`) und ihre `^`-Versionsbereiche in `package.json` auf die installierten Versionen anheben, dann `AGENTS.md` und `CLAUDE.md` anlegen oder auffrischen |
 | `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
 | `nera check` | Das gebaute `public/` auf Probleme bei Barrierefreiheit, Datenschutz und Impressum prüfen |
-| `nera publish` | Die Website auf GitHub Pages veröffentlichen: mit GitHub anmelden, Repository anlegen, pushen und die Live-URL ausgeben |
+| `nera publish` | Die Website auf GitHub Pages oder Netlify veröffentlichen: mit GitHub anmelden, Repository anlegen, pushen und die Live-URL ausgeben |
 
 **Veröffentlichen mit `nera publish`.** `nera publish` bringt eine Website
 aus ihrem Ordner über GitHub zu einer erreichbaren URL: Es meldet dich über die
@@ -63,8 +63,23 @@ in den Pages-Einstellungen, prüft ihr DNS und gibt die einzutragenden Records
 aus, wenn sie fehlen oder falsch sind. Die weiteren Optionen sind
 `--repo <name>` (Voreinstellung: der Ordnername), `--private` (GitHub Pages
 veröffentlicht ein privates Repository nur mit einem kostenpflichtigen
-GitHub-Plan), `--yes`, `--json` und `--sign-out`. Netlify folgt in einem
-späteren Release. Für einen anderen Hoster baust du die Website und lädst den
+GitHub-Plan), `--yes`, `--json` und `--sign-out` (entfernt die gespeicherten
+Anmeldungen bei GitHub und Netlify).
+
+**Netlify** (`--target netlify`) ist der Hoster für eine geschäftliche Website,
+denn Netlifys Bedingungen erlauben kommerzielle Websites im kostenlosen Plan.
+GitHub Actions baut die Website weiterhin, Netlifys eigener Build läuft nie.
+`nera publish` meldet dich im Browser bei Netlify an (die Seite bietet die
+Registrierung an, wenn du noch kein Konto hast), legt die Netlify-Website an
+(oder verwendet die aus `config/publish.yaml` weiter), speichert
+`NETLIFY_AUTH_TOKEN` und `NETLIFY_SITE_ID` als verschlüsselte
+Repository-Secrets, entfernt `base_path` und gibt die Adresse
+`<name>.netlify.app` aus. `--domain <host>` setzt die eigene Domain an der
+Netlify-Website und prüft ihr DNS genauso: ein `A`-Record `75.2.60.5` für eine
+Apex-Domain, ein `CNAME` auf `<name>.netlify.app` für eine Subdomain. Netlifys
+kostenloser Plan hat 300 Credits im Monat, ein Produktions-Deploy kostet 15,
+also etwa 20 Deploys im Monat; `nera publish` warnt ab 80 % dieses Budgets.
+Jeder Push auf `main` deployt, also bündle deine Änderungen. Für einen anderen Hoster baust du die Website und lädst den
 Inhalt von `public/` zu einem beliebigen statischen Hoster hoch, wie
 [Deployment](/de/docs/deployment.html) beschreibt.
 

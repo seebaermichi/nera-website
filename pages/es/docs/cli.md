@@ -47,7 +47,7 @@ dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaz
 | `nera update` | Actualiza los paquetes Nera del sitio (`npm update`), eleva sus rangos `^` en `package.json` a las versiones instaladas y luego crea o renueva `AGENTS.md` y `CLAUDE.md` |
 | `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
 | `nera check` | Revisa el `public/` compilado en busca de problemas de accesibilidad, privacidad y aviso legal |
-| `nera publish` | Publica el sitio en GitHub Pages: inicia sesión con GitHub, crea el repositorio, hace push e imprime la URL pública |
+| `nera publish` | Publica el sitio en GitHub Pages o Netlify: inicia sesión con GitHub, crea el repositorio, hace push e imprime la URL pública |
 
 **Publicar con `nera publish`.** `nera publish` lleva un sitio desde su
 carpeta a una URL pública a través de GitHub: inicia tu sesión con la GitHub
@@ -62,7 +62,23 @@ propio en la configuración de Pages, comprueba su DNS e imprime los registros
 que hay que poner cuando faltan o son incorrectos. Las demás opciones son
 `--repo <name>` (por defecto, el nombre de la carpeta), `--private` (GitHub
 Pages solo sirve un repositorio privado con un plan de pago de GitHub),
-`--yes`, `--json` y `--sign-out`. Netlify llega en una versión posterior. Para
+`--yes`, `--json` y `--sign-out` (borra las sesiones guardadas de GitHub y
+Netlify).
+
+**Netlify** (`--target netlify`) es el alojamiento para un sitio de empresa,
+porque las condiciones de Netlify permiten sitios comerciales en el plan
+gratuito. GitHub Actions sigue compilando el sitio y la compilación propia de
+Netlify nunca se ejecuta. `nera publish` inicia tu sesión en Netlify en el
+navegador (la página ofrece registrarse si no tienes cuenta), crea el sitio de
+Netlify (o reutiliza el de `config/publish.yaml`), guarda
+`NETLIFY_AUTH_TOKEN` y `NETLIFY_SITE_ID` como secretos cifrados del
+repositorio, elimina `base_path` e imprime la dirección `<name>.netlify.app`.
+`--domain <host>` fija el dominio propio en el sitio de Netlify y comprueba su
+DNS del mismo modo: un registro `A` `75.2.60.5` para un dominio raíz, un
+`CNAME` a `<name>.netlify.app` para un subdominio. El plan gratuito de Netlify
+tiene 300 créditos al mes y un despliegue de producción cuesta 15, es decir,
+unos 20 despliegues al mes; `nera publish` avisa a partir del 80 % de ese
+presupuesto. Cada push a `main` despliega, así que agrupa tus cambios. Para
 alojarlo en otro sitio, compila el sitio y sube el contenido de `public/` a
 cualquier alojamiento estático, como describe
 [Despliegue](/es/docs/deployment.html).
