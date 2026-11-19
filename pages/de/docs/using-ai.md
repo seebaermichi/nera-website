@@ -3,7 +3,7 @@ layout: pages/docs.pug
 title: Nera mit KI nutzen
 slug: using-ai
 lang: de
-description: Mit einem KI-Assistenten an einer Nera-Website arbeiten — AGENTS.md, Doku für KI, die Prüfschleife und Beispiel-Prompts.
+description: Mit einem KI-Assistenten an einer Nera-Website arbeiten — AGENTS.md, der Nera-MCP-Server, Doku für KI, die Prüfschleife und Beispiel-Prompts.
 pagination_order: 8
 ---
 
@@ -73,7 +73,69 @@ Skills hoch.
   `AGENTS.md`-Konvention unterstützen, lesen sie ebenfalls.
 - **Chat-Assistenten ohne Zugriff auf deine Dateien** (claude.ai, ChatGPT und
   ähnliche) sehen `AGENTS.md` nie. Gib ihnen stattdessen Neras Doku im Prompt
-  mit — siehe nächster Abschnitt.
+  mit — siehe [Doku für KI](#doku-fur-ki).
+
+Claude Desktop, Claude Code, Cursor und Codex können außerdem über den
+Nera-MCP-Server arbeiten, der für sie Websites erstellt, baut, prüft und
+veröffentlicht — siehe nächster Abschnitt.
+
+## Der Nera-MCP-Server
+
+[`@nera-static/mcp`](https://github.com/seebaermichi/nera-mcp) ist ein lokaler
+[MCP](https://modelcontextprotocol.io)-Server. Mit ihm kann ein Assistent
+Nera-Websites in einem Ordner auf deinem Computer erstellen, bearbeiten, bauen,
+validieren, in der Vorschau zeigen und veröffentlichen — in deinem **Sites
+folder** und nirgends sonst.
+
+### Erweiterung für Claude Desktop
+
+Der einfachste Weg, und ohne Node.js: Claude Desktop startet den Server mit dem
+Node, das es mitbringt.
+
+1. Lade `nera-mcp-<version>.mcpb` aus dem
+   [neuesten Release](https://github.com/seebaermichi/nera-mcp/releases/latest)
+   herunter.
+2. Doppelklicke die Datei und wähle in Claude Desktop **Install**.
+3. Wähle deinen **Sites folder**, wenn Claude Desktop danach fragt: den Ordner,
+   in dem deine Websites liegen.
+
+Die Erweiterung läuft unter macOS und Windows. Zum Aktualisieren installierst
+du die `.mcpb` eines neueren Release.
+
+### Plugin für Claude Code
+
+Das Plugin bringt den Server und den Nera-Skill mit einer Installation:
+
+```bash
+claude plugin marketplace add seebaermichi/nera-mcp
+claude plugin install nera@nera
+```
+
+oder, in Claude Code ab 2.1.275, in einem Schritt:
+
+```text
+/plugin install nera --marketplace seebaermichi/nera-mcp
+```
+
+Claude Code fragt nach deinem **Sites folder**, wenn das Plugin aktiviert wird.
+Das Plugin startet den Server mit `npx` und braucht deshalb Node.js 22.12 oder
+neuer (`node --version`).
+
+### Andere Clients
+
+Cursor, Codex und andere MCP-Clients tragen den Server von Hand in ihre
+Konfiguration ein; auch dafür braucht es Node.js 22.12 oder neuer. Die Befehle
+und Konfigurationsdateien stehen in der README unter
+[Manual configuration](https://github.com/seebaermichi/nera-mcp#manual-configuration).
+
+### Was der Assistent damit kann
+
+Mit dem Server listet der Assistent die Starter-Kits, Themes und Plugins auf,
+erstellt eine Website, liest und schreibt ihre Seiten und Dateien, fügt Plugins
+hinzu, baut, validiert, startet eine Vorschau und veröffentlicht auf GitHub
+Pages oder Netlify — mit denselben Ergebnissen wie im Terminal. Die vollständige
+Liste steht in der README unter
+[Tools](https://github.com/seebaermichi/nera-mcp#tools).
 
 ## Doku für KI
 
@@ -159,6 +221,6 @@ hinzufüge, mit den Dateien, die ich anlegen muss, und ihrem Inhalt.
 
 ## Was geplant ist
 
-Geplant, noch nicht verfügbar: ein **MCP-Server** für Nera — ein lokaler für
-Claude Desktop, Claude Code und Cursor sowie ein gehosteter Connector für
-claude.ai und ChatGPT, der mit deinem GitHub-Repository arbeitet.
+Geplant, noch nicht verfügbar: ein **gehosteter Connector** für claude.ai und
+ChatGPT, der mit deinem GitHub-Repository arbeitet, ganz ohne lokale
+Installation.
