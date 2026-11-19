@@ -12,7 +12,22 @@ pagination_order: 5
 ## Installing
 
 ```bash
+npx nera add navigation
+```
+
+`nera add` installs `@nera-static/plugin-navigation`, copies its default
+`config/navigation.yaml` into your site when you have none, and publishes its
+templates. It needs `@nera-static/nera` 1.26.0 or later (on an older site, run
+`npx nera update` first); the [CLI reference](/docs/cli.html#adding-a-plugin)
+has the details.
+
+The manual way does the same in steps: install the package, copy its
+`config/<name>.yaml` from `node_modules/@nera-static/plugin-<name>/config/`
+into your `config/`, and run its publish command when it ships templates:
+
+```bash
 npm install @nera-static/plugin-navigation
+npx nera-navigation
 ```
 
 Any dependency whose name starts with `@nera-static/plugin-` is discovered and
@@ -61,8 +76,10 @@ on a name clash. Invalid entries are skipped with a warning.
 ## Config lives in your project
 
 Every plugin reads `config/<name>.yaml` from **your** site, not from the package.
-The YAML shipped inside the package is documentation; copy it into your `config/`
-and edit. Missing keys fall back to sensible defaults.
+The YAML shipped inside the package is a documented starting point:
+`nera add` copies it into your `config/` when you have none, after a manual
+install you copy it yourself, and then you edit it. Missing keys fall back to
+sensible defaults.
 
 ## Ordering
 
@@ -72,11 +89,13 @@ last so it indexes the final page data.
 
 ## Templates
 
-Plugins that ship views expose a publish command:
+Plugins that ship views expose a publish command, which `nera add` runs for
+you:
 
 ```bash
 npx nera-navigation      # copies templates into theme/views/vendor/plugin-navigation/
 ```
 
 Then `include` them from your layouts. Publishing **skips if the folder already
-exists** — delete it (or pass `--force`) to pull in template updates.
+exists**, also when `nera add` runs again — run the publish command with
+`--force` (or delete the folder) to pull in template updates.

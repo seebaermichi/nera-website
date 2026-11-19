@@ -43,6 +43,7 @@ with `npx`, e.g. `npx nera validate`. The scaffold also wires `build`, `dev` and
 | `nera build` | Build `pages/` → `public/`; with `--check`, check the result too |
 | `nera dev` | Build + live-reload preview on `:3000` |
 | `nera serve` | Serve `public/` without rebuilding |
+| `nera add <plugin>` | Add an official plugin: install it, copy its default config and publish its templates |
 | `nera update` | Update the site's Nera packages (`npm update`) and raise their `^` ranges in `package.json` to the installed versions, then create or refresh `AGENTS.md` and `CLAUDE.md` |
 | `nera validate` | Check layouts, includes and YAML before publishing |
 | `nera check` | Check the built `public/` for accessibility, privacy and legal-notice problems |
@@ -89,6 +90,47 @@ old host untouched and prints how to remove the site there (and the unused
 Netlify secrets). A custom domain still points at the old host until you run
 with `--domain <host>` and change its DNS records. `--json` reports the old
 host as `movedFrom`.
+
+### Adding a plugin
+
+`nera add <plugin>` adds one official plugin to the site. It needs
+`@nera-static/nera` 1.26.0 or later; on an older site, run `npx nera update`
+first.
+
+```bash
+npx nera add sitemap
+```
+
+It takes one plugin per call, written as `<name>`, `plugin-<name>` or
+`@nera-static/plugin-<name>`, and:
+
+1. runs `npm install @nera-static/plugin-<name>`;
+2. copies the plugin's default `config/<name>.yaml` into the site's `config/`
+   when the site has none. An existing file is kept as it is. The summary
+   says which: `copied`, `kept`, or `none` when the plugin ships no default;
+3. runs the plugin's [publish command](#plugin-publish-commands) when it ships
+   templates, which copies them into `theme/views/vendor/plugin-<name>/`.
+
+Before npm runs, `nera add` refuses another scope, a version (`sitemap@1`), a
+path and `plugin-utils` (a library, not a plugin), and it refuses a folder
+that is not a Nera site. In an older cloned site, run `nera update --migrate`
+first. Running it again for a plugin you already added keeps your config file
+and your published templates.
+
+With `--json` it prints one object on stdout; the output of npm and of the
+publish command goes to stderr:
+
+```json
+{
+    "ok": true,
+    "plugin": "@nera-static/plugin-sitemap",
+    "config": { "file": "config/sitemap.yaml", "status": "copied" },
+    "templates": "none"
+}
+```
+
+`status` is `copied`, `kept` or `none`, and `templates` is `published` or
+`none`. A failure prints `{ "ok": false, "error": "…" }`.
 
 ### Starter kits
 
@@ -292,8 +334,11 @@ untouched.
 
 ## Plugin publish commands
 
-Each template-shipping plugin exposes a bin to copy its Pug into
-`theme/views/vendor/`, e.g.:
+Each template-shipping plugin exposes a bin that copies its Pug into
+`theme/views/vendor/plugin-<name>/`. `nera add` runs it for you. Run it
+yourself after a plain `npm install`, or to pull in template updates:
+publishing skips a folder that already exists, and `--force` overwrites it,
+discarding your edits to the published copies. `nera add` has no `--force`.
 
 ```bash
 npx nera-navigation

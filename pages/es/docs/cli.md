@@ -44,6 +44,7 @@ dentro de él con `npx`, p. ej. `npx nera validate`. El andamiaje también enlaz
 | `nera build` | Compila `pages/` → `public/`; con `--check`, revisa también el resultado |
 | `nera dev` | Compila + vista previa con recarga en vivo en `:3000` |
 | `nera serve` | Sirve `public/` sin recompilar |
+| `nera add <plugin>` | Añade un plugin oficial: lo instala, copia su configuración predeterminada y publica sus plantillas |
 | `nera update` | Actualiza los paquetes Nera del sitio (`npm update`), eleva sus rangos `^` en `package.json` a las versiones instaladas y luego crea o renueva `AGENTS.md` y `CLAUDE.md` |
 | `nera validate` | Comprueba layouts, includes y YAML antes de publicar |
 | `nera check` | Revisa el `public/` compilado en busca de problemas de accesibilidad, privacidad y aviso legal |
@@ -95,6 +96,50 @@ workflow, pero deja intacto el anterior e indica cómo eliminar allí el sitio
 apuntando al alojamiento anterior hasta que publiques con `--domain <host>` y
 cambies sus registros DNS. `--json` indica el alojamiento anterior como
 `movedFrom`.
+
+### Añadir un plugin
+
+`nera add <plugin>` añade un plugin oficial al sitio. Necesita
+`@nera-static/nera` 1.26.0 o posterior; en un sitio más antiguo, ejecuta
+primero `npx nera update`.
+
+```bash
+npx nera add sitemap
+```
+
+Acepta un plugin por llamada, escrito como `<name>`, `plugin-<name>` o
+`@nera-static/plugin-<name>`, y:
+
+1. ejecuta `npm install @nera-static/plugin-<name>`;
+2. copia el `config/<name>.yaml` predeterminado del plugin al `config/` del
+   sitio cuando el sitio no tiene ninguno. Un archivo existente se queda como
+   está. El resumen dice qué pasó: `copied`, `kept`, o `none` cuando el plugin
+   no incluye ninguna configuración predeterminada;
+3. ejecuta el [comando de publicación](#comandos-de-publicacion-de-plugins) del
+   plugin cuando incluye plantillas, que las copia a
+   `theme/views/vendor/plugin-<name>/`.
+
+Antes de que se ejecute npm, `nera add` rechaza otro scope, una versión
+(`sitemap@1`), una ruta y `plugin-utils` (una biblioteca, no un plugin), y
+también una carpeta que no es un sitio Nera. En un sitio antiguo clonado,
+ejecuta primero `nera update --migrate`. Volver a ejecutarlo para un plugin
+que ya añadiste conserva tu archivo de configuración y tus plantillas
+publicadas.
+
+Con `--json` imprime un objeto en stdout; la salida de npm y del comando de
+publicación va a stderr:
+
+```json
+{
+    "ok": true,
+    "plugin": "@nera-static/plugin-sitemap",
+    "config": { "file": "config/sitemap.yaml", "status": "copied" },
+    "templates": "none"
+}
+```
+
+`status` es `copied`, `kept` o `none`, y `templates` es `published` o `none`.
+Un fallo imprime `{ "ok": false, "error": "…" }`.
 
 ### Starter kits
 
@@ -302,8 +347,12 @@ incluido e instala, dejando intactos tus `pages/`, `config/` y `theme/`.
 
 ## Comandos de publicación de plugins
 
-Cada plugin que incluye plantillas expone un bin para copiar su Pug a
-`theme/views/vendor/`, p. ej.:
+Cada plugin que incluye plantillas expone un bin que copia su Pug a
+`theme/views/vendor/plugin-<name>/`. `nera add` lo ejecuta por ti. Ejecútalo tú
+después de un simple `npm install`, o para incorporar las actualizaciones de
+las plantillas: la publicación omite una carpeta que ya existe, y `--force` la
+sobrescribe, descartando tus cambios en las copias publicadas. `nera add` no
+tiene `--force`.
 
 ```bash
 npx nera-navigation

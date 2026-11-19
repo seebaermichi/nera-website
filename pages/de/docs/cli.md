@@ -45,6 +45,7 @@ außerdem `build`, `dev` und `serve` mit npm-Skripten, z. B. `npm run dev`:
 | `nera build` | `pages/` → `public/` bauen; mit `--check` danach auch das Ergebnis prüfen |
 | `nera dev` | Bauen + Live-Reload-Vorschau auf `:3000` |
 | `nera serve` | `public/` ausliefern, ohne neu zu bauen |
+| `nera add <plugin>` | Ein offizielles Plugin hinzufügen: installieren, seine Standardkonfiguration kopieren und seine Templates veröffentlichen |
 | `nera update` | Die Nera-Pakete der Website aktualisieren (`npm update`) und ihre `^`-Versionsbereiche in `package.json` auf die installierten Versionen anheben, dann `AGENTS.md` und `CLAUDE.md` anlegen oder auffrischen |
 | `nera validate` | Layouts, Includes und YAML vor dem Veröffentlichen prüfen |
 | `nera check` | Das gebaute `public/` auf Probleme bei Barrierefreiheit, Datenschutz und Impressum prüfen |
@@ -95,6 +96,50 @@ Website dort entfernst (und die nicht mehr genutzten Netlify-Secrets). Eine
 eigene Domain zeigt weiter auf den alten Hoster, bis du mit `--domain <host>`
 veröffentlichst und ihre DNS-Records änderst. `--json` meldet den alten
 Hoster als `movedFrom`.
+
+### Ein Plugin hinzufügen
+
+`nera add <plugin>` fügt der Website ein offizielles Plugin hinzu. Dafür
+braucht es `@nera-static/nera` 1.26.0 oder neuer; führe auf einer älteren
+Website zuerst `npx nera update` aus.
+
+```bash
+npx nera add sitemap
+```
+
+Es nimmt ein Plugin pro Aufruf, geschrieben als `<name>`, `plugin-<name>` oder
+`@nera-static/plugin-<name>`, und:
+
+1. führt `npm install @nera-static/plugin-<name>` aus;
+2. kopiert die Standardkonfiguration `config/<name>.yaml` des Plugins in das
+   `config/` der Website, wenn die Website keine hat. Eine vorhandene Datei
+   bleibt, wie sie ist. Die Zusammenfassung sagt, was passiert ist: `copied`,
+   `kept` oder `none`, wenn das Plugin keine Standardkonfiguration mitbringt;
+3. führt den [Publish-Befehl](#plugin-publish-befehle) des Plugins aus, wenn
+   es Templates mitliefert; der kopiert sie nach
+   `theme/views/vendor/plugin-<name>/`.
+
+Bevor npm läuft, lehnt `nera add` einen anderen Scope, eine Version
+(`sitemap@1`), einen Pfad und `plugin-utils` (eine Bibliothek, kein Plugin) ab,
+und ebenso einen Ordner, der keine Nera-Website ist. Führe in einer älteren,
+geklonten Website zuerst `nera update --migrate` aus. Ein erneuter Aufruf für
+ein Plugin, das du schon hinzugefügt hast, behält deine Konfigurationsdatei und
+deine veröffentlichten Templates.
+
+Mit `--json` gibt es ein Objekt auf stdout aus; die Ausgabe von npm und dem
+Publish-Befehl geht nach stderr:
+
+```json
+{
+    "ok": true,
+    "plugin": "@nera-static/plugin-sitemap",
+    "config": { "file": "config/sitemap.yaml", "status": "copied" },
+    "templates": "none"
+}
+```
+
+`status` ist `copied`, `kept` oder `none`, `templates` ist `published` oder
+`none`. Ein Fehler gibt `{ "ok": false, "error": "…" }` aus.
 
 ### Starter-Kits
 
@@ -303,8 +348,12 @@ mitgeführte `src/`-Engine und installiert, während deine `pages/`, `config/` u
 
 ## Plugin-Publish-Befehle
 
-Jedes Template-ausliefernde Plugin stellt ein Bin bereit, um sein Pug nach
-`theme/views/vendor/` zu kopieren, z. B.:
+Jedes Template-ausliefernde Plugin stellt ein Bin bereit, das sein Pug nach
+`theme/views/vendor/plugin-<name>/` kopiert. `nera add` führt es für dich aus.
+Führe es selbst aus nach einem einfachen `npm install` oder um
+Template-Updates einzuspielen: Das Veröffentlichen überspringt einen Ordner,
+der schon existiert, und `--force` überschreibt ihn, wobei deine Änderungen an
+den veröffentlichten Kopien verloren gehen. `nera add` hat kein `--force`.
 
 ```bash
 npx nera-navigation

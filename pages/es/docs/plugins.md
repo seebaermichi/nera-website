@@ -12,7 +12,22 @@ pagination_order: 5
 ## Instalación
 
 ```bash
+npx nera add navigation
+```
+
+`nera add` instala `@nera-static/plugin-navigation`, copia su
+`config/navigation.yaml` predeterminado a tu sitio cuando no tienes ninguno y
+publica sus plantillas. Necesita `@nera-static/nera` 1.26.0 o posterior (en un
+sitio más antiguo, ejecuta primero `npx nera update`); los detalles están en la
+[referencia de la CLI](/es/docs/cli.html#anadir-un-plugin).
+
+A mano se hace lo mismo por pasos: instala el paquete, copia su
+`config/<name>.yaml` de `node_modules/@nera-static/plugin-<name>/config/` a tu
+`config/` y ejecuta su comando de publicación cuando incluye plantillas:
+
+```bash
 npm install @nera-static/plugin-navigation
+npx nera-navigation
 ```
 
 Cualquier dependencia cuyo nombre empiece por `@nera-static/plugin-` se descubre
@@ -63,8 +78,10 @@ se omiten con una advertencia.
 ## La configuración vive en tu proyecto
 
 Cada plugin lee `config/<name>.yaml` de **tu** sitio, no del paquete.
-El YAML incluido dentro del paquete es documentación; cópialo en tu `config/`
-y edítalo. Las claves faltantes recurren a valores predeterminados sensatos.
+El YAML incluido dentro del paquete es un punto de partida documentado:
+`nera add` lo copia a tu `config/` cuando no tienes ninguno, tras una
+instalación manual lo copias tú, y luego lo editas. Las claves faltantes
+recurren a valores predeterminados sensatos.
 
 ## Orden
 
@@ -74,11 +91,14 @@ la última para que indexe los datos finales de las páginas.
 
 ## Plantillas
 
-Los plugins que incluyen vistas exponen un comando de publicación:
+Los plugins que incluyen vistas exponen un comando de publicación, que
+`nera add` ejecuta por ti:
 
 ```bash
 npx nera-navigation      # copies templates into theme/views/vendor/plugin-navigation/
 ```
 
 Luego `include` desde tus layouts. La publicación **se omite si la carpeta ya
-existe** — bórrala (o pasa `--force`) para incorporar las actualizaciones de las plantillas.
+existe**, también cuando `nera add` vuelve a ejecutarse — ejecuta el comando de
+publicación con `--force` (o borra la carpeta) para incorporar las actualizaciones
+de las plantillas.

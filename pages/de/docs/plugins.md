@@ -12,7 +12,24 @@ pagination_order: 5
 ## Installation
 
 ```bash
+npx nera add navigation
+```
+
+`nera add` installiert `@nera-static/plugin-navigation`, kopiert seine
+Standardkonfiguration `config/navigation.yaml` in deine Website, wenn du noch
+keine hast, und veröffentlicht seine Templates. Dafür braucht es
+`@nera-static/nera` 1.26.0 oder neuer (führe auf einer älteren Website zuerst
+`npx nera update` aus); die Details stehen in der
+[CLI-Referenz](/de/docs/cli.html#ein-plugin-hinzufugen).
+
+Von Hand geht dasselbe in Schritten: das Paket installieren, seine
+`config/<name>.yaml` aus `node_modules/@nera-static/plugin-<name>/config/` in
+dein `config/` kopieren und seinen Publish-Befehl ausführen, wenn es Templates
+mitliefert:
+
+```bash
 npm install @nera-static/plugin-navigation
+npx nera-navigation
 ```
 
 Jede Abhängigkeit, deren Name mit `@nera-static/plugin-` beginnt, wird automatisch
@@ -63,8 +80,10 @@ Ungültige Einträge werden mit einer Warnung übersprungen.
 ## Die Konfiguration liegt in deinem Projekt
 
 Jedes Plugin liest `config/<name>.yaml` aus **deiner** Site, nicht aus dem Paket.
-Das im Paket mitgelieferte YAML ist Dokumentation; kopiere es in dein `config/`
-und bearbeite es. Fehlende Schlüssel fallen auf sinnvolle Standardwerte zurück.
+Das im Paket mitgelieferte YAML ist ein dokumentierter Ausgangspunkt: `nera add`
+kopiert es in dein `config/`, wenn du noch keins hast, nach einer Installation von
+Hand kopierst du es selbst, und dann bearbeitest du es. Fehlende Schlüssel fallen
+auf sinnvolle Standardwerte zurück.
 
 ## Reihenfolge
 
@@ -74,11 +93,13 @@ zuletzt, damit sie die endgültigen Seitendaten indexiert.
 
 ## Templates
 
-Plugins, die Views mitliefern, stellen einen Publish-Befehl bereit:
+Plugins, die Views mitliefern, stellen einen Publish-Befehl bereit, den
+`nera add` für dich ausführt:
 
 ```bash
 npx nera-navigation      # copies templates into theme/views/vendor/plugin-navigation/
 ```
 
 `include` sie dann aus deinen Layouts. Das Veröffentlichen **wird übersprungen, wenn der Ordner
-bereits existiert** — lösche ihn (oder übergib `--force`), um Template-Updates einzuspielen.
+bereits existiert**, auch wenn `nera add` erneut läuft — führe den Publish-Befehl mit
+`--force` aus (oder lösche den Ordner), um Template-Updates einzuspielen.
