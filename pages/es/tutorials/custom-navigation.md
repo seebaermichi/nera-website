@@ -15,22 +15,19 @@ el enlace de la página actual — sin necesidad de JavaScript.
 ## 1. Instala y publica la plantilla
 
 ```bash
-npm install @nera-static/plugin-navigation
-npx nera-navigation
+npx nera add navigation
 ```
 
-El segundo comando copia las plantillas de navegación en
+`nera add` instala el paquete, copia su `config/navigation.yaml` predeterminado a tu
+sitio y publica las plantillas de navegación en
 `theme/views/vendor/plugin-navigation/`, donde puedes editarlas libremente.
 
 ## 2. Define el menú
 
-Crea `config/navigation.yaml`. Un único menú plano se ve así:
+Abre `config/navigation.yaml`, el archivo que copió `nera add`. Su menú es una única
+lista plana que ya contiene el enlace a Home, así que añade tus demás páginas debajo:
 
 ```yaml
-active_class: nav__link--active
-active_path_class: nav__link--active-path
-nav_class: nav
-
 elements:
     - href: /index.html
       name: Home
@@ -38,15 +35,24 @@ elements:
       name: Docs
 ```
 
-Las tres claves de clase son opcionales, y los valores de arriba son sus valores por
-defecto, así que este ejemplo se renderiza igual que uno sin ellas. `active_class` va en el
+Encima de la lista, el archivo trae las tres claves de clase, comentadas y con sus
+valores por defecto:
+
+```yaml
+# nav_class: nav
+# active_class: nav__link--active
+# active_path_class: nav__link--active-path
+```
+
+Si las dejas comentadas, el plugin usa exactamente estos valores. `active_class` va en el
 enlace a la página actual, y `active_path_class` en un enlace de sección —uno que apunta al
 índice de una carpeta, como `/docs/index.html` o `/docs/`— cuando la página actual está en esa
 carpeta o más abajo (la raíz del sitio nunca cuenta). `nav_class` es el nombre de bloque BEM del
 que derivan las demás clases: `nav_class: mainmenu` renombra toda la familia a `.mainmenu`,
 `.mainmenu--list`, `.mainmenu__item`, `.mainmenu__link`, `.mainmenu__link--active` y
 `.mainmenu__link--active-path`. Las dos claves de estado solo sobrescriben su propia clase,
-así que al renombrar, quítalas — tal como están arriba, se quedan en `nav__link--active`.
+así que al renombrar, déjalas comentadas — sin comentar como arriba, se quedan en
+`nav__link--active`.
 
 Cada entrada necesita un `href`: una sin él se omite con una advertencia, y el build se
 completa igualmente.
@@ -56,7 +62,8 @@ completa igualmente.
 > Ejecuta `npx nera-navigation --force` una vez — sobrescribe esa carpeta, así que si
 > editaste tu copia, guarda antes tus cambios y vuelve a aplicarlos.
 
-¿Necesitas más de un menú? Anídalos bajo nombres — cada uno se convierte en
+¿Necesitas más de un menú? Sustituye la lista plana por listas con nombre — el archivo
+copiado muestra esta forma en un comentario al final. Cada una se convierte en
 `app.nav.<name>.elements`:
 
 ```yaml

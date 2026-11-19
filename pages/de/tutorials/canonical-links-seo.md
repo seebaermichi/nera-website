@@ -20,14 +20,15 @@ Ausgabe, so wie dieses Tutorial es bei jedem Schritt tut.
 ## 1. Template installieren und veröffentlichen
 
 ```bash
-npm install @nera-static/plugin-canonical-links
-npx nera-canonical-links
+npx nera add canonical-links
 ```
 
-Der zweite Befehl kopiert `index.pug` und seine `partials/` nach
-`theme/views/vendor/plugin-canonical-links/`. Existiert der Ordner schon, wird
-nichts kopiert — deine Änderungen bleiben also erhalten; nach einem Upgrade
-überschreibt `npx nera-canonical-links --force` sie mit den mitgelieferten Templates.
+`nera add` installiert das Paket, kopiert seine Standardkonfiguration
+`config/canonical-links.yaml` in deine Website und veröffentlicht `index.pug` und
+seine `partials/` nach `theme/views/vendor/plugin-canonical-links/`. Existiert der
+Ordner schon, wird kein Template kopiert — deine Änderungen bleiben also erhalten;
+nach einem Upgrade überschreibt `npx nera-canonical-links --force` sie mit den
+mitgelieferten Templates.
 
 ## 2. Deinen Origin setzen
 
@@ -38,11 +39,16 @@ Setze ihn einmal in `config/app.yaml`:
 origin: https://example.com
 ```
 
-Mehr Konfiguration braucht eine einsprachige Website nicht — **die eigene
-Konfigurationsdatei des Plugins ist optional**. Legst du
-`config/canonical-links.yaml` doch an, dient ihr `app_origin` als Fallback, wenn
-`app.yaml` kein `origin` hat; sind beide gesetzt, gewinnt `origin` aus `app.yaml`.
-Ein abschließender Schrägstrich wird in beiden Fällen entfernt.
+Mehr Konfiguration braucht eine einsprachige Website nicht — **die
+`config/canonical-links.yaml`, die `nera add` kopiert hat, kann bleiben, wie sie
+ist**. Ihr einziger aktiver Schlüssel, `page_identifier: slug`, ist der
+Standardwert, die übrigen sind auskommentierte Beispiele. Einer davon,
+`app_origin`, dient als Fallback, wenn `app.yaml` kein `origin` hat; sind beide
+gesetzt, gewinnt `origin` aus `app.yaml`. Ein abschließender Schrägstrich wird in
+beiden Fällen entfernt. Eine Datei, die vor plugin-canonical-links 2.2.4 kopiert
+wurde, setzte `app_origin: https://example.com` und `available_languages` als
+aktive Beispiele: Lösche diese beiden Schlüssel oder setze sie auf deine eigenen
+Werte.
 
 Ganz ohne Origin gibt das Plugin weder canonical- noch Alternate-Links aus und
 schreibt beim Build eine einzige Warnung:
@@ -95,8 +101,9 @@ siehst:
 
 ## 4. Übersetzungen mit hreflang verknüpfen
 
-Alternate-Language-Links brauchen drei Dinge. Erstens: Liste deine Sprachen in
-`config/canonical-links.yaml` auf:
+Alternate-Language-Links brauchen drei Dinge. Erstens: Entferne in
+`config/canonical-links.yaml` das Kommentarzeichen vor `available_languages` und
+liste deine Sprachen auf:
 
 ```yaml
 page_identifier: slug
@@ -106,8 +113,8 @@ available_languages:
 ```
 
 `page_identifier` nennt den Frontmatter-Schlüssel, der zwei Seiten als
-Übersetzungen voneinander kennzeichnet; `slug` ist der Standard, die Zeile kannst
-du also weglassen. Zweitens: Jede Seite setzt ihr `lang`. Drittens: Übersetzungen
+Übersetzungen voneinander kennzeichnet; `slug` ist der Standard, und die kopierte
+Datei setzt ihn schon. Zweitens: Jede Seite setzt ihr `lang`. Drittens: Übersetzungen
 teilen sich einen identischen `slug`:
 
 ```markdown
@@ -181,7 +188,12 @@ keine Alternates.
 Das Sitemap-Plugin, [`@nera-static/plugin-sitemap`](https://www.npmjs.com/package/@nera-static/plugin-sitemap),
 liest denselben Origin (`origin` aus `app.yaml`, sonst `app_origin`) und denselben
 `base_path` — die URLs in deiner Sitemap und deine canonical-Links stimmen also
-überein, auf einer Website mit `base_path` ab plugin-canonical-links 2.2.3.
+überein, auf einer Website mit `base_path` ab plugin-canonical-links 2.2.3. Du
+fügst es genauso hinzu:
+
+```bash
+npx nera add sitemap
+```
 
 Auch diese Website nutzt das Plugin, eingerichtet wie in diesem Tutorial:
 `origin: https://nera.js.org` in `config/app.yaml`, das root-absolute Include im Layout und

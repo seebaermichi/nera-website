@@ -8,9 +8,10 @@ keywords: nera seo, plugin-canonical-links, canonical url, hreflang, alternate l
 tags: plugins, seo
 pagination_order: 7
 createdAt: 2026-07-15
-verified_on: 2026-10-25
+verified_on: 2026-11-19
 verified_with:
-    plugin-canonical-links: 2.2.3
+    nera: 1.27.0
+    plugin-canonical-links: 2.2.4
     plugin-sitemap: 1.1.1
 ---
 Search engines want a single canonical URL per page, and on a multilingual site
@@ -23,14 +24,14 @@ search console weeks later. So check the output, as this tutorial does at every 
 ## 1. Install and publish the template
 
 ```bash
-npm install @nera-static/plugin-canonical-links
-npx nera-canonical-links
+npx nera add canonical-links
 ```
 
-The second command copies `index.pug` and its `partials/` to
-`theme/views/vendor/plugin-canonical-links/`. It skips if that folder already
-exists, so your edits are safe; `npx nera-canonical-links --force` overwrites them
-with the shipped templates after an upgrade.
+`nera add` installs the package, copies its default `config/canonical-links.yaml`
+into your site and publishes `index.pug` and its `partials/` to
+`theme/views/vendor/plugin-canonical-links/`. Publishing skips if that folder
+already exists, so your edits are safe; `npx nera-canonical-links --force`
+overwrites them with the shipped templates after an upgrade.
 
 ## 2. Set your origin
 
@@ -41,10 +42,14 @@ Canonical URLs are absolute, so the plugin needs your site's origin. Set it once
 origin: https://example.com
 ```
 
-That is all the configuration a single-language site needs — **the plugin's own
-config file is optional**. If you do create `config/canonical-links.yaml`, its
-`app_origin` is used as a fallback when `app.yaml` has no `origin`; when both are
-set, `origin` in `app.yaml` wins. A trailing slash is stripped either way.
+That is all the configuration a single-language site needs — **the
+`config/canonical-links.yaml` that `nera add` copied can stay as it is**. Its
+one active key, `page_identifier: slug`, is the default, and the others are
+commented-out examples. One of them, `app_origin`, is used as a fallback when
+`app.yaml` has no `origin`; when both are set, `origin` in `app.yaml` wins. A
+trailing slash is stripped either way. A file copied before plugin-canonical-links 2.2.4 set
+`app_origin: https://example.com` and `available_languages` as active samples:
+delete those two keys, or set them to your own values.
 
 With no origin at all, the plugin emits no canonical or alternate links and prints
 one warning during the build:
@@ -95,8 +100,8 @@ Build and view the source of `pages/getting-started.md` — you'll see:
 
 ## 4. Link translations with hreflang
 
-Alternate-language links need three things. First, list your languages in
-`config/canonical-links.yaml`:
+Alternate-language links need three things. First, uncomment
+`available_languages` in `config/canonical-links.yaml` and list your languages:
 
 ```yaml
 page_identifier: slug
@@ -106,8 +111,8 @@ available_languages:
 ```
 
 `page_identifier` names the frontmatter key that marks two pages as translations
-of each other; `slug` is the default, so you can leave the line out. Second, every
-page sets its `lang`. Third, translations share an identical `slug`:
+of each other; `slug` is the default, and the copied file already sets it.
+Second, every page sets its `lang`. Third, translations share an identical `slug`:
 
 ```markdown
 ---
@@ -177,7 +182,11 @@ Generated pages have no `slug`, so they get a canonical link and no alternates.
 The sitemap plugin, [`@nera-static/plugin-sitemap`](https://www.npmjs.com/package/@nera-static/plugin-sitemap),
 reads the same origin (`origin` in `app.yaml`, else `app_origin`) and the same
 `base_path`, so the URLs in your sitemap and your canonical links agree — on a
-`base_path` site from plugin-canonical-links 2.2.3 on.
+`base_path` site from plugin-canonical-links 2.2.3 on. Add it the same way:
+
+```bash
+npx nera add sitemap
+```
 
 This site uses the plugin as well, set up as this tutorial describes:
 `origin: https://nera.js.org` in `config/app.yaml`, the root-absolute include in its layout,

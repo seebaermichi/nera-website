@@ -8,8 +8,9 @@ keywords: nera navigation, plugin-navigation, active menu, static site nav
 tags: plugins, navigation
 pagination_order: 2
 createdAt: 2026-07-20
-verified_on: 2026-10-13
+verified_on: 2026-11-19
 verified_with:
+    nera: 1.27.0
     plugin-navigation: 3.1.1
 ---
 `@nera-static/plugin-navigation` turns a YAML list into a navigation menu and marks
@@ -18,22 +19,19 @@ the link for the current page — no JavaScript required.
 ## 1. Install and publish the template
 
 ```bash
-npm install @nera-static/plugin-navigation
-npx nera-navigation
+npx nera add navigation
 ```
 
-The second command copies the nav templates into
+`nera add` installs the package, copies its default `config/navigation.yaml` into
+your site and publishes the nav templates into
 `theme/views/vendor/plugin-navigation/`, where you can edit them freely.
 
 ## 2. Define the menu
 
-Create `config/navigation.yaml`. A single flat menu looks like this:
+Open `config/navigation.yaml`, the file `nera add` copied. Its menu is a single flat
+list that already holds the Home link, so add your other pages below it:
 
 ```yaml
-active_class: nav__link--active
-active_path_class: nav__link--active-path
-nav_class: nav
-
 elements:
     - href: /index.html
       name: Home
@@ -41,15 +39,24 @@ elements:
       name: Docs
 ```
 
-All three class keys are optional, and the values above are their defaults, so this
-example renders the same as one without them. `active_class` goes on the link to the
-current page, `active_path_class` on a section link — one pointing at a folder's index,
+Above the list the file carries the three class keys, commented out at their
+defaults:
+
+```yaml
+# nav_class: nav
+# active_class: nav__link--active
+# active_path_class: nav__link--active-path
+```
+
+Leave them commented out and the plugin uses exactly these values. `active_class`
+goes on the link to the current page, `active_path_class` on a section link — one pointing at a folder's index,
 such as `/docs/index.html` or `/docs/` — when the current page sits in that folder or below
 (the site root never counts). `nav_class` is the BEM block name the other classes derive
 from: `nav_class: mainmenu` renames the whole family to `.mainmenu`, `.mainmenu--list`,
 `.mainmenu__item`, `.mainmenu__link`, `.mainmenu__link--active` and
 `.mainmenu__link--active-path`. The two state keys override just their own class, so
-when you rename, drop them — left as above, they keep `nav__link--active`.
+when you rename, leave them commented out — uncommented with the values above,
+they keep `nav__link--active`.
 
 Every entry needs an `href`: one without it is skipped with a warning, and the build
 still succeeds.
@@ -59,8 +66,8 @@ still succeeds.
 > `npx nera-navigation --force` once — it overwrites that folder, so if you edited your
 > copy, save your changes first and carry them over.
 
-Need more than one menu? Nest them under names — each becomes
-`app.nav.<name>.elements`:
+Need more than one menu? Replace the flat list with named ones — the copied file
+shows this shape in a comment at its end. Each becomes `app.nav.<name>.elements`:
 
 ```yaml
 elements:

@@ -16,30 +16,29 @@ ohne dass du das Markdown anfassen musst.
 ## 1. Installieren
 
 ```bash
-npm install @nera-static/plugin-link-attributes
+npx nera add link-attributes
 ```
 
-Kein Template zum Veröffentlichen — dieses Plugin transformiert nur Inhalt. Seine einzige
-Einstellung steht in einer Config-Datei.
+`nera add` installiert das Paket und kopiert seine Standardkonfiguration
+`config/link-attributes.yaml` in deine Website. Es gibt kein Template zum
+Veröffentlichen — dieses Plugin transformiert nur Inhalt, und seine einzige
+Einstellung steht in dieser Datei.
 
 ## 2. Konfigurieren
 
-`config/link-attributes.yaml` listet die hinzuzufügenden Attribute auf. Am schnellsten
-bekommst du sie mit dem Befehl des Plugins, der die unten gezeigten Standardwerte schreibt:
-
-```bash
-npx nera-link-attributes
-```
-
-Eine vorhandene Datei lässt er in Ruhe, ein erneuter Aufruf überschreibt also nie deine
-Änderungen; `npx nera-link-attributes --force` ersetzt sie durch eine frische Kopie. Du kannst
-die Datei auch von Hand schreiben:
+`config/link-attributes.yaml`, die Datei, die `nera add` kopiert hat, listet die
+hinzuzufügenden Attribute auf:
 
 ```yaml
 attributes:
     - target="_blank"
     - rel="noopener noreferrer"
 ```
+
+Diese Standardwerte sind genau das, was dieses Tutorial will — du kannst die Datei
+also lassen, wie sie ist. Ein erneuter Aufruf von `nera add` behält deine Änderungen;
+um die Standardwerte zurückzubekommen, ersetzt der Befehl des Plugins,
+`npx nera-link-attributes --force`, die Datei durch eine frische Kopie.
 
 Ohne `attributes` lässt das Plugin deine Seiten unverändert — keine Datei, keine neuen Tabs.
 

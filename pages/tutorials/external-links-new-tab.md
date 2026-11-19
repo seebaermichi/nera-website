@@ -8,8 +8,9 @@ keywords: nera external links, plugin-link-attributes, target blank, noopener
 tags: plugins, links
 pagination_order: 6
 createdAt: 2026-07-16
-verified_on: 2026-10-25
+verified_on: 2026-11-19
 verified_with:
+    nera: 1.27.0
     plugin-link-attributes: 2.1.1
     core: 4.18.2
 ---
@@ -20,30 +21,27 @@ without you touching the Markdown.
 ## 1. Install
 
 ```bash
-npm install @nera-static/plugin-link-attributes
+npx nera add link-attributes
 ```
 
-No template to publish — this plugin only transforms content. Its one setting
-lives in a config file.
+`nera add` installs the package and copies its default `config/link-attributes.yaml`
+into your site. There is no template to publish — this plugin only transforms
+content, and its one setting lives in that file.
 
 ## 2. Configure
 
-`config/link-attributes.yaml` lists the attributes to add. The quick way to get
-it is the plugin's own command, which writes the defaults shown below:
-
-```bash
-npx nera-link-attributes
-```
-
-An existing file is left alone, so re-running never overwrites your edits;
-`npx nera-link-attributes --force` replaces it with a fresh copy. You can also
-write the file by hand:
+`config/link-attributes.yaml`, the file `nera add` copied, lists the attributes to
+add:
 
 ```yaml
 attributes:
     - target="_blank"
     - rel="noopener noreferrer"
 ```
+
+These defaults are what this tutorial wants, so you can keep the file as it is.
+Running `nera add` again keeps your edits; to get the defaults back, the plugin's
+own command `npx nera-link-attributes --force` replaces the file with a fresh copy.
 
 Without any `attributes` the plugin leaves your pages unchanged — no file, no new
 tabs.
