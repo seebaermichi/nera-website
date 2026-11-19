@@ -73,18 +73,20 @@ sagt das:
 ## 2. Installieren und das Layout verdrahten
 
 ```bash
-npm install @nera-static/plugin-consent
-npx nera-consent-config
-npx nera-consent
+npx nera add consent
 ```
 
-`npx nera-consent-config` kopiert die dokumentierte `config/consent.yaml`,
-jedes Beispiel auskommentiert, sodass die Website im Hinweis-Modus startet.
-`npx nera-consent` kopiert die fünf Views (`banner`, `settings`, `notice`,
-`head`, `embed`). Auf einer mit `nera new` erzeugten Website landen sie in
-`theme/views/vendor/plugin-consent/`. Beide Befehle überspringen eine Datei
-oder einen Ordner, die schon existieren; `--force` überschreibt sie, und
-damit deine Änderungen.
+`nera add` installiert das Paket, kopiert seine dokumentierte
+`config/consent.yaml` und veröffentlicht die fünf Views (`banner`, `settings`,
+`notice`, `head`, `embed`) nach `theme/views/vendor/plugin-consent/`. In der
+kopierten Datei stehen `revision` und `notice` auf ihren Standardwerten, und
+jedes Beispiel (`privacy_url`, `categories`, `texts`) ist auskommentiert,
+sodass die Website im Hinweis-Modus startet. Solange `privacy_url` fehlt, warnt
+der Build, dass der Hinweis auf keine Datenschutzerklärung verlinkt. `nera add`
+behält eine `config/consent.yaml` oder einen Views-Ordner, die schon
+existieren. Um sie mit den aktuellen Fassungen des Plugins zu überschreiben,
+und damit deine Änderungen, führe `npx nera-consent-config --force` und
+`npx nera-consent --force` aus.
 
 Plugins können dein Layout nicht anfassen, also ist das der eine Handgriff.
 Setze das Stylesheet, die `head`-View und die Laufzeit in `<head>`, einen Link

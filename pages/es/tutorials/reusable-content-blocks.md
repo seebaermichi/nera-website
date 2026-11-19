@@ -20,11 +20,13 @@ por idioma.
 ## 1. Instalar
 
 ```bash
-npm install @nera-static/plugin-stacks
+npx nera add stacks
 ```
 
-Nera encuentra el plugin por sí solo. No necesita archivo de configuración:
-los stacks se definen en el frontmatter.
+`nera add` instala el paquete y publica su plantilla por defecto en
+`theme/views/vendor/plugin-stacks/` (sección 4). No copia ningún archivo de
+configuración, porque el plugin no lo necesita: los stacks se definen en el
+frontmatter. Nera encuentra el plugin por sí solo.
 
 ## 2. Qué convierte una página en un stack
 
@@ -79,16 +81,10 @@ dos stacks acaban con el mismo, gana el último y el plugin avisa.
 
 ## 4. Renderizar un stack con una plantilla
 
-Un stack puede traer su propio marcado. Publica la plantilla por defecto del
-plugin:
-
-```bash
-npx nera-stacks
-```
-
-Acaba en `theme/views/vendor/plugin-stacks/stack-template.pug`. Apunta un
-stack a ella con **`stack_layout`**, una ruta desde la **raíz del proyecto**
-(donde ejecutas `nera build`), no desde la carpeta de vistas:
+Un stack puede traer su propio marcado. `nera add` ya publicó la plantilla por
+defecto del plugin en `theme/views/vendor/plugin-stacks/stack-template.pug`.
+Apunta un stack a ella con **`stack_layout`**, una ruta desde la **raíz del
+proyecto** (donde ejecutas `nera build`), no desde la carpeta de vistas:
 
 ```markdown:pages/stacks/call-to-action.md
 ---

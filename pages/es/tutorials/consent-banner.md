@@ -71,17 +71,19 @@ dice:
 ## 2. Instalar y conectar el layout
 
 ```bash
-npm install @nera-static/plugin-consent
-npx nera-consent-config
-npx nera-consent
+npx nera add consent
 ```
 
-`npx nera-consent-config` copia el `config/consent.yaml` documentado, con
-todos los ejemplos comentados, así que el sitio empieza en modo aviso.
-`npx nera-consent` copia las cinco vistas (`banner`, `settings`, `notice`,
-`head`, `embed`). En un sitio creado con `nera new` acaban en
-`theme/views/vendor/plugin-consent/`. Ambos comandos se saltan un archivo o
-una carpeta que ya existe; `--force` lo sobrescribe, y con ello tus cambios.
+`nera add` instala el paquete, copia su `config/consent.yaml` documentado y
+publica las cinco vistas (`banner`, `settings`, `notice`, `head`, `embed`) en
+`theme/views/vendor/plugin-consent/`. En el archivo copiado, `revision` y
+`notice` tienen sus valores por defecto y todos los ejemplos (`privacy_url`,
+`categories`, `texts`) están comentados, así que el sitio empieza en modo
+aviso. Mientras falte `privacy_url`, el build avisa de que el aviso no enlaza
+ninguna política de privacidad. `nera add` conserva un `config/consent.yaml` o
+una carpeta de vistas que ya existan. Para sobrescribirlos con las versiones
+actuales del plugin, y con ello tus cambios, ejecuta
+`npx nera-consent-config --force` y `npx nera-consent --force`.
 
 Los plugins no pueden tocar tu layout, así que este es el único paso manual.
 Añade la hoja de estilos, la vista `head` y el runtime dentro de `<head>`, un

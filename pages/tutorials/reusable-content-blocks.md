@@ -8,9 +8,10 @@ keywords: nera stacks, plugin-stacks, reusable content, content blocks, stack gr
 tags: plugins, stacks
 pagination_order: 9
 createdAt: 2026-10-23
-verified_on: 2026-10-25
+verified_on: 2026-11-19
 verified_with:
-    plugin-stacks: 2.4.0
+    nera: 1.27.0
+    plugin-stacks: 2.4.1
     validate: 1.7.0
 ---
 Some content belongs to no single page: a call to action under every article,
@@ -22,11 +23,13 @@ in any view through `app.stacks`. Several blocks that form one section become a
 ## 1. Install
 
 ```bash
-npm install @nera-static/plugin-stacks
+npx nera add stacks
 ```
 
-Nera finds the plugin on its own. It needs no config file: stacks are defined
-in frontmatter.
+`nera add` installs the package and publishes its default template into
+`theme/views/vendor/plugin-stacks/` (section 4). It copies no config file, as
+the plugin needs none: stacks are defined in frontmatter. Nera finds the plugin
+on its own.
 
 ## 2. What makes a page a stack
 
@@ -79,15 +82,10 @@ plugin warns.
 
 ## 4. Render a stack through a template
 
-A stack can bring its own markup. Publish the plugin's default template:
-
-```bash
-npx nera-stacks
-```
-
-It lands in `theme/views/vendor/plugin-stacks/stack-template.pug`. Point a
-stack at it with **`stack_layout`**, a path from the **project root** (where
-you run `nera build`), not from the views folder:
+A stack can bring its own markup. `nera add` already published the plugin's
+default template to `theme/views/vendor/plugin-stacks/stack-template.pug`.
+Point a stack at it with **`stack_layout`**, a path from the **project root**
+(where you run `nera build`), not from the views folder:
 
 ```markdown:pages/stacks/call-to-action.md
 ---

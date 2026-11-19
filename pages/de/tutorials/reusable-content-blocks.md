@@ -19,11 +19,13 @@ Mehrere Blöcke, die zusammen einen Abschnitt bilden, werden zu einer
 ## 1. Installieren
 
 ```bash
-npm install @nera-static/plugin-stacks
+npx nera add stacks
 ```
 
-Nera findet das Plugin von selbst. Es braucht keine Konfigurationsdatei:
-Stacks werden im Frontmatter definiert.
+`nera add` installiert das Paket und veröffentlicht sein Standard-Template
+nach `theme/views/vendor/plugin-stacks/` (Abschnitt 4). Eine
+Konfigurationsdatei kopiert es nicht, denn das Plugin braucht keine: Stacks
+werden im Frontmatter definiert. Nera findet das Plugin von selbst.
 
 ## 2. Was eine Seite zum Stack macht
 
@@ -79,14 +81,9 @@ zwei Stacks am Ende denselben, gewinnt der spätere, und das Plugin warnt.
 
 ## 4. Einen Stack über ein Template rendern
 
-Ein Stack kann sein eigenes Markup mitbringen. Veröffentliche das
-Standard-Template des Plugins:
-
-```bash
-npx nera-stacks
-```
-
-Es landet in `theme/views/vendor/plugin-stacks/stack-template.pug`. Verweise
+Ein Stack kann sein eigenes Markup mitbringen. `nera add` hat das
+Standard-Template des Plugins schon nach
+`theme/views/vendor/plugin-stacks/stack-template.pug` veröffentlicht. Verweise
 einen Stack mit **`stack_layout`** darauf, mit einem Pfad vom
 **Projektverzeichnis** aus (dort, wo du `nera build` ausführst), nicht vom
 Views-Ordner:

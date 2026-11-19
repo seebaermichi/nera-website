@@ -8,11 +8,11 @@ keywords: nera consent, plugin-consent, cookie banner, consent banner, two-click
 tags: plugins, privacy
 pagination_order: 10
 createdAt: 2026-10-25
-verified_on: 2026-11-18
+verified_on: 2026-11-19
 verified_with:
     plugin-consent: 1.0.3
     validate: 1.7.0
-    nera: 1.23.0
+    nera: 1.27.0
 ---
 A consent banner asks visitors to agree before something on the site that
 needs their consent runs: an analytics script, a YouTube video, a map. A site
@@ -71,17 +71,18 @@ you add a category, `notice: false` no longer applies, and the build says so:
 ## 2. Install and wire the layout
 
 ```bash
-npm install @nera-static/plugin-consent
-npx nera-consent-config
-npx nera-consent
+npx nera add consent
 ```
 
-`npx nera-consent-config` copies the documented `config/consent.yaml`, every
-example commented out, so the site starts in notice mode. `npx nera-consent`
-copies the five views (`banner`, `settings`, `notice`, `head`, `embed`). On a
-site scaffolded with `nera new`, they land in
-`theme/views/vendor/plugin-consent/`. Both commands skip a file or folder that
-already exists; `--force` overwrites it, and your edits with it.
+`nera add` installs the package, copies its documented `config/consent.yaml`
+and publishes the five views (`banner`, `settings`, `notice`, `head`, `embed`)
+into `theme/views/vendor/plugin-consent/`. In the copied file `revision` and
+`notice` are set to their defaults and every example (`privacy_url`,
+`categories`, `texts`) is commented out, so the site starts in notice mode.
+Until you set `privacy_url`, the build warns that the notice links no privacy
+policy. `nera add` keeps a `config/consent.yaml` or a views folder that already
+exists. To overwrite them with the plugin's current versions, and your edits
+with them, run `npx nera-consent-config --force` and `npx nera-consent --force`.
 
 Plugins cannot touch your layout, so this is the one manual step. Add the
 stylesheet, the `head` view and the runtime inside `<head>`, a settings link
