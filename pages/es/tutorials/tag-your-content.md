@@ -15,9 +15,11 @@ automáticamente una página de resumen navegable para cada etiqueta.
 ## 1. Instala y publica las plantillas
 
 ```bash
-npm install @nera-static/plugin-tags
-npx nera-tags
+npx nera add tags
 ```
+
+`nera add` instala el paquete, copia su `config/tags.yaml` predeterminado a tu
+sitio y publica las plantillas en `theme/views/vendor/plugin-tags/`.
 
 ## 2. Etiqueta algunas páginas
 
@@ -34,19 +36,28 @@ tags: plugins, search
 Las etiquetas se convierten en slugs y se normalizan a minúsculas, así que `Web Dev`, `web dev` y `WEB DEV` apuntan todas a
 una página en `/tags/web-dev.html`.
 
-## 3. Configura (opcional)
+## 3. Configura
 
-`config/tags.yaml` — cada clave es opcional:
+`config/tags.yaml`, el archivo que copió `nera add`, pone cada clave en su valor
+predeterminado, así que no cambia nada hasta que lo edites; las claves comentadas
+en él son ejemplos. Estas son las cuatro primeras:
 
 ```yaml
 meta_property_name: tags
 tag_overview_path: '/tags'
 tag_separator: ','
+tag_overview_layout: pages/default.pug
+```
+
+`tag_overview_layout` es el layout con el que se renderiza cada página de
+etiqueta generada. Haz que apunte a un layout que renderice la plantilla de
+resumen publicada:
+
+```yaml
 tag_overview_layout: pages/tag-overview.pug
 ```
 
-El `tag_overview_layout` apunta a un layout que renderiza la plantilla de resumen
-publicada. Crea `theme/views/pages/tag-overview.pug`:
+Después crea `theme/views/pages/tag-overview.pug`:
 
 ```pug
 extends ../layouts/layout
@@ -93,7 +104,7 @@ todo el `tag_overview_path`. Con `tag_overview_path: '/tutorials/tags'` obtienes
 ```
 
 El idioma por defecto se queda sin prefijo, que es lo que quieres cuando se sirve
-desde la raíz. Si cada idioma vive en su propio directorio, añade
+desde la raíz. Si cada idioma vive en su propio directorio, pon
 `prefix_default_lang: true` para que también reciba un segmento. Las páginas sin
 `meta.lang` caen en el idioma por defecto en lugar de formar un grupo aparte, así
 que un sitio monolingüe no cambia en nada.

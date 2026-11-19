@@ -8,8 +8,9 @@ keywords: nera search, static site search, client-side search
 tags: plugins, search
 pagination_order: 4
 createdAt: 2026-07-18
-verified_on: 2026-10-17
+verified_on: 2026-11-19
 verified_with:
+    nera: 1.27.0
     plugin-search: 2.3.1
 ---
 `@nera-static/plugin-search` builds a JSON index at render time and ships a small
@@ -18,30 +19,27 @@ client script — no server required.
 ## 1. Install
 
 ```bash
-npm install @nera-static/plugin-search
+npx nera add search
 ```
 
-## 2. Publish the template
-
-```bash
-npx nera-search
-```
-
-This copies the search box into `theme/views/vendor/plugin-search/` and the client into
+`nera add` installs the package, copies its default `config/search.yaml` into
+your site and publishes the plugin's files: the search box into
+`theme/views/vendor/plugin-search/` and the client into
 `theme/assets/js/search.js`.
 
-Both copies are yours from then on. Running `npx nera-search` again skips the
-template if the `vendor/plugin-search/` folder exists and the client if
-`search.js` exists, so it never discards your edits — and a template change in a
+Both copies are yours from then on. Running `npx nera add search` again, or
+the plugin's own `npx nera-search`, skips the template if the
+`vendor/plugin-search/` folder exists and the client if `search.js` exists, so
+it never discards your edits — and a template change in a
 new release never reaches your site on its own. To refresh after an upgrade, run
 `npx nera-search --force`, but only if you never edited the copies: it overwrites
 both. If you did, diff them against the package and merge the changes by hand
 (the plugin README's *Template Publishing* section explains how).
 
-## 3. Configure
+## 2. Configure
 
-`config/search.yaml` controls which fields are indexed. The file is optional;
-these are the defaults:
+`config/search.yaml`, the file `nera add` copied, controls which fields are
+indexed. Its values are the defaults, so it changes nothing until you edit it:
 
 ```yaml
 fields:
@@ -51,7 +49,11 @@ fields:
     - href
 strip_html: true
 output_filename: search-index.json
+group_by_lang: false
+show_title: true
 ```
+
+`show_title` and `group_by_lang` come up in steps 3 and 4.
 
 `fields` replaces the default list rather than extending it, so keep `content`
 (the page body) and `href` (the result link). Any other frontmatter key works if
@@ -69,7 +71,7 @@ write the attribute on raw HTML:
 <aside data-search-ignore>Not part of the index.</aside>
 ```
 
-## 4. Add a search page
+## 3. Add a search page
 
 The search box is Pug, so it belongs in a view, not in the Markdown. Create
 `theme/views/pages/search.pug` on top of the layout `nera new` scaffolds:
@@ -98,14 +100,15 @@ Search across the documentation.
 ```
 
 That page brings its own `# Search` heading, so turn off the template's `h1` in
-`config/search.yaml`, or `nera build --check` warns `a11y-h1` about two of them:
+`config/search.yaml`, or `nera build --check` warns `a11y-h1` about two of them —
+set it to `false`:
 
 ```yaml
 show_title: false
 ```
 
-If your page has no heading of its own, leave `show_title` out and the template's
-`h1` is the page heading.
+If your page has no heading of its own, keep `show_title: true` and the
+template's `h1` is the page heading.
 
 The template's texts go through `t()`: `search_title` (the heading, default
 `Search`), `search_placeholder` (default `Search...`) and `search_label`, the
@@ -129,11 +132,11 @@ plugin-order:
           - plugin-search
 ```
 
-## 5. Per-language search (optional)
+## 4. Per-language search (optional)
 
 By default every page lands in one index, so the search box on a German page
-also returns English and Spanish hits. Set `group_by_lang` to give each language
-an index of its own:
+also returns English and Spanish hits. Set `group_by_lang` to `true` to give
+each language an index of its own:
 
 ```yaml
 group_by_lang: true
@@ -159,7 +162,7 @@ the *default* language's index, so building the attribute from it would search
 English from a German page. `app.searchIndexPaths` has every language keyed by
 code, and each index entry carries its `lang`.
 
-Because search runs last (step 4), pages other plugins generate land in the
+Because search runs last (step 3), pages other plugins generate land in the
 right language too — the tag pages from `plugin-tags` among them.
 
 Render, and you have working search. This site's [Search page](/search.html) is

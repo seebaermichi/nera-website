@@ -15,9 +15,12 @@ automatisch eine durchsuchbare Übersichtsseite für jeden Tag.
 ## 1. Templates installieren und veröffentlichen
 
 ```bash
-npm install @nera-static/plugin-tags
-npx nera-tags
+npx nera add tags
 ```
+
+`nera add` installiert das Paket, kopiert seine Standardkonfiguration
+`config/tags.yaml` in deine Website und veröffentlicht die Templates nach
+`theme/views/vendor/plugin-tags/`.
 
 ## 2. Einige Seiten taggen
 
@@ -34,19 +37,28 @@ tags: plugins, search
 Tags werden in Slugs umgewandelt und in Kleinbuchstaben zusammengeführt, sodass `Web Dev`, `web dev` und `WEB DEV` alle auf
 eine Seite unter `/tags/web-dev.html` verweisen.
 
-## 3. Konfigurieren (optional)
+## 3. Konfigurieren
 
-`config/tags.yaml` — jeder Schlüssel ist optional:
+`config/tags.yaml`, die Datei, die `nera add` kopiert hat, setzt jeden Schlüssel
+auf seinen Standardwert und ändert also nichts, bis du sie bearbeitest; die darin
+auskommentierten Schlüssel sind Beispiele. Das sind die ersten vier:
 
 ```yaml
 meta_property_name: tags
 tag_overview_path: '/tags'
 tag_separator: ','
+tag_overview_layout: pages/default.pug
+```
+
+`tag_overview_layout` ist das Layout, mit dem jede erzeugte Tag-Seite gerendert
+wird. Lass es auf ein Layout zeigen, das das veröffentlichte Übersichts-Template
+rendert:
+
+```yaml
 tag_overview_layout: pages/tag-overview.pug
 ```
 
-Das `tag_overview_layout` verweist auf ein Layout, das das veröffentlichte Übersichts-Template
-rendert. Erstelle `theme/views/pages/tag-overview.pug`:
+Erstelle dann `theme/views/pages/tag-overview.pug`:
 
 ```pug
 extends ../layouts/layout

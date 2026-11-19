@@ -8,8 +8,9 @@ keywords: nera pagination, plugin-page-pagination, prev next links, docs navigat
 tags: plugins, pagination
 pagination_order: 5
 createdAt: 2026-07-17
-verified_on: 2026-10-13
+verified_on: 2026-11-19
 verified_with:
+    nera: 1.27.0
     plugin-page-pagination: 2.4.0
 ---
 `@nera-static/plugin-page-pagination` links each page to its previous and next
@@ -19,9 +20,13 @@ docs and multi-part tutorials.
 ## 1. Install and publish the template
 
 ```bash
-npm install @nera-static/plugin-page-pagination
-npx nera-page-pagination
+npx nera add page-pagination
 ```
+
+`nera add` installs the package, copies its `config/page-pagination.yaml` into
+your site and publishes the template into
+`theme/views/vendor/plugin-page-pagination/`. The defaults need no setting, so
+the one key in that file is commented out.
 
 ## 2. Order the pages
 
@@ -38,8 +43,8 @@ Pages are ordered by `pagination_order` first, then by creation date, then by
 path — so a page without an explicit order still lands somewhere stable.
 
 > Ordering starts at `0` if you want it to: the plugin treats `0` as a real value,
-> not "missing". Change the key name in `config/page-pagination.yaml` with
-> `order_property` if you prefer.
+> not "missing". To read a different key, uncomment `order_property` in
+> `config/page-pagination.yaml` and set its name.
 
 ## 3. Render the links
 

@@ -15,20 +15,17 @@ Client-Skript — kein Server erforderlich.
 ## 1. Installieren
 
 ```bash
-npm install @nera-static/plugin-search
+npx nera add search
 ```
 
-## 2. Das Template veröffentlichen
+`nera add` installiert das Paket, kopiert seine Standardkonfiguration
+`config/search.yaml` in deine Website und veröffentlicht die Dateien des
+Plugins: das Suchfeld nach `theme/views/vendor/plugin-search/` und den Client
+nach `theme/assets/js/search.js`.
 
-```bash
-npx nera-search
-```
-
-Dies kopiert das Suchfeld nach `theme/views/vendor/plugin-search/` und den Client nach
-`theme/assets/js/search.js`.
-
-Beide Kopien gehören ab dann dir. Ein erneutes `npx nera-search` überspringt das
-Template, sobald der Ordner `vendor/plugin-search/` existiert, und den Client,
+Beide Kopien gehören ab dann dir. Ein erneutes `npx nera add search` oder der
+plugin-eigene Befehl `npx nera-search` überspringt das Template, sobald der
+Ordner `vendor/plugin-search/` existiert, und den Client,
 sobald `search.js` existiert — es verwirft also nie deine Änderungen, bringt aber
 auch eine Template-Änderung aus einem neuen Release nicht von selbst auf deine
 Website. Zum Auffrischen nach einem Update führst du `npx nera-search --force`
@@ -37,10 +34,11 @@ Hast du sie angepasst, vergleiche sie mit dem Paket und übernimm die Änderunge
 von Hand (der Abschnitt *Template Publishing* in der README des Plugins
 erklärt, wie).
 
-## 3. Konfigurieren
+## 2. Konfigurieren
 
-`config/search.yaml` steuert, welche Felder indexiert werden. Die Datei ist
-optional; das sind die Standardwerte:
+`config/search.yaml`, die Datei, die `nera add` kopiert hat, steuert, welche
+Felder indexiert werden. Ihre Werte sind die Standardwerte, sie ändert also
+nichts, bis du sie bearbeitest:
 
 ```yaml
 fields:
@@ -50,7 +48,11 @@ fields:
     - href
 strip_html: true
 output_filename: search-index.json
+group_by_lang: false
+show_title: true
 ```
+
+`show_title` und `group_by_lang` kommen in den Schritten 3 und 4 dran.
 
 `fields` ersetzt die Standardliste, statt sie zu erweitern — behalte also
 `content` (den Seiteninhalt) und `href` (den Link des Treffers). Jeder andere
@@ -69,7 +71,7 @@ landen. In Markdown schreibst du das Attribut an rohes HTML:
 <aside data-search-ignore>Not part of the index.</aside>
 ```
 
-## 4. Eine Suchseite hinzufügen
+## 3. Eine Suchseite hinzufügen
 
 Das Suchfeld ist Pug und gehört deshalb in eine View, nicht ins Markdown. Lege
 `theme/views/pages/search.pug` auf Basis des Layouts an, das `nera new` erzeugt:
@@ -100,14 +102,14 @@ Durchsuche die Dokumentation.
 
 Diese Seite bringt ihre eigene Überschrift `# Suche` mit. Schalte deshalb das
 `h1` des Templates in `config/search.yaml` ab, sonst warnt
-`nera build --check` mit `a11y-h1` vor zwei davon:
+`nera build --check` mit `a11y-h1` vor zwei davon — setze es auf `false`:
 
 ```yaml
 show_title: false
 ```
 
-Hat deine Seite keine eigene Überschrift, lass `show_title` weg — dann ist das
-`h1` des Templates die Überschrift der Seite.
+Hat deine Seite keine eigene Überschrift, behalte `show_title: true` — dann ist
+das `h1` des Templates die Überschrift der Seite.
 
 Die Texte des Templates laufen über `t()`: `search_title` (die Überschrift,
 Standard `Search`), `search_placeholder` (Standard `Search...`) und
@@ -133,11 +135,11 @@ plugin-order:
           - plugin-search
 ```
 
-## 5. Suche je Sprache (optional)
+## 4. Suche je Sprache (optional)
 
 Standardmäßig landet jede Seite im selben Index — die Suche auf einer deutschen
 Seite liefert damit auch englische und spanische Treffer. Mit `group_by_lang`
-bekommt jede Sprache ihren eigenen Index:
+bekommt jede Sprache ihren eigenen Index — setze es auf `true`:
 
 ```yaml
 group_by_lang: true
@@ -165,7 +167,7 @@ Attribut daraus, durchsucht eine deutsche Seite den englischen Index.
 `app.searchIndexPaths` enthält alle Sprachen nach Code, und jeder Eintrag im
 Index trägt sein `lang`.
 
-Weil die Suche zuletzt läuft (Schritt 4), landen auch von anderen Plugins
+Weil die Suche zuletzt läuft (Schritt 3), landen auch von anderen Plugins
 erzeugte Seiten in der richtigen Sprache — die Tag-Seiten aus `plugin-tags`
 zum Beispiel.
 

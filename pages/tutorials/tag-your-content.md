@@ -8,9 +8,10 @@ keywords: nera tags, plugin-tags, tag pages, topic pages, static site tags
 tags: plugins, tags
 pagination_order: 3
 createdAt: 2026-07-19
-verified_on: 2026-10-15
+verified_on: 2026-11-19
 verified_with:
-    plugin-tags: 3.4.0
+    nera: 1.27.0
+    plugin-tags: 3.4.1
 ---
 `@nera-static/plugin-tags` reads a `tags:` field from your frontmatter, then builds
 a browsable overview page for every tag automatically.
@@ -18,9 +19,11 @@ a browsable overview page for every tag automatically.
 ## 1. Install and publish templates
 
 ```bash
-npm install @nera-static/plugin-tags
-npx nera-tags
+npx nera add tags
 ```
+
+`nera add` installs the package, copies its default `config/tags.yaml` into
+your site and publishes the templates into `theme/views/vendor/plugin-tags/`.
 
 ## 2. Tag some pages
 
@@ -37,19 +40,27 @@ tags: plugins, search
 Tags are slugified and case-folded, so `Web Dev`, `web dev` and `WEB DEV` all map to
 one page at `/tags/web-dev.html`.
 
-## 3. Configure (optional)
+## 3. Configure
 
-`config/tags.yaml` — every key is optional:
+`config/tags.yaml`, the file `nera add` copied, sets every key to its default,
+so it changes nothing until you edit it; the keys commented out in it are
+examples. These are the first four:
 
 ```yaml
 meta_property_name: tags
 tag_overview_path: '/tags'
 tag_separator: ','
+tag_overview_layout: pages/default.pug
+```
+
+`tag_overview_layout` is the layout every generated tag page renders with.
+Point it at a layout that renders the published overview template:
+
+```yaml
 tag_overview_layout: pages/tag-overview.pug
 ```
 
-The `tag_overview_layout` points at a layout that renders the published overview
-template. Create `theme/views/pages/tag-overview.pug`:
+Then create `theme/views/pages/tag-overview.pug`:
 
 ```pug
 extends ../layouts/layout
@@ -96,7 +107,7 @@ Tags are then collected per `meta.lang`, and the language code prefixes the whol
 ```
 
 The default language stays unprefixed, which is what you want when it is served
-from the root. If every language sits in its own directory, add
+from the root. If every language sits in its own directory, set
 `prefix_default_lang: true` so it gets a segment too. Pages without a `meta.lang`
 fall into the default language rather than a bucket of their own, so a
 single-language site is unaffected by any of this.

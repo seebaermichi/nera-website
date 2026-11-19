@@ -16,9 +16,13 @@ Docs und mehrteilige Tutorials.
 ## 1. Template installieren und veröffentlichen
 
 ```bash
-npm install @nera-static/plugin-page-pagination
-npx nera-page-pagination
+npx nera add page-pagination
 ```
+
+`nera add` installiert das Paket, kopiert seine `config/page-pagination.yaml` in
+deine Website und veröffentlicht das Template nach
+`theme/views/vendor/plugin-page-pagination/`. Die Standardwerte brauchen keine
+Einstellung, deshalb ist der eine Schlüssel in dieser Datei auskommentiert.
 
 ## 2. Die Seiten ordnen
 
@@ -35,8 +39,9 @@ Seiten werden zuerst nach `pagination_order` geordnet, dann nach Erstellungsdatu
 Pfad — sodass eine Seite ohne explizite Reihenfolge trotzdem an einer stabilen Position landet.
 
 > Die Ordnung kann bei `0` beginnen, wenn du das möchtest: Das Plugin behandelt `0` als echten Wert,
-> nicht als "fehlend". Ändere den Schlüsselnamen in `config/page-pagination.yaml` mit
-> `order_property`, falls du das bevorzugst.
+> nicht als "fehlend". Soll es einen anderen Schlüssel lesen, entferne in
+> `config/page-pagination.yaml` das Kommentarzeichen vor `order_property` und
+> trage dort dessen Namen ein.
 
 ## 3. Die Links rendern
 

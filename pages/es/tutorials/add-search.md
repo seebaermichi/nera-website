@@ -15,20 +15,16 @@ script de cliente — sin servidor necesario.
 ## 1. Instala
 
 ```bash
-npm install @nera-static/plugin-search
+npx nera add search
 ```
 
-## 2. Publica la plantilla
+`nera add` instala el paquete, copia su `config/search.yaml` predeterminado a
+tu sitio y publica los archivos del plugin: la caja de búsqueda en
+`theme/views/vendor/plugin-search/` y el cliente en `theme/assets/js/search.js`.
 
-```bash
-npx nera-search
-```
-
-Esto copia la caja de búsqueda en `theme/views/vendor/plugin-search/` y el cliente en
-`theme/assets/js/search.js`.
-
-A partir de ahí, ambas copias son tuyas. Si vuelves a ejecutar `npx nera-search`,
-omite la plantilla cuando existe la carpeta `vendor/plugin-search/` y el cliente
+A partir de ahí, ambas copias son tuyas. Si vuelves a ejecutar
+`npx nera add search`, o el comando propio del plugin `npx nera-search`, omite
+la plantilla cuando existe la carpeta `vendor/plugin-search/` y el cliente
 cuando existe `search.js`, así que nunca descarta tus ediciones — pero tampoco
 lleva por sí solo a tu sitio un cambio de plantilla de una versión nueva. Para
 actualizarlas tras subir de versión, ejecuta `npx nera-search --force`, pero solo
@@ -37,10 +33,11 @@ con el paquete y combina los cambios a mano (la sección *Template Publishing* d
 README del plugin
 explica cómo).
 
-## 3. Configura
+## 2. Configura
 
-`config/search.yaml` controla qué campos se indexan. El archivo es opcional;
-estos son los valores por defecto:
+`config/search.yaml`, el archivo que copió `nera add`, controla qué campos se
+indexan. Sus valores son los predeterminados, así que no cambia nada hasta que
+lo edites:
 
 ```yaml
 fields:
@@ -50,7 +47,11 @@ fields:
     - href
 strip_html: true
 output_filename: search-index.json
+group_by_lang: false
+show_title: true
 ```
+
+`show_title` y `group_by_lang` aparecen en los pasos 3 y 4.
 
 `fields` sustituye la lista por defecto en lugar de ampliarla, así que conserva
 `content` (el cuerpo de la página) y `href` (el enlace del resultado). Cualquier
@@ -70,7 +71,7 @@ procesar:
 <aside data-search-ignore>Not part of the index.</aside>
 ```
 
-## 4. Añade una página de búsqueda
+## 3. Añade una página de búsqueda
 
 La caja de búsqueda es Pug, así que va en una vista, no en el Markdown. Crea
 `theme/views/pages/search.pug` sobre el layout que genera `nera new`:
@@ -100,14 +101,14 @@ Busca en toda la documentación.
 
 Esa página trae su propio encabezado `# Buscar`, así que desactiva el `h1` de la
 plantilla en `config/search.yaml`; si no, `nera build --check` avisa con
-`a11y-h1` de que hay dos:
+`a11y-h1` de que hay dos — ponlo en `false`:
 
 ```yaml
 show_title: false
 ```
 
-Si tu página no tiene encabezado propio, omite `show_title` y el `h1` de la
-plantilla será el encabezado de la página.
+Si tu página no tiene encabezado propio, deja `show_title: true` y el `h1` de
+la plantilla será el encabezado de la página.
 
 Los textos de la plantilla pasan por `t()`: `search_title` (el encabezado, por
 defecto `Search`), `search_placeholder` (por defecto `Search...`) y
@@ -132,11 +133,11 @@ plugin-order:
           - plugin-search
 ```
 
-## 5. Búsqueda por idioma (opcional)
+## 4. Búsqueda por idioma (opcional)
 
 Por defecto todas las páginas caen en un único índice, así que el buscador de una
 página en alemán también devuelve resultados en inglés y en español. Con
-`group_by_lang` cada idioma recibe su propio índice:
+`group_by_lang` cada idioma recibe su propio índice — ponlo en `true`:
 
 ```yaml
 group_by_lang: true
@@ -164,7 +165,7 @@ atributo a partir de él haría que una página en alemán buscara en inglés.
 `app.searchIndexPaths` contiene todos los idiomas indexados por código, y cada
 entrada del índice lleva su `lang`.
 
-Como la búsqueda se ejecuta en último lugar (paso 4), las páginas que generan
+Como la búsqueda se ejecuta en último lugar (paso 3), las páginas que generan
 otros plugins también caen en el idioma correcto — entre ellas las páginas de
 etiquetas de `plugin-tags`.
 

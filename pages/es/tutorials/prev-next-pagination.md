@@ -16,9 +16,13 @@ docs y tutoriales de varias partes.
 ## 1. Instalar y publicar la plantilla
 
 ```bash
-npm install @nera-static/plugin-page-pagination
-npx nera-page-pagination
+npx nera add page-pagination
 ```
+
+`nera add` instala el paquete, copia su `config/page-pagination.yaml` a tu
+sitio y publica la plantilla en `theme/views/vendor/plugin-page-pagination/`.
+Los valores predeterminados no necesitan ajuste, así que la única clave de ese
+archivo está comentada.
 
 ## 2. Ordenar las páginas
 
@@ -35,8 +39,8 @@ Las páginas se ordenan primero por `pagination_order`, luego por fecha de creac
 ruta — así una página sin un orden explícito acaba en algún lugar estable.
 
 > El orden puede empezar en `0` si lo deseas: el plugin trata `0` como un valor real,
-> no como "ausente". Cambia el nombre de la clave en `config/page-pagination.yaml` con
-> `order_property` si lo prefieres.
+> no como "ausente". Para leer otra clave, quita el comentario de `order_property`
+> en `config/page-pagination.yaml` y pon su nombre.
 
 ## 3. Renderizar los enlaces
 
