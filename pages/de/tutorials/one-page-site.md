@@ -36,24 +36,23 @@ um zu zeigen, wie die Teile zusammenpassen.
 ```bash
 npx @nera-static/nera new my-site
 cd my-site
-npm install @nera-static/plugin-one-page @nera-static/plugin-page-navigation \
-    @nera-static/plugin-contact-form @nera-static/plugin-social-media-links
+npx nera add one-page
+npx nera add page-navigation
+npx nera add contact-form
+npx nera add social-media-links
 ```
 
-Nera findet alle vier Plugins von selbst. Drei davon bringen Templates mit.
-Veröffentliche sie in deinen Views-Ordner, wo sie dir gehören und du sie
-ändern kannst:
-
-```bash
-npx nera-page-navigation
-npx nera-contact-form
-npx nera-social-media-links
-```
-
-Auf einer `nera new`-Website landen sie in
-`theme/views/vendor/plugin-<name>/`, das Client-Skript des Kontaktformulars in
-`theme/assets/js/contact-form.js`. `plugin-one-page` bringt kein Template mit
-und braucht keine Konfigurationsdatei.
+`nera add` nimmt ein Plugin pro Aufruf. Jeder Aufruf installiert das Paket, das
+Nera dann von selbst findet, und kopiert die Standardkonfiguration des Plugins
+nach `config/`. Drei der vier bringen Templates mit, und `nera add`
+veröffentlicht sie nach `theme/views/vendor/plugin-<name>/`, wo sie dir gehören
+und du sie ändern kannst. Das Client-Skript des Kontaktformulars landet in
+`theme/assets/js/contact-form.js`. `plugin-one-page` bringt kein Template mit.
+Seine kopierte `config/one-page.yaml` nennt nur die Frontmatter-Schlüssel, die
+es liest (`add_to_page`, `add_to_page_order`, `anchor_id` und die anderen), und
+dieses Tutorial lässt sie, wie sie ist; ebenso `config/page-navigation.yaml`,
+die die Klasse des aktiven Links setzt. Die Schritte 7 und 8 ersetzen die
+anderen beiden Dateien.
 
 ## 2. Die Zielseite
 
@@ -328,7 +327,10 @@ Sie stehen im Frontmatter jeder Seite, neben dem Inhalt, auf den sie zeigen.
 
 ## 7. Das Kontaktformular
 
-`plugin-contact-form` rendert ein Formular aus `config/contact-form.yaml`. Beim
+`plugin-contact-form` rendert ein Formular aus `config/contact-form.yaml`. Die
+Kopie, die `nera add` angelegt hat, dokumentiert jeden Schlüssel, mit
+auskommentiertem Empfänger und einer Reihe Beispielfelder; ersetze sie durch
+diese. Beim
 Absenden baut ein kleines Skript im Browser aus den Feldern einen
 `mailto:`-Link und öffnet das eigene E-Mail-Programm des Besuchers, mit Betreff
 und Nachricht schon ausgefüllt. Es gibt kein Backend: Deine Website speichert
@@ -446,7 +448,9 @@ Leer abgeschickt, öffnete es nichts und zeigte in der Statuszeile
 ## 8. Social-Links im Footer
 
 `plugin-social-media-links` liest eine Liste von Links aus
-`config/social-media-links.yaml`:
+`config/social-media-links.yaml`. In der Kopie, die `nera add` angelegt hat, ist
+die Liste ein auskommentiertes Beispiel, also wird noch nichts gerendert.
+Ersetze die Datei durch:
 
 ```yaml:config/social-media-links.yaml
 aria_label: Social media
@@ -465,9 +469,9 @@ Das Attribut `d` ist hier gekürzt; füge den vollständigen Pfad des Icons ein,
 das du verwendest. Simple Icons (simpleicons.org) hat Markenlogos als SVG.
 `icon` wird escaped, außer der Eintrag setzt `icon_raw: true`; setze es also
 nur für Markup, das du selbst geschrieben oder geprüft hast. Der Eintrag
-LinkedIn hat kein Icon und zeigt nur seinen Namen. Die Beispielkonfiguration
-des Plugins verwendet stattdessen `<i>`-Tags von Font Awesome, die das CSS von
-Font Awesome brauchen. Lädst du es von einem CDN, geht die IP-Adresse jedes
+LinkedIn hat kein Icon und zeigt nur seinen Namen. Die Beispielliste in der
+kopierten Konfiguration verwendet stattdessen `<i>`-Tags von Font Awesome, die
+das CSS von Font Awesome brauchen. Lädst du es von einem CDN, geht die IP-Adresse jedes
 Besuchers an einen Dritten, und `nera build --check` warnt dann
 `privacy-third-party`. Inline-SVG oder reiner Text braucht gar keine Anfrage.
 

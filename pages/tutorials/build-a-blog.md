@@ -8,9 +8,9 @@ keywords: nera blog tutorial, static blog, markdown blog, plugin-simple-page-lis
 tags: getting-started, blog, plugins
 pagination_order: 1
 createdAt: 2026-07-21
-verified_on: 2026-11-18
+verified_on: 2026-11-19
 verified_with:
-    nera: 1.23.0
+    nera: 1.27.0
     core: 4.18.2
     plugin-simple-page-list: 2.3.3
     starter-blog: 1.1.0
@@ -82,30 +82,32 @@ build server, say — is the same for every file, so the order would be arbitrar
 ## 3. List the posts on the home page
 
 `@nera-static/plugin-simple-page-list` collects the pages of a folder into a
-sorted list. Install it and publish its template:
+sorted list. Add it:
 
 ```bash
-npm install @nera-static/plugin-simple-page-list
-npx nera-simple-page-list
+npx nera add simple-page-list
 ```
 
-Nera picks up the plugin from your `package.json` on its own. The second command
-copies the template to
+`nera add` installs the package, which Nera then picks up from your
+`package.json` on its own. It also copies the plugin's default
+`config/simple-page-list.yaml` and publishes its template to
 `theme/views/vendor/plugin-simple-page-list/simple-page-list.pug`.
 
-Tell the plugin which folder to list and how to sort it. Create
-`config/simple-page-list.yaml`:
+The copied config already lists the posts folder, newest first. Without its
+comments it reads:
 
-```yaml
-page_path: /posts
+```yaml:config/simple-page-list.yaml
+page_paths:
+    - /posts
 more_link_text: Read more
 sortBy: date
 sortOrder: descending
 ```
 
-`page_path` gives you one flat list in `app.pageList`, which is all a blog with
-one section needs. `sortBy: date` reads a post's `date` from the frontmatter and
-falls back to `createdAt`, so your posts sort by the dates you just set.
+`page_paths` groups the list by the last segment of each path, so your posts
+arrive in `app.pageList.posts`. Add more folders here later, and each gets its
+own key. `sortBy: date` reads a post's `date` from the frontmatter and falls
+back to `createdAt`, so your posts sort by the dates you just set.
 
 Now a page template that renders the page's own content and the list below it.
 Create `theme/views/pages/blog.pug`:
@@ -187,11 +189,13 @@ if groups.length > 0
                     +pageListItems(group.pages)
 ```
 
-Each post becomes an `article` with its title, description and a "Read more"
-link, under the heading "Recent Pages". To change the heading or the markup, edit
-this file — it is your copy now. Running `npx nera-simple-page-list` again skips
-the folder because it already exists; `npx nera-simple-page-list --force`
-overwrites it with the shipped version and discards your edits.
+It reads `app.pageList` in either shape. For your config that is one group,
+`posts`: under the heading "Recent Pages" and a group heading "posts", each post
+becomes an `article` with its title, description and a "Read more" link. To
+change the headings or the markup, edit this file — it is your copy now.
+Running `npx nera add simple-page-list` again keeps your config and this folder.
+`npx nera-simple-page-list --force` overwrites the folder with the shipped
+template and discards your edits.
 
 Prefer to write the list yourself? See
 [Write your own local plugin](/tutorials/write-a-local-plugin.html).

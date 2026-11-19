@@ -8,13 +8,13 @@ keywords: nera one-page, landing page, plugin-one-page, plugin-page-navigation, 
 tags: plugins, one-page, forms
 pagination_order: 11
 createdAt: 2026-10-25
-verified_on: 2026-11-18
+verified_on: 2026-11-19
 verified_with:
-    nera: 1.23.0
+    nera: 1.27.0
     plugin-one-page: 3.0.2
     plugin-page-navigation: 2.5.0
-    plugin-contact-form: 1.1.1
-    plugin-social-media-links: 2.3.0
+    plugin-contact-form: 1.1.2
+    plugin-social-media-links: 2.3.1
     starter-business: 1.0.1
     validate: 1.7.0
 ---
@@ -43,22 +43,22 @@ fit together.
 ```bash
 npx @nera-static/nera new my-site
 cd my-site
-npm install @nera-static/plugin-one-page @nera-static/plugin-page-navigation \
-    @nera-static/plugin-contact-form @nera-static/plugin-social-media-links
+npx nera add one-page
+npx nera add page-navigation
+npx nera add contact-form
+npx nera add social-media-links
 ```
 
-Nera finds all four plugins on its own. Three of them ship templates. Publish
-them into your views folder, where they are yours to edit:
-
-```bash
-npx nera-page-navigation
-npx nera-contact-form
-npx nera-social-media-links
-```
-
-On a `nera new` site they land in `theme/views/vendor/plugin-<name>/`, and the
-contact form's client script in `theme/assets/js/contact-form.js`.
-`plugin-one-page` ships no template and needs no config file.
+`nera add` takes one plugin per call. Each call installs the package, which
+Nera then finds on its own, and copies the plugin's default config into
+`config/`. Three of the four ship templates, and `nera add` publishes them into
+`theme/views/vendor/plugin-<name>/`, where they are yours to edit. The contact
+form's client script lands in `theme/assets/js/contact-form.js`.
+`plugin-one-page` ships no template. Its copied `config/one-page.yaml` only
+names the frontmatter keys it reads (`add_to_page`, `add_to_page_order`,
+`anchor_id` and the others). Leave it as it is, and
+`config/page-navigation.yaml` too, which sets the class of the active link.
+Steps 7 and 8 replace the other two files.
 
 ## 2. The target page
 
@@ -327,7 +327,9 @@ live in each page's frontmatter, next to the content they point to.
 
 ## 7. The contact form
 
-`plugin-contact-form` renders a form from `config/contact-form.yaml`. On submit
+`plugin-contact-form` renders a form from `config/contact-form.yaml`. The copy
+`nera add` made documents every key, with the recipient commented out and a
+set of sample fields; replace it with this one. On submit
 a small script in the browser builds a `mailto:` link from the fields and opens
 the visitor's own email program with subject and message filled in. There is no
 backend: your site stores and sends nothing, and the message leaves only through
@@ -441,7 +443,8 @@ fields.` in the status line. Three details are worth knowing:
 ## 8. Social links in the footer
 
 `plugin-social-media-links` reads a list of links from
-`config/social-media-links.yaml`:
+`config/social-media-links.yaml`. In the copy `nera add` made, the list is a
+commented-out example, so nothing renders yet. Replace the file with:
 
 ```yaml:config/social-media-links.yaml
 aria_label: Social media
@@ -459,9 +462,9 @@ social_media_links:
 The `d` attribute is shortened here; paste the full path of the icon you use.
 Simple Icons (simpleicons.org) has brand logos as SVG. `icon` is escaped unless
 the entry sets `icon_raw: true`, so set it only for markup you wrote or checked
-yourself. The LinkedIn entry has no icon and shows its name only. The plugin's
-sample config uses Font Awesome `<i>` tags instead, which need the Font Awesome
-CSS. Loading it from a CDN sends every visitor's IP address to a third party,
+yourself. The LinkedIn entry has no icon and shows its name only. The example
+list in the copied config uses Font Awesome `<i>` tags instead, which need the
+Font Awesome CSS. Loading it from a CDN sends every visitor's IP address to a third party,
 and `nera build --check` then warns `privacy-third-party`. Inline SVG or plain
 text needs no request at all.
 

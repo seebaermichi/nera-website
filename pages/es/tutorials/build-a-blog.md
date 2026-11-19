@@ -79,31 +79,33 @@ archivos, así que el orden sería arbitrario.
 ## 3. Listar las entradas en la página de inicio
 
 `@nera-static/plugin-simple-page-list` reúne las páginas de una carpeta en una
-lista ordenada. Instálalo y publica su plantilla:
+lista ordenada. Añádelo:
 
 ```bash
-npm install @nera-static/plugin-simple-page-list
-npx nera-simple-page-list
+npx nera add simple-page-list
 ```
 
-Nera detecta el plugin por sí solo a partir de tu `package.json`. El segundo
-comando copia la plantilla a
+`nera add` instala el paquete, que Nera detecta luego por sí solo a partir de tu
+`package.json`. Además copia el `config/simple-page-list.yaml` por defecto del
+plugin y publica su plantilla en
 `theme/views/vendor/plugin-simple-page-list/simple-page-list.pug`.
 
-Indica al plugin qué carpeta listar y cómo ordenarla. Crea
-`config/simple-page-list.yaml`:
+La configuración copiada ya incluye la carpeta de entradas, de más reciente a
+más antigua. Sin sus comentarios dice:
 
-```yaml
-page_path: /posts
+```yaml:config/simple-page-list.yaml
+page_paths:
+    - /posts
 more_link_text: Read more
 sortBy: date
 sortOrder: descending
 ```
 
-`page_path` te da una lista plana en `app.pageList`, que es todo lo que necesita
-un blog con una sola sección. `sortBy: date` lee el `date` de una entrada en el
-frontmatter y, si no lo hay, usa `createdAt`, así que tus entradas se ordenan por
-las fechas que acabas de poner.
+`page_paths` agrupa la lista por el último segmento de cada ruta, así que tus
+entradas llegan a `app.pageList.posts`. Si más adelante añades otras carpetas
+aquí, cada una tendrá su propia clave. `sortBy: date` lee el `date` de una
+entrada en el frontmatter y, si no lo hay, usa `createdAt`, así que tus entradas
+se ordenan por las fechas que acabas de poner.
 
 Ahora una plantilla de página que renderiza el contenido propio de la página y,
 debajo, la lista. Crea `theme/views/pages/blog.pug`:
@@ -185,12 +187,13 @@ if groups.length > 0
                     +pageListItems(group.pages)
 ```
 
-Cada entrada se convierte en un `article` con su título, su descripción y un
-enlace «Read more», bajo el encabezado «Recent Pages». Para cambiar el
-encabezado o el marcado, edita este archivo: ahora es tu copia. Volver a ejecutar
-`npx nera-simple-page-list` omite la carpeta porque ya existe;
-`npx nera-simple-page-list --force` la sobrescribe con la versión incluida y
-descarta tus cambios.
+Lee `app.pageList` en cualquiera de sus dos formas. Con tu configuración es un
+grupo, `posts`: bajo el encabezado «Recent Pages» y el encabezado de grupo
+«posts», cada entrada se convierte en un `article` con su título, su descripción
+y un enlace «Read more». Para cambiar los encabezados o el marcado, edita este
+archivo: ahora es tu copia. Volver a ejecutar `npx nera add simple-page-list`
+conserva tu configuración y esta carpeta. `npx nera-simple-page-list --force`
+sobrescribe la carpeta con la plantilla incluida y descarta tus cambios.
 
 ¿Prefieres escribir la lista tú mismo? Mira
 [Escribe tu propio plugin local](/es/tutorials/write-a-local-plugin.html).

@@ -80,31 +80,33 @@ Datei gleich, die Reihenfolge wäre also zufällig.
 ## 3. Beiträge auf der Startseite auflisten
 
 `@nera-static/plugin-simple-page-list` sammelt die Seiten eines Ordners in einer
-sortierten Liste. Installiere es und veröffentliche sein Template:
+sortierten Liste. Füge es hinzu:
 
 ```bash
-npm install @nera-static/plugin-simple-page-list
-npx nera-simple-page-list
+npx nera add simple-page-list
 ```
 
-Nera findet das Plugin von selbst über deine `package.json`. Der zweite Befehl
-kopiert das Template nach
+`nera add` installiert das Paket, das Nera dann von selbst über deine
+`package.json` findet. Außerdem kopiert es die Standard-`config/simple-page-list.yaml`
+des Plugins und veröffentlicht sein Template nach
 `theme/views/vendor/plugin-simple-page-list/simple-page-list.pug`.
 
-Sag dem Plugin, welchen Ordner es auflisten und wie es sortieren soll. Erstelle
-`config/simple-page-list.yaml`:
+Die kopierte Konfiguration nennt den Beitragsordner schon, neueste zuerst. Ohne
+ihre Kommentare lautet sie:
 
-```yaml
-page_path: /posts
+```yaml:config/simple-page-list.yaml
+page_paths:
+    - /posts
 more_link_text: Read more
 sortBy: date
 sortOrder: descending
 ```
 
-`page_path` ergibt eine flache Liste in `app.pageList` — mehr braucht ein Blog
-mit nur einem Bereich nicht. `sortBy: date` liest das `date` eines Beitrags aus
-dem Frontmatter und weicht auf `createdAt` aus, deine Beiträge werden also nach
-den Daten sortiert, die du gerade gesetzt hast.
+`page_paths` gruppiert die Liste nach dem letzten Segment jedes Pfads, deine
+Beiträge landen also in `app.pageList.posts`. Trägst du hier später weitere
+Ordner ein, bekommt jeder seinen eigenen Schlüssel. `sortBy: date` liest das
+`date` eines Beitrags aus dem Frontmatter und weicht auf `createdAt` aus, deine
+Beiträge werden also nach den Daten sortiert, die du gerade gesetzt hast.
 
 Jetzt ein Seiten-Template, das den Inhalt der Seite und darunter die Liste
 rendert. Erstelle `theme/views/pages/blog.pug`:
@@ -186,12 +188,14 @@ if groups.length > 0
                     +pageListItems(group.pages)
 ```
 
-Jeder Beitrag wird ein `article` mit Titel, Beschreibung und einem
-„Read more“-Link, unter der Überschrift „Recent Pages“. Um die Überschrift oder das
-Markup zu ändern, bearbeite diese Datei — sie ist jetzt deine Kopie. Ein erneutes
-`npx nera-simple-page-list` überspringt den Ordner, weil er schon existiert;
-`npx nera-simple-page-list --force` überschreibt ihn mit der mitgelieferten
-Version und verwirft deine Änderungen.
+Es liest `app.pageList` in beiden Formen. Bei deiner Konfiguration ist das eine
+Gruppe, `posts`: Unter der Überschrift „Recent Pages“ und der Gruppenüberschrift
+„posts“ wird jeder Beitrag ein `article` mit Titel, Beschreibung und einem
+„Read more“-Link. Um die Überschriften oder das Markup zu ändern, bearbeite diese
+Datei — sie ist jetzt deine Kopie. Ein erneutes `npx nera add simple-page-list`
+behält deine Konfiguration und diesen Ordner.
+`npx nera-simple-page-list --force` überschreibt den Ordner mit dem
+mitgelieferten Template und verwirft deine Änderungen.
 
 Du willst die Liste lieber selbst schreiben? Sieh dir
 [Schreibe dein eigenes lokales Plugin](/de/tutorials/write-a-local-plugin.html) an.
