@@ -3,7 +3,7 @@ layout: pages/docs.pug
 title: Using Nera with AI
 slug: using-ai
 lang: en
-description: Work on a Nera site with an AI assistant — AGENTS.md, docs for AI, the check loop and example prompts.
+description: Work on a Nera site with an AI assistant — AGENTS.md, the Nera MCP server, docs for AI, the check loop and example prompts.
 pagination_order: 8
 ---
 
@@ -67,7 +67,66 @@ Open the site's folder in the assistant — the folder with `package.json` and
   `AGENTS.md` convention read it too.
 - **Chat assistants without access to your files** (claude.ai, ChatGPT and the
   like) never see `AGENTS.md`. Give them Nera's docs in the prompt instead —
-  see the next section.
+  see [Docs for AI](#docs-for-ai).
+
+Claude Desktop, Claude Code, Cursor and Codex can also work through the Nera
+MCP server, which creates, builds, checks and publishes sites for them — see
+the next section.
+
+## The Nera MCP server
+
+[`@nera-static/mcp`](https://github.com/seebaermichi/nera-mcp) is a local
+[MCP](https://modelcontextprotocol.io) server. It lets an assistant create,
+edit, build, validate, preview and publish Nera sites in one folder on your
+computer — your **Sites folder** — and nowhere else.
+
+### Claude Desktop extension
+
+The easiest way, and no Node.js needed: Claude Desktop runs the server on the
+Node it ships.
+
+1. Download `nera-mcp-<version>.mcpb` from the
+   [latest release](https://github.com/seebaermichi/nera-mcp/releases/latest).
+2. Double-click it and choose **Install** in Claude Desktop.
+3. Pick your **Sites folder** when Claude Desktop asks for it: the folder your
+   sites live in.
+
+The extension runs on macOS and Windows. To update, install the `.mcpb` of a
+newer release.
+
+### Claude Code plugin
+
+The plugin brings the server and the Nera skill in one install:
+
+```bash
+claude plugin marketplace add seebaermichi/nera-mcp
+claude plugin install nera@nera
+```
+
+or, inside Claude Code 2.1.275 or later, in one step:
+
+```text
+/plugin install nera --marketplace seebaermichi/nera-mcp
+```
+
+Claude Code asks for your **Sites folder** when the plugin is enabled. The
+plugin starts the server with `npx`, so it needs Node.js 22.12 or later
+(`node --version`).
+
+### Other clients
+
+Cursor, Codex and other MCP clients add the server to their configuration by
+hand, which also needs Node.js 22.12 or later. The commands and configuration
+files are in the README, under
+[Manual configuration](https://github.com/seebaermichi/nera-mcp#manual-configuration).
+
+### What the assistant can do
+
+With the server, the assistant lists the starter kits, themes and plugins,
+creates a site, reads and writes its pages and files, adds plugins, builds,
+validates, starts a preview and publishes to GitHub Pages or Netlify — with the
+same results as you get in a terminal. The full list is in the README, under
+[Tools](https://github.com/seebaermichi/nera-mcp#tools).
 
 ## Docs for AI
 
@@ -148,6 +207,5 @@ with the files I need to create and their content.
 
 ## What's planned
 
-Planned, not available yet: an **MCP server** for Nera — a local one for
-Claude Desktop, Claude Code and Cursor, and a hosted connector for claude.ai
-and ChatGPT that works on your GitHub repository.
+Planned, not available yet: a **hosted connector** for claude.ai and ChatGPT
+that works on your GitHub repository, with no local install.
