@@ -115,8 +115,8 @@ Añadir una página:
 
 ```text
 Añade una página "Sobre nosotros" en pages/about.md con el mismo layout que
-pages/index.md y enlázala desde el menú (instala
-@nera-static/plugin-navigation si el sitio aún no tiene menú). Luego ejecuta
+pages/index.md y enlázala desde el menú (si el sitio aún no tiene menú, añade
+@nera-static/plugin-navigation con npx nera add navigation). Luego ejecuta
 npx nera validate y npx nera build --check y corrige lo que informen.
 ```
 
@@ -124,9 +124,10 @@ Añadir un formulario de contacto con el plugin:
 
 ```text
 Añade un formulario de contacto a la página de contacto con
-@nera-static/plugin-contact-form. Instálalo, copia su plantilla con su
-comando, inclúyela en la plantilla de la página y pon mi dirección en
-config/contact-form.yaml. No escribas un formulario a mano.
+@nera-static/plugin-contact-form. Añádelo con npx nera add contact-form,
+incluye su plantilla en la plantilla de la página y pon mi dirección como
+recipient en el config/contact-form.yaml que copia el comando. No escribas un
+formulario a mano.
 ```
 
 Añadir un segundo idioma:

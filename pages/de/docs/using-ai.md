@@ -116,8 +116,8 @@ Eine Seite hinzufügen:
 
 ```text
 Füge eine Seite "Über uns" unter pages/about.md hinzu, mit demselben Layout
-wie pages/index.md, und verlinke sie im Menü (installiere
-@nera-static/plugin-navigation, falls die Website noch kein Menü hat). Führe
+wie pages/index.md, und verlinke sie im Menü (falls die Website noch kein Menü
+hat, füge @nera-static/plugin-navigation mit npx nera add navigation hinzu). Führe
 dann npx nera validate und npx nera build --check aus und behebe, was sie
 melden.
 ```
@@ -126,9 +126,10 @@ Ein Kontaktformular mit dem Plugin einbauen:
 
 ```text
 Baue auf der Kontaktseite ein Kontaktformular mit
-@nera-static/plugin-contact-form ein. Installiere es, kopiere sein Template
-mit seinem Befehl, binde es im Seiten-Template ein und trage meine Adresse in
-config/contact-form.yaml ein. Schreib kein Formular von Hand.
+@nera-static/plugin-contact-form ein. Füge es mit npx nera add contact-form
+hinzu, binde sein Template im Seiten-Template ein und trage meine Adresse als
+recipient in die config/contact-form.yaml ein, die der Befehl kopiert. Schreib
+kein Formular von Hand.
 ```
 
 Eine zweite Sprache hinzufügen:

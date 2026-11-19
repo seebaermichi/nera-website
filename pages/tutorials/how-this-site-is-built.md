@@ -8,9 +8,9 @@ keywords: nera case study, static site example, nera website, dogfooding
 tags: case-study, plugins, advanced
 pagination_order: 12
 createdAt: 2026-07-13
-verified_on: 2026-11-18
+verified_on: 2026-11-19
 verified_with:
-    nera: 1.23.0
+    nera: 1.27.0
     plugin-canonical-links: 2.2.3
     plugin-code-blocks: 1.2.1
     plugin-link-attributes: 2.1.1
@@ -78,8 +78,9 @@ ordering is load-bearing on this site.
 ## Templates we own
 
 Plugins that ship views were published into `theme/views/vendor/` with commands like
-`npx nera-navigation`. Those copies are ours to edit and style — nothing important
-is hidden inside `node_modules`.
+`npx nera-navigation`. Today `npx nera add <name>` runs that command for you, in the
+same step as the install and the copy of the plugin's default config. Those copies
+are ours to edit and style — nothing important is hidden inside `node_modules`.
 
 ## Content is just Markdown
 

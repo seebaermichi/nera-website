@@ -70,7 +70,9 @@ orden de los plugins es determinante en este sitio.
 ## Plantillas que nos pertenecen
 
 Los plugins que incluyen vistas se publicaron en `theme/views/vendor/` con comandos como
-`npx nera-navigation`. Esas copias son nuestras para editar y dar estilo — nada
+`npx nera-navigation`. Hoy `npx nera add <name>` ejecuta ese comando por ti, en el
+mismo paso que la instalación y la copia de la configuración predeterminada del
+plugin. Esas copias son nuestras para editar y dar estilo — nada
 importante está oculto dentro de `node_modules`.
 
 ## El contenido es solo Markdown

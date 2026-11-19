@@ -70,7 +70,9 @@ Plugin-Reihenfolge auf dieser Seite tragend ist.
 ## Templates, die uns gehören
 
 Plugins, die Views mitliefern, wurden mit Befehlen wie `npx nera-navigation` nach
-`theme/views/vendor/` veröffentlicht. Diese Kopien gehören uns zum Bearbeiten und Gestalten
+`theme/views/vendor/` veröffentlicht. Heute führt `npx nera add <name>` diesen Befehl
+für dich aus, im selben Schritt wie die Installation und das Kopieren der
+Standard-Konfiguration des Plugins. Diese Kopien gehören uns zum Bearbeiten und Gestalten
 — nichts Wichtiges ist in `node_modules` versteckt.
 
 ## Inhalt ist einfach Markdown
