@@ -8,9 +8,9 @@ keywords: nera consent, plugin-consent, cookie banner, consent banner, two-click
 tags: plugins, privacy
 pagination_order: 10
 createdAt: 2026-10-25
-verified_on: 2026-11-19
+verified_on: 2026-11-21
 verified_with:
-    plugin-consent: 1.0.3
+    plugin-consent: 1.1.0
     validate: 1.7.0
     nera: 1.27.0
 ---
