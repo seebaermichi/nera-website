@@ -211,7 +211,8 @@ Du willst die Liste lieber selbst schreiben? Sieh dir
   [Canonical-Links für SEO hinzufügen](/de/tutorials/canonical-links-seo.html) und
   füge dann `@nera-static/plugin-sitemap` aus dem
   [Plugin-Katalog](/de/plugins/index.html) hinzu.
-- **Bilder und Code:** `@nera-static/plugin-images` (responsive Bilder) und
+- **Bilder und Code:** `@nera-static/plugin-images` macht aus deinen Fotos
+  responsive Bilder ([Tutorial](/de/tutorials/responsive-images.html)), und
   `@nera-static/plugin-code-blocks` (Syntax-Highlighting) findest du ebenfalls im
   [Plugin-Katalog](/de/plugins/index.html).
 
