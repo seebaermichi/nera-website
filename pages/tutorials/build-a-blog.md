@@ -209,8 +209,9 @@ Prefer to write the list yourself? See
 - **Sitemap:** set your site's origin as in
   [Add canonical links for SEO](/tutorials/canonical-links-seo.html), then add
   `@nera-static/plugin-sitemap` from the [plugin catalog](/plugins/index.html).
-- **Images and code:** `@nera-static/plugin-images` (responsive images) and
-  `@nera-static/plugin-code-blocks` (syntax highlighting) are in the
+- **Images and code:** `@nera-static/plugin-images` turns your photos into
+  responsive images ([tutorial](/tutorials/responsive-images.html)), and
+  `@nera-static/plugin-code-blocks` (syntax highlighting) is in the
   [plugin catalog](/plugins/index.html) too.
 
 ## 5. Preview and build
