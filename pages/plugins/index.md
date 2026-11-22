@@ -78,6 +78,10 @@ plugins:
       package: '@nera-static/plugin-statistics'
       description: Computes reading time and other per-page statistics.
       url: https://github.com/seebaermichi/nera-plugin-statistics
+    - name: Structured data
+      package: '@nera-static/plugin-structured-data'
+      description: Adds schema.org JSON-LD to every page, with the site entity, WebSite and BlogPosting, for search engines and AI assistants.
+      url: https://github.com/seebaermichi/nera-plugin-structured-data
     - name: Tags
       package: '@nera-static/plugin-tags'
       description: Tag pages and auto-generated tag overview pages.
