@@ -209,8 +209,9 @@ sobrescribe la carpeta con la plantilla incluida y descarta tus cambios.
   [Añadir enlaces canónicos para SEO](/es/tutorials/canonical-links-seo.html) y
   añade después `@nera-static/plugin-sitemap` desde el
   [catálogo de plugins](/es/plugins/index.html).
-- **Imágenes y código:** `@nera-static/plugin-images` (imágenes responsive) y
-  `@nera-static/plugin-code-blocks` (resaltado de sintaxis) también están en el
+- **Imágenes y código:** `@nera-static/plugin-images` convierte tus fotos en
+  imágenes responsive ([tutorial](/es/tutorials/responsive-images.html)), y
+  `@nera-static/plugin-code-blocks` (resaltado de sintaxis) también está en el
   [catálogo de plugins](/es/plugins/index.html).
 
 ## 5. Vista previa y compilación
