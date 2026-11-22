@@ -8,14 +8,14 @@ keywords: nera one-page, landing page, plugin-one-page, plugin-page-navigation, 
 tags: plugins, one-page, forms
 pagination_order: 11
 createdAt: 2026-10-25
-verified_on: 2026-11-19
+verified_on: 2026-11-22
 verified_with:
     nera: 1.27.0
     plugin-one-page: 3.0.2
     plugin-page-navigation: 2.5.0
     plugin-contact-form: 1.1.2
     plugin-social-media-links: 2.3.1
-    starter-business: 1.0.1
+    starter-business: 1.1.0
     validate: 1.7.0
 ---
 A freelancer or a small business often needs one page, not a site: a hero, the
