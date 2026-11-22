@@ -11,8 +11,8 @@ createdAt: 2026-11-22
 verified_on: 2026-11-22
 verified_with:
     plugin-images: 1.0.3
-    core: 4.18.3
-    nera: 1.27.2
+    core: 4.19.0
+    nera: 1.28.0
 ---
 A photo straight from a camera or a phone is several megabytes and thousands
 of pixels wide, and it carries metadata: the camera model, the time, often

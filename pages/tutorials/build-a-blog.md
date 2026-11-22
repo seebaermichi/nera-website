@@ -8,12 +8,12 @@ keywords: nera blog tutorial, static blog, markdown blog, plugin-simple-page-lis
 tags: getting-started, blog, plugins
 pagination_order: 1
 createdAt: 2026-07-21
-verified_on: 2026-11-19
+verified_on: 2026-11-22
 verified_with:
-    nera: 1.27.0
-    core: 4.18.2
+    nera: 1.28.0
+    core: 4.19.0
     plugin-simple-page-list: 2.3.3
-    starter-blog: 1.1.0
+    starter-blog: 1.2.0
 ---
 In this tutorial you'll scaffold a Nera site, write two posts, and turn the home
 page into a blog index that lists them newest-first. Every file is shown in

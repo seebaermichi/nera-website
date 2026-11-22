@@ -12,7 +12,7 @@ verified_on: 2026-11-22
 verified_with:
     theme-business: 1.0.3
     nera: 1.28.0
-    core: 4.18.3
+    core: 4.19.0
 ---
 A Nera theme is an npm package: layouts, page types, partials, a stylesheet
 and a set of design tokens. Your site does not copy it. It installs the
