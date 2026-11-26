@@ -19,3 +19,5 @@ plans/
 /ROADMAP*.md
 /DESIGN-BRIEF.md
 /design/
+# theme demos: temp sites and image caches (scripts/theme-demos.js)
+.theme-demos/

@@ -10,7 +10,7 @@
     "serve": "nera serve",
     "validate": "nera validate",
     "lint": "eslint .",
-    "test": "node --test plugins/*/*.test.js",
+    "test": "node --test plugins/*/*.test.js scripts/*.test.js",
     "prepare": "husky"
   },
   "keywords": [
@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "eslint": "^10.15.0",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "yaml": "^2.9.1"
   }
 }
