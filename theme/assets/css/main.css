@@ -838,9 +838,10 @@ img, svg, video { max-width: 100%; height: auto; }
 .search__input::placeholder { color: var(--color-faint); }
 .search__results { list-style: none; margin: var(--space-4) 0 0; padding: 0; }
 /* Results are built by assets/js/search.js at query time, not by a template.
-   .search__item, .search__link, .search__description and .search__highlight are
-   plugin-search's public class contract (v2.0.0+) — style them, not the element
-   structure around them, which is this site's own. .search__result-url is ours. */
+   .search__item, .search__link, .search__description, .search__highlight and
+   .search__empty (v2.4.0+) are plugin-search's public class contract — style
+   them, not the element structure around them, which is this site's own.
+   .search__result-url is ours. */
 .search__item { padding-block: var(--space-4); border-bottom: var(--border); }
 .search__item:last-child { border-bottom: none; }
 .search__item h3 { font-size: var(--text-base); font-weight: 600; margin: 0; }
@@ -852,6 +853,8 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 .search__description { font-size: var(--text-sm); color: var(--color-muted); margin: var(--space-1) 0 0; }
 .search__highlight { background: none; color: var(--color-ink); font-weight: 600; }
+/* The no-results message search.js puts after the list; `hidden` until a query misses. */
+.search__empty { max-width: 40rem; margin: var(--space-4) 0 0; font-size: var(--text-sm); color: var(--color-muted); }
 
 /* --------------------------------------------------------------------------
    14. Site footer

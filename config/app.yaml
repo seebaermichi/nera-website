@@ -39,6 +39,7 @@ translations:
         footer_col_project: Project
         search_title: Search
         search_placeholder: Search…
+        search_no_results: No results
         tag_overview_heading: '{tag} tutorials'
         tag_overview_read_more: Read more
         docs_heading: Documentation
@@ -72,6 +73,7 @@ translations:
         footer_col_project: Projekt
         search_title: Suche
         search_placeholder: Suchen…
+        search_no_results: Keine Treffer
         tag_overview_heading: '{tag} Tutorials'
         tag_overview_read_more: Weiterlesen
         docs_heading: Dokumentation
@@ -105,6 +107,7 @@ translations:
         footer_col_project: Proyecto
         search_title: Buscar
         search_placeholder: Buscar…
+        search_no_results: Sin resultados
         tag_overview_heading: 'tutoriales {tag}'
         tag_overview_read_more: Leer más
         docs_heading: Documentación
