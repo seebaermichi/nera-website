@@ -1,12 +1,13 @@
 // Checks the built theme demos in public/themes/blog/<name>/: every page has
 // exactly one robots meta, with noindex, carries the Nera note and
 // nera.js.org's legal links, and every site-internal URL stays under the
-// demo's base path and points at a file that exists. Run after
+// demo's base path and points at a file that exists; no demo ships a
+// sitemap.xml or robots.txt. Run after
 // `npm run build:demos`.
 import fs from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { DEMOS, LEGAL_LINKS, NERA_ORIGIN, demoBasePath, demoOutputDir } from './theme-demos.js'
+import { DEMOS, DROPPED_FILES, LEGAL_LINKS, NERA_ORIGIN, demoBasePath, demoOutputDir } from './theme-demos.js'
 
 // Attributes whose value is one URL. `content` only counts when it holds a
 // nera.js.org URL (og:url, og:image); its other values are plain text.
@@ -125,6 +126,11 @@ export function checkDemos(publicDir) {
         if (!fs.existsSync(path.join(dir, 'index.html'))) {
             problems.push(`${path.relative(publicDir, dir)}: demo not built`)
             continue
+        }
+        for (const file of DROPPED_FILES) {
+            if (fs.existsSync(path.join(dir, file))) {
+                problems.push(`${path.relative(publicDir, path.join(dir, file))}: a demo must not ship it (noindex pages, not the domain root)`)
+            }
         }
         for (const file of filesUnder(dir)) {
             const check = { '.html': checkDemoPage, '.css': checkDemoCss }[path.extname(file)]

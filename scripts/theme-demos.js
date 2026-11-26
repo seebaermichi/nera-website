@@ -106,6 +106,14 @@ export function demoLegalLinks(markdown) {
     )
 }
 
+// starter-blog's home calls its legal pages placeholders; in the demo they
+// are nera.js.org's real ones, so that clause goes and the advice stays.
+const PLACEHOLDER_CLAUSE = /the \[imprint\]\([^)]*\) and the\s+\[privacy policy\]\([^)]*\) are placeholders\.\s+Replace them/g
+
+export function demoLegalAdvice(markdown) {
+    return markdown.replace(PLACEHOLDER_CLAUSE, 'replace them')
+}
+
 function markdownFiles(dir) {
     return fs.readdirSync(dir, { recursive: true })
         .filter((file) => file.endsWith('.md'))
@@ -136,7 +144,7 @@ export function applyDemoOverrides(siteDir, demo) {
         fs.rmSync(path.join(pagesDir, page), { force: true })
     }
     for (const file of markdownFiles(pagesDir)) {
-        rewrite(file, demoLegalLinks)
+        rewrite(file, (text) => demoLegalAdvice(demoLegalLinks(text)))
     }
 }
 
@@ -148,6 +156,10 @@ const WEBSITE = path.resolve(import.meta.dirname, '..')
 export const DEMO_ROOT = path.join(WEBSITE, '.theme-demos')
 const SITES = path.join(DEMO_ROOT, 'sites')
 const CACHE = path.join(DEMO_ROOT, 'cache')
+
+// Files a demo's build writes that it must not ship: a robots.txt below the
+// domain root is ignored, and the sitemap would list only noindex pages.
+export const DROPPED_FILES = Object.freeze(['sitemap.xml', 'robots.txt'])
 
 // Where a demo's build lands in the website's own output.
 export function demoOutputDir(publicDir, demo) {
@@ -195,6 +207,9 @@ export function buildDemo(demo, { publicDir = path.join(WEBSITE, 'public') } = {
         moveIfPresent(siteCache, savedCache)
     }
 
+    for (const file of DROPPED_FILES) {
+        fs.rmSync(path.join(site, 'public', file), { force: true })
+    }
     const output = demoOutputDir(publicDir, demo)
     fs.rmSync(output, { recursive: true, force: true })
     fs.cpSync(path.join(site, 'public'), output, { recursive: true })

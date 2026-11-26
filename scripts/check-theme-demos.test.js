@@ -1,7 +1,10 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { DEMOS } from './theme-demos.js'
-import { checkDemoCss, checkDemoPage, internalPath, pageUrls, servedFile } from './check-theme-demos.js'
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+import { DEMOS, demoOutputDir } from './theme-demos.js'
+import { checkDemoCss, checkDemoPage, checkDemos, internalPath, pageUrls, servedFile } from './check-theme-demos.js'
 
 const SERVED = new Set([
     '/themes/blog/stack/index.html',
@@ -94,4 +97,31 @@ test('internal paths and the files they are served from', () => {
     assert.equal(servedFile('/themes/blog/x/'), '/themes/blog/x/index.html')
     assert.equal(servedFile('/themes/blog/x/about?a=1#b'), '/themes/blog/x/about.html')
     assert.equal(servedFile('/themes/blog/x/feed.xml'), '/themes/blog/x/feed.xml')
+})
+
+// A demo home with no site-internal URL: only the robots meta, the note and
+// the legal links checkDemoPage asks for.
+const minimalHome = (demo) => `<!doctype html><html lang="en"><head>
+<meta name="robots" content="noindex,follow">
+</head><body>
+${FOOTER.replace('Stack', demo.theme)}
+</body></html>`
+
+test('a demo that ships a sitemap.xml or robots.txt is a problem', (t) => {
+    const publicDir = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-demos-public-'))
+    t.after(() => fs.rmSync(publicDir, { recursive: true, force: true }))
+    for (const demo of Object.values(DEMOS)) {
+        const dir = demoOutputDir(publicDir, demo)
+        fs.mkdirSync(dir, { recursive: true })
+        fs.writeFileSync(path.join(dir, 'index.html'), minimalHome(demo))
+    }
+    assert.deepEqual(checkDemos(publicDir), [])
+
+    const stack = demoOutputDir(publicDir, DEMOS.stack)
+    fs.writeFileSync(path.join(stack, 'sitemap.xml'), '<urlset/>')
+    fs.writeFileSync(path.join(stack, 'robots.txt'), 'User-agent: *')
+    assert.deepEqual(checkDemos(publicDir), [
+        'themes/blog/stack/sitemap.xml: a demo must not ship it (noindex pages, not the domain root)',
+        'themes/blog/stack/robots.txt: a demo must not ship it (noindex pages, not the domain root)',
+    ])
 })

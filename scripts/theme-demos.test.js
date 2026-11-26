@@ -11,6 +11,7 @@ import {
     demoAppYaml,
     demoFooterExtra,
     demoHeadExtra,
+    demoLegalAdvice,
     demoLegalLinks,
     demoNote,
     demoThemeYaml,
@@ -124,6 +125,17 @@ test('links to the sample legal pages go to nera.js.org\'s pages', () => {
     assert.match(result, /\[about\]\(\/about\.html\)/)
 })
 
+test('the home no longer calls the legal pages placeholders, the advice stays', () => {
+    const source = fixture('pages/index.md')
+    assert.match(source, /are placeholders\./)
+    const result = demoLegalAdvice(demoLegalLinks(source))
+    assert.doesNotMatch(result, /placeholder/i)
+    assert.match(result, /^3\. \*\*The legal pages:\*\* replace them with your\n {3}own texts before you publish\.$/m)
+    assert.equal(demoLegalAdvice(result), result)
+    // only that clause changes: the rest of the home is the starter's
+    assert.equal(result.replace(/^3\..*\n.*\n/m, ''), demoLegalLinks(source).replace(/^3\..*\n.*\n.*\n/m, ''))
+})
+
 test('applyDemoOverrides rewrites the configs and the seam, and deletes the sample legal pages', (t) => {
     const site = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-demo-'))
     t.after(() => fs.rmSync(site, { recursive: true, force: true }))
@@ -140,6 +152,7 @@ test('applyDemoOverrides rewrites the configs and the seam, and deletes the samp
     assert.equal(fs.existsSync(path.join(site, 'pages/imprint.md')), false)
     assert.equal(fs.existsSync(path.join(site, 'pages/privacy.md')), false)
     assert.doesNotMatch(read('pages/index.md'), /\]\(\/(imprint|privacy)\.html\)/)
+    assert.doesNotMatch(read('pages/index.md'), /placeholder/i)
 })
 
 test('applyDemoOverrides creates the seams when the starter has none', (t) => {
