@@ -20,9 +20,9 @@ npx @nera-static/nera new <project-name>
 
 `nera new .` crea el sitio en la carpeta actual, que debe estar vacía, y
 `--theme <name>` lo arranca a partir de un tema. `--starter <name>` lo arranca,
-en cambio, a partir de un starter kit listo para editar (`blank`, `blog`,
-`business` o `portfolio`; no junto con `--theme`), y `--name "<site name>"` y
-`--lang <code>` fijan `name` y `lang` en `config/app.yaml`:
+en cambio, a partir de un starter kit listo para editar (`ansitz`, `blank`,
+`blog`, `business`, `portfolio`, `stack` o `umwege`; no junto con `--theme`),
+y `--name "<site name>"` y `--lang <code>` fijan `name` y `lang` en `config/app.yaml`:
 
 ```bash
 npx @nera-static/nera new my-blog --starter blog --name "Mi blog" --lang es
@@ -160,8 +160,8 @@ ninguna página muestra una clave de traducción sin traducir.
 
 `--starter` acepta:
 
-- un nombre de starter: `blank`, `blog`, `business` o `portfolio`, abreviatura
-  de `@nera-static/starter-blank`, etc.;
+- un nombre de starter: `ansitz`, `blank`, `blog`, `business`, `portfolio`,
+  `stack` o `umwege`, abreviatura de `@nera-static/starter-ansitz`, etc.;
 - un nombre de paquete: `@acme/starter-shop`, o sin scope `nera-starter-shop`;
 - una URL de GitHub: `https://github.com/owner/repo` (opcionalmente con `.git`,
   `#ref`), o `github:owner/repo#ref`;
@@ -192,14 +192,33 @@ valor por defecto. Cada pregunta tiene un flag (`--starter`, `--name`,
 `--lang`); con `--yes`, o sin terminal (scripts, CI, agentes de IA), no se
 pregunta nada y `nera new` crea la plantilla base.
 
+`--starter blog` hace en una terminal una sola pregunta, qué blog:
+
+```text
+Which blog?
+  1) Blog (blog)
+  2) Blog for developers (stack)
+  3) Photo blog (ansitz)
+  4) Travel blog (umwege)
+Choose 1–4 [1]:
+```
+
+Enter elige el blog sencillo, `@nera-static/starter-blog`; un número o un
+nombre elige otro. Con `--yes`, o sin terminal, `--starter blog` es el blog
+sencillo sin preguntar. `--starter stack`, `ansitz` o `umwege` elige
+directamente uno de los otros tres.
+
 Los starters oficiales:
 
-| Starter | Qué obtienes |
-| --- | --- |
-| `blank` | Un layout accesible, sin tema |
-| `blog` | Un blog sobre `@nera-static/theme-blog` con etiquetas, un archivo, un feed Atom y un sitemap |
-| `business` | Un sitio para una pequeña empresa sobre `@nera-static/theme-business` con servicios, horario de apertura y un formulario de contacto |
-| `portfolio` | El portfolio de un diseñador sobre `@nera-static/theme-business` con proyectos en galerías de imágenes, una página «sobre mí» y un formulario de contacto |
+| Starter | Qué obtienes | Demo |
+| --- | --- | --- |
+| `ansitz` | Un blog de fotografía sobre `@nera-static/theme-ansitz` con fotografías, una serie, etiquetas, un archivo, búsqueda, un feed Atom y un sitemap | [Ansitz](/themes/blog/ansitz/) |
+| `blank` | Un layout accesible, sin tema | — |
+| `blog` | Un blog sobre `@nera-static/theme-blog` 2.x con una serie, etiquetas, un archivo por años, búsqueda, un feed Atom y un sitemap | [Plain](/themes/blog/plain/) |
+| `business` | Un sitio para una pequeña empresa sobre `@nera-static/theme-business` con servicios, horario de apertura y un formulario de contacto | — |
+| `portfolio` | El portfolio de un diseñador sobre `@nera-static/theme-business` con proyectos en galerías de imágenes, una página «sobre mí» y un formulario de contacto | — |
+| `stack` | Un blog para desarrolladores sobre `@nera-static/theme-stack` con dos series, código resaltado, etiquetas, un archivo, búsqueda, un feed Atom y un sitemap | [Stack](/themes/blog/stack/) |
+| `umwege` | Un blog de viajes sobre `@nera-static/theme-umwege` con datos del viaje, lugares, una serie, fotografías, etiquetas, un archivo, búsqueda, un feed Atom y un sitemap | [Umwege](/themes/blog/umwege/) |
 
 ### Revisar el sitio compilado
 

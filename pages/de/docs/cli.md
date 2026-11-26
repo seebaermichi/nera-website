@@ -20,8 +20,9 @@ npx @nera-static/nera new <project-name>
 
 `nera new .` erstellt die Website stattdessen im aktuellen, leeren Ordner, und
 `--theme <name>` startet sie mit einem Theme. `--starter <name>` startet sie
-stattdessen mit einem fertigen Starter-Kit zum Anpassen (`blank`, `blog`,
-`business` oder `portfolio`; nicht zusammen mit `--theme`), und
+stattdessen mit einem fertigen Starter-Kit zum Anpassen (`ansitz`, `blank`,
+`blog`, `business`, `portfolio`, `stack` oder `umwege`; nicht zusammen mit
+`--theme`), und
 `--name "<site name>"` und `--lang <code>` setzen `name` und `lang` in
 `config/app.yaml`:
 
@@ -160,8 +161,8 @@ sodass keine Seite einen rohen Übersetzungsschlüssel zeigt.
 
 `--starter` nimmt:
 
-- einen Starter-Namen: `blank`, `blog`, `business` oder `portfolio`, kurz für
-  `@nera-static/starter-blank` usw.;
+- einen Starter-Namen: `ansitz`, `blank`, `blog`, `business`, `portfolio`,
+  `stack` oder `umwege`, kurz für `@nera-static/starter-ansitz` usw.;
 - einen Paketnamen: `@acme/starter-shop` oder ohne Scope `nera-starter-shop`;
 - eine GitHub-URL: `https://github.com/owner/repo` (optional mit `.git`,
   `#ref`) oder `github:owner/repo#ref`;
@@ -192,14 +193,33 @@ Standardwert. Jede Frage hat ein Flag (`--starter`, `--name`, `--lang`); mit
 `--yes` oder ohne Terminal (Skripte, CI, KI-Agenten) wird nichts gefragt, und
 `nera new` erstellt das Basis-Template.
 
+`--starter blog` stellt in einem Terminal eine Frage, nämlich welcher Blog:
+
+```text
+Which blog?
+  1) Blog (blog)
+  2) Blog for developers (stack)
+  3) Photo blog (ansitz)
+  4) Travel blog (umwege)
+Choose 1–4 [1]:
+```
+
+Enter nimmt den schlichten Blog, `@nera-static/starter-blog`; eine Nummer oder
+ein Name wählt einen anderen. Mit `--yes` oder ohne Terminal ist
+`--starter blog` ohne Nachfrage der schlichte Blog. `--starter stack`, `ansitz`
+oder `umwege` wählt direkt einen der anderen drei.
+
 Die offiziellen Starter:
 
-| Starter | Was du bekommst |
-| --- | --- |
-| `blank` | Ein barrierefreies Layout, kein Theme |
-| `blog` | Ein Blog auf `@nera-static/theme-blog` mit Tags, einem Archiv, einem Atom-Feed und einer Sitemap |
-| `business` | Eine Website für ein kleines Unternehmen auf `@nera-static/theme-business` mit Leistungen, Öffnungszeiten und einem Kontaktformular |
-| `portfolio` | Ein Designer-Portfolio auf `@nera-static/theme-business` mit Projekten in Bildergalerien, einer Über-mich-Seite und einem Kontaktformular |
+| Starter | Was du bekommst | Demo |
+| --- | --- | --- |
+| `ansitz` | Ein Fotoblog auf `@nera-static/theme-ansitz` mit Fotografien, einer Serie, Tags, einem Archiv, Suche, einem Atom-Feed und einer Sitemap | [Ansitz](/themes/blog/ansitz/) |
+| `blank` | Ein barrierefreies Layout, kein Theme | — |
+| `blog` | Ein Blog auf `@nera-static/theme-blog` 2.x mit einer Serie, Tags, einem Archiv nach Jahren, Suche, einem Atom-Feed und einer Sitemap | [Plain](/themes/blog/plain/) |
+| `business` | Eine Website für ein kleines Unternehmen auf `@nera-static/theme-business` mit Leistungen, Öffnungszeiten und einem Kontaktformular | — |
+| `portfolio` | Ein Designer-Portfolio auf `@nera-static/theme-business` mit Projekten in Bildergalerien, einer Über-mich-Seite und einem Kontaktformular | — |
+| `stack` | Ein Blog für Entwickler auf `@nera-static/theme-stack` mit zwei Serien, hervorgehobenem Code, Tags, einem Archiv, Suche, einem Atom-Feed und einer Sitemap | [Stack](/themes/blog/stack/) |
+| `umwege` | Ein Reiseblog auf `@nera-static/theme-umwege` mit Reisedaten, Orten, einer Serie, Fotografien, Tags, einem Archiv, Suche, einem Atom-Feed und einer Sitemap | [Umwege](/themes/blog/umwege/) |
 
 ### Die gebaute Website prüfen
 
