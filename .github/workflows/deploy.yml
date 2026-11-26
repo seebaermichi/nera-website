@@ -38,6 +38,35 @@ jobs:
             - name: Render site
               run: npm run build
 
+            # The theme demos are scaffolded from the starters' latest
+            # releases (scripts/theme-demos.js), so the cache key names those
+            # versions: a new starter release starts a new cache, restored
+            # from the previous one (plugin-images keys its variants by
+            # content, so an older cache only means more work, never a stale
+            # image).
+            - name: Look up the demo starters' versions
+              id: starters
+              run: |
+                  versions=$(node --input-type=module -e "import { DEMOS } from './scripts/theme-demos.js'; for (const demo of Object.values(DEMOS)) console.log(demo.starter)" \
+                      | while read -r starter; do echo "${starter#@nera-static/starter-}-$(npm view "$starter" version)"; done \
+                      | paste -sd_ -)
+                  echo "versions=$versions" >> "$GITHUB_OUTPUT"
+
+            - name: Cache the theme demos' image variants
+              uses: actions/cache@v6
+              with:
+                  path: .theme-demos/cache
+                  key: theme-demos-${{ steps.starters.outputs.versions }}
+                  restore-keys: theme-demos-
+
+            # After the site's own build, which deletes public/, and before the
+            # upload; a failed demo stops the deploy and the live site stays.
+            - name: Build the theme demos
+              run: npm run build:demos
+
+            - name: Check the theme demos
+              run: npm run check:demos
+
             - name: Configure Pages
               uses: actions/configure-pages@v6
 

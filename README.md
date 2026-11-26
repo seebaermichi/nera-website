@@ -55,6 +55,27 @@ npm test           # tests of the local plugins
 CI runs `npm run lint`, `npm test`, `npm run validate` and
 `npm run build -- --check`. A push to `main` deploys the site to GitHub Pages.
 
+## Theme demos
+
+The deploy also publishes live demos of the four blog themes under
+`/themes/blog/plain/`, `/stack/`, `/ansitz/` and `/umwege/`. Each one is
+scaffolded from the latest release of its starter (`starter-blog`,
+`starter-stack`, `starter-ansitz`, `starter-umwege`), served under its own
+base path, kept out of search results (`noindex,follow`) and linked to
+nera.js.org's imprint and privacy pages (`scripts/theme-demos.js`).
+
+```bash
+npm run build          # the site first: it deletes public/
+npm run build:demos    # scaffold and build the demos into public/themes/blog/
+npm run check:demos    # noindex, footer links, every internal URL resolves
+npm run serve          # look at them under /themes/blog/<name>/
+```
+
+The temp sites and their image caches live in `.theme-demos/` (git-ignored);
+the deploy caches `.theme-demos/cache/` per starter version. CI's test run
+does not build the demos; a demo that fails to build or check stops the
+deploy, and the live site stays as it was.
+
 ## Design
 
 IBM Plex (self-hosted, `theme/assets/fonts/`) with an amber accent; the design
