@@ -50,9 +50,14 @@ strip_html: true
 output_filename: search-index.json
 group_by_lang: false
 show_title: true
+include_script: true
 ```
 
 `show_title` und `group_by_lang` kommen in den Schritten 3 und 4 dran.
+`include_script` spielt nur eine Rolle, wenn deine Website oder dein Theme den
+Client selbst lädt, etwa über den Seam `scripts-extra` eines Themes: Setze
+es auf `false`, dann lässt das Template sein `script`-Tag für `/js/search.js` weg,
+und die Seite lädt das Skript nicht zweimal.
 
 `fields` ersetzt die Standardliste, statt sie zu erweitern — behalte also
 `content` (den Seiteninhalt) und `href` (den Link des Treffers). Jeder andere
@@ -112,8 +117,10 @@ Hat deine Seite keine eigene Überschrift, behalte `show_title: true` — dann i
 das `h1` des Templates die Überschrift der Seite.
 
 Die Texte des Templates laufen über `t()`: `search_title` (die Überschrift,
-Standard `Search`), `search_placeholder` (Standard `Search...`) und
-`search_label`, der zugängliche Name des Eingabefelds (Standard `Search`).
+Standard `Search`), `search_placeholder` (Standard `Search...`),
+`search_label`, der zugängliche Name des Eingabefelds (Standard `Search`), und
+`search_no_results`, die Meldung, die in einem `p.search__empty` unter den
+Treffern erscheint, wenn eine Suche nichts findet (Standard `No results`).
 Übersetze sie unter `translations` in `config/app.yaml`, zum Beispiel für
 Deutsch:
 
@@ -123,6 +130,7 @@ translations:
         search_title: Suche
         search_placeholder: Suchen…
         search_label: Suche
+        search_no_results: Keine Treffer
 ```
 
 Stelle zum Schluss sicher, dass die Suche **zuletzt** in
@@ -174,6 +182,6 @@ zum Beispiel.
 Rendere, und du hast eine funktionierende Suche. Die [Suchseite](/de/search.html)
 dieser Website ist aus denselben Teilen gebaut, mit zwei Unterschieden: Ihr
 Markdown hat keine Überschrift, also behält sie das `h1` des Templates, übersetzt
-über die drei Schlüssel in Englisch, Deutsch und Spanisch; und sie setzt
+über die vier Schlüssel in Englisch, Deutsch und Spanisch; und sie setzt
 `group_by_lang: true`, sodass das Suchfeld nur Seiten in der Sprache liefert, die
 du gerade liest.

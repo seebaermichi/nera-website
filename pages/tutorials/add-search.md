@@ -8,10 +8,10 @@ keywords: nera search, static site search, client-side search
 tags: plugins, search
 pagination_order: 4
 createdAt: 2026-07-18
-verified_on: 2026-11-22
+verified_on: 2026-11-26
 verified_with:
     nera: 1.28.0
-    plugin-search: 2.3.1
+    plugin-search: 2.4.0
 ---
 `@nera-static/plugin-search` builds a JSON index at render time and ships a small
 client script — no server required.
@@ -51,9 +51,13 @@ strip_html: true
 output_filename: search-index.json
 group_by_lang: false
 show_title: true
+include_script: true
 ```
 
-`show_title` and `group_by_lang` come up in steps 3 and 4.
+`show_title` and `group_by_lang` come up in steps 3 and 4. `include_script`
+matters only if your site or theme loads the client itself, for example through
+a theme's `scripts-extra` seam: set it to `false` and the template leaves out
+its `script` tag for `/js/search.js`, so the page does not load the script twice.
 
 `fields` replaces the default list rather than extending it, so keep `content`
 (the page body) and `href` (the result link). Any other frontmatter key works if
@@ -111,9 +115,11 @@ If your page has no heading of its own, keep `show_title: true` and the
 template's `h1` is the page heading.
 
 The template's texts go through `t()`: `search_title` (the heading, default
-`Search`), `search_placeholder` (default `Search...`) and `search_label`, the
-input's accessible name (default `Search`). Translate them under `translations`
-in `config/app.yaml`, for example for German:
+`Search`), `search_placeholder` (default `Search...`), `search_label`, the
+input's accessible name (default `Search`), and `search_no_results`, the
+message shown in a `p.search__empty` below the results when a query matches
+nothing (default `No results`). Translate them under `translations` in
+`config/app.yaml`, for example for German:
 
 ```yaml
 translations:
@@ -121,6 +127,7 @@ translations:
         search_title: Suche
         search_placeholder: Suchen…
         search_label: Suche
+        search_no_results: Keine Treffer
 ```
 
 Finally, make sure search runs **last** in `config/plugin-order.yaml` so it
@@ -167,6 +174,6 @@ right language too — the tag pages from `plugin-tags` among them.
 
 Render, and you have working search. This site's [Search page](/search.html) is
 built from the same parts, with two differences: its Markdown has no heading, so
-it keeps the template's `h1`, translated with the three keys in English, German
+it keeps the template's `h1`, translated with the four keys in English, German
 and Spanish; and it sets `group_by_lang: true`, so the box returns only pages in
 the language you are reading.

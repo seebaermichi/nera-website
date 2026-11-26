@@ -49,9 +49,14 @@ strip_html: true
 output_filename: search-index.json
 group_by_lang: false
 show_title: true
+include_script: true
 ```
 
-`show_title` y `group_by_lang` aparecen en los pasos 3 y 4.
+`show_title` y `group_by_lang` aparecen en los pasos 3 y 4. `include_script`
+solo importa si tu sitio o tu tema carga el cliente por su cuenta, por ejemplo
+a través del seam `scripts-extra` de un tema: ponlo en `false` y la
+plantilla omite su etiqueta `script` para `/js/search.js`, así la página no carga el
+script dos veces.
 
 `fields` sustituye la lista por defecto en lugar de ampliarla, así que conserva
 `content` (el cuerpo de la página) y `href` (el enlace del resultado). Cualquier
@@ -111,9 +116,11 @@ Si tu página no tiene encabezado propio, deja `show_title: true` y el `h1` de
 la plantilla será el encabezado de la página.
 
 Los textos de la plantilla pasan por `t()`: `search_title` (el encabezado, por
-defecto `Search`), `search_placeholder` (por defecto `Search...`) y
-`search_label`, el nombre accesible del campo (por defecto `Search`). Tradúcelos
-bajo `translations` en `config/app.yaml`, por ejemplo para alemán:
+defecto `Search`), `search_placeholder` (por defecto `Search...`),
+`search_label`, el nombre accesible del campo (por defecto `Search`), y
+`search_no_results`, el mensaje que aparece en un `p.search__empty` debajo de
+los resultados cuando una búsqueda no encuentra nada (por defecto `No results`).
+Tradúcelos bajo `translations` en `config/app.yaml`, por ejemplo para alemán:
 
 ```yaml
 translations:
@@ -121,6 +128,7 @@ translations:
         search_title: Suche
         search_placeholder: Suchen…
         search_label: Suche
+        search_no_results: Keine Treffer
 ```
 
 Por último, asegúrate de que la búsqueda se ejecute en **último** lugar en
@@ -172,5 +180,5 @@ etiquetas de `plugin-tags`.
 Renderiza, y tendrás una búsqueda funcional. La [página de búsqueda](/es/search.html)
 de este sitio está construida con las mismas piezas, con dos diferencias: su
 Markdown no tiene encabezado, así que conserva el `h1` de la plantilla, traducido
-con las tres claves en inglés, alemán y español; y activa `group_by_lang: true`,
+con las cuatro claves en inglés, alemán y español; y activa `group_by_lang: true`,
 de modo que el buscador solo devuelve páginas en el idioma que estás leyendo.
