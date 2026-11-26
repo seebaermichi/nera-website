@@ -21,7 +21,7 @@ Starter business und portfolio. Du änderst eine Farbe, fügst ein paar
 CSS-Regeln hinzu, ersetzt ein Partial, aktualisierst das Theme und fügst
 einer Website ohne Theme eines hinzu. Jeder Befehl und jede Ausgabe unten
 stammt aus einer frischen Website mit theme-business 1.0.3,
-`@nera-static/nera` 1.28.0 und `@nera-static/core` 4.18.3.
+`@nera-static/nera` 1.29.0 und `@nera-static/core` 4.19.1.
 
 ## 1. Eine Website mit Theme anlegen
 
@@ -41,7 +41,7 @@ cd my-site
 
 ```json
 "dependencies": {
-    "@nera-static/nera": "^1.28.0",
+    "@nera-static/nera": "^1.29.0",
     "@nera-static/theme-business": "^1.0.3"
 }
 ```
@@ -53,8 +53,9 @@ theme: business
 ```
 
 `business` ist die Kurzform von `@nera-static/theme-business`. Die Website
-bekommt kein eigenes Layout: `theme/` enthält nur ein leeres
-`theme/assets/`, und jede View kommt aus dem Paket in `node_modules/`.
+bekommt kein eigenes Layout: `theme/` enthält nur leere
+Ordner (`views/layouts/`, `views/pages/` und `assets/`), und jede View kommt
+aus dem Paket in `node_modules/`.
 
 Du willst auch Beispielseiten für Leistungen, Öffnungszeiten und Kontakt? Der
 Starter business bringt dasselbe Theme mit ihnen:

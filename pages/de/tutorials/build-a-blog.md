@@ -28,12 +28,21 @@ Veröffentlichen ersetzt), `theme/views/` für die Pug-Templates
 (`layouts/layout.pug` ist das HTML-Gerüst, `pages/default.pug` rendert eine
 Seite hinein) und `config/` für Einstellungen.
 
-Lieber einen fertigen Blog, den du nur noch anpasst? Der Blog-Starter legt
-einen an, mit Theme, Beispielbeiträgen, Tags, Archiv, Feed und Sitemap:
+Lieber einen fertigen Blog, den du nur noch anpasst? Ein Blog-Starter legt
+einen an, mit Theme, Beispielbeiträgen in einer Serie, Tags, Archiv, Suche,
+Atom-Feed, Sitemap und strukturierten Daten:
 
 ```bash
 npx @nera-static/nera new my-blog --starter blog
 ```
+
+In einem Terminal fragt er, welcher von vier Blogs: der schlichte Blog (Enter),
+ein Blog für Entwickler (`stack`), ein Fotoblog (`ansitz`) oder ein Reiseblog
+(`umwege`). Ohne Terminal nimmt er den schlichten Blog, und `--starter stack`,
+`ansitz` oder `umwege` wählt einen der anderen direkt. Sieh sie dir vorher in
+den Demos an: [Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
+[Ansitz](/themes/blog/ansitz/) und [Umwege](/themes/blog/umwege/). Die Liste
+der [Starter-Kits](/de/docs/cli.html#starter-kits) sagt, was jeder mitbringt.
 
 Seine Dateien passen nicht zu den Schritten unten: Dieses Tutorial baut einen
 einfacheren Blog von Hand, damit du siehst, wie die Teile ineinandergreifen.

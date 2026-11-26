@@ -8,11 +8,11 @@ keywords: nera theme, theme-business, override theme, child theme, design tokens
 tags: themes, getting-started
 pagination_order: 14
 createdAt: 2026-11-22
-verified_on: 2026-11-22
+verified_on: 2026-11-27
 verified_with:
     theme-business: 1.0.3
-    nera: 1.28.0
-    core: 4.19.0
+    nera: 1.29.0
+    core: 4.19.1
 ---
 A Nera theme is an npm package: layouts, page types, partials, a stylesheet
 and a set of design tokens. Your site does not copy it. It installs the
@@ -24,7 +24,7 @@ This tutorial uses `@nera-static/theme-business`, the theme of the business
 and portfolio starters. You change a colour, add a few CSS rules, replace one
 partial, update the theme, and add a theme to a site that has none. Every
 command and output below was run in a fresh site with theme-business 1.0.3,
-`@nera-static/nera` 1.28.0 and `@nera-static/core` 4.18.3.
+`@nera-static/nera` 1.29.0 and `@nera-static/core` 4.19.1.
 
 ## 1. Start a site with a theme
 
@@ -44,7 +44,7 @@ cd my-site
 
 ```json
 "dependencies": {
-    "@nera-static/nera": "^1.28.0",
+    "@nera-static/nera": "^1.29.0",
     "@nera-static/theme-business": "^1.0.3"
 }
 ```
@@ -56,8 +56,9 @@ theme: business
 ```
 
 `business` is short for `@nera-static/theme-business`. The site gets no
-layout of its own: `theme/` holds only an empty `theme/assets/`, and every
-view comes from the package in `node_modules/`.
+layout of its own: `theme/` holds only empty folders (`views/layouts/`,
+`views/pages/` and `assets/`), and every view comes from the package in
+`node_modules/`.
 
 Want sample pages for services, opening hours and contact as well? The
 business starter brings the same theme with them:

@@ -8,12 +8,12 @@ keywords: nera blog tutorial, static blog, markdown blog, plugin-simple-page-lis
 tags: getting-started, blog, plugins
 pagination_order: 1
 createdAt: 2026-07-21
-verified_on: 2026-11-22
+verified_on: 2026-11-27
 verified_with:
-    nera: 1.28.0
-    core: 4.19.0
+    nera: 1.29.0
+    core: 4.19.1
     plugin-simple-page-list: 2.3.3
-    starter-blog: 1.2.0
+    starter-blog: 1.4.0
 ---
 In this tutorial you'll scaffold a Nera site, write two posts, and turn the home
 page into a blog index that lists them newest-first. Every file is shown in
@@ -32,12 +32,21 @@ places: `pages/` for your content (it starts with `pages/index.md`, plus
 publish), `theme/views/` for the Pug templates (`layouts/layout.pug` is the HTML
 shell, `pages/default.pug` renders a page into it), and `config/` for settings.
 
-Want a finished blog to edit instead? The blog starter sets one up with a
-theme, sample posts, tags, an archive, a feed and a sitemap:
+Want a finished blog to edit instead? A blog starter sets one up with a
+theme, sample posts in a series, tags, an archive, search, an Atom feed, a
+sitemap and structured data:
 
 ```bash
 npx @nera-static/nera new my-blog --starter blog
 ```
+
+On a terminal it asks which of four blogs: the plain blog (Enter), a blog for
+developers (`stack`), a photo blog (`ansitz`) or a travel blog (`umwege`).
+Without a terminal it takes the plain blog, and `--starter stack`, `ansitz` or
+`umwege` picks one of the others directly. See them first in the demos:
+[Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
+[Ansitz](/themes/blog/ansitz/) and [Umwege](/themes/blog/umwege/). The
+[starter kits](/docs/cli.html#starter-kits) list says what each one brings.
 
 Its files won't match the steps below: this tutorial builds a simpler blog by
 hand, to show how the pieces fit together.

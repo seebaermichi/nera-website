@@ -20,8 +20,8 @@ Este tutorial usa `@nera-static/theme-business`, el tema de los kits de
 inicio business y portfolio. Cambias un color, añades unas reglas CSS,
 sustituyes un partial, actualizas el tema y añades un tema a un sitio que no
 tiene ninguno. Cada comando y cada salida de abajo se ejecutó en un sitio
-recién creado con theme-business 1.0.3, `@nera-static/nera` 1.28.0 y
-`@nera-static/core` 4.18.3.
+recién creado con theme-business 1.0.3, `@nera-static/nera` 1.29.0 y
+`@nera-static/core` 4.19.1.
 
 ## 1. Arrancar un sitio con un tema
 
@@ -41,7 +41,7 @@ cd my-site
 
 ```json
 "dependencies": {
-    "@nera-static/nera": "^1.28.0",
+    "@nera-static/nera": "^1.29.0",
     "@nera-static/theme-business": "^1.0.3"
 }
 ```
@@ -53,8 +53,9 @@ theme: business
 ```
 
 `business` es la forma corta de `@nera-static/theme-business`. El sitio no
-recibe ningún layout propio: `theme/` contiene solo un `theme/assets/` vacío,
-y cada vista viene del paquete en `node_modules/`.
+recibe ningún layout propio: `theme/` contiene solo carpetas vacías
+(`views/layouts/`, `views/pages/` y `assets/`), y cada vista viene del paquete
+en `node_modules/`.
 
 ¿Quieres también páginas de ejemplo para servicios, horario y contacto? El
 kit de inicio business trae el mismo tema con ellas:
