@@ -11,7 +11,9 @@
     "validate": "nera validate",
     "lint": "eslint .",
     "test": "node --test plugins/*/*.test.js scripts/*.test.js",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build:demos": "node scripts/theme-demos.js",
+    "check:demos": "node scripts/check-theme-demos.js"
   },
   "keywords": [
     "static-site-generator",

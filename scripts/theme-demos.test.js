@@ -6,9 +6,11 @@ import path from 'node:path'
 import { parse } from 'yaml'
 import {
     DEMOS,
+    DEMO_ROBOTS,
     applyDemoOverrides,
     demoAppYaml,
     demoFooterExtra,
+    demoHeadExtra,
     demoLegalLinks,
     demoNote,
     demoThemeYaml,
@@ -35,27 +37,28 @@ test('every demo names its starter and its theme', () => {
     }
 })
 
-test('app.yaml gets the base path, noindex and nera.js.org, every other key stays', () => {
+test('app.yaml gets the base path and nera.js.org, loses robots, every other key stays', () => {
     const source = fixture('config/app.yaml')
     const result = demoAppYaml(source, DEMOS.stack)
     const before = parse(source)
     const after = parse(result)
 
+    assert.equal(before.robots, 'index,follow')
     assert.equal(after.base_path, '/themes/blog/stack')
-    assert.equal(after.robots, 'noindex,follow')
+    assert.equal('robots' in after, false)
     assert.equal(after.origin, 'https://nera.js.org')
     assert.deepEqual(
-        without(after, 'base_path', 'robots', 'origin'),
+        without(after, 'base_path', 'origin'),
         without(before, 'robots', 'origin'),
     )
 })
 
-test('app.yaml: robots and origin are replaced in place, never added twice', () => {
+test('app.yaml: origin is replaced in place, robots removed, nothing added twice', () => {
     const result = demoAppYaml(fixture('config/app.yaml'), DEMOS.plain)
-    assert.equal(result.match(/^robots:/gm).length, 1)
+    assert.doesNotMatch(result, /^robots:/m)
     assert.equal(result.match(/^origin:/gm).length, 1)
     assert.equal(result.match(/^base_path:/gm).length, 1)
-    assert.doesNotMatch(result, /example\.com|^robots: index,follow$/m)
+    assert.doesNotMatch(result, /example\.com/)
     assert.equal(demoAppYaml(result, DEMOS.plain), result)
 })
 
@@ -100,6 +103,19 @@ test('the demo note is added once, also to a seam without a final newline or con
     assert.equal(demoFooterExtra('', DEMOS.umwege), `${note}\n`)
 })
 
+test('the noindex meta is appended at the head seam\'s top level, after its includes', () => {
+    const source = fixture('theme/views/partials/head-extra.pug')
+    const result = demoHeadExtra(source)
+    const lines = result.trimEnd().split('\n')
+
+    assert.ok(result.startsWith(source))
+    assert.equal(lines.at(-2), 'include /vendor/plugin-structured-data/index')
+    assert.equal(lines.at(-1), 'meta(name=\'robots\' content=\'noindex,follow\')')
+    assert.equal(DEMO_ROBOTS, lines.at(-1))
+    assert.equal(demoHeadExtra(result), result)
+    assert.equal(demoHeadExtra(''), `${DEMO_ROBOTS}\n`)
+})
+
 test('links to the sample legal pages go to nera.js.org\'s pages', () => {
     const result = demoLegalLinks(fixture('pages/index.md'))
     assert.match(result, /\[imprint\]\(https:\/\/nera\.js\.org\/legal-notice\.html\)/)
@@ -118,13 +134,15 @@ test('applyDemoOverrides rewrites the configs and the seam, and deletes the samp
     const read = (file) => fs.readFileSync(path.join(site, file), 'utf8')
     assert.equal(parse(read('config/app.yaml')).base_path, '/themes/blog/plain')
     assert.deepEqual(parse(read('config/theme.yaml')).footer_links, LEGAL_LINKS)
+    assert.equal('robots' in parse(read('config/app.yaml')), false)
     assert.ok(read('theme/views/partials/footer-extra.pug').endsWith(`${demoNote(DEMOS.plain)}\n`))
+    assert.ok(read('theme/views/partials/head-extra.pug').endsWith(`${DEMO_ROBOTS}\n`))
     assert.equal(fs.existsSync(path.join(site, 'pages/imprint.md')), false)
     assert.equal(fs.existsSync(path.join(site, 'pages/privacy.md')), false)
     assert.doesNotMatch(read('pages/index.md'), /\]\(\/(imprint|privacy)\.html\)/)
 })
 
-test('applyDemoOverrides creates the seam when the starter has none', (t) => {
+test('applyDemoOverrides creates the seams when the starter has none', (t) => {
     const site = fs.mkdtempSync(path.join(os.tmpdir(), 'theme-demo-'))
     t.after(() => fs.rmSync(site, { recursive: true, force: true }))
     fs.cpSync(path.join(FIXTURE, 'config'), path.join(site, 'config'), { recursive: true })
@@ -132,6 +150,7 @@ test('applyDemoOverrides creates the seam when the starter has none', (t) => {
 
     applyDemoOverrides(site, DEMOS.stack)
 
-    const seam = fs.readFileSync(path.join(site, 'theme/views/partials/footer-extra.pug'), 'utf8')
-    assert.equal(seam, `${demoNote(DEMOS.stack)}\n`)
+    const seam = (name) => fs.readFileSync(path.join(site, `theme/views/partials/${name}.pug`), 'utf8')
+    assert.equal(seam('footer-extra'), `${demoNote(DEMOS.stack)}\n`)
+    assert.equal(seam('head-extra'), `${DEMO_ROBOTS}\n`)
 })
