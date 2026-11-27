@@ -8,11 +8,11 @@ keywords: nera images, plugin-images, responsive images, avif, webp, srcset, pic
 tags: plugins, images, privacy
 pagination_order: 12
 createdAt: 2026-11-22
-verified_on: 2026-11-22
+verified_on: 2026-11-27
 verified_with:
     plugin-images: 1.0.3
-    core: 4.19.0
-    nera: 1.28.0
+    core: 4.19.1
+    nera: 1.29.0
 ---
 A photo straight from a camera or a phone is several megabytes and thousands
 of pixels wide, and it carries metadata: the camera model, the time, often
@@ -46,8 +46,8 @@ npx nera add images
 ```
 
 There is nothing else to set up: a `config/images.yaml` is optional, and so
-is every key in it. The blog, business and portfolio starters
-(`nera new --starter …`) already ship the plugin.
+is every key in it. Every official starter except `blank`
+(`nera new --starter …`) already ships the plugin.
 
 ## 2. Before and after
 

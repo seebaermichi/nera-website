@@ -41,7 +41,7 @@ npx nera add images
 ```
 
 No hay nada más que configurar: un `config/images.yaml` es opcional, igual
-que cada clave dentro de él. Los starters blog, business y portfolio
+que cada clave dentro de él. Todos los starters oficiales salvo `blank`
 (`nera new --starter …`) ya incluyen el plugin.
 
 ## 2. Antes y después

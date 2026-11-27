@@ -42,8 +42,8 @@ Plugins, das Mixin `picture`, nach `theme/views/vendor/plugin-images/`:
 ```
 
 Mehr ist nicht einzurichten: Eine `config/images.yaml` ist optional, und
-jeder Schlüssel darin auch. Die Starter blog, business und portfolio
-(`nera new --starter …`) bringen das Plugin schon mit.
+jeder Schlüssel darin auch. Jeder offizielle Starter außer `blank`
+(`nera new --starter …`) bringt das Plugin schon mit.
 
 ## 2. Vorher und nachher
 

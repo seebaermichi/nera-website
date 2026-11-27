@@ -8,9 +8,9 @@ keywords: nera pagination, plugin-page-pagination, prev next links, docs navigat
 tags: plugins, pagination
 pagination_order: 5
 createdAt: 2026-07-17
-verified_on: 2026-11-22
+verified_on: 2026-11-27
 verified_with:
-    nera: 1.28.0
+    nera: 1.29.0
     plugin-page-pagination: 2.4.0
 ---
 `@nera-static/plugin-page-pagination` links each page to its previous and next
