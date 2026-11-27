@@ -1,6 +1,6 @@
 // Local plugin: publishes the English docs and tutorials as plain Markdown for
 // AI assistants (llmstxt.org). `llms.txt` is the index: an H1, a one-paragraph
-// summary, then linked sections (Docs, Tutorials, Plugins, CLI, Optional), each
+// summary, then linked sections (Docs, Tutorials, Plugins, Themes, CLI, Optional), each
 // item with a one-line description. `llms-full.txt` is every English docs page,
 // then every tutorial, each in `pagination_order`, with the frontmatter cut off
 // and root-relative links made absolute so the text stands on its own.
@@ -39,6 +39,8 @@ const INDEX_FILE = 'llms.txt'
 const PAGES_CACHE_DIR = 'pages'
 // The English plugin catalog, whose `plugins:` frontmatter feeds `## Plugins`.
 const PLUGINS_PAGE = '/plugins/index.html'
+// The English themes page, whose `themes:` frontmatter feeds `## Themes`.
+const THEMES_PAGE = '/themes/index.html'
 const CLI_PAGE = '/docs/cli.html'
 const CLI_PACKAGE = {
     title: '@nera-static/nera on npm',
@@ -108,9 +110,10 @@ export function markdownPath(href) {
 
 /**
  * The llms.txt index. Docs and Tutorials are the pages of llms-full.txt, in the
- * same order; Plugins is the English catalog's `plugins:` list; CLI points at
- * the CLI reference and the npm package; Optional links llms-full.txt itself.
- * An empty section is left out.
+ * same order; Plugins is the English catalog's `plugins:` list; Themes is the
+ * English themes page's `themes:` list, each with its demo URL when it has one;
+ * CLI points at the CLI reference and the npm package; Optional links
+ * llms-full.txt itself. An empty section is left out.
  *
  * A page item links the page's own `.md` file, through the same `markdownPath`
  * as the asset, so only pages in `pages` (the ones emitted) are ever linked —
@@ -123,16 +126,15 @@ export function renderIndex({ title, summary, origin, pages, pagesData, defaultL
         description: meta.description,
     })
 
-    const pluginsPage = pagesData
-        .map(({ meta }) => meta || {})
-        .find((meta) => meta.href === PLUGINS_PAGE && (meta.lang || defaultLang) === LANG)
-    if (!Array.isArray(pluginsPage?.plugins)) {
-        console.warn(`⚠️ llms-txt: no plugins list on ${PLUGINS_PAGE}, the Plugins section is left out of ${INDEX_FILE}`)
-    }
-    const plugins = (pluginsPage?.plugins || []).map((plugin) => ({
+    const plugins = catalogList(pagesData, PLUGINS_PAGE, 'plugins', 'Plugins', defaultLang).map((plugin) => ({
         title: plugin.package || plugin.name,
         url: plugin.url,
         description: plugin.description,
+    }))
+    const themes = catalogList(pagesData, THEMES_PAGE, 'themes', 'Themes', defaultLang).map((theme) => ({
+        title: theme.package || theme.name,
+        url: theme.readme,
+        description: [theme.audience, theme.demo && `Demo: ${origin}${theme.demo}`].filter(Boolean).join(' '),
     }))
 
     const cliPage = pages.find((meta) => meta.href === CLI_PAGE)
@@ -140,6 +142,7 @@ export function renderIndex({ title, summary, origin, pages, pagesData, defaultL
         ['Docs', pages.filter((meta) => meta.dirname === '/docs').map(pageItem)],
         ['Tutorials', pages.filter((meta) => meta.dirname === '/tutorials').map(pageItem)],
         ['Plugins', plugins],
+        ['Themes', themes],
         ['CLI', [...(cliPage ? [pageItem(cliPage)] : []), CLI_PACKAGE]],
         ['Optional', [{
             title: FULL_FILE,
@@ -154,6 +157,20 @@ export function renderIndex({ title, summary, origin, pages, pagesData, defaultL
         .join('\n\n')
 
     return `# ${title}\n\n> ${oneLine(summary)}\n\n${body}`
+}
+
+/**
+ * The `<key>:` frontmatter list of the English page at `href` (a catalog page),
+ * or `[]` with a warning that the `<section>` section is left out of llms.txt.
+ */
+function catalogList(pagesData, href, key, section, defaultLang) {
+    const page = pagesData
+        .map(({ meta }) => meta || {})
+        .find((meta) => meta.href === href && (meta.lang || defaultLang) === LANG)
+    if (Array.isArray(page?.[key])) return page[key]
+
+    console.warn(`⚠️ llms-txt: no ${key} list on ${href}, the ${section} section is left out of ${INDEX_FILE}`)
+    return []
 }
 
 // `- [Title](url): description`, without the colon part when there is none.

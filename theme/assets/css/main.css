@@ -183,6 +183,15 @@ img, svg, video { max-width: 100%; height: auto; }
   gap: var(--space-3) var(--space-5);
   padding-block: var(--space-3);
 }
+/* 45–60rem: brand, nav, lang switch and GitHub share one row only just — a
+   tighter column gap (with the nav's, section 5) keeps the band where the last
+   two wrap to a second row no wider than with six nav items. */
+@media (min-width: 45rem) {
+  .site-header__inner { column-gap: var(--space-4); }
+}
+@media (min-width: 60rem) {
+  .site-header__inner { column-gap: var(--space-5); }
+}
 .site-header__brand {
   display: flex;
   align-items: center;
@@ -239,9 +248,14 @@ img, svg, video { max-width: 100%; height: auto; }
   width: 100%;
 }
 .nav--main ul { flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+/* From 45rem the nav shares the brand's row; up to 60rem its gap is tighter,
+   for the same reason as the header's column gap (section 4). */
 @media (min-width: 45rem) {
   .nav--main { order: 0; width: auto; margin-left: auto; }
-  .nav--main ul { flex-wrap: nowrap; gap: var(--space-5); }
+  .nav--main ul { flex-wrap: nowrap; gap: var(--space-3); }
+}
+@media (min-width: 60rem) {
+  .nav--main ul { gap: var(--space-5); }
 }
 
 .nav--footer .nav--list, .nav--footer ul { flex-direction: column; gap: var(--space-2); }

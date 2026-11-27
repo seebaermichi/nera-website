@@ -47,6 +47,11 @@ const PLUGINS = [
     { name: 'Tags', package: '@nera-static/plugin-tags', description: 'Tag pages.', url: 'https://github.test/tags' },
 ]
 
+const THEMES = [
+    { name: 'Plain', package: '@nera-static/theme-blog', audience: 'A plain blog.', demo: '/themes/blog/plain/', readme: 'https://github.test/theme-blog#readme' },
+    { name: 'Business', package: '@nera-static/theme-business', audience: 'A business site.', readme: 'https://github.test/theme-business#readme' },
+]
+
 beforeEach(() => {
     tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'llms-txt-'))
     previousCwd = process.cwd()
@@ -268,7 +273,7 @@ test('llms.txt falls back to the default title and summary without a config file
     assert.ok(index.includes('(https://nera.js.org/llms-full.txt)'), index)
 })
 
-test('llms.txt lists Docs, Tutorials, Plugins, CLI and Optional in that order', () => {
+test('llms.txt lists Docs, Tutorials, Plugins, Themes, CLI and Optional in that order', () => {
     writePage('docs/index.md', 'title: Intro', '# Intro\n')
     writePage('docs/cli.md', 'title: CLI reference', '# CLI\n')
     writePage('tutorials/blog.md', 'title: Blog', 'Blog.\n')
@@ -281,10 +286,11 @@ test('llms.txt lists Docs, Tutorials, Plugins, CLI and Optional in that order', 
         meta('/docs/index.html', { title: 'Intro', description: 'What Nera is.', pagination_order: 1 }),
         meta('/tutorials/index.html', { title: 'Tutorials', description: 'All tutorials.' }),
         meta('/plugins/index.html', { title: 'Plugins', plugins: PLUGINS }),
+        meta('/themes/index.html', { title: 'Themes', themes: THEMES }),
     ])
 
     const headings = index.split('\n').filter((line) => line.startsWith('## '))
-    assert.deepEqual(headings, ['## Docs', '## Tutorials', '## Plugins', '## CLI', '## Optional'])
+    assert.deepEqual(headings, ['## Docs', '## Tutorials', '## Plugins', '## Themes', '## CLI', '## Optional'])
     assert.deepEqual(section(index, 'Docs'), [
         `- [Intro](${ORIGIN}/docs/index.md): What Nera is.`,
         `- [CLI reference](${ORIGIN}/docs/cli.md): The nera CLI.`,
@@ -297,6 +303,10 @@ test('llms.txt lists Docs, Tutorials, Plugins, CLI and Optional in that order', 
         '- [@nera-static/plugin-canonical-links](https://github.test/canonical): Adds <link> tags.',
         '- [@nera-static/plugin-tags](https://github.test/tags): Tag pages.',
     ])
+    assert.deepEqual(section(index, 'Themes'), [
+        `- [@nera-static/theme-blog](https://github.test/theme-blog#readme): A plain blog. Demo: ${ORIGIN}/themes/blog/plain/`,
+        '- [@nera-static/theme-business](https://github.test/theme-business#readme): A business site.',
+    ])
     assert.deepEqual(section(index, 'CLI'), [
         `- [CLI reference](${ORIGIN}/docs/cli.md): The nera CLI.`,
         '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
@@ -307,20 +317,25 @@ test('llms.txt lists Docs, Tutorials, Plugins, CLI and Optional in that order', 
     assert.deepEqual(warnings, [])
 })
 
-test('llms.txt takes the plugins and the CLI page from the English pages only', () => {
+test('llms.txt takes the plugins, the themes and the CLI page from the English pages only', () => {
     const { index } = build([
+        meta('/de/themes/index.html', { lang: 'de', themes: [{ package: '@nera-static/theme-de', audience: 'Deutsch.', readme: 'https://github.test/de' }] }),
+        meta('/themes/index.html', { lang: 'es', themes: [{ package: '@nera-static/theme-mislabelled', audience: 'X.', readme: 'https://github.test/x' }] }),
         meta('/de/plugins/index.html', { lang: 'de', plugins: [{ package: '@nera-static/plugin-de', description: 'Deutsch.', url: 'https://github.test/de' }] }),
         meta('/plugins/index.html', { lang: 'de', plugins: [{ package: '@nera-static/plugin-mislabelled', description: 'X.', url: 'https://github.test/x' }] }),
         meta('/de/docs/cli.html', { title: 'CLI', lang: 'de', description: 'Deutsch.' }),
     ])
 
     assert.equal(section(index, 'Plugins'), null)
+    assert.equal(section(index, 'Themes'), null)
     assert.ok(!index.includes('/de/'), index)
+    assert.ok(!index.includes('mislabelled'), index)
     assert.deepEqual(section(index, 'CLI'), [
         '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
     ])
     assert.equal(section(index, 'Docs'), null)
     assert.ok(warnings.some((message) => /no plugins list on \/plugins\/index\.html/.test(message)), warnings)
+    assert.ok(warnings.includes('⚠️ llms-txt: no themes list on /themes/index.html, the Themes section is left out of llms.txt'), warnings)
 })
 
 test('every page link in llms.txt points at a .md file getAssets emits', () => {
@@ -356,6 +371,7 @@ test('an llms.txt item without a description is listed bare, with a warning', ()
     const { index } = build([
         meta('/docs/index.html', { title: 'Intro', pagination_order: 1 }),
         meta('/plugins/index.html', { plugins: PLUGINS }),
+        meta('/themes/index.html', { themes: THEMES }),
     ])
 
     assert.deepEqual(section(index, 'Docs'), [`- [Intro](${ORIGIN}/docs/index.md)`])
