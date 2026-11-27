@@ -30,8 +30,9 @@ devDependency de cada paquete y se ejecuta como su script de lint:
 
 Así la misma revisión se ejecuta en todos los sitios donde importa:
 
-- **en tu máquina**, con `npm run lint`, y antes de cada commit a través
-  del hook `pre-commit` de husky;
+- **en tu máquina**, con `npm run lint`, y a través de los hooks de husky:
+  `pre-commit: npm run lint` antes de cada commit,
+  `pre-push: npm run lint && npx vitest run` antes de cada push;
 - **en la CI**, donde `test.yml` ejecuta `npm run lint` en cada push y pull
   request, y `publish.yml` se niega a publicar una versión que no lo pasa.
 

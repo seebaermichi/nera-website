@@ -29,8 +29,9 @@ and runs as its lint script:
 
 So the same check runs everywhere it matters:
 
-- **on your machine**, with `npm run lint`, and before every commit through
-  the husky `pre-commit` hook;
+- **on your machine**, with `npm run lint`, and through the husky hooks:
+  `pre-commit: npm run lint` before every commit,
+  `pre-push: npm run lint && npx vitest run` before every push;
 - **in CI**, where `test.yml` runs `npm run lint` on every push and pull
   request, and `publish.yml` refuses to publish a release that fails it.
 

@@ -34,7 +34,7 @@ nera-plugin-<name>/
 ├── test/                     # see the Tests page of this guide
 ├── README.md  CHANGELOG.md  LICENSE  package.json  package-lock.json
 ├── eslint.config.js  .editorconfig  .gitignore
-├── .husky/                   # pre-commit: npm run lint, pre-push: npx vitest run
+├── .husky/                   # pre-commit: npm run lint, pre-push: npm run lint && npx vitest run
 └── .github/                  # workflows/test.yml, workflows/publish.yml, dependabot.yml, FUNDING.yml
 ```
 

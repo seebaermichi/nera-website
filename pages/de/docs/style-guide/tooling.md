@@ -30,8 +30,9 @@ devDependency jedes Pakets und läuft als dessen Lint-Skript:
 
 So läuft dieselbe Prüfung überall, wo es darauf ankommt:
 
-- **auf deinem Rechner**, mit `npm run lint`, und vor jedem Commit über den
-  husky-Hook `pre-commit`;
+- **auf deinem Rechner**, mit `npm run lint`, und über die husky-Hooks:
+  `pre-commit: npm run lint` vor jedem Commit,
+  `pre-push: npm run lint && npx vitest run` vor jedem Push;
 - **in der CI**, wo `test.yml` bei jedem Push und Pull Request
   `npm run lint` ausführt und `publish.yml` sich weigert, ein Release zu
   veröffentlichen, das daran scheitert.

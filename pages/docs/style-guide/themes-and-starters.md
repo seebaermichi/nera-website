@@ -41,7 +41,7 @@ nera-theme-<name>/
 │   └── <section>.test.js     # one file per section of the theme's contract
 ├── README.md  CHANGELOG.md  LICENSE  package.json  package-lock.json
 ├── eslint.config.js  vitest.config.js  .editorconfig  .gitignore
-├── .husky/                   # pre-commit: npm run lint, pre-push: npx vitest run
+├── .husky/                   # pre-commit: npm run lint, pre-push: npm run lint && npx vitest run
 └── .github/                  # workflows/test.yml, workflows/publish.yml, dependabot.yml, FUNDING.yml
 ```
 
