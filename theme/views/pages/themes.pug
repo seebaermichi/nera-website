@@ -1,0 +1,32 @@
+extends ../layouts/layout
+
+block content
+  section.plugins.container
+    header.plugins__header
+      h1.plugins__title #{ meta.title }
+    article.prose
+      != content
+
+    //- The catalog is authored as frontmatter `themes:` on the page, like the
+    //- plugin catalog. `demo` is optional: a theme without one renders no link.
+    if meta.themes && meta.themes.length
+      ul.theme-cards
+        each theme, index in meta.themes
+          li.theme-card
+            if theme.image
+              img.theme-card__image(src=theme.image, alt=theme.alt || '', width="960", height="600", loading=index === 0 ? 'eager' : 'lazy', decoding="async")
+            .theme-card__body
+              h2.theme-card__name #{ theme.name }
+              p.theme-card__desc #{ theme.audience }
+              if theme.package
+                code.theme-card__pkg #{ theme.package }
+              if theme.starters && theme.starters.length
+                ul.theme-card__starters
+                  each starter in theme.starters
+                    li
+                      code npx @nera-static/nera new my-site --starter #{ starter }
+              p.theme-card__links
+                if theme.demo
+                  a.theme-card__link(href=theme.demo) Demo →
+                if theme.readme
+                  a.theme-card__link(href=theme.readme, target="_blank", rel="noopener noreferrer") README →
