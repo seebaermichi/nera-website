@@ -8,9 +8,9 @@ keywords: nera seo, plugin-canonical-links, canonical url, hreflang, alternate l
 tags: plugins, seo
 pagination_order: 7
 createdAt: 2026-07-15
-verified_on: 2026-11-22
+verified_on: 2026-11-27
 verified_with:
-    nera: 1.28.0
+    nera: 1.29.0
     plugin-canonical-links: 2.2.4
     plugin-sitemap: 1.1.1
 ---

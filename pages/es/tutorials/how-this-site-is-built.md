@@ -97,7 +97,7 @@ ejecutar en local:
 ```bash
 npm ci
 npm run lint              # eslint
-npm test                  # node --test con los tests junto a los plugins locales
+npm test                  # node --test con los tests de los plugins locales y los scripts
 npm run validate          # nera validate: layouts, includes, frontmatter
 npm run build -- --check  # nera build --check
 ```
@@ -108,8 +108,10 @@ advertencias: solo hacen fallar la ejecución con una regla que
 `config/validate.yaml` eleve a error.
 
 Después, un push a `main` ejecuta [`.github/workflows/deploy.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/deploy.yml): `npm ci`,
-`npm run build`, y `public/` se publica en GitHub Pages — el sitio que estás
-leyendo en nera.js.org.
+`npm run build`, y después `npm run build:demos` y `npm run check:demos`, que
+construyen y comprueban las [demos de los temas de blog](/themes/blog/plain/) en
+`/themes/blog/` a partir de las últimas versiones de los starters. Luego `public/`
+se publica en GitHub Pages — el sitio que estás leyendo en nera.js.org.
 
 Ese es todo el stack: Markdown entra, HTML estático sale, plugins para el resto. Si
 has leído los otros tutoriales de esta sección, ahora has visto cada pieza de él por

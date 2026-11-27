@@ -8,17 +8,17 @@ keywords: nera case study, static site example, nera website, dogfooding
 tags: case-study, plugins, advanced
 pagination_order: 13
 createdAt: 2026-07-13
-verified_on: 2026-11-26
+verified_on: 2026-11-27
 verified_with:
-    nera: 1.28.0
-    plugin-canonical-links: 2.2.3
+    nera: 1.29.0
+    plugin-canonical-links: 2.2.4
     plugin-code-blocks: 1.2.1
     plugin-link-attributes: 2.1.1
     plugin-navigation: 3.1.1
     plugin-page-pagination: 2.4.0
     plugin-search: 2.4.0
-    plugin-stacks: 2.4.0
-    plugin-tags: 3.4.0
+    plugin-stacks: 2.4.1
+    plugin-tags: 3.4.1
 ---
 This whole site is built with Nera. Nothing here is special-cased — it's the same
 generator and the same public plugins you'd install. Here's the full recipe.
@@ -104,7 +104,7 @@ locally:
 ```bash
 npm ci
 npm run lint              # eslint
-npm test                  # node --test on the tests beside the local plugins
+npm test                  # node --test on the local plugins' and scripts' tests
 npm run validate          # nera validate: layouts, includes, frontmatter
 npm run build -- --check  # nera build --check
 ```
@@ -114,8 +114,10 @@ legal-notice problems and reports what it finds. Findings are warnings, so they
 fail the run only for a rule that `config/validate.yaml` promotes to an error.
 
 A push to `main` then runs [`.github/workflows/deploy.yml`](https://github.com/seebaermichi/nera-website/blob/main/.github/workflows/deploy.yml): `npm ci`,
-`npm run build`, and `public/` is published to GitHub Pages — the site you are
-reading at nera.js.org.
+`npm run build`, then `npm run build:demos` and `npm run check:demos`, which build
+and check the [blog theme demos](/themes/blog/plain/) under `/themes/blog/` from
+the starters' latest releases. `public/` is then published to GitHub Pages — the
+site you are reading at nera.js.org.
 
 That's the entire stack: Markdown in, static HTML out, plugins for the rest. If
 you've read the other tutorials in this section, you've now seen every piece of it

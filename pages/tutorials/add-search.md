@@ -8,9 +8,9 @@ keywords: nera search, static site search, client-side search
 tags: plugins, search
 pagination_order: 4
 createdAt: 2026-07-18
-verified_on: 2026-11-26
+verified_on: 2026-11-27
 verified_with:
-    nera: 1.28.0
+    nera: 1.29.0
     plugin-search: 2.4.0
 ---
 `@nera-static/plugin-search` builds a JSON index at render time and ships a small

@@ -8,11 +8,11 @@ keywords: nera consent, plugin-consent, cookie banner, consent banner, two-click
 tags: plugins, privacy
 pagination_order: 10
 createdAt: 2026-10-25
-verified_on: 2026-11-22
+verified_on: 2026-11-27
 verified_with:
     plugin-consent: 1.1.0
     validate: 1.8.0
-    nera: 1.28.0
+    nera: 1.29.0
 ---
 A consent banner asks visitors to agree before something on the site that
 needs their consent runs: an analytics script, a YouTube video, a map. A site
