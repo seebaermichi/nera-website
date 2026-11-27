@@ -1,0 +1,61 @@
+# The theme catalog of /themes/ and llms.txt, read by plugin-page-data.
+- name: Plain
+  package: '@nera-static/theme-blog'
+  audience:
+      en: A plain, general-purpose blog — black on white, system fonts, dates in the margin.
+      de: Ein schlichtes Blog für alles — schwarz auf weiß, Systemschriften, Datum am Rand.
+      es: Un blog sencillo para todo — negro sobre blanco, fuentes del sistema, fechas en el margen.
+  starters:
+      - blog
+  demo: /themes/blog/plain/
+  readme: https://github.com/seebaermichi/nera-theme-blog#readme
+  image: /img/themes/plain.webp
+  alt:
+      en: The home page of the Plain demo blog
+      de: Die Startseite des Plain-Demo-Blogs
+      es: La página de inicio del blog de demostración Plain
+- name: Stack
+  package: '@nera-static/theme-stack'
+  audience:
+      en: A blog for developers, with series and highlighted code.
+      de: Ein Blog für Entwickler, mit Serien und hervorgehobenem Code.
+      es: Un blog para desarrolladores, con series y código resaltado.
+  starters:
+      - stack
+  demo: /themes/blog/stack/
+  readme: https://github.com/seebaermichi/nera-theme-stack#readme
+  image: /img/themes/stack.webp
+  alt:
+      en: The home page of the Stack demo blog
+      de: Die Startseite des Stack-Demo-Blogs
+      es: La página de inicio del blog de demostración Stack
+- name: Ansitz
+  package: '@nera-static/theme-ansitz'
+  audience:
+      en: A photo blog that puts large photographs first.
+      de: Ein Fotoblog, das große Fotografien in den Vordergrund stellt.
+      es: Un blog de fotografía que pone las fotos grandes en primer plano.
+  starters:
+      - ansitz
+  demo: /themes/blog/ansitz/
+  readme: https://github.com/seebaermichi/nera-theme-ansitz#readme
+  image: /img/themes/ansitz.webp
+  alt:
+      en: The home page of the Ansitz demo photo blog
+      de: Die Startseite des Ansitz-Demo-Fotoblogs
+      es: La página de inicio del blog de fotografía de demostración Ansitz
+- name: Umwege
+  package: '@nera-static/theme-umwege'
+  audience:
+      en: A travel blog with trip facts, places and photographs.
+      de: Ein Reiseblog mit Reisedaten, Orten und Fotografien.
+      es: Un blog de viajes con datos del viaje, lugares y fotografías.
+  starters:
+      - umwege
+  demo: /themes/blog/umwege/
+  readme: https://github.com/seebaermichi/nera-theme-umwege#readme
+  image: /img/themes/umwege.webp
+  alt:
+      en: The home page of the Umwege demo travel blog
+      de: Die Startseite des Umwege-Demo-Reiseblogs
+      es: La página de inicio del blog de viajes de demostración Umwege

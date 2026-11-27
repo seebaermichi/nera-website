@@ -1,4 +1,6 @@
 plugin-order:
+    - start:
+          - plugin-page-data
     - end:
           - plugin-canonical-links
           - plugin-search
