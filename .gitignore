@@ -1,23 +1,39 @@
-node_modules
-public
-ISSUES.md
-.vscode/
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+
+# Environment and credentials: never commit
 .env
-.vite
-# npm credentials — never commit
+.env.local
 .npmrc
-# plugin build cache (plugins/llms-txt writes llms*.txt here)
-.nera-cache
-# Playwright MCP snapshots from browser tests
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Test and build output
+coverage/
+.vitest/
+.tmp/
+dist/
+build/
+.cache/
+.nera-cache/
+
+# Browser-test artifacts (Playwright MCP)
 .playwright-mcp/
-plans/
-.claude/.work-issue-active
 
 # Internal development files (plans, Snagio workflow, specs) never belong in the repo
+plans/
 /.claude/
 /.mcp.json
 /ROADMAP*.md
 /DESIGN-BRIEF.md
+
+# nera-website-specific
+public
 /design/
-# theme demos: temp sites and image caches (scripts/theme-demos.js)
 .theme-demos/
