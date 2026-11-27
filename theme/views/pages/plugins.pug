@@ -7,11 +7,13 @@ block content
     article.prose
       != content
 
-    //- The catalog is authored as YAML-ish frontmatter `plugins:` on the page,
-    //- so content and design stay separate. Falls back gracefully if absent.
-    if meta.plugins && meta.plugins.length
+    //- The catalog lives in `data/plugins.yaml`; the page's `page_data: plugins`
+    //- has plugin-page-data load it into `meta.data.plugins`, translated fields
+    //- already resolved to the page's language. Falls back gracefully if absent.
+    - const plugins = (meta.data && meta.data.plugins) || []
+    if plugins.length
       ul.plugin-cards
-        each plugin in meta.plugins
+        each plugin in plugins
           li.plugin-card
             h2.plugin-card__name #{ plugin.name }
             p.plugin-card__desc #{ plugin.description }
