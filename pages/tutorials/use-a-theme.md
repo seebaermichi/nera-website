@@ -3,14 +3,18 @@ layout: pages/tutorial.pug
 title: Use and customise a theme
 slug: use-a-theme
 lang: en
-description: Start a site from an installable theme, change its colours, CSS and markup file by file, and keep receiving the theme's updates through npm.
-keywords: nera theme, theme-business, override theme, child theme, design tokens, custom css, nera update, theme-shadowed
+description: Start a site from an installable theme, change its colours, CSS and markup file by file, keep receiving the theme's updates through npm, and switch a blog between the four blog themes.
+keywords: nera theme, theme-business, theme-blog, theme-stack, theme-ansitz, theme-umwege, switch theme, override theme, child theme, design tokens, custom css, nera update, theme-shadowed
 tags: themes, getting-started
 pagination_order: 14
 createdAt: 2026-11-22
 verified_on: 2026-11-27
 verified_with:
     theme-business: 1.0.3
+    theme-blog: 2.1.0
+    theme-stack: 2.2.0
+    theme-ansitz: 1.1.0
+    theme-umwege: 1.1.1
     nera: 1.29.0
     core: 4.19.1
 ---
@@ -22,9 +26,12 @@ keeps bringing the theme's fixes, like a child theme in WordPress.
 
 This tutorial uses `@nera-static/theme-business`, the theme of the business
 and portfolio starters. You change a colour, add a few CSS rules, replace one
-partial, update the theme, and add a theme to a site that has none. Every
-command and output below was run in a fresh site with theme-business 1.0.3,
-`@nera-static/nera` 1.29.0 and `@nera-static/core` 4.19.1.
+partial, update the theme, and add a theme to a site that has none. Then a
+blog switches between the four blog themes. Every command and output below
+was run in a fresh site with theme-business 1.0.3, `@nera-static/nera` 1.29.0
+and `@nera-static/core` 4.19.1; section 9 in a blog from `--starter blog`
+with theme-blog 2.1.0, theme-stack 2.2.0, theme-ansitz 1.1.0 and
+theme-umwege 1.1.1.
 
 ## 1. Start a site with a theme
 
@@ -399,7 +406,103 @@ theme-business has `pages/home.pug`, `default.pug`, `contact.pug`,
 site nor the theme has fails `nera validate` with `layout-unresolved`, which
 names both places it looked.
 
-## 9. Build your own theme
+## 9. Switch between the blog themes
+
+Four themes are made for blogs: `@nera-static/theme-blog` ("Plain"),
+`theme-stack` for code, `theme-ansitz` for photographs and `theme-umwege` for
+travel. The demos show each with its starter's sample posts:
+[Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
+[Ansitz](/themes/blog/ansitz/) and [Umwege](/themes/blog/umwege/). The four
+share one contract, so a blog written for one renders in each of the others.
+Start one with the plain blog:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog --yes
+cd my-blog
+```
+
+With `--yes`, `--starter blog` takes the plain blog without asking: the site
+depends on `@nera-static/theme-blog` `^2.1.0`, and `config/app.yaml` says
+`theme: blog`.
+
+What the four themes share:
+
+| shared | keys |
+|---|---|
+| page types | `pages/home.pug`, `post.pug`, `archive.pug`, `tag.pug`, `default.pug` |
+| `config/theme.yaml` | `author.name`, `author.bio`, `author.href`, `blog.home_posts`, `blog.featured_series`, `blog.highlight_tag`, `blog.post_layouts`, `footer_links`, `extra_css` |
+| post frontmatter | `date`, `updated`, `author`, `image`, `image_alt`, `tags`, `series`, `series_part`, `facts`, `location`, `image_note` |
+| the rest | the seams for plugin output and the `t()` keys |
+
+To switch to Stack, install the package:
+
+```bash
+npm install @nera-static/theme-stack
+```
+
+```text
+added 1 package, and audited 168 packages in 833ms
+```
+
+and change the one line in `config/app.yaml`:
+
+```yaml:config/app.yaml
+theme: stack
+```
+
+```bash
+npx nera build --check
+```
+
+```text
+✓ No problems found.
+```
+
+The same pages, the same `config/theme.yaml` and every file the starter put
+into `theme/` now render in Stack. `theme: ansitz` and `theme: umwege`
+(after `npm install @nera-static/theme-ansitz @nera-static/theme-umwege`)
+build just as clean. Once you have chosen, remove the packages you no longer
+use: `npm uninstall @nera-static/theme-blog`.
+
+What a theme does not draw, it ignores, so switching never breaks a page:
+
+-   `location` and `image_note` appear in Ansitz (both) and Umwege
+    (`location`); Plain and Stack show neither. Give the starter's post
+    `pages/posts/tags.md` a `location: Berlin`, and its page carries
+    `<p class="post__location">` under Ansitz and Umwege and nothing under
+    Plain and Stack, with a clean build in all four.
+-   `blog.highlight_tag` is a list on the home in Plain, Ansitz and Umwege;
+    Stack renders nothing for it. `blog.featured_series` is a block on the home
+    in Plain, Stack and Ansitz; Umwege renders nothing for it.
+
+`blog.home_posts` counts the posts the home lists **after** its large
+opening, which is never counted: the "Latest post" in Plain and Stack, the
+boarding pass in Umwege (both the newest post), and the hero in Ansitz (the
+newest post with an `image`). Each theme has a default that fills its own
+grid (Plain 9, Stack 6, Ansitz and Umwege 7). Set it in your
+`config/theme.yaml` and it applies to whichever theme you use: with
+`home_posts: 2`, "Recent posts" lists two posts in all four.
+
+Two things deserve a look when you switch:
+
+-   **Tokens** are each theme's own. The eight colour tokens (`bg`, `surface`,
+    `text`, `muted`, `accent`, `accent_text`, `border`, `focus`) exist in all
+    four, so colours you set carry over, but they were chosen for another
+    look: drop them, or check their contrast again (section 4). Stack and
+    Umwege have a few tokens of their own (Stack's `night`, `night_text`,
+    `night_muted` and `highlight`, Umwege's `sun`, `coral` and `sky`).
+-   **Your files in `theme/views/`** stay and win over every theme. The
+    starter's seams (`partials/post-media.pug`, `tag-cloud.pug` and the
+    others), its search page type `pages/search.pug` and its vendor copies
+    rendered unchanged under all four themes. An override of a theme's own
+    view, like the `page-header.pug` of section 6, is a copy of one theme's
+    file: compare it with the new theme's file of the same path (section 7)
+    before you keep it.
+
+Stack, Ansitz and Umwege are wider than Plain; their READMEs suggest wider
+`widths` for `@nera-static/plugin-images` in `config/images.yaml`.
+
+## 10. Build your own theme
 
 A theme of your own is an npm package with the same layout: `views/`,
 `assets/` and `config/theme.yaml`. `@nera-static/theme-example` is the
@@ -415,4 +518,9 @@ The [theme-business README](https://github.com/seebaermichi/nera-theme-business#
 has every token, setting, seam and public class. The plugin tutorials, such
 as [Custom navigation](/tutorials/custom-navigation.html), show how to publish
 a plugin's templates; with theme-business you include them from a seam, as
-its README shows for each plugin it supports.
+its README shows for each plugin it supports. The READMEs of
+[theme-blog](https://github.com/seebaermichi/nera-theme-blog#readme),
+[theme-stack](https://github.com/seebaermichi/nera-theme-stack#readme),
+[theme-ansitz](https://github.com/seebaermichi/nera-theme-ansitz#readme) and
+[theme-umwege](https://github.com/seebaermichi/nera-theme-umwege#readme) say
+what each blog theme draws from the shared keys.

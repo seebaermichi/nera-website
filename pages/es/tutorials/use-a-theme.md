@@ -3,8 +3,8 @@ layout: pages/tutorial.pug
 title: Usar y personalizar un tema
 slug: use-a-theme
 lang: es
-description: Arranca un sitio a partir de un tema instalable, cambia sus colores, su CSS y su marcado archivo por archivo, y sigue recibiendo las actualizaciones del tema a través de npm.
-keywords: nera tema, theme-business, sobrescribir tema, tema hijo, design tokens, css propio, nera update, theme-shadowed
+description: Arranca un sitio a partir de un tema instalable, cambia sus colores, su CSS y su marcado archivo por archivo, sigue recibiendo las actualizaciones del tema a través de npm y cambia un blog entre los cuatro temas de blog.
+keywords: nera tema, theme-business, theme-blog, theme-stack, theme-ansitz, theme-umwege, cambiar de tema, sobrescribir tema, tema hijo, design tokens, css propio, nera update, theme-shadowed
 tags: themes, getting-started
 pagination_order: 14
 createdAt: 2026-11-22
@@ -19,9 +19,11 @@ WordPress.
 Este tutorial usa `@nera-static/theme-business`, el tema de los kits de
 inicio business y portfolio. Cambias un color, añades unas reglas CSS,
 sustituyes un partial, actualizas el tema y añades un tema a un sitio que no
-tiene ninguno. Cada comando y cada salida de abajo se ejecutó en un sitio
-recién creado con theme-business 1.0.3, `@nera-static/nera` 1.29.0 y
-`@nera-static/core` 4.19.1.
+tiene ninguno. Después, un blog cambia entre los cuatro temas de blog. Cada
+comando y cada salida de abajo se ejecutó en un sitio recién creado con
+theme-business 1.0.3, `@nera-static/nera` 1.29.0 y `@nera-static/core`
+4.19.1; la sección 9, en un blog creado con `--starter blog` con theme-blog
+2.1.0, theme-stack 2.2.0, theme-ansitz 1.1.0 y theme-umwege 1.1.1.
 
 ## 1. Arrancar un sitio con un tema
 
@@ -402,7 +404,105 @@ su `layout`. theme-business tiene `pages/home.pug`, `default.pug`,
 una vista que no tienen ni tu sitio ni el tema falla en `nera validate` con
 `layout-unresolved`, que nombra los dos sitios donde buscó.
 
-## 9. Crea tu propio tema
+## 9. Cambiar entre los temas de blog
+
+Hay cuatro temas hechos para blogs: `@nera-static/theme-blog` («Plain»),
+`theme-stack` para código, `theme-ansitz` para fotografías y `theme-umwege`
+para viajes. Las demos muestran cada uno con las entradas de ejemplo de su kit
+de inicio: [Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
+[Ansitz](/themes/blog/ansitz/) y [Umwege](/themes/blog/umwege/). Los cuatro
+comparten un contrato, así que un blog escrito para uno se renderiza en
+cualquiera de los otros. Crea uno con el blog sencillo:
+
+```bash
+npx @nera-static/nera new my-blog --starter blog --yes
+cd my-blog
+```
+
+Con `--yes`, `--starter blog` toma el blog sencillo sin preguntar: el sitio
+depende de `@nera-static/theme-blog` `^2.1.0`, y `config/app.yaml` dice
+`theme: blog`.
+
+Lo que comparten los cuatro temas:
+
+| compartido | claves |
+|---|---|
+| tipos de página | `pages/home.pug`, `post.pug`, `archive.pug`, `tag.pug`, `default.pug` |
+| `config/theme.yaml` | `author.name`, `author.bio`, `author.href`, `blog.home_posts`, `blog.featured_series`, `blog.highlight_tag`, `blog.post_layouts`, `footer_links`, `extra_css` |
+| frontmatter de una entrada | `date`, `updated`, `author`, `image`, `image_alt`, `tags`, `series`, `series_part`, `facts`, `location`, `image_note` |
+| el resto | los seams para la salida de los plugins y las claves de `t()` |
+
+Para cambiar a Stack, instala el paquete:
+
+```bash
+npm install @nera-static/theme-stack
+```
+
+```text
+added 1 package, and audited 168 packages in 833ms
+```
+
+y cambia la única línea de `config/app.yaml`:
+
+```yaml:config/app.yaml
+theme: stack
+```
+
+```bash
+npx nera build --check
+```
+
+```text
+✓ No problems found.
+```
+
+Las mismas páginas, el mismo `config/theme.yaml` y cada archivo que el kit de
+inicio puso en `theme/` se renderizan ahora en Stack. `theme: ansitz` y
+`theme: umwege` (tras
+`npm install @nera-static/theme-ansitz @nera-static/theme-umwege`) compilan
+igual de limpios. Cuando hayas elegido, quita los paquetes que ya no usas:
+`npm uninstall @nera-static/theme-blog`.
+
+Lo que un tema no dibuja, lo ignora, así que cambiar de tema nunca rompe una
+página:
+
+-   `location` e `image_note` aparecen en Ansitz (las dos) y en Umwege
+    (`location`); Plain y Stack no muestran ninguna. Dale a la entrada
+    `pages/posts/tags.md` del kit de inicio un `location: Berlin`, y su página
+    lleva `<p class="post__location">` con Ansitz y Umwege y nada con Plain y
+    Stack, con una compilación limpia en los cuatro.
+-   `blog.highlight_tag` es una lista en la portada en Plain, Ansitz y Umwege;
+    Stack no renderiza nada para ella. `blog.featured_series` es un bloque en
+    la portada en Plain, Stack y Ansitz; Umwege no renderiza nada para él.
+
+`blog.home_posts` cuenta las entradas que la portada lista **después** de su
+gran apertura, que nunca cuenta: el «Latest post» en Plain y Stack, la tarjeta
+de embarque en Umwege (en ambos casos la entrada más reciente) y el hero en
+Ansitz (la entrada más reciente con `image`). Cada tema tiene un valor por
+defecto que llena su propia retícula (Plain 9, Stack 6, Ansitz y Umwege 7).
+Fíjalo en tu `config/theme.yaml` y vale para el tema que uses: con
+`home_posts: 2`, «Recent posts» lista dos entradas en los cuatro.
+
+Dos cosas merecen una mirada al cambiar:
+
+-   **Los tokens** son de cada tema. Los ocho tokens de color (`bg`,
+    `surface`, `text`, `muted`, `accent`, `accent_text`, `border`, `focus`)
+    existen en los cuatro, así que tus colores pasan al nuevo tema, pero se
+    eligieron para otro aspecto: quítalos o vuelve a comprobar su contraste
+    (sección 4). Stack y Umwege tienen algunos tokens propios (`night`,
+    `night_text`, `night_muted` y `highlight` en Stack, `sun`, `coral` y `sky` en Umwege).
+-   **Tus archivos en `theme/views/`** se quedan y ganan sobre cualquier tema.
+    Los seams del kit de inicio (`partials/post-media.pug`, `tag-cloud.pug` y
+    los demás), su tipo de página de búsqueda `pages/search.pug` y sus copias
+    de vendor se renderizaron sin cambios con los cuatro temas. Una
+    sobrescritura de una vista propia del tema, como el `page-header.pug` de
+    la sección 6, es la copia de un archivo de un tema: compárala con el
+    archivo del nuevo tema en la misma ruta (sección 7) antes de conservarla.
+
+Stack, Ansitz y Umwege son más anchos que Plain; sus README recomiendan
+`widths` más anchos para `@nera-static/plugin-images` en `config/images.yaml`.
+
+## 10. Crea tu propio tema
 
 Un tema propio es un paquete npm con la misma estructura: `views/`,
 `assets/` y `config/theme.yaml`. `@nera-static/theme-example` es el más
@@ -420,3 +520,9 @@ tiene cada token, ajuste, seam y clase pública. Los tutoriales de plugins,
 como [Construye una navegación con estados activos](/es/tutorials/custom-navigation.html),
 muestran cómo publicar las plantillas de un plugin; con theme-business las
 incluyes desde un seam, como muestra su README para cada plugin que admite.
+Los README de
+[theme-blog](https://github.com/seebaermichi/nera-theme-blog#readme),
+[theme-stack](https://github.com/seebaermichi/nera-theme-stack#readme),
+[theme-ansitz](https://github.com/seebaermichi/nera-theme-ansitz#readme) y
+[theme-umwege](https://github.com/seebaermichi/nera-theme-umwege#readme)
+dicen qué dibuja cada tema de blog a partir de las claves compartidas.
