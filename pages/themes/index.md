@@ -5,6 +5,7 @@ slug: themes
 lang: en
 description: The official @nera-static themes — four blog themes that share one contract.
 keywords: nera themes, nera-static, static site generator themes, blog theme
+page_data: themes
 themes:
     - name: Plain
       package: '@nera-static/theme-blog'

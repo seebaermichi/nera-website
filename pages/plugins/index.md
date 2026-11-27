@@ -5,6 +5,7 @@ slug: plugins
 lang: en
 description: The official @nera-static plugin catalog — navigation, tags, search, pagination and more.
 keywords: nera plugins, nera-static, static site generator plugins
+page_data: plugins
 plugins:
     - name: Canonical links
       package: '@nera-static/plugin-canonical-links'

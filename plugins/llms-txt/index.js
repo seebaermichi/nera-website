@@ -37,9 +37,9 @@ const FULL_FILE = 'llms-full.txt'
 const INDEX_FILE = 'llms.txt'
 // Per-page Markdown, below CACHE_DIR, mirroring the page's path in public/.
 const PAGES_CACHE_DIR = 'pages'
-// The English plugin catalog, whose `plugins:` frontmatter feeds `## Plugins`.
+// The English plugin catalog, whose `meta.data.plugins` (`data/plugins.yaml`) feeds `## Plugins`.
 const PLUGINS_PAGE = '/plugins/index.html'
-// The English themes page, whose `themes:` frontmatter feeds `## Themes`.
+// The English themes page, whose `meta.data.themes` (`data/themes.yaml`) feeds `## Themes`.
 const THEMES_PAGE = '/themes/index.html'
 const CLI_PAGE = '/docs/cli.html'
 const CLI_PACKAGE = {
@@ -110,8 +110,8 @@ export function markdownPath(href) {
 
 /**
  * The llms.txt index. Docs and Tutorials are the pages of llms-full.txt, in the
- * same order; Plugins is the English catalog's `plugins:` list; Themes is the
- * English themes page's `themes:` list, each with its demo URL when it has one;
+ * same order; Plugins is the English catalog's `meta.data.plugins`; Themes is the
+ * English themes page's `meta.data.themes`, each with its demo URL when it has one;
  * CLI points at the CLI reference and the npm package; Optional links
  * llms-full.txt itself. An empty section is left out.
  *
@@ -160,16 +160,18 @@ export function renderIndex({ title, summary, origin, pages, pagesData, defaultL
 }
 
 /**
- * The `<key>:` frontmatter list of the English page at `href` (a catalog page),
- * or `[]` with a warning that the `<section>` section is left out of llms.txt.
+ * The `meta.data[<key>]` list of the English page at `href` (a catalog page that
+ * names `page_data: <key>`, read from `data/<key>.yaml` by plugin-page-data, its
+ * translated fields already resolved to English), or `[]` with a warning that
+ * the `<section>` section is left out of llms.txt.
  */
 function catalogList(pagesData, href, key, section, defaultLang) {
     const page = pagesData
         .map(({ meta }) => meta || {})
         .find((meta) => meta.href === href && (meta.lang || defaultLang) === LANG)
-    if (Array.isArray(page?.[key])) return page[key]
+    if (Array.isArray(page?.data?.[key])) return page.data[key]
 
-    console.warn(`⚠️ llms-txt: no ${key} list on ${href}, the ${section} section is left out of ${INDEX_FILE}`)
+    console.warn(`⚠️ llms-txt: no ${key} data on ${href} (page_data: ${key}, data/${key}.yaml), the ${section} section is left out of ${INDEX_FILE}`)
     return []
 }
 

@@ -285,8 +285,8 @@ test('llms.txt lists Docs, Tutorials, Plugins, Themes, CLI and Optional in that 
         meta('/tutorials/blog.html', { title: 'Blog', description: 'Build a blog.', pagination_order: 1 }),
         meta('/docs/index.html', { title: 'Intro', description: 'What Nera is.', pagination_order: 1 }),
         meta('/tutorials/index.html', { title: 'Tutorials', description: 'All tutorials.' }),
-        meta('/plugins/index.html', { title: 'Plugins', plugins: PLUGINS }),
-        meta('/themes/index.html', { title: 'Themes', themes: THEMES }),
+        meta('/plugins/index.html', { title: 'Plugins', data: { plugins: PLUGINS } }),
+        meta('/themes/index.html', { title: 'Themes', data: { themes: THEMES } }),
     ])
 
     const headings = index.split('\n').filter((line) => line.startsWith('## '))
@@ -319,10 +319,10 @@ test('llms.txt lists Docs, Tutorials, Plugins, Themes, CLI and Optional in that 
 
 test('llms.txt takes the plugins, the themes and the CLI page from the English pages only', () => {
     const { index } = build([
-        meta('/de/themes/index.html', { lang: 'de', themes: [{ package: '@nera-static/theme-de', audience: 'Deutsch.', readme: 'https://github.test/de' }] }),
-        meta('/themes/index.html', { lang: 'es', themes: [{ package: '@nera-static/theme-mislabelled', audience: 'X.', readme: 'https://github.test/x' }] }),
-        meta('/de/plugins/index.html', { lang: 'de', plugins: [{ package: '@nera-static/plugin-de', description: 'Deutsch.', url: 'https://github.test/de' }] }),
-        meta('/plugins/index.html', { lang: 'de', plugins: [{ package: '@nera-static/plugin-mislabelled', description: 'X.', url: 'https://github.test/x' }] }),
+        meta('/de/themes/index.html', { lang: 'de', data: { themes: [{ package: '@nera-static/theme-de', audience: 'Deutsch.', readme: 'https://github.test/de' }] } }),
+        meta('/themes/index.html', { lang: 'es', data: { themes: [{ package: '@nera-static/theme-mislabelled', audience: 'X.', readme: 'https://github.test/x' }] } }),
+        meta('/de/plugins/index.html', { lang: 'de', data: { plugins: [{ package: '@nera-static/plugin-de', description: 'Deutsch.', url: 'https://github.test/de' }] } }),
+        meta('/plugins/index.html', { lang: 'de', data: { plugins: [{ package: '@nera-static/plugin-mislabelled', description: 'X.', url: 'https://github.test/x' }] } }),
         meta('/de/docs/cli.html', { title: 'CLI', lang: 'de', description: 'Deutsch.' }),
     ])
 
@@ -334,8 +334,22 @@ test('llms.txt takes the plugins, the themes and the CLI page from the English p
         '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
     ])
     assert.equal(section(index, 'Docs'), null)
-    assert.ok(warnings.some((message) => /no plugins list on \/plugins\/index\.html/.test(message)), warnings)
-    assert.ok(warnings.includes('⚠️ llms-txt: no themes list on /themes/index.html, the Themes section is left out of llms.txt'), warnings)
+    assert.ok(warnings.some((message) => /no plugins data on \/plugins\/index\.html/.test(message)), warnings)
+    assert.ok(warnings.includes('⚠️ llms-txt: no themes data on /themes/index.html (page_data: themes, data/themes.yaml), the Themes section is left out of llms.txt'), warnings)
+})
+
+test('a frontmatter catalog list without meta.data no longer feeds llms.txt', () => {
+    const { index } = build([
+        meta('/plugins/index.html', { title: 'Plugins', plugins: PLUGINS }),
+        meta('/themes/index.html', { title: 'Themes', themes: THEMES }),
+    ])
+
+    assert.equal(section(index, 'Plugins'), null)
+    assert.equal(section(index, 'Themes'), null)
+    assert.deepEqual(warnings, [
+        '⚠️ llms-txt: no plugins data on /plugins/index.html (page_data: plugins, data/plugins.yaml), the Plugins section is left out of llms.txt',
+        '⚠️ llms-txt: no themes data on /themes/index.html (page_data: themes, data/themes.yaml), the Themes section is left out of llms.txt',
+    ])
 })
 
 test('every page link in llms.txt points at a .md file getAssets emits', () => {
@@ -370,8 +384,8 @@ test('an llms.txt item without a description is listed bare, with a warning', ()
 
     const { index } = build([
         meta('/docs/index.html', { title: 'Intro', pagination_order: 1 }),
-        meta('/plugins/index.html', { plugins: PLUGINS }),
-        meta('/themes/index.html', { themes: THEMES }),
+        meta('/plugins/index.html', { data: { plugins: PLUGINS } }),
+        meta('/themes/index.html', { data: { themes: THEMES } }),
     ])
 
     assert.deepEqual(section(index, 'Docs'), [`- [Intro](${ORIGIN}/docs/index.md)`])
