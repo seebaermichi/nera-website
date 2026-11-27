@@ -164,7 +164,8 @@ los comprobará una versión posterior de `nera-stan`.
   ```
 
   Un comentario de desactivación que ya no suprime nada es a su vez un
-  error, para que ninguna excepción sobreviva a su motivo.
+  error, para que ninguna excepción sobreviva a su motivo. Un comentario de
+  desactivación sin un motivo tras ` -- ` también es un error.
 
 ## .editorconfig
 

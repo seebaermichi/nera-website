@@ -165,7 +165,8 @@ prüft ein späteres Release von `nera-stan`.
   ```
 
   Ein Disable-Kommentar, der nichts mehr unterdrückt, ist selbst ein
-  Fehler, damit keine Ausnahme ihren Grund überlebt.
+  Fehler, damit keine Ausnahme ihren Grund überlebt. Ein Disable-Kommentar
+  ohne Begründung nach ` -- ` ist ebenfalls ein Fehler.
 
 ## .editorconfig
 

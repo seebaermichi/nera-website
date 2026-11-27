@@ -157,7 +157,8 @@ by a later release of `nera-stan`.
   ```
 
   A disable comment that no longer suppresses anything is itself an error,
-  so exceptions do not outlive their reason.
+  so exceptions do not outlive their reason. A disable comment without a
+  reason after ` -- ` is an error too.
 
 ## .editorconfig
 
