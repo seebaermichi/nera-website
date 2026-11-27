@@ -79,7 +79,7 @@ Die Seiten dieses Abschnitts verfolgen den Grundsatz durch jede Art von Paket:
    Konfiguration und Warnungen, `package.json`, README und CHANGELOG.
 2. **[Themes und Starter](/de/docs/style-guide/themes-and-starters.html)** — der Aufbau eines Themes und eines Starters, das
    Helfer-Objekt des Themes, die Präfixe der Custom Properties.
-3. **Tests** — wo Tests liegen, wie sie heißen und geschrieben werden, und
+3. **[Tests](/de/docs/style-guide/tests.html)** — wo Tests liegen, wie sie heißen und geschrieben werden, und
    die gemeinsamen Helfer.
-4. **Werkzeuge** — was `nera-stan` prüft, wie man es ausführt, seine
+4. **[Werkzeuge](/de/docs/style-guide/tooling.html)** — was `nera-stan` prüft, wie man es ausführt, seine
    dokumentierten Ausnahmen und die gemeinsame `.editorconfig`.

@@ -72,7 +72,7 @@ The pages of this section follow the principle through each kind of package:
    warnings, `package.json`, README and CHANGELOG.
 2. **[Themes and starters](/docs/style-guide/themes-and-starters.html)** — the layout of a theme and a starter, the theme
    helper object, the custom-property prefixes.
-3. **Tests** — where tests live, how they are named and written, and the
+3. **[Tests](/docs/style-guide/tests.html)** — where tests live, how they are named and written, and the
    shared helpers.
-4. **Tooling** — what `nera-stan` checks, how to run it, its documented
+4. **[Tooling](/docs/style-guide/tooling.html)** — what `nera-stan` checks, how to run it, its documented
    exceptions, and the shared `.editorconfig`.

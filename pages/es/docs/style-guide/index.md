@@ -79,7 +79,7 @@ paquete:
    configuración y avisos, `package.json`, README y CHANGELOG.
 2. **[Temas y starters](/es/docs/style-guide/themes-and-starters.html)** — la estructura de un tema y de un starter, el
    objeto helper del tema, los prefijos de las custom properties.
-3. **Tests** — dónde viven los tests, cómo se nombran y se escriben, y los
+3. **[Tests](/es/docs/style-guide/tests.html)** — dónde viven los tests, cómo se nombran y se escriben, y los
    helpers compartidos.
-4. **Herramientas** — qué comprueba `nera-stan`, cómo se ejecuta, sus
+4. **[Herramientas](/es/docs/style-guide/tooling.html)** — qué comprueba `nera-stan`, cómo se ejecuta, sus
    excepciones documentadas y el `.editorconfig` compartido.
