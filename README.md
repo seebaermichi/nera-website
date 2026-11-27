@@ -76,6 +76,21 @@ the deploy caches `.theme-demos/cache/` per starter version. CI's test run
 does not build the demos; a demo that fails to build or check stops the
 deploy, and the live site stays as it was.
 
+The themes page shows a screenshot of each theme's home page,
+`theme/assets/img/themes/<name>.webp` (`plain`, `stack`, `ansitz`, `umwege`,
+`business`), committed and taken by hand, not in CI. To redo one, capture
+the live demo (business: a fresh
+`nera new <dir> --starter @nera-static/starter-business --yes`, built and
+served locally) with Playwright at a 1440×900 viewport, after fonts and
+lazy images have loaded, then shrink it to 960×600:
+
+```bash
+cwebp -q 80 -m 6 -resize 960 600 <name>.png -o theme/assets/img/themes/<name>.webp
+```
+
+The Ansitz and Umwege shots show the Unsplash photographs their starters
+ship (Unsplash licence, credited in each starter's `LICENSE`).
+
 ## Design
 
 IBM Plex (self-hosted, `theme/assets/fonts/`) with an amber accent; the design
