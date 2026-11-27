@@ -10,7 +10,7 @@ pagination_order: 5
 createdAt: 2026-07-17
 verified_on: 2026-11-27
 verified_with:
-    nera: 1.29.0
+    nera: 1.30.0
     plugin-page-pagination: 2.4.0
 ---
 `@nera-static/plugin-page-pagination` links each page to its previous and next

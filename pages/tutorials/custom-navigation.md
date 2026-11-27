@@ -10,7 +10,7 @@ pagination_order: 2
 createdAt: 2026-07-20
 verified_on: 2026-11-27
 verified_with:
-    nera: 1.29.0
+    nera: 1.30.0
     plugin-navigation: 3.1.1
 ---
 `@nera-static/plugin-navigation` turns a YAML list into a navigation menu and marks

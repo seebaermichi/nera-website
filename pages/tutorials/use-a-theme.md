@@ -15,7 +15,7 @@ verified_with:
     theme-stack: 2.2.0
     theme-ansitz: 1.1.0
     theme-umwege: 1.1.1
-    nera: 1.29.0
+    nera: 1.30.0
     core: 4.19.1
 ---
 A Nera theme is an npm package: layouts, page types, partials, a stylesheet

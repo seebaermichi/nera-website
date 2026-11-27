@@ -10,7 +10,7 @@ pagination_order: 3
 createdAt: 2026-07-19
 verified_on: 2026-11-27
 verified_with:
-    nera: 1.29.0
+    nera: 1.30.0
     plugin-tags: 3.4.1
 ---
 `@nera-static/plugin-tags` reads a `tags:` field from your frontmatter, then builds

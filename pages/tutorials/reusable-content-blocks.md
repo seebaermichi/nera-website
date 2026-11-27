@@ -10,7 +10,7 @@ pagination_order: 9
 createdAt: 2026-10-23
 verified_on: 2026-11-27
 verified_with:
-    nera: 1.29.0
+    nera: 1.30.0
     plugin-stacks: 2.4.1
     validate: 1.8.0
 ---
