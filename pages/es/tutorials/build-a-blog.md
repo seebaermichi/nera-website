@@ -38,10 +38,10 @@ npx @nera-static/nera new my-blog --starter blog
 En una terminal pregunta cuál de cuatro blogs: el blog sencillo (Enter), un
 blog para desarrolladores (`stack`), un blog de fotografía (`ansitz`) o un blog
 de viajes (`umwege`). Sin terminal toma el blog sencillo, y `--starter stack`,
-`ansitz` o `umwege` elige directamente uno de los otros. Míralos antes en las
-demos: [Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
-[Ansitz](/themes/blog/ansitz/) y [Umwege](/themes/blog/umwege/). La lista de
-[starter kits](/es/docs/cli.html#starter-kits) dice qué trae cada uno.
+`ansitz` o `umwege` elige directamente uno de los otros. Míralos antes en la
+[página de temas](/es/themes/index.html), con una captura y una demo de cada
+uno. La lista de [starter kits](/es/docs/cli.html#starter-kits) dice qué trae
+cada uno.
 
 Sus archivos no coinciden con los pasos siguientes: este tutorial construye a
 mano un blog más sencillo, para que veas cómo encajan las piezas.

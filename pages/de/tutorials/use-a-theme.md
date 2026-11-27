@@ -414,9 +414,8 @@ die weder deine Website noch das Theme hat, lässt `nera validate` mit
 
 Vier Themes sind für Blogs gemacht: `@nera-static/theme-blog` („Plain“),
 `theme-stack` für Code, `theme-ansitz` für Fotografien und `theme-umwege` für
-Reisen. Die Demos zeigen jedes mit den Beispielposts seines Starters:
-[Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
-[Ansitz](/themes/blog/ansitz/) und [Umwege](/themes/blog/umwege/). Die vier
+Reisen. Die [Themes-Seite](/de/themes/index.html) zeigt jedes mit Screenshot
+und einer Demo mit den Beispielposts seines Starters. Die vier
 teilen einen Vertrag, sodass ein Blog, der für eines geschrieben ist, in jedem
 der anderen rendert. Leg einen mit dem schlichten Blog an:
 

@@ -410,9 +410,8 @@ names both places it looked.
 
 Four themes are made for blogs: `@nera-static/theme-blog` ("Plain"),
 `theme-stack` for code, `theme-ansitz` for photographs and `theme-umwege` for
-travel. The demos show each with its starter's sample posts:
-[Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
-[Ansitz](/themes/blog/ansitz/) and [Umwege](/themes/blog/umwege/). The four
+travel. The [themes page](/themes/index.html) shows each with a screenshot and
+a demo of its starter's sample posts. The four
 share one contract, so a blog written for one renders in each of the others.
 Start one with the plain blog:
 

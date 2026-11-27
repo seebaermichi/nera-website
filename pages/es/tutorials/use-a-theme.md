@@ -408,10 +408,9 @@ una vista que no tienen ni tu sitio ni el tema falla en `nera validate` con
 
 Hay cuatro temas hechos para blogs: `@nera-static/theme-blog` («Plain»),
 `theme-stack` para código, `theme-ansitz` para fotografías y `theme-umwege`
-para viajes. Las demos muestran cada uno con las entradas de ejemplo de su kit
-de inicio: [Plain](/themes/blog/plain/), [Stack](/themes/blog/stack/),
-[Ansitz](/themes/blog/ansitz/) y [Umwege](/themes/blog/umwege/). Los cuatro
-comparten un contrato, así que un blog escrito para uno se renderiza en
+para viajes. La [página de temas](/es/themes/index.html) muestra cada uno con
+una captura y una demo con las entradas de ejemplo de su kit de inicio. Los
+cuatro comparten un contrato, así que un blog escrito para uno se renderiza en
 cualquiera de los otros. Crea uno con el blog sencillo:
 
 ```bash
