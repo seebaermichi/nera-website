@@ -7,11 +7,14 @@ block content
     article.prose
       != content
 
-    //- The catalog is authored as frontmatter `themes:` on the page, like the
-    //- plugin catalog. `demo` is optional: a theme without one renders no link.
-    if meta.themes && meta.themes.length
+    //- The catalog lives in `data/themes.yaml`; the page's `page_data: themes`
+    //- has plugin-page-data load it into `meta.data.themes`, translated fields
+    //- already resolved to the page's language. Falls back gracefully if absent.
+    //- `demo` is optional: a theme without one renders no link.
+    - const themes = (meta.data && meta.data.themes) || []
+    if themes.length
       ul.theme-cards
-        each theme, index in meta.themes
+        each theme, index in themes
           li.theme-card
             if theme.image
               img.theme-card__image(src=theme.image, alt=theme.alt || '', width="960", height="600", loading=index === 0 ? 'eager' : 'lazy', decoding="async")

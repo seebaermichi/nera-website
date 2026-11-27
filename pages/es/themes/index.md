@@ -5,39 +5,7 @@ slug: themes
 lang: es
 description: Los temas oficiales de @nera-static — cuatro temas de blog que comparten un contrato.
 keywords: nera temas, nera-static, temas de generador de sitios estáticos, tema de blog
-themes:
-    - name: Plain
-      package: '@nera-static/theme-blog'
-      audience: Un blog sencillo para todo — negro sobre blanco, fuentes del sistema, fechas en el margen.
-      starters: [blog]
-      demo: /themes/blog/plain/
-      readme: https://github.com/seebaermichi/nera-theme-blog#readme
-      image: /img/themes/plain.webp
-      alt: La página de inicio del blog de demostración Plain
-    - name: Stack
-      package: '@nera-static/theme-stack'
-      audience: Un blog para desarrolladores, con series y código resaltado.
-      starters: [stack]
-      demo: /themes/blog/stack/
-      readme: https://github.com/seebaermichi/nera-theme-stack#readme
-      image: /img/themes/stack.webp
-      alt: La página de inicio del blog de demostración Stack
-    - name: Ansitz
-      package: '@nera-static/theme-ansitz'
-      audience: Un blog de fotografía que pone las fotos grandes en primer plano.
-      starters: [ansitz]
-      demo: /themes/blog/ansitz/
-      readme: https://github.com/seebaermichi/nera-theme-ansitz#readme
-      image: /img/themes/ansitz.webp
-      alt: La página de inicio del blog de fotografía de demostración Ansitz
-    - name: Umwege
-      package: '@nera-static/theme-umwege'
-      audience: Un blog de viajes con datos del viaje, lugares y fotografías.
-      starters: [umwege]
-      demo: /themes/blog/umwege/
-      readme: https://github.com/seebaermichi/nera-theme-umwege#readme
-      image: /img/themes/umwege.webp
-      alt: La página de inicio del blog de viajes de demostración Umwege
+page_data: themes
 ---
 
 Un tema es un paquete npm con vistas y recursos que los archivos propios de tu

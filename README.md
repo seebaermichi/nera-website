@@ -13,14 +13,20 @@ Live at https://nera.js.org, in English, German (`pages/de/`) and Spanish
 | --- | --- | --- |
 | Home | `pages/index.md` | `theme/views/pages/home.pug` |
 | Docs | `pages/docs/*.md` | `theme/views/pages/docs.pug` |
-| Plugins | `pages/plugins/index.md` | `theme/views/pages/plugins.pug` |
-| Themes | `pages/themes/index.md` | `theme/views/pages/themes.pug` |
+| Plugins | `pages/plugins/index.md` + `data/plugins.yaml` | `theme/views/pages/plugins.pug` |
+| Themes | `pages/themes/index.md` + `data/themes.yaml` | `theme/views/pages/themes.pug` |
 | Tutorials | `pages/tutorials/*.md` | `theme/views/pages/tutorial.pug` + `tutorials-index.pug` |
 | About | `pages/about.md` | `theme/views/pages/default.pug` |
 | Search | `pages/search.md` | `theme/views/pages/search.pug` |
 
 Tag overview pages (`/tags/*.html`) are generated automatically from tutorial
 `tags:` frontmatter.
+
+The plugin and theme catalogs live in `data/plugins.yaml` and
+`data/themes.yaml`, one entry per plugin or theme for all three languages
+(translated fields as `{ en, de, es }` maps). `@nera-static/plugin-page-data`
+loads them into `meta.data` for the pages that name them in `page_data:`, and
+`plugins/llms-txt` reads them for `llms.txt`.
 
 ## Plugins in use
 
@@ -31,6 +37,7 @@ Tag overview pages (`/tags/*.html`) are generated automatically from tutorial
 - `@nera-static/plugin-canonical-links` — canonical and alternate-language links (`config/canonical-links.yaml`)
 - `@nera-static/plugin-code-blocks` — highlighted code blocks (`config/code-blocks.yaml`)
 - `@nera-static/plugin-link-attributes` — attributes for external links (`config/link-attributes.yaml`)
+- `@nera-static/plugin-page-data` — the plugin and theme catalogs from `data/*.yaml` into `meta.data`
 - `@nera-static/plugin-stacks` — the homepage feature grid (`pages/stacks/home-features/`)
 - `plugins/tutorials-list` — a small **local** plugin that builds `app.tutorials`
 - `plugins/llms-txt` — a **local** plugin that writes `llms.txt`, `llms-full.txt`

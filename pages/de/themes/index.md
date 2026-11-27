@@ -5,39 +5,7 @@ slug: themes
 lang: de
 description: Die offiziellen @nera-static-Themes — vier Blog-Themes mit einem gemeinsamen Vertrag.
 keywords: nera themes, nera-static, Static-Site-Generator-Themes, Blog-Theme
-themes:
-    - name: Plain
-      package: '@nera-static/theme-blog'
-      audience: Ein schlichtes Blog für alles — schwarz auf weiß, Systemschriften, Datum am Rand.
-      starters: [blog]
-      demo: /themes/blog/plain/
-      readme: https://github.com/seebaermichi/nera-theme-blog#readme
-      image: /img/themes/plain.webp
-      alt: Die Startseite des Plain-Demo-Blogs
-    - name: Stack
-      package: '@nera-static/theme-stack'
-      audience: Ein Blog für Entwickler, mit Serien und hervorgehobenem Code.
-      starters: [stack]
-      demo: /themes/blog/stack/
-      readme: https://github.com/seebaermichi/nera-theme-stack#readme
-      image: /img/themes/stack.webp
-      alt: Die Startseite des Stack-Demo-Blogs
-    - name: Ansitz
-      package: '@nera-static/theme-ansitz'
-      audience: Ein Fotoblog, das große Fotografien in den Vordergrund stellt.
-      starters: [ansitz]
-      demo: /themes/blog/ansitz/
-      readme: https://github.com/seebaermichi/nera-theme-ansitz#readme
-      image: /img/themes/ansitz.webp
-      alt: Die Startseite des Ansitz-Demo-Fotoblogs
-    - name: Umwege
-      package: '@nera-static/theme-umwege'
-      audience: Ein Reiseblog mit Reisedaten, Orten und Fotografien.
-      starters: [umwege]
-      demo: /themes/blog/umwege/
-      readme: https://github.com/seebaermichi/nera-theme-umwege#readme
-      image: /img/themes/umwege.webp
-      alt: Die Startseite des Umwege-Demo-Reiseblogs
+page_data: themes
 ---
 
 Ein Theme ist ein npm-Paket mit Views und Assets, die die eigenen Dateien deiner
