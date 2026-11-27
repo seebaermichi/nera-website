@@ -220,6 +220,9 @@ Los starters oficiales:
 | `stack` | Un blog para desarrolladores sobre `@nera-static/theme-stack` con dos series, código resaltado, etiquetas, un archivo, búsqueda, un feed Atom y un sitemap | [Stack](/themes/blog/stack/) |
 | `umwege` | Un blog de viajes sobre `@nera-static/theme-umwege` con datos del viaje, lugares, una serie, fotografías, etiquetas, un archivo, búsqueda, un feed Atom y un sitemap | [Umwege](/themes/blog/umwege/) |
 
+La [página de temas](/es/themes/index.html) muestra cada tema que usan estos
+starters, con una captura de pantalla, sus starters y un enlace a su README.
+
 ### Revisar el sitio compilado
 
 `nera validate` lee tus fuentes. `nera check` lee lo que produjo la

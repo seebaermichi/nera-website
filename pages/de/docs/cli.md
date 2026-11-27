@@ -221,6 +221,9 @@ Die offiziellen Starter:
 | `stack` | Ein Blog für Entwickler auf `@nera-static/theme-stack` mit zwei Serien, hervorgehobenem Code, Tags, einem Archiv, Suche, einem Atom-Feed und einer Sitemap | [Stack](/themes/blog/stack/) |
 | `umwege` | Ein Reiseblog auf `@nera-static/theme-umwege` mit Reisedaten, Orten, einer Serie, Fotografien, Tags, einem Archiv, Suche, einem Atom-Feed und einer Sitemap | [Umwege](/themes/blog/umwege/) |
 
+Die [Themes-Seite](/de/themes/index.html) zeigt jedes Theme dieser Starter,
+mit Screenshot, seinen Startern und einem Link zu seiner README.
+
 ### Die gebaute Website prüfen
 
 `nera validate` liest deine Quellen. `nera check` liest, was der Build erzeugt

@@ -14,6 +14,7 @@ Live at https://nera.js.org, in English, German (`pages/de/`) and Spanish
 | Home | `pages/index.md` | `theme/views/pages/home.pug` |
 | Docs | `pages/docs/*.md` | `theme/views/pages/docs.pug` |
 | Plugins | `pages/plugins/index.md` | `theme/views/pages/plugins.pug` |
+| Themes | `pages/themes/index.md` | `theme/views/pages/themes.pug` |
 | Tutorials | `pages/tutorials/*.md` | `theme/views/pages/tutorial.pug` + `tutorials-index.pug` |
 | About | `pages/about.md` | `theme/views/pages/default.pug` |
 | Search | `pages/search.md` | `theme/views/pages/search.pug` |
