@@ -99,7 +99,7 @@
   },
   {
     "title": "Themes",
-    "description": "The official @nera-static themes — four blog themes that share one contract, and a theme for businesses and portfolios.",
+    "description": "The official @nera-static themes — four blog themes that share one contract.",
     "content": "A theme is an npm package with views and assets that your site's own files override one by one. Plain, Stack, Ansitz and Umwege are made for blogs and share one contract: a blog moves between them by changing theme: in config/app.yaml. Each starter below creates a site on its theme with sample pages. @nera-static/theme-example is the blueprint for a theme of your own; the Use a theme tutorial shows how themes work.",
     "href": "/themes/index.html",
     "lang": "en"

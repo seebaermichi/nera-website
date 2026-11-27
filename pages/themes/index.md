@@ -3,7 +3,7 @@ layout: pages/themes.pug
 title: Themes
 slug: themes
 lang: en
-description: The official @nera-static themes — four blog themes that share one contract, and a theme for businesses and portfolios.
+description: The official @nera-static themes — four blog themes that share one contract.
 keywords: nera themes, nera-static, static site generator themes, blog theme
 themes:
     - name: Plain
@@ -38,13 +38,6 @@ themes:
       readme: https://github.com/seebaermichi/nera-theme-umwege#readme
       image: /img/themes/umwege.webp
       alt: The home page of the Umwege demo travel blog
-    - name: Business
-      package: '@nera-static/theme-business'
-      audience: A site for a small business or a portfolio, with services, opening hours and a contact form.
-      starters: [business, portfolio]
-      readme: https://github.com/seebaermichi/nera-theme-business#readme
-      image: /img/themes/business.webp
-      alt: The home page of the business starter site
 ---
 
 A theme is an npm package with views and assets that your site's own files

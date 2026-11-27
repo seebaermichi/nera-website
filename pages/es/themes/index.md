@@ -3,7 +3,7 @@ layout: pages/themes.pug
 title: Temas
 slug: themes
 lang: es
-description: Los temas oficiales de @nera-static — cuatro temas de blog que comparten un contrato y un tema para empresas y portafolios.
+description: Los temas oficiales de @nera-static — cuatro temas de blog que comparten un contrato.
 keywords: nera temas, nera-static, temas de generador de sitios estáticos, tema de blog
 themes:
     - name: Plain
@@ -38,13 +38,6 @@ themes:
       readme: https://github.com/seebaermichi/nera-theme-umwege#readme
       image: /img/themes/umwege.webp
       alt: La página de inicio del blog de viajes de demostración Umwege
-    - name: Business
-      package: '@nera-static/theme-business'
-      audience: Un sitio para una pequeña empresa o un portafolio, con servicios, horarios y un formulario de contacto.
-      starters: [business, portfolio]
-      readme: https://github.com/seebaermichi/nera-theme-business#readme
-      image: /img/themes/business.webp
-      alt: La página de inicio del sitio del starter business
 ---
 
 Un tema es un paquete npm con vistas y recursos que los archivos propios de tu

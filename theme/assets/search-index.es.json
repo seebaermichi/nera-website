@@ -99,7 +99,7 @@
   },
   {
     "title": "Temas",
-    "description": "Los temas oficiales de @nera-static — cuatro temas de blog que comparten un contrato y un tema para empresas y portafolios.",
+    "description": "Los temas oficiales de @nera-static — cuatro temas de blog que comparten un contrato.",
     "content": "Un tema es un paquete npm con vistas y recursos que los archivos propios de tu sitio sobrescriben uno a uno. Plain, Stack, Ansitz y Umwege están hechos para blogs y comparten un contrato: un blog pasa de uno a otro cambiando theme: en config/app.yaml. Cada starter de abajo crea un sitio sobre su tema con páginas de ejemplo. @nera-static/theme-example es el modelo para un tema propio; el tutorial Usar y personalizar un tema muestra cómo funcionan los temas.",
     "href": "/es/themes/index.html",
     "lang": "es"

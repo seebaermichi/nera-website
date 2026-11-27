@@ -99,7 +99,7 @@
   },
   {
     "title": "Themes",
-    "description": "Die offiziellen @nera-static-Themes — vier Blog-Themes mit einem gemeinsamen Vertrag und ein Theme für Unternehmen und Portfolios.",
+    "description": "Die offiziellen @nera-static-Themes — vier Blog-Themes mit einem gemeinsamen Vertrag.",
     "content": "Ein Theme ist ein npm-Paket mit Views und Assets, die die eigenen Dateien deiner Website einzeln überschreiben. Plain, Stack, Ansitz und Umwege sind für Blogs gemacht und teilen einen Vertrag: Ein Blog wechselt zwischen ihnen, indem du theme: in config/app.yaml änderst. Jeder Starter unten legt eine Website auf seinem Theme mit Beispielseiten an. @nera-static/theme-example ist die Vorlage für ein eigenes Theme; das Tutorial Ein Theme verwenden und anpassen zeigt, wie Themes funktionieren.",
     "href": "/de/themes/index.html",
     "lang": "de"
