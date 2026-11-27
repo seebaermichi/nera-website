@@ -27,6 +27,6 @@ block content
                       code npx @nera-static/nera new my-site --starter #{ starter }
               p.theme-card__links
                 if theme.demo
-                  a.theme-card__link(href=theme.demo) Demo →
+                  a.theme-card__link(href=theme.demo) #{ t('theme_card_demo') } →
                 if theme.readme
-                  a.theme-card__link(href=theme.readme, target="_blank", rel="noopener noreferrer") README →
+                  a.theme-card__link(href=theme.readme, target="_blank", rel="noopener noreferrer") #{ t('theme_card_readme') } →

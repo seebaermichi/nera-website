@@ -30,6 +30,9 @@ translations:
         tagline: The lightweight, plugin-based static site generator
         cta_get_started: Get started
         cta_browse_plugins: Browse plugins
+        cta_browse_themes: Browse themes
+        theme_card_demo: Demo
+        theme_card_readme: README
         footer_built_with: Built with Nera
         footer_source: Source on GitHub
         footer_legal_label: Legal
@@ -64,6 +67,9 @@ translations:
         tagline: Der leichtgewichtige, Plugin-basierte Static-Site-Generator
         cta_get_started: Loslegen
         cta_browse_plugins: Plugins ansehen
+        cta_browse_themes: Themes ansehen
+        theme_card_demo: Demo
+        theme_card_readme: README
         footer_built_with: Erstellt mit Nera
         footer_source: Quellcode auf GitHub
         footer_legal_label: Rechtliches
@@ -98,6 +104,9 @@ translations:
         tagline: El generador de sitios estáticos ligero y basado en plugins
         cta_get_started: Empezar
         cta_browse_plugins: Ver plugins
+        cta_browse_themes: Ver temas
+        theme_card_demo: Demo
+        theme_card_readme: README
         footer_built_with: Creado con Nera
         footer_source: Código en GitHub
         footer_legal_label: Legal

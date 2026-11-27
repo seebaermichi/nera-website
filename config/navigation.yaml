@@ -12,6 +12,8 @@ elements:
           name: Docs
         - href: /plugins/index.html
           name: Plugins
+        - href: /themes/index.html
+          name: Themes
         - href: /tutorials/index.html
           name: Tutorials
         - href: /about.html
@@ -26,6 +28,8 @@ elements:
           name: Doku
         - href: /de/plugins/index.html
           name: Plugins
+        - href: /de/themes/index.html
+          name: Themes
         - href: /de/tutorials/index.html
           name: Tutorials
         - href: /de/about.html
@@ -40,6 +44,8 @@ elements:
           name: Docs
         - href: /es/plugins/index.html
           name: Plugins
+        - href: /es/themes/index.html
+          name: Temas
         - href: /es/tutorials/index.html
           name: Tutoriales
         - href: /es/about.html
@@ -52,6 +58,8 @@ elements:
           name: Documentation
         - href: /plugins/index.html
           name: Plugins
+        - href: /themes/index.html
+          name: Themes
         - href: /tutorials/index.html
           name: Tutorials
 
@@ -60,6 +68,8 @@ elements:
           name: Dokumentation
         - href: /de/plugins/index.html
           name: Plugins
+        - href: /de/themes/index.html
+          name: Themes
         - href: /de/tutorials/index.html
           name: Tutorials
 
@@ -68,5 +78,7 @@ elements:
           name: Documentación
         - href: /es/plugins/index.html
           name: Plugins
+        - href: /es/themes/index.html
+          name: Temas
         - href: /es/tutorials/index.html
           name: Tutoriales
