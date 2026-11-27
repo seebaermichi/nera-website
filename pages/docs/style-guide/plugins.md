@@ -192,8 +192,9 @@ functions and a test can collect their warnings.
   copies of the templates and style the classes from their own CSS, so
   renaming `.tag-cloud__item` breaks them: that is a major release.
 - Default styles use custom properties named `--nera-<name>-*`, as
-  `--nera-code-*` in `plugin-code-blocks`. See the Themes and starters page
-  of this guide for the full prefix rule.
+  `--nera-code-*` in `plugin-code-blocks`. See
+  [Themes and starters](/docs/style-guide/themes-and-starters.html#custom-properties)
+  for the full prefix rule.
 
 ## package.json
 

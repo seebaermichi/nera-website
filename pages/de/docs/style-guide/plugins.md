@@ -203,7 +203,8 @@ Funktionen bleiben und ein Test ihre Warnungen einsammeln kann.
   Major-Release.
 - Standard-Styles nutzen Custom Properties namens `--nera-<name>-*`, wie
   `--nera-code-*` in `plugin-code-blocks`. Die vollständige Präfix-Regel
-  steht auf der Seite Themes und Starter dieses Styleguides.
+  steht auf der Seite
+  [Themes und Starter](/de/docs/style-guide/themes-and-starters.html#custom-properties).
 
 ## package.json
 

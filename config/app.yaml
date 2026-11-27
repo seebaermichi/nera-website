@@ -57,6 +57,7 @@ translations:
         docs_style_heading: Style guide
         docs_style_nav_principle: The principle
         docs_style_nav_plugins: Plugins
+        docs_style_nav_themes: Themes and starters
         language_label: Language
         nav_main_label: Main menu
         search_label: Search
@@ -97,6 +98,7 @@ translations:
         docs_style_heading: Styleguide
         docs_style_nav_principle: Der Grundsatz
         docs_style_nav_plugins: Plugins
+        docs_style_nav_themes: Themes und Starter
         language_label: Sprache
         nav_main_label: Hauptmenü
         search_label: Suche
@@ -137,6 +139,7 @@ translations:
         docs_style_heading: Guía de estilo
         docs_style_nav_principle: El principio
         docs_style_nav_plugins: Plugins
+        docs_style_nav_themes: Temas y starters
         language_label: Idioma
         nav_main_label: Menú principal
         search_label: Buscar

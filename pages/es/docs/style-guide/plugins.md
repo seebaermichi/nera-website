@@ -200,7 +200,8 @@ que un test pueda recoger sus avisos.
   versión mayor.
 - Los estilos por defecto usan custom properties llamadas
   `--nera-<name>-*`, como `--nera-code-*` en `plugin-code-blocks`. La regla
-  completa de prefijos está en la página Temas y starters de esta guía.
+  completa de prefijos está en la página
+  [Temas y starters](/es/docs/style-guide/themes-and-starters.html#custom-properties).
 
 ## package.json
 

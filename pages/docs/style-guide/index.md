@@ -70,7 +70,7 @@ The pages of this section follow the principle through each kind of package:
 
 1. **[Plugins](/docs/style-guide/plugins.html)** — the anatomy of a plugin: files, the hook shape, config and
    warnings, `package.json`, README and CHANGELOG.
-2. **Themes and starters** — the layout of a theme and a starter, the theme
+2. **[Themes and starters](/docs/style-guide/themes-and-starters.html)** — the layout of a theme and a starter, the theme
    helper object, the custom-property prefixes.
 3. **Tests** — where tests live, how they are named and written, and the
    shared helpers.

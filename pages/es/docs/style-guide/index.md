@@ -77,7 +77,7 @@ paquete:
 
 1. **[Plugins](/es/docs/style-guide/plugins.html)** — la anatomía de un plugin: archivos, la forma de los hooks,
    configuración y avisos, `package.json`, README y CHANGELOG.
-2. **Temas y starters** — la estructura de un tema y de un starter, el
+2. **[Temas y starters](/es/docs/style-guide/themes-and-starters.html)** — la estructura de un tema y de un starter, el
    objeto helper del tema, los prefijos de las custom properties.
 3. **Tests** — dónde viven los tests, cómo se nombran y se escriben, y los
    helpers compartidos.
