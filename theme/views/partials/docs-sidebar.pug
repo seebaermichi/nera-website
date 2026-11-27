@@ -1,6 +1,7 @@
 //- Language-aware docs nav. Labels come from translations; hrefs are prefixed
 //- with the current language (langPrefix comes from layout.pug).
-//- Order mirrors pagination_order in pages/docs/*.md.
+//- Each group's order mirrors pagination_order in its folder: pages/docs/*.md,
+//- then pages/docs/style-guide/*.md.
 -
   const docsLinks = [
     { href: langPrefix + '/docs/index.html', name: t('docs_nav_intro') },
@@ -12,9 +13,17 @@
     { href: langPrefix + '/docs/cli.html', name: t('docs_nav_cli') },
     { href: langPrefix + '/docs/using-ai.html', name: t('docs_nav_ai') }
   ]
+  const styleGuideLinks = [
+    { href: langPrefix + '/docs/style-guide/index.html', name: t('docs_style_nav_principle') }
+  ]
+  const groups = [
+    { heading: t('docs_heading'), links: docsLinks },
+    { heading: t('docs_style_heading'), links: styleGuideLinks }
+  ]
 nav.docs-sidebar(aria-label=t('docs_heading'))
-  p.docs-sidebar__heading #{ t('docs_heading') }
-  ul.docs-sidebar__list
-    each link in docsLinks
-      li.docs-sidebar__item
-        a.docs-sidebar__link(href=link.href, class=(link.href === meta.href ? 'docs-sidebar__link--active' : '')) #{ link.name }
+  each group in groups
+    p.docs-sidebar__heading #{ group.heading }
+    ul.docs-sidebar__list
+      each link in group.links
+        li.docs-sidebar__item
+          a.docs-sidebar__link(href=link.href, class=(link.href === meta.href ? 'docs-sidebar__link--active' : '')) #{ link.name }

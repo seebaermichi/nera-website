@@ -150,20 +150,25 @@ test('a page removed since the last build leaves no .md in the cache', () => {
     assert.deepEqual(fs.readdirSync(cache), ['index.md'])
 })
 
-test('llms-full.txt orders docs then tutorials, each by pagination_order', () => {
+test('llms-full.txt orders docs, then the style guide, then tutorials, each by pagination_order', () => {
     writePage('docs/index.md', 'title: Intro', '# Intro\n\nDocs one.\n')
     writePage('docs/cli.md', 'title: CLI', '# CLI\n\nDocs two.\n')
+    writePage('docs/style-guide/index.md', 'title: Principle', '# Principle\n\nStyle one.\n')
+    writePage('docs/style-guide/plugins.md', 'title: Plugins', '# Plugins\n\nStyle two.\n')
     writePage('tutorials/blog.md', 'title: Blog', 'Tutorial one.\n')
     writePage('tutorials/search.md', 'title: Search', 'Tutorial two.\n')
 
     const { text } = build([
         meta('/tutorials/search.html', { title: 'Search', pagination_order: 2 }),
+        meta('/docs/style-guide/plugins.html', { title: 'Plugins', pagination_order: 2 }),
         meta('/docs/cli.html', { title: 'CLI', pagination_order: 10 }),
         meta('/tutorials/blog.html', { title: 'Blog', pagination_order: 1 }),
+        meta('/docs/style-guide/index.html', { title: 'Principle', pagination_order: 1 }),
         meta('/docs/index.html', { title: 'Intro', pagination_order: 2 }),
     ])
 
-    const order = ['Docs one.', 'Docs two.', 'Tutorial one.', 'Tutorial two.'].map((s) => text.indexOf(s))
+    const order = ['Docs one.', 'Docs two.', 'Style one.', 'Style two.', 'Tutorial one.', 'Tutorial two.']
+        .map((s) => text.indexOf(s))
     assert.ok(order.every((pos) => pos !== -1), text)
     assert.deepEqual([...order].sort((a, b) => a - b), order)
     assert.ok(text.startsWith('# Intro\n\nSource: https://example.test/docs/index.html\n\nDocs one.'), text)
@@ -273,9 +278,10 @@ test('llms.txt falls back to the default title and summary without a config file
     assert.ok(index.includes('(https://nera.js.org/llms-full.txt)'), index)
 })
 
-test('llms.txt lists Docs, Tutorials, Plugins, Themes, CLI and Optional in that order', () => {
+test('llms.txt lists Docs, Style guide, Tutorials, Plugins, Themes, CLI and Optional in that order', () => {
     writePage('docs/index.md', 'title: Intro', '# Intro\n')
     writePage('docs/cli.md', 'title: CLI reference', '# CLI\n')
+    writePage('docs/style-guide/index.md', 'title: Style guide', '# Style guide\n')
     writePage('tutorials/blog.md', 'title: Blog', 'Blog.\n')
     writePage('tutorials/search.md', 'title: Search', 'Search.\n')
 
@@ -284,16 +290,21 @@ test('llms.txt lists Docs, Tutorials, Plugins, Themes, CLI and Optional in that 
         meta('/docs/cli.html', { title: 'CLI reference', description: 'The nera CLI.', pagination_order: 7 }),
         meta('/tutorials/blog.html', { title: 'Blog', description: 'Build a blog.', pagination_order: 1 }),
         meta('/docs/index.html', { title: 'Intro', description: 'What Nera is.', pagination_order: 1 }),
+        meta('/docs/style-guide/index.html', { title: 'Style guide', description: 'One handwriting.', pagination_order: 1 }),
+        meta('/de/docs/style-guide/index.html', { title: 'Styleguide', lang: 'de', description: 'Deutsch.', pagination_order: 1 }),
         meta('/tutorials/index.html', { title: 'Tutorials', description: 'All tutorials.' }),
         meta('/plugins/index.html', { title: 'Plugins', data: { plugins: PLUGINS } }),
         meta('/themes/index.html', { title: 'Themes', data: { themes: THEMES } }),
     ])
 
     const headings = index.split('\n').filter((line) => line.startsWith('## '))
-    assert.deepEqual(headings, ['## Docs', '## Tutorials', '## Plugins', '## Themes', '## CLI', '## Optional'])
+    assert.deepEqual(headings, ['## Docs', '## Style guide', '## Tutorials', '## Plugins', '## Themes', '## CLI', '## Optional'])
     assert.deepEqual(section(index, 'Docs'), [
         `- [Intro](${ORIGIN}/docs/index.md): What Nera is.`,
         `- [CLI reference](${ORIGIN}/docs/cli.md): The nera CLI.`,
+    ])
+    assert.deepEqual(section(index, 'Style guide'), [
+        `- [Style guide](${ORIGIN}/docs/style-guide/index.md): One handwriting.`,
     ])
     assert.deepEqual(section(index, 'Tutorials'), [
         `- [Blog](${ORIGIN}/tutorials/blog.md): Build a blog.`,
@@ -312,7 +323,7 @@ test('llms.txt lists Docs, Tutorials, Plugins, Themes, CLI and Optional in that 
         '- [@nera-static/nera on npm](https://www.npmjs.com/package/@nera-static/nera): The one package a site depends on: the `nera` CLI with `new`, `build`, `dev`, `serve`, `validate`, `check` and `update`.',
     ])
     assert.deepEqual(section(index, 'Optional'), [
-        `- [llms-full.txt](${ORIGIN}/llms-full.txt): Every English docs page and tutorial above as one Markdown file, in reading order.`,
+        `- [llms-full.txt](${ORIGIN}/llms-full.txt): Every English docs page, style guide page and tutorial above as one Markdown file, in reading order.`,
     ])
     assert.deepEqual(warnings, [])
 })
@@ -355,16 +366,19 @@ test('a frontmatter catalog list without meta.data no longer feeds llms.txt', ()
 test('every page link in llms.txt points at a .md file getAssets emits', () => {
     writePage('docs/index.md', 'title: Intro', '# Intro\n')
     writePage('docs/cli.md', 'title: CLI', '# CLI\n')
+    writePage('docs/style-guide/index.md', 'title: Style guide', '# Style guide\n')
     writePage('tutorials/blog.md', 'title: Blog', 'Blog.\n')
 
     const { assets, index } = build([
         meta('/docs/index.html', { title: 'Intro', description: 'Intro.', pagination_order: 1 }),
         meta('/docs/cli.html', { title: 'CLI', description: 'CLI.', pagination_order: 2 }),
+        meta('/docs/style-guide/index.html', { title: 'Style guide', description: 'Style.', pagination_order: 1 }),
         meta('/tutorials/blog.html', { title: 'Blog', description: 'Blog.', pagination_order: 1 }),
     ])
 
     const linked = [...index.matchAll(/\]\((https:\/\/example\.test\/[^)]*\.md)\)/g)].map(([, url]) => url)
-    assert.equal(linked.length, 4) // three pages, the CLI page twice (Docs and CLI)
+    assert.equal(linked.length, 5) // four pages, the CLI page twice (Docs and CLI)
+    assert.ok(linked.includes(`${ORIGIN}/docs/style-guide/index.md`), linked)
     const emitted = assets.map(({ to }) => `${ORIGIN}/${to}`)
     for (const url of linked) assert.ok(emitted.includes(url), `${url} not emitted`)
     assert.ok(!/\]\(https:\/\/example\.test\/[^)]*\.html\)/.test(index), index)
@@ -395,6 +409,7 @@ test('an llms.txt item without a description is listed bare, with a warning', ()
 test('getMetaData sets markdown_href on exactly the pages getAssets emits a .md for', () => {
     writePage('docs/cli.md', 'title: CLI', '# CLI\n')
     writePage('tutorials/blog.md', 'title: Blog', 'Blog.\n')
+    writePage('docs/style-guide/index.md', 'title: Style guide', '# Style guide\n')
     const pagesData = [
         meta('/docs/cli.html', { title: 'CLI', pagination_order: 1 }),
         meta('/tutorials/blog.html', { title: 'Blog', pagination_order: 1 }),
@@ -402,6 +417,7 @@ test('getMetaData sets markdown_href on exactly the pages getAssets emits a .md 
         meta('/docs/draft.html', { title: 'Draft' }),
         meta('/tutorials/index.html', { title: 'Tutorials' }),
         meta('/index.html', { title: 'Home' }),
+        meta('/docs/style-guide/index.html', { title: 'Style guide', pagination_order: 1 }),
     ]
 
     const result = getMetaData({ app: { lang: 'en' }, pagesData })
@@ -411,7 +427,7 @@ test('getMetaData sets markdown_href on exactly the pages getAssets emits a .md 
         .filter(({ to }) => to.endsWith('.md'))
         .map(({ to }) => `/${to}`)
     const linked = result.filter(({ meta }) => meta.markdown_href).map(({ meta }) => meta.markdown_href)
-    assert.deepEqual(linked, ['/docs/cli.md', '/tutorials/blog.md'])
+    assert.deepEqual(linked, ['/docs/cli.md', '/tutorials/blog.md', '/docs/style-guide/index.md'])
     assert.deepEqual(linked.sort(), emitted.sort())
     for (const index of [2, 3, 4, 5]) assert.equal(result[index], pagesData[index])
 })

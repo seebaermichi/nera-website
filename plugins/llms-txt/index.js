@@ -1,8 +1,9 @@
 // Local plugin: publishes the English docs and tutorials as plain Markdown for
 // AI assistants (llmstxt.org). `llms.txt` is the index: an H1, a one-paragraph
-// summary, then linked sections (Docs, Tutorials, Plugins, Themes, CLI, Optional), each
-// item with a one-line description. `llms-full.txt` is every English docs page,
-// then every tutorial, each in `pagination_order`, with the frontmatter cut off
+// summary, then linked sections (Docs, Style guide, Tutorials, Plugins, Themes, CLI,
+// Optional), each item with a one-line description. `llms-full.txt` is every English
+// docs page, then every style guide page, then every tutorial, each in
+// `pagination_order`, with the frontmatter cut off
 // and root-relative links made absolute so the text stands on its own.
 //
 // Each of those pages is also published on its own, as `/<dirname>/<name>.md`
@@ -28,8 +29,8 @@ const DEFAULT_ORIGIN = 'https://nera.js.org'
 const DEFAULT_TITLE = 'Nera'
 const DEFAULT_SUMMARY = 'Nera is a lightweight, plugin-based static site generator for Node.js.'
 const LANG = 'en'
-// Output order: every docs page before every tutorial.
-const SECTIONS = ['/docs', '/tutorials']
+// Output order: every docs page, then every style guide page, then every tutorial.
+const SECTIONS = ['/docs', '/docs/style-guide', '/tutorials']
 // Pages in those folders that are listings, not reading material.
 const UNORDERED_PAGES = ['/tutorials/index.html']
 const CACHE_DIR = '.nera-cache/llms-txt'
@@ -109,8 +110,8 @@ export function markdownPath(href) {
 }
 
 /**
- * The llms.txt index. Docs and Tutorials are the pages of llms-full.txt, in the
- * same order; Plugins is the English catalog's `meta.data.plugins`; Themes is the
+ * The llms.txt index. Docs, Style guide and Tutorials are the pages of
+ * llms-full.txt, in the same order; Plugins is the English catalog's `meta.data.plugins`; Themes is the
  * English themes page's `meta.data.themes`, each with its demo URL when it has one;
  * CLI points at the CLI reference and the npm package; Optional links
  * llms-full.txt itself. An empty section is left out.
@@ -140,6 +141,7 @@ export function renderIndex({ title, summary, origin, pages, pagesData, defaultL
     const cliPage = pages.find((meta) => meta.href === CLI_PAGE)
     const sections = [
         ['Docs', pages.filter((meta) => meta.dirname === '/docs').map(pageItem)],
+        ['Style guide', pages.filter((meta) => meta.dirname === '/docs/style-guide').map(pageItem)],
         ['Tutorials', pages.filter((meta) => meta.dirname === '/tutorials').map(pageItem)],
         ['Plugins', plugins],
         ['Themes', themes],
@@ -147,7 +149,7 @@ export function renderIndex({ title, summary, origin, pages, pagesData, defaultL
         ['Optional', [{
             title: FULL_FILE,
             url: `${origin}/${FULL_FILE}`,
-            description: 'Every English docs page and tutorial above as one Markdown file, in reading order.',
+            description: 'Every English docs page, style guide page and tutorial above as one Markdown file, in reading order.',
         }]],
     ]
 
@@ -190,8 +192,8 @@ function oneLine(text) {
 }
 
 /**
- * The English pages directly inside `/docs` and `/tutorials`, docs first, each
- * section by `pagination_order`. A page there without `pagination_order` has
+ * The English pages directly inside `/docs`, `/docs/style-guide` and `/tutorials`,
+ * in that order, each section by `pagination_order`. A page there without `pagination_order` has
  * no place in the reading order: it is left out with a warning, except for the
  * listing pages in UNORDERED_PAGES. `warn: false` silences that warning for a
  * second caller.
