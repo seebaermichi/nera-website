@@ -68,7 +68,7 @@ there and it is generic, it belongs there, not in your package.
 
 The pages of this section follow the principle through each kind of package:
 
-1. **Plugins** — the anatomy of a plugin: files, the hook shape, config and
+1. **[Plugins](/docs/style-guide/plugins.html)** — the anatomy of a plugin: files, the hook shape, config and
    warnings, `package.json`, README and CHANGELOG.
 2. **Themes and starters** — the layout of a theme and a starter, the theme
    helper object, the custom-property prefixes.

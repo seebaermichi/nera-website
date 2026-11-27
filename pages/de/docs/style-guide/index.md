@@ -75,7 +75,7 @@ Paket.
 
 Die Seiten dieses Abschnitts verfolgen den Grundsatz durch jede Art von Paket:
 
-1. **Plugins** — der Aufbau eines Plugins: Dateien, die Hook-Form,
+1. **[Plugins](/de/docs/style-guide/plugins.html)** — der Aufbau eines Plugins: Dateien, die Hook-Form,
    Konfiguration und Warnungen, `package.json`, README und CHANGELOG.
 2. **Themes und Starter** — der Aufbau eines Themes und eines Starters, das
    Helfer-Objekt des Themes, die Präfixe der Custom Properties.

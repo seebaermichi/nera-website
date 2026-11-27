@@ -75,7 +75,7 @@ y es genérico, su sitio es ese paquete, no el tuyo.
 Las páginas de esta sección siguen el principio a través de cada tipo de
 paquete:
 
-1. **Plugins** — la anatomía de un plugin: archivos, la forma de los hooks,
+1. **[Plugins](/es/docs/style-guide/plugins.html)** — la anatomía de un plugin: archivos, la forma de los hooks,
    configuración y avisos, `package.json`, README y CHANGELOG.
 2. **Temas y starters** — la estructura de un tema y de un starter, el
    objeto helper del tema, los prefijos de las custom properties.
