@@ -13,7 +13,8 @@ A theme is the look of a site, shipped as an npm package whose files a site
 overrides one by one. A starter is a whole sample site that `nera new
 --starter <name>` copies once. Both follow one layout, so a theme author who
 knows one official theme finds their way in every other, and a new theme
-starts from this page rather than from a copy of a sibling.
+starts from this page and from `node scripts/new-repo.js theme <name>` (or
+`starter <name>`) in the generator repo, rather than from a copy of a sibling.
 
 How a site installs and overrides a theme is in the
 [core concepts](/docs/core-concepts.html); how a site uses a starter is in

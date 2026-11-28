@@ -51,6 +51,14 @@ mehreren Varianten und Fehler, die eine einzige Korrektur an einer Stelle
 überall beseitigt hätte. „Kopiere ein Geschwister“ ist nicht mehr die
 Anleitung. Dieser Styleguide und die gemeinsamen Pakete sind es.
 
+Ein neues Repo beginnt stattdessen mit den kanonischen Vorlagen:
+`node scripts/new-repo.js <plugin|theme|starter|tool> <name>` im
+[Generator-Repo](https://github.com/seebaermichi/nera) schreibt den
+vollständigen Dateisatz seiner Art (package.json, Lint, Tests, Workflows,
+README-Gliederung), und das Ergebnis besteht `nera-stan` schon beim ersten
+Commit. Die Schritte stehen unter
+[Starting a new repository](https://github.com/seebaermichi/nera/blob/main/CONTRIBUTING.md#-starting-a-new-repository).
+
 ## Wo der gemeinsame Code liegt
 
 - **`@nera-static/plugin-utils`** enthält jeden allgemeinen Laufzeit-Helfer,

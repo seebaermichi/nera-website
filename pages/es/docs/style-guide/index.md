@@ -51,6 +51,14 @@ y fallos que un solo arreglo en un solo sitio habría eliminado en todas
 partes. «Copia un hermano» ya no es la instrucción. Lo son esta guía y los
 paquetes compartidos.
 
+Un repo nuevo empieza en cambio con las plantillas canónicas:
+`node scripts/new-repo.js <plugin|theme|starter|tool> <name>` en el
+[repo del generador](https://github.com/seebaermichi/nera) escribe el
+conjunto completo de archivos de su tipo (package.json, lint, tests,
+workflows, esquema del README), y el resultado pasa `nera-stan` desde su
+primer commit. Los pasos están en
+[Starting a new repository](https://github.com/seebaermichi/nera/blob/main/CONTRIBUTING.md#-starting-a-new-repository).
+
 ## Dónde vive el código compartido
 
 - **`@nera-static/plugin-utils`** contiene todos los helpers genéricos de

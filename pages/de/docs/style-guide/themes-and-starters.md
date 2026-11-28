@@ -13,8 +13,9 @@ Ein Theme ist das Aussehen einer Website, ausgeliefert als npm-Paket, dessen
 Dateien eine Website einzeln überschreibt. Ein Starter ist eine ganze
 Beispiel-Website, die `nera new --starter <name>` einmal kopiert. Beide
 folgen einem Aufbau: Wer ein offizielles Theme kennt, findet sich in jedem
-anderen zurecht, und ein neues Theme beginnt mit dieser Seite statt mit der
-Kopie eines Geschwisters.
+anderen zurecht, und ein neues Theme beginnt mit dieser Seite und mit
+`node scripts/new-repo.js theme <name>` (oder `starter <name>`) im
+Generator-Repo statt mit der Kopie eines Geschwisters.
 
 Wie eine Website ein Theme installiert und überschreibt, steht in den
 [Kernkonzepten](/de/docs/core-concepts.html); wie eine Website einen Starter

@@ -48,6 +48,13 @@ of the same helpers in several variants, and bugs that one fix in one place
 would have removed everywhere. "Copy a sibling" is no longer the instruction.
 This guide and the shared packages are.
 
+A new repo starts from the canonical templates instead:
+`node scripts/new-repo.js <plugin|theme|starter|tool> <name>` in the
+[generator repo](https://github.com/seebaermichi/nera) writes the full file
+set of its kind (package.json, lint, tests, workflows, README outline), and
+the result passes `nera-stan` on its first commit. The steps are in
+[Starting a new repository](https://github.com/seebaermichi/nera/blob/main/CONTRIBUTING.md#-starting-a-new-repository).
+
 ## Where the shared code lives
 
 - **`@nera-static/plugin-utils`** holds every generic runtime helper, one

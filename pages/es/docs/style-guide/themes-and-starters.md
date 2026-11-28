@@ -13,7 +13,9 @@ Un tema es el aspecto de un sitio, publicado como paquete npm cuyos archivos
 un sitio sobrescribe uno a uno. Un starter es un sitio de ejemplo completo
 que `nera new --starter <name>` copia una sola vez. Ambos siguen una misma
 estructura: quien conoce un tema oficial se orienta en todos los demás, y un
-tema nuevo empieza con esta página en lugar de con la copia de un hermano.
+tema nuevo empieza con esta página y con `node scripts/new-repo.js theme
+<name>` (o `starter <name>`) en el repo del generador, en lugar de con la
+copia de un hermano.
 
 Cómo instala y sobrescribe un sitio un tema está en los
 [conceptos básicos](/es/docs/core-concepts.html); cómo usa un sitio un
