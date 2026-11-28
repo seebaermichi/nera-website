@@ -135,10 +135,15 @@ eines Hooks (aus `({ app, pagesData })` wird
 destrukturiertes Argument um, und es benennt keine Tests um, denn ohne
 „should“ ändert sich die Verbform.
 
-CSS (das BEM-Klassenmuster und die
-[Präfixe der Custom Properties](/de/docs/style-guide/themes-and-starters.html#custom-properties)),
-Pug-Templates und die Dateien, die jede Art von Repository haben muss,
-prüft ein späteres Release von `nera-stan`.
+Seit 1.1.0 stehen drei weitere Regelfamilien neben den Code-Regeln:
+
+- `css/*`: jede CSS-Datei durch stylelint, mit dem BEM-Klassenmuster und den
+  [Präfixen der Custom Properties](/de/docs/style-guide/themes-and-starters.html#custom-properties).
+- `pug/*`: jedes Pug-Template lässt sich parsen, ist in Vielfachen von 4
+  Leerzeichen ohne Tabs eingerückt, setzt Attributwerte in einfache
+  Anführungszeichen und schreibt BEM-Klassen.
+- `structure/*`: `package.json`, README, CHANGELOG, LICENSE, die kanonischen
+  Dateien und die Dateien, die jede Art von Repository haben muss.
 
 ### Ausnahmen
 
@@ -150,12 +155,17 @@ prüft ein späteres Release von `nera-stan`.
 
   ```json
   "nera-stan": {
-      "ignores": ["test/markup/", "demo/demo.js"]
+      "ignores": ["test/markup/", "demo/demo.js"],
+      "variants": { ".github/workflows/test.yml": "image-cache" },
+      "skip": { "structure/test-scripts": "a theme without tests: it compiles its templates instead" }
   }
   ```
 
-  Nimm ihn für Dateien, die kein Nera-Code sind, etwa generierte Fixtures
-  oder eine mitgelieferte Demo.
+  `ignores` ist für Dateien, die kein Nera-Code sind, etwa generierte
+  Fixtures oder eine mitgelieferte Demo. `variants` wählt eine benannte
+  Variante einer kanonischen Datei, und `skip` schaltet eine Regel mit
+  Begründung ab. Die erlaubten Werte nennt die
+  [README](https://github.com/seebaermichi/nera-stan#readme).
 - **Eine einzelne Zeile** lässt sich mit einem ESLint-Kommentar ausnehmen,
   der die Regel nennt und sagt warum:
 

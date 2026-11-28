@@ -127,10 +127,14 @@ the `node:` prefix, and the missing defaults of a hook
 It never rewrites `(data)` into a destructured argument, and it does not
 rename tests, because dropping "should" changes the verb.
 
-CSS (the BEM class pattern and the
-[custom-property prefixes](/docs/style-guide/themes-and-starters.html#custom-properties)),
-Pug templates and the files each kind of repository must have are checked
-by a later release of `nera-stan`.
+Since 1.1.0 three more rule families stand next to the code rules:
+
+- `css/*`: every CSS file through stylelint, with the BEM class pattern and
+  the [custom-property prefixes](/docs/style-guide/themes-and-starters.html#custom-properties).
+- `pug/*`: every Pug template parses, is indented in multiples of 4 spaces
+  without tabs, quotes attribute values singly and writes BEM class literals.
+- `structure/*`: `package.json`, README, CHANGELOG, LICENSE, the canonical
+  files and the files each kind of repository must have.
 
 ### Exceptions
 
@@ -142,12 +146,17 @@ by a later release of `nera-stan`.
 
   ```json
   "nera-stan": {
-      "ignores": ["test/markup/", "demo/demo.js"]
+      "ignores": ["test/markup/", "demo/demo.js"],
+      "variants": { ".github/workflows/test.yml": "image-cache" },
+      "skip": { "structure/test-scripts": "a theme without tests: it compiles its templates instead" }
   }
   ```
 
-  Use it for files that are not Nera code, such as generated fixtures or a
-  vendored demo.
+  `ignores` is for files that are not Nera code, such as generated fixtures
+  or a vendored demo. `variants` picks a named variant of a canonical file,
+  and `skip` switches a rule off with its reason. The
+  [README](https://github.com/seebaermichi/nera-stan#readme) lists the
+  allowed values.
 - **A single line** can be excepted with an ESLint comment that names the
   rule and says why:
 
