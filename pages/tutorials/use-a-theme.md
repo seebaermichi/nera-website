@@ -8,7 +8,7 @@ keywords: nera theme, theme-business, theme-blog, theme-stack, theme-ansitz, the
 tags: themes, getting-started
 pagination_order: 14
 createdAt: 2026-11-22
-verified_on: 2026-11-27
+verified_on: 2026-11-28
 verified_with:
     theme-business: 1.0.3
     theme-blog: 2.1.0
@@ -16,7 +16,7 @@ verified_with:
     theme-ansitz: 1.1.0
     theme-umwege: 1.1.1
     nera: 1.30.0
-    core: 4.19.1
+    core: 4.20.0
 ---
 A Nera theme is an npm package: layouts, page types, partials, a stylesheet
 and a set of design tokens. Your site does not copy it. It installs the

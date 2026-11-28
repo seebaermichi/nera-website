@@ -8,10 +8,10 @@ keywords: nera blog tutorial, static blog, markdown blog, plugin-simple-page-lis
 tags: getting-started, blog, plugins
 pagination_order: 1
 createdAt: 2026-07-21
-verified_on: 2026-11-27
+verified_on: 2026-11-28
 verified_with:
     nera: 1.30.0
-    core: 4.19.1
+    core: 4.20.0
     plugin-simple-page-list: 2.3.3
     starter-blog: 1.4.0
 ---

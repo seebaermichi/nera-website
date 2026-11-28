@@ -8,10 +8,10 @@ keywords: nera images, plugin-images, responsive images, avif, webp, srcset, pic
 tags: plugins, images, privacy
 pagination_order: 12
 createdAt: 2026-11-22
-verified_on: 2026-11-27
+verified_on: 2026-11-28
 verified_with:
     plugin-images: 1.0.3
-    core: 4.19.1
+    core: 4.20.0
     nera: 1.30.0
 ---
 A photo straight from a camera or a phone is several megabytes and thousands
